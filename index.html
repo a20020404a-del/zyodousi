@@ -1,0 +1,1042 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>English Grammar Learning</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Noto Sans JP',sans-serif;background:#f0f4f8;color:#1e293b;min-height:100vh}
+header{background:linear-gradient(135deg,#1e293b,#334155);color:#fff;padding:20px 24px;text-align:center}
+header h1{font-size:1.8rem;font-weight:700;letter-spacing:.05em}
+header p{font-size:.9rem;color:#94a3b8;margin-top:4px}
+
+/* Study Mode Toggle */
+.study-mode-bar{background:#1e293b;padding:8px 24px;display:flex;align-items:center;justify-content:flex-end;gap:12px}
+.study-mode-bar label{color:#94a3b8;font-size:.85rem}
+.toggle-switch{position:relative;width:44px;height:24px;cursor:pointer}
+.toggle-switch input{opacity:0;width:0;height:0}
+.toggle-slider{position:absolute;inset:0;background:#475569;border-radius:24px;transition:.3s}
+.toggle-slider:before{content:'';position:absolute;height:18px;width:18px;left:3px;bottom:3px;background:#fff;border-radius:50%;transition:.3s}
+input:checked+.toggle-slider{background:#3b82f6}
+input:checked+.toggle-slider:before{transform:translateX(20px)}
+
+/* Progress Bar */
+.progress-bar-wrap{background:#1e293b;padding:8px 24px;display:flex;align-items:center;gap:12px}
+.progress-bar-wrap span{color:#94a3b8;font-size:.8rem;white-space:nowrap}
+.progress-bar{flex:1;height:8px;background:#334155;border-radius:4px;overflow:hidden}
+.progress-fill{height:100%;background:linear-gradient(90deg,#3b82f6,#10b981);border-radius:4px;transition:width .5s}
+.progress-label{color:#cbd5e1;font-size:.8rem;white-space:nowrap}
+
+/* Nav Tabs */
+.nav-tabs{display:flex;overflow-x:auto;background:#fff;border-bottom:3px solid #e2e8f0;scrollbar-width:none}
+.nav-tabs::-webkit-scrollbar{display:none}
+.nav-tab{flex:1;min-width:120px;padding:14px 8px;text-align:center;cursor:pointer;font-size:.8rem;font-weight:600;border:none;background:none;transition:all .2s;border-bottom:4px solid transparent;color:#64748b;white-space:nowrap}
+.nav-tab:hover{background:#f8fafc}
+.nav-tab.active{color:#fff;border-bottom-color:transparent}
+.nav-tab[data-topic="pp"].active{background:#3b82f6}
+.nav-tab[data-topic="ger"].active{background:#10b981}
+.nav-tab[data-topic="inf"].active{background:#8b5cf6}
+.nav-tab[data-topic="prep"].active{background:#f59e0b}
+.nav-tab[data-topic="modal"].active{background:#ef4444}
+.nav-tab[data-topic="pp"]:hover:not(.active){border-bottom:4px solid #3b82f6;color:#3b82f6}
+.nav-tab[data-topic="ger"]:hover:not(.active){border-bottom:4px solid #10b981;color:#10b981}
+.nav-tab[data-topic="inf"]:hover:not(.active){border-bottom:4px solid #8b5cf6;color:#8b5cf6}
+.nav-tab[data-topic="prep"]:hover:not(.active){border-bottom:4px solid #f59e0b;color:#f59e0b}
+.nav-tab[data-topic="modal"]:hover:not(.active){border-bottom:4px solid #ef4444;color:#ef4444}
+
+/* Topic Sections */
+.topic-section{display:none;padding:24px;max-width:960px;margin:0 auto}
+.topic-section.active{display:block}
+
+/* Cards */
+.card{background:#fff;border-radius:12px;padding:24px;margin-bottom:20px;box-shadow:0 1px 3px rgba(0,0,0,.08)}
+.card-title{font-size:1.1rem;font-weight:700;margin-bottom:16px;display:flex;align-items:center;gap:8px}
+.card-title .badge{font-size:.7rem;padding:3px 8px;border-radius:20px;color:#fff;font-weight:600}
+.badge-pp{background:#3b82f6}
+.badge-ger{background:#10b981}
+.badge-inf{background:#8b5cf6}
+.badge-prep{background:#f59e0b}
+.badge-modal{background:#ef4444}
+
+/* Example sentences */
+.example-block{background:#f8fafc;border-left:4px solid #e2e8f0;border-radius:0 8px 8px 0;padding:12px 16px;margin:8px 0}
+.example-block.pp{border-left-color:#3b82f6}
+.example-block.ger{border-left-color:#10b981}
+.example-block.inf{border-left-color:#8b5cf6}
+.example-block.prep{border-left-color:#f59e0b}
+.example-block.modal{border-left-color:#ef4444}
+.example-row{display:flex;align-items:center;gap:8px;padding:4px 0}
+.example-en{font-weight:500;flex:1}
+.example-jp{color:#64748b;font-size:.85rem;flex:1}
+.tts-btn{background:none;border:1px solid #e2e8f0;border-radius:6px;padding:4px 8px;cursor:pointer;font-size:.85rem;transition:all .2s;flex-shrink:0}
+.tts-btn:hover{background:#f1f5f9}
+
+/* Subsection titles */
+.sub-title{font-size:.95rem;font-weight:600;color:#475569;margin:16px 0 8px;padding-bottom:6px;border-bottom:2px solid #e2e8f0}
+
+/* Table */
+.irr-table{width:100%;border-collapse:collapse;font-size:.88rem}
+.irr-table th{background:#f1f5f9;padding:8px 12px;text-align:left;font-weight:600;color:#475569}
+.irr-table td{padding:8px 12px;border-bottom:1px solid #f1f5f9}
+.irr-table tr:hover td{background:#f8fafc}
+.irr-table td:nth-child(2),.irr-table td:nth-child(3){color:#3b82f6;font-weight:500}
+
+/* Quiz sections */
+.quiz-nav{display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap}
+.quiz-tab-btn{padding:8px 16px;border-radius:8px;border:2px solid #e2e8f0;background:#fff;cursor:pointer;font-size:.85rem;font-weight:600;transition:all .2s;color:#475569}
+.quiz-tab-btn.active-pp{background:#3b82f6;border-color:#3b82f6;color:#fff}
+.quiz-tab-btn.active-ger{background:#10b981;border-color:#10b981;color:#fff}
+.quiz-tab-btn.active-inf{background:#8b5cf6;border-color:#8b5cf6;color:#fff}
+.quiz-tab-btn.active-prep{background:#f59e0b;border-color:#f59e0b;color:#fff}
+.quiz-tab-btn.active-modal{background:#ef4444;border-color:#ef4444;color:#fff}
+
+.quiz-panel{display:none}
+.quiz-panel.active{display:block}
+
+/* Quiz A */
+.quiz-question{background:#f8fafc;border-radius:10px;padding:16px;margin-bottom:12px}
+.quiz-question p{font-size:.95rem;margin-bottom:10px;font-weight:500;line-height:1.6}
+.quiz-choices{display:flex;flex-wrap:wrap;gap:8px}
+.choice-btn{padding:8px 16px;border-radius:8px;border:2px solid #e2e8f0;background:#fff;cursor:pointer;font-size:.85rem;font-weight:500;transition:all .2s}
+.choice-btn:hover{border-color:#94a3b8}
+.choice-btn.correct{background:#dcfce7;border-color:#10b981;color:#065f46}
+.choice-btn.wrong{background:#fee2e2;border-color:#ef4444;color:#991b1b}
+.choice-btn:disabled{cursor:not-allowed;opacity:.7}
+.quiz-feedback{font-size:.85rem;margin-top:8px;padding:6px 10px;border-radius:6px;display:none}
+.quiz-feedback.show{display:block}
+.quiz-feedback.ok{background:#dcfce7;color:#065f46}
+.quiz-feedback.ng{background:#fee2e2;color:#991b1b}
+
+/* Quiz B - Scramble */
+.scramble-question{background:#f8fafc;border-radius:10px;padding:16px;margin-bottom:16px}
+.scramble-prompt{font-size:.9rem;color:#64748b;margin-bottom:8px}
+.scramble-jp{font-weight:600;margin-bottom:12px}
+.word-bank{display:flex;flex-wrap:wrap;gap:6px;min-height:40px;padding:8px;background:#fff;border:2px dashed #e2e8f0;border-radius:8px;margin-bottom:8px}
+.answer-area{display:flex;flex-wrap:wrap;gap:6px;min-height:40px;padding:8px;background:#f0f9ff;border:2px dashed #93c5fd;border-radius:8px;margin-bottom:8px}
+.word-chip{padding:6px 12px;background:#fff;border:2px solid #e2e8f0;border-radius:20px;cursor:pointer;font-size:.85rem;font-weight:500;transition:all .2s;user-select:none}
+.word-chip:hover{border-color:#94a3b8;background:#f8fafc}
+.word-chip.in-answer{background:#dbeafe;border-color:#3b82f6;color:#1e40af}
+.scramble-check-btn{padding:8px 20px;border-radius:8px;border:none;background:#3b82f6;color:#fff;cursor:pointer;font-size:.85rem;font-weight:600;transition:all .2s}
+.scramble-check-btn:hover{background:#2563eb}
+.scramble-result{font-size:.85rem;margin-top:8px;padding:6px 10px;border-radius:6px;display:none}
+.scramble-result.show{display:block}
+.scramble-result.ok{background:#dcfce7;color:#065f46}
+.scramble-result.ng{background:#fee2e2;color:#991b1b}
+.scramble-reset-btn{padding:6px 14px;border-radius:8px;border:2px solid #e2e8f0;background:#fff;cursor:pointer;font-size:.8rem;margin-left:8px;transition:all .2s}
+.scramble-reset-btn:hover{background:#f1f5f9}
+
+/* Quiz C - Translation */
+.trans-question{background:#f8fafc;border-radius:10px;padding:16px;margin-bottom:12px}
+.trans-jp{font-size:1rem;font-weight:600;margin-bottom:10px;color:#1e293b}
+.trans-show-btn{padding:8px 16px;border-radius:8px;border:2px solid #e2e8f0;background:#fff;cursor:pointer;font-size:.85rem;font-weight:500;transition:all .2s}
+.trans-show-btn:hover{background:#f1f5f9}
+.trans-answer{display:none;margin-top:10px;padding:10px 14px;background:#dcfce7;border-radius:8px;color:#065f46;font-weight:500}
+.trans-answer.show{display:block}
+.trans-audio-btn{margin-left:8px;padding:4px 8px;background:none;border:1px solid #10b981;border-radius:6px;cursor:pointer;font-size:.85rem;color:#065f46}
+
+/* Score display */
+.score-display{text-align:center;padding:12px;background:#f0f9ff;border-radius:10px;margin-bottom:16px;font-size:.9rem;color:#1e40af;font-weight:600}
+
+/* Study Mode */
+body.study-mode .quiz-section{display:none}
+body.study-mode .study-mode-hint{display:block}
+.study-mode-hint{display:none;background:#fef3c7;border-radius:8px;padding:12px 16px;color:#92400e;font-size:.85rem;margin-bottom:16px}
+
+/* Verb list chips */
+.verb-chips{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0}
+.verb-chip{padding:6px 14px;background:#f1f5f9;border-radius:20px;font-size:.85rem;font-weight:500;color:#334155}
+
+/* Phrase grid */
+.phrase-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:8px;margin:8px 0}
+.phrase-card{background:#f8fafc;border-radius:8px;padding:10px 14px;font-size:.85rem}
+.phrase-card strong{display:block;color:#1e293b;font-weight:600;margin-bottom:2px}
+.phrase-card span{color:#64748b}
+
+/* Responsive */
+@media(max-width:600px){
+.nav-tab{font-size:.7rem;padding:12px 6px;min-width:70px}
+header h1{font-size:1.3rem}
+.topic-section{padding:12px}
+.card{padding:16px}
+}
+
+/* Highlight keyword */
+.kw{color:#3b82f6;font-weight:700}
+.kw-ger{color:#10b981;font-weight:700}
+.kw-inf{color:#8b5cf6;font-weight:700}
+.kw-prep{color:#f59e0b;font-weight:700}
+.kw-modal{color:#ef4444;font-weight:700}
+
+/* Reset quiz button */
+.reset-quiz-btn{padding:8px 18px;border-radius:8px;border:2px solid #e2e8f0;background:#fff;cursor:pointer;font-size:.85rem;font-weight:500;transition:all .2s;margin-top:12px}
+.reset-quiz-btn:hover{background:#f1f5f9}
+
+/* Section intro */
+.section-intro{color:#64748b;font-size:.9rem;line-height:1.7;margin-bottom:16px}
+
+/* Modal table */
+.modal-table{width:100%;border-collapse:collapse;font-size:.85rem;margin:8px 0}
+.modal-table th{background:#fef2f2;padding:8px 12px;text-align:left;font-weight:600;color:#991b1b}
+.modal-table td{padding:8px 12px;border-bottom:1px solid #fef2f2;vertical-align:top}
+.modal-table tr:hover td{background:#fff7f7}
+</style>
+</head>
+<body>
+<header>
+  <h1>English Grammar Learning</h1>
+  <p>英語文法を楽しく学ぼう - Past Participle / Gerunds / To-Infinitives / Prepositions / Modal Verbs</p>
+</header>
+
+<div class="study-mode-bar">
+  <label for="studyToggle">Study Mode (学習モード)</label>
+  <label class="toggle-switch">
+    <input type="checkbox" id="studyToggle" onchange="toggleStudyMode(this)">
+    <span class="toggle-slider"></span>
+  </label>
+</div>
+
+<div class="progress-bar-wrap">
+  <span>Progress:</span>
+  <div class="progress-bar"><div class="progress-fill" id="progressFill" style="width:0%"></div></div>
+  <span class="progress-label" id="progressLabel">0 / 0 correct</span>
+</div>
+
+<div class="nav-tabs">
+  <button class="nav-tab active" data-topic="pp" onclick="showTopic('pp',this)">Past Participle</button>
+  <button class="nav-tab" data-topic="ger" onclick="showTopic('ger',this)">Gerunds</button>
+  <button class="nav-tab" data-topic="inf" onclick="showTopic('inf',this)">To-Infinitives</button>
+  <button class="nav-tab" data-topic="prep" onclick="showTopic('prep',this)">Prepositions</button>
+  <button class="nav-tab" data-topic="modal" onclick="showTopic('modal',this)">Modal Verbs</button>
+</div>
+
+<!-- ========== PAST PARTICIPLE ========== -->
+<div id="section-pp" class="topic-section active">
+  <div class="card">
+    <div class="card-title"><span class="badge badge-pp">PP</span>Past Participle - 過去分詞</div>
+    <p class="section-intro">過去分詞（Past Participle）は動詞の第3形です。完了形・受動態・形容詞として使われます。</p>
+
+    <div class="sub-title">1. 完了形 (Perfect Tenses)</div>
+    <div class="example-block pp">
+      <div class="example-row"><span class="example-en">I have <span class="kw">eaten</span> lunch.</span><span class="example-jp">昼食を食べました。</span><button class="tts-btn" onclick="speak('I have eaten lunch.')">🔊</button></div>
+      <div class="example-row"><span class="example-en">She has <span class="kw">gone</span> to the store.</span><span class="example-jp">彼女はお店に行きました。</span><button class="tts-btn" onclick="speak('She has gone to the store.')">🔊</button></div>
+      <div class="example-row"><span class="example-en">We have <span class="kw">finished</span> our homework.</span><span class="example-jp">私たちは宿題を終えました。</span><button class="tts-btn" onclick="speak('We have finished our homework.')">🔊</button></div>
+      <div class="example-row"><span class="example-en">He has <span class="kw">broken</span> the window.</span><span class="example-jp">彼は窓を壊しました。</span><button class="tts-btn" onclick="speak('He has broken the window.')">🔊</button></div>
+      <div class="example-row"><span class="example-en">They have <span class="kw">made</span> a decision.</span><span class="example-jp">彼らは決断を下しました。</span><button class="tts-btn" onclick="speak('They have made a decision.')">🔊</button></div>
+    </div>
+
+    <div class="sub-title">2. 受動態 (Passive Voice)</div>
+    <div class="example-block pp">
+      <div class="example-row"><span class="example-en">The book was <span class="kw">written</span> by Hemingway.</span><span class="example-jp">その本はヘミングウェイによって書かれました。</span><button class="tts-btn" onclick="speak('The book was written by Hemingway.')">🔊</button></div>
+      <div class="example-row"><span class="example-en">The cake was <span class="kw">eaten</span> by the children.</span><span class="example-jp">ケーキは子供たちに食べられました。</span><button class="tts-btn" onclick="speak('The cake was eaten by the children.')">🔊</button></div>
+      <div class="example-row"><span class="example-en">The window was <span class="kw">broken</span> by the ball.</span><span class="example-jp">窓はボールで割られました。</span><button class="tts-btn" onclick="speak('The window was broken by the ball.')">🔊</button></div>
+      <div class="example-row"><span class="example-en">The letter was <span class="kw">sent</span> yesterday.</span><span class="example-jp">手紙は昨日送られました。</span><button class="tts-btn" onclick="speak('The letter was sent yesterday.')">🔊</button></div>
+      <div class="example-row"><span class="example-en">The house was <span class="kw">built</span> in 1990.</span><span class="example-jp">その家は1990年に建てられました。</span><button class="tts-btn" onclick="speak('The house was built in 1990.')">🔊</button></div>
+    </div>
+
+    <div class="sub-title">3. 形容詞として (As Adjective)</div>
+    <div class="example-block pp">
+      <div class="example-row"><span class="example-en">a <span class="kw">broken</span> window</span><span class="example-jp">割れた窓</span><button class="tts-btn" onclick="speak('a broken window')">🔊</button></div>
+      <div class="example-row"><span class="example-en">a <span class="kw">used</span> car</span><span class="example-jp">中古車</span><button class="tts-btn" onclick="speak('a used car')">🔊</button></div>
+      <div class="example-row"><span class="example-en">a <span class="kw">written</span> letter</span><span class="example-jp">書かれた手紙</span><button class="tts-btn" onclick="speak('a written letter')">🔊</button></div>
+      <div class="example-row"><span class="example-en">a <span class="kw">bored</span> student</span><span class="example-jp">退屈した学生</span><button class="tts-btn" onclick="speak('a bored student')">🔊</button></div>
+      <div class="example-row"><span class="example-en">an <span class="kw">excited</span> crowd</span><span class="example-jp">興奮した群衆</span><button class="tts-btn" onclick="speak('an excited crowd')">🔊</button></div>
+    </div>
+
+    <div class="sub-title">4. get + 過去分詞 (get + Past Participle)</div>
+    <div class="example-block pp">
+      <div class="example-row"><span class="example-en">get <span class="kw">tired</span></span><span class="example-jp">疲れる</span><button class="tts-btn" onclick="speak('get tired')">🔊</button></div>
+      <div class="example-row"><span class="example-en">get <span class="kw">married</span></span><span class="example-jp">結婚する</span><button class="tts-btn" onclick="speak('get married')">🔊</button></div>
+      <div class="example-row"><span class="example-en">get <span class="kw">excited</span></span><span class="example-jp">興奮する</span><button class="tts-btn" onclick="speak('get excited')">🔊</button></div>
+      <div class="example-row"><span class="example-en">get <span class="kw">lost</span></span><span class="example-jp">迷子になる</span><button class="tts-btn" onclick="speak('get lost')">🔊</button></div>
+      <div class="example-row"><span class="example-en">get <span class="kw">dressed</span></span><span class="example-jp">服を着る</span><button class="tts-btn" onclick="speak('get dressed')">🔊</button></div>
+    </div>
+
+    <div class="sub-title">5. 不規則動詞一覧 (Irregular Verbs)</div>
+    <table class="irr-table">
+      <tr><th>Base Form</th><th>Past Tense</th><th>Past Participle</th><th></th></tr>
+      <tr><td>go</td><td>went</td><td>gone</td><td><button class="tts-btn" onclick="speak('go went gone')">🔊</button></td></tr>
+      <tr><td>write</td><td>wrote</td><td>written</td><td><button class="tts-btn" onclick="speak('write wrote written')">🔊</button></td></tr>
+      <tr><td>eat</td><td>ate</td><td>eaten</td><td><button class="tts-btn" onclick="speak('eat ate eaten')">🔊</button></td></tr>
+      <tr><td>break</td><td>broke</td><td>broken</td><td><button class="tts-btn" onclick="speak('break broke broken')">🔊</button></td></tr>
+      <tr><td>make</td><td>made</td><td>made</td><td><button class="tts-btn" onclick="speak('make made made')">🔊</button></td></tr>
+      <tr><td>take</td><td>took</td><td>taken</td><td><button class="tts-btn" onclick="speak('take took taken')">🔊</button></td></tr>
+      <tr><td>give</td><td>gave</td><td>given</td><td><button class="tts-btn" onclick="speak('give gave given')">🔊</button></td></tr>
+      <tr><td>know</td><td>knew</td><td>known</td><td><button class="tts-btn" onclick="speak('know knew known')">🔊</button></td></tr>
+      <tr><td>see</td><td>saw</td><td>seen</td><td><button class="tts-btn" onclick="speak('see saw seen')">🔊</button></td></tr>
+      <tr><td>come</td><td>came</td><td>come</td><td><button class="tts-btn" onclick="speak('come came come')">🔊</button></td></tr>
+      <tr><td>run</td><td>ran</td><td>run</td><td><button class="tts-btn" onclick="speak('run ran run')">🔊</button></td></tr>
+      <tr><td>speak</td><td>spoke</td><td>spoken</td><td><button class="tts-btn" onclick="speak('speak spoke spoken')">🔊</button></td></tr>
+      <tr><td>choose</td><td>chose</td><td>chosen</td><td><button class="tts-btn" onclick="speak('choose chose chosen')">🔊</button></td></tr>
+      <tr><td>draw</td><td>drew</td><td>drawn</td><td><button class="tts-btn" onclick="speak('draw drew drawn')">🔊</button></td></tr>
+      <tr><td>forget</td><td>forgot</td><td>forgotten</td><td><button class="tts-btn" onclick="speak('forget forgot forgotten')">🔊</button></td></tr>
+      <tr><td>grow</td><td>grew</td><td>grown</td><td><button class="tts-btn" onclick="speak('grow grew grown')">🔊</button></td></tr>
+      <tr><td>hide</td><td>hid</td><td>hidden</td><td><button class="tts-btn" onclick="speak('hide hid hidden')">🔊</button></td></tr>
+      <tr><td>steal</td><td>stole</td><td>stolen</td><td><button class="tts-btn" onclick="speak('steal stole stolen')">🔊</button></td></tr>
+      <tr><td>throw</td><td>threw</td><td>thrown</td><td><button class="tts-btn" onclick="speak('throw threw thrown')">🔊</button></td></tr>
+      <tr><td>wear</td><td>wore</td><td>worn</td><td><button class="tts-btn" onclick="speak('wear wore worn')">🔊</button></td></tr>
+    </table>
+  </div>
+
+  <!-- PP QUIZ -->
+  <div class="card quiz-section">
+    <div class="card-title"><span class="badge badge-pp">Quiz</span>Practice Quizzes</div>
+    <div class="study-mode-hint">Study Mode ON: クイズは非表示です。学習モードをオフにするとクイズが表示されます。</div>
+    <div class="quiz-nav">
+      <button class="quiz-tab-btn active-pp" onclick="showQuiz('pp','A',this)">Type A: Fill-in-Blank</button>
+      <button class="quiz-tab-btn" onclick="showQuiz('pp','B',this)">Type B: Scramble</button>
+      <button class="quiz-tab-btn" onclick="showQuiz('pp','C',this)">Type C: Translation</button>
+    </div>
+    <div class="score-display" id="score-pp">Score: 0 / 0</div>
+
+    <!-- PP Quiz A -->
+    <div id="quiz-pp-A" class="quiz-panel active">
+      <div id="pp-A-questions"></div>
+      <button class="reset-quiz-btn" onclick="resetQuizA('pp')">Reset Quiz</button>
+    </div>
+
+    <!-- PP Quiz B -->
+    <div id="quiz-pp-B" class="quiz-panel">
+      <div id="pp-B-scrambles"></div>
+    </div>
+
+    <!-- PP Quiz C -->
+    <div id="quiz-pp-C" class="quiz-panel">
+      <div id="pp-C-translations"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ========== GERUNDS ========== -->
+<div id="section-ger" class="topic-section">
+  <div class="card">
+    <div class="card-title"><span class="badge badge-ger">GER</span>Gerunds - 動名詞</div>
+    <p class="section-intro">動名詞（Gerund）は動詞に -ing をつけて名詞のように使う形です。主語・目的語・前置詞の後などで使われます。</p>
+
+    <div class="sub-title">1. 主語として (As Subject)</div>
+    <div class="example-block ger">
+      <div class="example-row"><span class="example-en"><span class="kw-ger">Swimming</span> is fun.</span><span class="example-jp">水泳は楽しいです。</span><button class="tts-btn" onclick="speak('Swimming is fun.')">🔊</button></div>
+      <div class="example-row"><span class="example-en"><span class="kw-ger">Reading books</span> is important.</span><span class="example-jp">本を読むことは大切です。</span><button class="tts-btn" onclick="speak('Reading books is important.')">🔊</button></div>
+      <div class="example-row"><span class="example-en"><span class="kw-ger">Cooking meals</span> takes time.</span><span class="example-jp">食事を作ることは時間がかかります。</span><button class="tts-btn" onclick="speak('Cooking meals takes time.')">🔊</button></div>
+      <div class="example-row"><span class="example-en"><span class="kw-ger">Learning English</span> is exciting.</span><span class="example-jp">英語を学ぶことはわくわくします。</span><button class="tts-btn" onclick="speak('Learning English is exciting.')">🔊</button></div>
+      <div class="example-row"><span class="example-en"><span class="kw-ger">Running every day</span> keeps you healthy.</span><span class="example-jp">毎日走ることは健康を保ちます。</span><button class="tts-btn" onclick="speak('Running every day keeps you healthy.')">🔊</button></div>
+    </div>
+
+    <div class="sub-title">2. 目的語として (As Object)</div>
+    <div class="example-block ger">
+      <div class="example-row"><span class="example-en">I enjoy <span class="kw-ger">reading</span>.</span><span class="example-jp">私は読書を楽しみます。</span><button class="tts-btn" onclick="speak('I enjoy reading.')">🔊</button></div>
+      <div class="example-row"><span class="example-en">She finished <span class="kw-ger">cooking</span>.</span><span class="example-jp">彼女は料理を終えました。</span><button class="tts-btn" onclick="speak('She finished cooking.')">🔊</button></div>
+      <div class="example-row"><span class="example-en">He avoided <span class="kw-ger">talking</span> to her.</span><span class="example-jp">彼は彼女と話すことを避けました。</span><button class="tts-btn" onclick="speak('He avoided talking to her.')">🔊</button></div>
+      <div class="example-row"><span class="example-en">We consider <span class="kw-ger">moving</span> to Tokyo.</span><span class="example-jp">私たちは東京への引越しを検討しています。</span><button class="tts-btn" onclick="speak('We consider moving to Tokyo.')">🔊</button></div>
+      <div class="example-row"><span class="example-en">They suggest <span class="kw-ger">waiting</span> here.</span><span class="example-jp">彼らはここで待つことを提案します。</span><button class="tts-btn" onclick="speak('They suggest waiting here.')">🔊</button></div>
+    </div>
+
+    <div class="sub-title">3. 前置詞の後 (After Prepositions)</div>
+    <div class="example-block ger">
+      <div class="example-row"><span class="example-en">She is good at <span class="kw-ger">cooking</span>.</span><span class="example-jp">彼女は料理が得意です。</span><button class="tts-btn" onclick="speak('She is good at cooking.')">🔊</button></div>
+      <div class="example-row"><span class="example-en">He is interested in <span class="kw-ger">learning</span> Japanese.</span><span class="example-jp">彼は日本語学習に興味があります。</span><button class="tts-btn" onclick="speak('He is interested in learning Japanese.')">🔊</button></div>
+      <div class="example-row"><span class="example-en">We are tired of <span class="kw-ger">waiting</span>.</span><span class="example-jp">私たちは待ちくたびれました。</span><button class="tts-btn" onclick="speak('We are tired of waiting.')">🔊</button></div>
+      <div class="example-row"><span class="example-en">I am afraid of <span class="kw-ger">flying</span>.</span><span class="example-jp">私は飛行機が怖いです。</span><button class="tts-btn" onclick="speak('I am afraid of flying.')">🔊</button></div>
+      <div class="example-row"><span class="example-en">She is responsible for <span class="kw-ger">managing</span> the team.</span><span class="example-jp">彼女はチーム管理の責任があります。</span><button class="tts-btn" onclick="speak('She is responsible for managing the team.')">🔊</button></div>
+    </div>
+
+    <div class="sub-title">4. 動名詞を取る動詞 (Verbs + Gerund)</div>
+    <div class="verb-chips">
+      <span class="verb-chip">enjoy</span><span class="verb-chip">finish</span><span class="verb-chip">avoid</span>
+      <span class="verb-chip">consider</span><span class="verb-chip">suggest</span><span class="verb-chip">practice</span>
+      <span class="verb-chip">mind</span><span class="verb-chip">keep</span><span class="verb-chip">admit</span><span class="verb-chip">deny</span>
+    </div>
+  </div>
+
+  <!-- GER QUIZ -->
+  <div class="card quiz-section">
+    <div class="card-title"><span class="badge badge-ger">Quiz</span>Practice Quizzes</div>
+    <div class="study-mode-hint">Study Mode ON: クイズは非表示です。</div>
+    <div class="quiz-nav">
+      <button class="quiz-tab-btn active-ger" onclick="showQuiz('ger','A',this)">Type A: Fill-in-Blank</button>
+      <button class="quiz-tab-btn" onclick="showQuiz('ger','B',this)">Type B: Scramble</button>
+      <button class="quiz-tab-btn" onclick="showQuiz('ger','C',this)">Type C: Translation</button>
+    </div>
+    <div class="score-display" id="score-ger">Score: 0 / 0</div>
+    <div id="quiz-ger-A" class="quiz-panel active"><div id="ger-A-questions"></div><button class="reset-quiz-btn" onclick="resetQuizA('ger')">Reset Quiz</button></div>
+    <div id="quiz-ger-B" class="quiz-panel"><div id="ger-B-scrambles"></div></div>
+    <div id="quiz-ger-C" class="quiz-panel"><div id="ger-C-translations"></div></div>
+  </div>
+</div>
+
+<!-- ========== TO-INFINITIVES ========== -->
+<div id="section-inf" class="topic-section">
+  <div class="card">
+    <div class="card-title"><span class="badge badge-inf">INF</span>To-Infinitives - to不定詞</div>
+    <p class="section-intro">to不定詞（To-Infinitive）は「to + 動詞の原形」の形です。名詞・形容詞・副詞として機能します。</p>
+
+    <div class="sub-title">1. 動詞の後 (After Verbs)</div>
+    <div class="example-block inf">
+      <div class="example-row"><span class="example-en">I want <span class="kw-inf">to go</span> to Paris.</span><span class="example-jp">私はパリに行きたいです。</span><button class="tts-btn" onclick="speak('I want to go to Paris.')">🔊</button></div>
+      <div class="example-row"><span class="example-en">She needs <span class="kw-inf">to study</span> more.</span><span class="example-jp">彼女はもっと勉強する必要があります。</span><button class="tts-btn" onclick="speak('She needs to study more.')">🔊</button></div>
+      <div class="example-row"><span class="example-en">He hopes <span class="kw-inf">to visit</span> Japan.</span><span class="example-jp">彼は日本を訪れることを望んでいます。</span><button class="tts-btn" onclick="speak('He hopes to visit Japan.')">🔊</button></div>
+      <div class="example-row"><span class="example-en">We plan <span class="kw-inf">to travel</span> this summer.</span><span class="example-jp">私たちは今夏旅行する予定です。</span><button class="tts-btn" onclick="speak('We plan to travel this summer.')">🔊</button></div>
+      <div class="example-row"><span class="example-en">She decided <span class="kw-inf">to leave</span> early.</span><span class="example-jp">彼女は早く出発することに決めました。</span><button class="tts-btn" onclick="speak('She decided to leave early.')">🔊</button></div>
+      <div class="example-row"><span class="example-en">He promised <span class="kw-inf">to help</span> me.</span><span class="example-jp">彼は私を助けると約束しました。</span><button class="tts-btn" onclick="speak('He promised to help me.')">🔊</button></div>
+      <div class="example-row"><span class="example-en">They agreed <span class="kw-inf">to meet</span> at noon.</span><span class="example-jp">彼らは正午に会うことに同意しました。</span><button class="tts-btn" onclick="speak('They agreed to meet at noon.')">🔊</button></div>
+      <div class="example-row"><span class="example-en">She refused <span class="kw-inf">to answer</span>.</span><span class="example-jp">彼女は答えることを拒否しました。</span><button class="tts-btn" onclick="speak('She refused to answer.')">🔊</button></div>
+    </div>
+
+    <div class="sub-title">2. 目的を表す (Purpose)</div>
+    <div class="example-block inf">
+      <div class="example-row"><span class="example-en">I went to the store <span class="kw-inf">to buy</span> milk.</span><span class="example-jp">牛乳を買うためにお店に行きました。</span><button class="tts-btn" onclick="speak('I went to the store to buy milk.')">🔊</button></div>
+      <div class="example-row"><span class="example-en">She studied hard <span class="kw-inf">to pass</span> the exam.</span><span class="example-jp">試験に合格するために一生懸命勉強しました。</span><button class="tts-btn" onclick="speak('She studied hard to pass the exam.')">🔊</button></div>
+      <div class="example-row"><span class="example-en">He saved money <span class="kw-inf">to buy</span> a car.</span><span class="example-jp">車を買うためにお金を貯めました。</span><button class="tts-btn" onclick="speak('He saved money to buy a car.')">🔊</button></div>
+      <div class="example-row"><span class="example-en">We came early <span class="kw-inf">to get</span> good seats.</span><span class="example-jp">良い席を取るために早く来ました。</span><button class="tts-btn" onclick="speak('We came early to get good seats.')">🔊</button></div>
+      <div class="example-row"><span class="example-en">They practiced daily <span class="kw-inf">to improve</span> their skills.</span><span class="example-jp">スキルを向上させるために毎日練習しました。</span><button class="tts-btn" onclick="speak('They practiced daily to improve their skills.')">🔊</button></div>
+    </div>
+
+    <div class="sub-title">3. 形容詞の後 (After Adjectives)</div>
+    <div class="example-block inf">
+      <div class="example-row"><span class="example-en">I am happy <span class="kw-inf">to hear</span> that.</span><span class="example-jp">それを聞いて嬉しいです。</span><button class="tts-btn" onclick="speak('I am happy to hear that.')">🔊</button></div>
+      <div class="example-row"><span class="example-en">It is easy <span class="kw-inf">to understand</span>.</span><span class="example-jp">理解するのは簡単です。</span><button class="tts-btn" onclick="speak('It is easy to understand.')">🔊</button></div>
+      <div class="example-row"><span class="example-en">It is important <span class="kw-inf">to remember</span> this.</span><span class="example-jp">これを覚えることは大切です。</span><button class="tts-btn" onclick="speak('It is important to remember this.')">🔊</button></div>
+      <div class="example-row"><span class="example-en">It is difficult <span class="kw-inf">to explain</span>.</span><span class="example-jp">説明するのは難しいです。</span><button class="tts-btn" onclick="speak('It is difficult to explain.')">🔊</button></div>
+      <div class="example-row"><span class="example-en">She was excited <span class="kw-inf">to meet</span> the singer.</span><span class="example-jp">彼女はその歌手に会えて興奮しました。</span><button class="tts-btn" onclick="speak('She was excited to meet the singer.')">🔊</button></div>
+    </div>
+
+    <div class="sub-title">4. It is + 形容詞 + to (It is + Adj + to-inf)</div>
+    <div class="example-block inf">
+      <div class="example-row"><span class="example-en">It is important <span class="kw-inf">to study</span> every day.</span><span class="example-jp">毎日勉強することは大切です。</span><button class="tts-btn" onclick="speak('It is important to study every day.')">🔊</button></div>
+      <div class="example-row"><span class="example-en">It is easy <span class="kw-inf">to learn</span> new words.</span><span class="example-jp">新しい単語を覚えるのは簡単です。</span><button class="tts-btn" onclick="speak('It is easy to learn new words.')">🔊</button></div>
+      <div class="example-row"><span class="example-en">It is difficult <span class="kw-inf">to understand</span> grammar.</span><span class="example-jp">文法を理解するのは難しいです。</span><button class="tts-btn" onclick="speak('It is difficult to understand grammar.')">🔊</button></div>
+      <div class="example-row"><span class="example-en">It is necessary <span class="kw-inf">to practice</span> speaking.</span><span class="example-jp">会話を練習することは必要です。</span><button class="tts-btn" onclick="speak('It is necessary to practice speaking.')">🔊</button></div>
+      <div class="example-row"><span class="example-en">It is fun <span class="kw-inf">to travel</span> abroad.</span><span class="example-jp">海外旅行は楽しいです。</span><button class="tts-btn" onclick="speak('It is fun to travel abroad.')">🔊</button></div>
+    </div>
+
+    <div class="sub-title">5. too + 形容詞 + to (Too + Adj + to-inf)</div>
+    <div class="example-block inf">
+      <div class="example-row"><span class="example-en">I am too tired <span class="kw-inf">to work</span>.</span><span class="example-jp">疲れすぎて仕事できません。</span><button class="tts-btn" onclick="speak('I am too tired to work.')">🔊</button></div>
+      <div class="example-row"><span class="example-en">She is too young <span class="kw-inf">to drive</span>.</span><span class="example-jp">彼女は若すぎて運転できません。</span><button class="tts-btn" onclick="speak('She is too young to drive.')">🔊</button></div>
+      <div class="example-row"><span class="example-en">He is too busy <span class="kw-inf">to talk</span>.</span><span class="example-jp">彼は忙しすぎて話せません。</span><button class="tts-btn" onclick="speak('He is too busy to talk.')">🔊</button></div>
+      <div class="example-row"><span class="example-en">It is too heavy <span class="kw-inf">to lift</span>.</span><span class="example-jp">重すぎて持ち上げられません。</span><button class="tts-btn" onclick="speak('It is too heavy to lift.')">🔊</button></div>
+      <div class="example-row"><span class="example-en">The soup is too hot <span class="kw-inf">to eat</span>.</span><span class="example-jp">スープは熱すぎて食べられません。</span><button class="tts-btn" onclick="speak('The soup is too hot to eat.')">🔊</button></div>
+    </div>
+
+    <div class="sub-title">6. 形容詞 + enough + to (Adj + enough + to-inf)</div>
+    <div class="example-block inf">
+      <div class="example-row"><span class="example-en">He is strong enough <span class="kw-inf">to lift</span> it.</span><span class="example-jp">彼はそれを持ち上げるほど強いです。</span><button class="tts-btn" onclick="speak('He is strong enough to lift it.')">🔊</button></div>
+      <div class="example-row"><span class="example-en">She is old enough <span class="kw-inf">to vote</span>.</span><span class="example-jp">彼女は投票できる年齢です。</span><button class="tts-btn" onclick="speak('She is old enough to vote.')">🔊</button></div>
+      <div class="example-row"><span class="example-en">He runs fast enough <span class="kw-inf">to win</span>.</span><span class="example-jp">彼は勝てるほど速く走ります。</span><button class="tts-btn" onclick="speak('He runs fast enough to win.')">🔊</button></div>
+      <div class="example-row"><span class="example-en">Your score is good enough <span class="kw-inf">to pass</span>.</span><span class="example-jp">あなたの点数は合格できる水準です。</span><button class="tts-btn" onclick="speak('Your score is good enough to pass.')">🔊</button></div>
+      <div class="example-row"><span class="example-en">She is tall enough <span class="kw-inf">to reach</span> the shelf.</span><span class="example-jp">彼女は棚に届くほど背が高いです。</span><button class="tts-btn" onclick="speak('She is tall enough to reach the shelf.')">🔊</button></div>
+    </div>
+  </div>
+
+  <!-- INF QUIZ -->
+  <div class="card quiz-section">
+    <div class="card-title"><span class="badge badge-inf">Quiz</span>Practice Quizzes</div>
+    <div class="study-mode-hint">Study Mode ON: クイズは非表示です。</div>
+    <div class="quiz-nav">
+      <button class="quiz-tab-btn active-inf" onclick="showQuiz('inf','A',this)">Type A: Fill-in-Blank</button>
+      <button class="quiz-tab-btn" onclick="showQuiz('inf','B',this)">Type B: Scramble</button>
+      <button class="quiz-tab-btn" onclick="showQuiz('inf','C',this)">Type C: Translation</button>
+    </div>
+    <div class="score-display" id="score-inf">Score: 0 / 0</div>
+    <div id="quiz-inf-A" class="quiz-panel active"><div id="inf-A-questions"></div><button class="reset-quiz-btn" onclick="resetQuizA('inf')">Reset Quiz</button></div>
+    <div id="quiz-inf-B" class="quiz-panel"><div id="inf-B-scrambles"></div></div>
+    <div id="quiz-inf-C" class="quiz-panel"><div id="inf-C-translations"></div></div>
+  </div>
+</div>
+
+<!-- ========== PREPOSITIONS ========== -->
+<div id="section-prep" class="topic-section">
+  <div class="card">
+    <div class="card-title"><span class="badge badge-prep">PREP</span>Prepositions - 前置詞</div>
+    <p class="section-intro">前置詞（Preposition）は時間・場所・方向などを表す語です。at / on / in の使い分けが特に重要です。</p>
+
+    <div class="sub-title">1. 時間の前置詞 (Time: at / on / in)</div>
+    <div class="phrase-grid">
+      <div class="phrase-card"><strong><span class="kw-prep">at</span> 3pm</strong><span>午後3時に</span></div>
+      <div class="phrase-card"><strong><span class="kw-prep">at</span> night</strong><span>夜に</span></div>
+      <div class="phrase-card"><strong><span class="kw-prep">at</span> noon</strong><span>正午に</span></div>
+      <div class="phrase-card"><strong><span class="kw-prep">at</span> midnight</strong><span>深夜0時に</span></div>
+      <div class="phrase-card"><strong><span class="kw-prep">at</span> the weekend</strong><span>週末に</span></div>
+      <div class="phrase-card"><strong><span class="kw-prep">on</span> Monday</strong><span>月曜日に</span></div>
+      <div class="phrase-card"><strong><span class="kw-prep">on</span> July 4th</strong><span>7月4日に</span></div>
+      <div class="phrase-card"><strong><span class="kw-prep">on</span> my birthday</strong><span>誕生日に</span></div>
+      <div class="phrase-card"><strong><span class="kw-prep">on</span> weekdays</strong><span>平日に</span></div>
+      <div class="phrase-card"><strong><span class="kw-prep">on</span> time</strong><span>時間通りに</span></div>
+      <div class="phrase-card"><strong><span class="kw-prep">in</span> 2024</strong><span>2024年に</span></div>
+      <div class="phrase-card"><strong><span class="kw-prep">in</span> winter</strong><span>冬に</span></div>
+      <div class="phrase-card"><strong><span class="kw-prep">in</span> the morning</strong><span>朝に</span></div>
+      <div class="phrase-card"><strong><span class="kw-prep">in</span> January</strong><span>1月に</span></div>
+      <div class="phrase-card"><strong><span class="kw-prep">in</span> the future</strong><span>将来に</span></div>
+    </div>
+
+    <div class="example-block prep">
+      <div class="example-row"><span class="example-en">The meeting is <span class="kw-prep">at</span> 3pm.</span><span class="example-jp">会議は午後3時です。</span><button class="tts-btn" onclick="speak('The meeting is at 3pm.')">🔊</button></div>
+      <div class="example-row"><span class="example-en">She was born <span class="kw-prep">on</span> July 4th.</span><span class="example-jp">彼女は7月4日に生まれました。</span><button class="tts-btn" onclick="speak('She was born on July 4th.')">🔊</button></div>
+      <div class="example-row"><span class="example-en">I will see you <span class="kw-prep">in</span> the morning.</span><span class="example-jp">朝にお会いしましょう。</span><button class="tts-btn" onclick="speak('I will see you in the morning.')">🔊</button></div>
+    </div>
+
+    <div class="sub-title">2. 場所の前置詞 (Place: at / on / in)</div>
+    <div class="phrase-grid">
+      <div class="phrase-card"><strong><span class="kw-prep">at</span> home</strong><span>家に</span></div>
+      <div class="phrase-card"><strong><span class="kw-prep">at</span> school</strong><span>学校に</span></div>
+      <div class="phrase-card"><strong><span class="kw-prep">at</span> work</strong><span>職場に</span></div>
+      <div class="phrase-card"><strong><span class="kw-prep">at</span> the station</strong><span>駅に</span></div>
+      <div class="phrase-card"><strong><span class="kw-prep">on</span> the table</strong><span>テーブルの上に</span></div>
+      <div class="phrase-card"><strong><span class="kw-prep">on</span> the wall</strong><span>壁に</span></div>
+      <div class="phrase-card"><strong><span class="kw-prep">on</span> the floor</strong><span>床に</span></div>
+      <div class="phrase-card"><strong><span class="kw-prep">on</span> the left</strong><span>左側に</span></div>
+      <div class="phrase-card"><strong><span class="kw-prep">in</span> the box</strong><span>箱の中に</span></div>
+      <div class="phrase-card"><strong><span class="kw-prep">in</span> Japan</strong><span>日本に</span></div>
+      <div class="phrase-card"><strong><span class="kw-prep">in</span> the room</strong><span>部屋の中に</span></div>
+      <div class="phrase-card"><strong><span class="kw-prep">in</span> the car</strong><span>車の中に</span></div>
+    </div>
+
+    <div class="example-block prep">
+      <div class="example-row"><span class="example-en">She is <span class="kw-prep">at</span> school now.</span><span class="example-jp">彼女は今学校にいます。</span><button class="tts-btn" onclick="speak('She is at school now.')">🔊</button></div>
+      <div class="example-row"><span class="example-en">The book is <span class="kw-prep">on</span> the table.</span><span class="example-jp">本はテーブルの上にあります。</span><button class="tts-btn" onclick="speak('The book is on the table.')">🔊</button></div>
+      <div class="example-row"><span class="example-en">He lives <span class="kw-prep">in</span> Japan.</span><span class="example-jp">彼は日本に住んでいます。</span><button class="tts-btn" onclick="speak('He lives in Japan.')">🔊</button></div>
+    </div>
+
+    <div class="sub-title">3. 移動の前置詞 (Movement)</div>
+    <div class="example-block prep">
+      <div class="example-row"><span class="example-en">She went <span class="kw-prep">to</span> school.</span><span class="example-jp">彼女は学校へ行きました。</span><button class="tts-btn" onclick="speak('She went to school.')">🔊</button></div>
+      <div class="example-row"><span class="example-en">He came <span class="kw-prep">from</span> home.</span><span class="example-jp">彼は家から来ました。</span><button class="tts-btn" onclick="speak('He came from home.')">🔊</button></div>
+      <div class="example-row"><span class="example-en">She walked <span class="kw-prep">into</span> the room.</span><span class="example-jp">彼女は部屋に歩いて入りました。</span><button class="tts-btn" onclick="speak('She walked into the room.')">🔊</button></div>
+      <div class="example-row"><span class="example-en">He ran <span class="kw-prep">out of</span> the building.</span><span class="example-jp">彼は建物から走り出ました。</span><button class="tts-btn" onclick="speak('He ran out of the building.')">🔊</button></div>
+      <div class="example-row"><span class="example-en">We walked <span class="kw-prep">through</span> the park.</span><span class="example-jp">私たちは公園を通り抜けました。</span><button class="tts-btn" onclick="speak('We walked through the park.')">🔊</button></div>
+      <div class="example-row"><span class="example-en">She swam <span class="kw-prep">across</span> the river.</span><span class="example-jp">彼女は川を泳いで渡りました。</span><button class="tts-btn" onclick="speak('She swam across the river.')">🔊</button></div>
+      <div class="example-row"><span class="example-en">We walked <span class="kw-prep">along</span> the street.</span><span class="example-jp">私たちは通りに沿って歩きました。</span><button class="tts-btn" onclick="speak('We walked along the street.')">🔊</button></div>
+      <div class="example-row"><span class="example-en">He ran <span class="kw-prep">toward</span> the exit.</span><span class="example-jp">彼は出口に向かって走りました。</span><button class="tts-btn" onclick="speak('He ran toward the exit.')">🔊</button></div>
+    </div>
+
+    <div class="sub-title">4. よく使う熟語 (Common Phrases)</div>
+    <div class="phrase-grid">
+      <div class="phrase-card"><strong>interested <span class="kw-prep">in</span></strong><span>〜に興味がある</span></div>
+      <div class="phrase-card"><strong>good <span class="kw-prep">at</span></strong><span>〜が得意</span></div>
+      <div class="phrase-card"><strong>afraid <span class="kw-prep">of</span></strong><span>〜が怖い</span></div>
+      <div class="phrase-card"><strong>responsible <span class="kw-prep">for</span></strong><span>〜の責任がある</span></div>
+      <div class="phrase-card"><strong>depend <span class="kw-prep">on</span></strong><span>〜に依存する</span></div>
+      <div class="phrase-card"><strong>look forward <span class="kw-prep">to</span></strong><span>〜を楽しみにする</span></div>
+      <div class="phrase-card"><strong>tired <span class="kw-prep">of</span></strong><span>〜に飽き飽きした</span></div>
+      <div class="phrase-card"><strong>excited <span class="kw-prep">about</span></strong><span>〜にわくわくする</span></div>
+    </div>
+    <div class="example-block prep">
+      <div class="example-row"><span class="example-en">I am interested <span class="kw-prep">in</span> music.</span><span class="example-jp">私は音楽に興味があります。</span><button class="tts-btn" onclick="speak('I am interested in music.')">🔊</button></div>
+      <div class="example-row"><span class="example-en">She is good <span class="kw-prep">at</span> math.</span><span class="example-jp">彼女は数学が得意です。</span><button class="tts-btn" onclick="speak('She is good at math.')">🔊</button></div>
+      <div class="example-row"><span class="example-en">I look forward <span class="kw-prep">to</span> meeting you.</span><span class="example-jp">お会いするのを楽しみにしています。</span><button class="tts-btn" onclick="speak('I look forward to meeting you.')">🔊</button></div>
+    </div>
+  </div>
+
+  <!-- PREP QUIZ -->
+  <div class="card quiz-section">
+    <div class="card-title"><span class="badge badge-prep">Quiz</span>Practice Quizzes</div>
+    <div class="study-mode-hint">Study Mode ON: クイズは非表示です。</div>
+    <div class="quiz-nav">
+      <button class="quiz-tab-btn active-prep" onclick="showQuiz('prep','A',this)">Type A: Fill-in-Blank</button>
+      <button class="quiz-tab-btn" onclick="showQuiz('prep','B',this)">Type B: Scramble</button>
+      <button class="quiz-tab-btn" onclick="showQuiz('prep','C',this)">Type C: Translation</button>
+    </div>
+    <div class="score-display" id="score-prep">Score: 0 / 0</div>
+    <div id="quiz-prep-A" class="quiz-panel active"><div id="prep-A-questions"></div><button class="reset-quiz-btn" onclick="resetQuizA('prep')">Reset Quiz</button></div>
+    <div id="quiz-prep-B" class="quiz-panel"><div id="prep-B-scrambles"></div></div>
+    <div id="quiz-prep-C" class="quiz-panel"><div id="prep-C-translations"></div></div>
+  </div>
+</div>
+
+<!-- ========== MODAL VERBS ========== -->
+<div id="section-modal" class="topic-section">
+  <div class="card">
+    <div class="card-title"><span class="badge badge-modal">MOD</span>Modal Verbs - 助動詞</div>
+    <p class="section-intro">助動詞（Modal Verbs）は動詞の前に置いて、可能・許可・義務・推量などの意味を加えます。</p>
+
+    <div class="sub-title">1. can / could (できる・許可・依頼)</div>
+    <div class="example-block modal">
+      <div class="example-row"><span class="example-en">I <span class="kw-modal">can</span> swim. <em>(ability)</em></span><span class="example-jp">私は泳げます。（能力）</span><button class="tts-btn" onclick="speak('I can swim.')">🔊</button></div>
+      <div class="example-row"><span class="example-en"><span class="kw-modal">Can</span> I open the window? <em>(permission)</em></span><span class="example-jp">窓を開けてもいいですか？（許可）</span><button class="tts-btn" onclick="speak('Can I open the window?')">🔊</button></div>
+      <div class="example-row"><span class="example-en"><span class="kw-modal">Could</span> you help me? <em>(polite request)</em></span><span class="example-jp">手伝っていただけますか？（丁寧な依頼）</span><button class="tts-btn" onclick="speak('Could you help me?')">🔊</button></div>
+      <div class="example-row"><span class="example-en">I <span class="kw-modal">could</span> run fast when I was young. <em>(past ability)</em></span><span class="example-jp">若い頃は速く走れました。（過去の能力）</span><button class="tts-btn" onclick="speak('I could run fast when I was young.')">🔊</button></div>
+    </div>
+
+    <div class="sub-title">2. may / might (かもしれない・許可)</div>
+    <div class="example-block modal">
+      <div class="example-row"><span class="example-en">It <span class="kw-modal">may</span> rain tomorrow. <em>(possibility)</em></span><span class="example-jp">明日は雨かもしれません。（可能性）</span><button class="tts-btn" onclick="speak('It may rain tomorrow.')">🔊</button></div>
+      <div class="example-row"><span class="example-en"><span class="kw-modal">May</span> I use your phone? <em>(permission)</em></span><span class="example-jp">電話を使ってもいいですか？（許可）</span><button class="tts-btn" onclick="speak('May I use your phone?')">🔊</button></div>
+      <div class="example-row"><span class="example-en">It <span class="kw-modal">might</span> be true. <em>(uncertainty)</em></span><span class="example-jp">それは本当かもしれません。（不確かさ）</span><button class="tts-btn" onclick="speak('It might be true.')">🔊</button></div>
+      <div class="example-row"><span class="example-en">She <span class="kw-modal">might</span> come later. <em>(possibility)</em></span><span class="example-jp">彼女は後で来るかもしれません。</span><button class="tts-btn" onclick="speak('She might come later.')">🔊</button></div>
+    </div>
+
+    <div class="sub-title">3. must / have to (義務・必要・禁止)</div>
+    <div class="example-block modal">
+      <div class="example-row"><span class="example-en">You <span class="kw-modal">must</span> wear a seatbelt. <em>(obligation)</em></span><span class="example-jp">シートベルトをしなければなりません。（義務）</span><button class="tts-btn" onclick="speak('You must wear a seatbelt.')">🔊</button></div>
+      <div class="example-row"><span class="example-en">I <span class="kw-modal">have to</span> finish this. <em>(necessity)</em></span><span class="example-jp">これを終えなければなりません。（必要）</span><button class="tts-btn" onclick="speak('I have to finish this.')">🔊</button></div>
+      <div class="example-row"><span class="example-en">You <span class="kw-modal">must not</span> smoke here. <em>(prohibition)</em></span><span class="example-jp">ここで喫煙してはいけません。（禁止）</span><button class="tts-btn" onclick="speak('You must not smoke here.')">🔊</button></div>
+      <div class="example-row"><span class="example-en">She <span class="kw-modal">doesn't have to</span> come. <em>(no obligation)</em></span><span class="example-jp">彼女は来なくていいです。（義務なし）</span><button class="tts-btn" onclick="speak('She does not have to come.')">🔊</button></div>
+    </div>
+
+    <div class="sub-title">4. should / ought to (アドバイス・推薦)</div>
+    <div class="example-block modal">
+      <div class="example-row"><span class="example-en">You <span class="kw-modal">should</span> study more. <em>(advice)</em></span><span class="example-jp">もっと勉強すべきです。（アドバイス）</span><button class="tts-btn" onclick="speak('You should study more.')">🔊</button></div>
+      <div class="example-row"><span class="example-en">He <span class="kw-modal">ought to</span> apologize. <em>(recommendation)</em></span><span class="example-jp">彼は謝るべきです。（推薦）</span><button class="tts-btn" onclick="speak('He ought to apologize.')">🔊</button></div>
+      <div class="example-row"><span class="example-en">You <span class="kw-modal">shouldn't</span> eat too much. <em>(negative advice)</em></span><span class="example-jp">食べすぎるべきではありません。</span><button class="tts-btn" onclick="speak('You should not eat too much.')">🔊</button></div>
+      <div class="example-row"><span class="example-en"><span class="kw-modal">Should</span> I call her? <em>(asking advice)</em></span><span class="example-jp">彼女に電話すべきでしょうか？（助言を求める）</span><button class="tts-btn" onclick="speak('Should I call her?')">🔊</button></div>
+    </div>
+
+    <div class="sub-title">5. will / would (未来・丁寧な申し出・条件)</div>
+    <div class="example-block modal">
+      <div class="example-row"><span class="example-en">I <span class="kw-modal">will</span> help you. <em>(future)</em></span><span class="example-jp">手伝います。（未来）</span><button class="tts-btn" onclick="speak('I will help you.')">🔊</button></div>
+      <div class="example-row"><span class="example-en"><span class="kw-modal">Would</span> you like some tea? <em>(polite offer)</em></span><span class="example-jp">お茶はいかがですか？（丁寧な申し出）</span><button class="tts-btn" onclick="speak('Would you like some tea?')">🔊</button></div>
+      <div class="example-row"><span class="example-en">She <span class="kw-modal">will</span> arrive at 6. <em>(future prediction)</em></span><span class="example-jp">彼女は6時に到着します。（未来予測）</span><button class="tts-btn" onclick="speak('She will arrive at 6.')">🔊</button></div>
+      <div class="example-row"><span class="example-en">I <span class="kw-modal">would</span> visit if I could. <em>(conditional)</em></span><span class="example-jp">できるなら訪問するのに。（条件）</span><button class="tts-btn" onclick="speak('I would visit if I could.')">🔊</button></div>
+    </div>
+
+    <div class="sub-title">6. shall (提案・申し出)</div>
+    <div class="example-block modal">
+      <div class="example-row"><span class="example-en"><span class="kw-modal">Shall</span> we dance? <em>(suggestion)</em></span><span class="example-jp">踊りましょうか？（提案）</span><button class="tts-btn" onclick="speak('Shall we dance?')">🔊</button></div>
+      <div class="example-row"><span class="example-en"><span class="kw-modal">Shall</span> I open the door? <em>(offer)</em></span><span class="example-jp">ドアを開けましょうか？（申し出）</span><button class="tts-btn" onclick="speak('Shall I open the door?')">🔊</button></div>
+      <div class="example-row"><span class="example-en">We <span class="kw-modal">shall</span> overcome. <em>(formal future)</em></span><span class="example-jp">私たちは乗り越えるだろう。（格式ある未来）</span><button class="tts-btn" onclick="speak('We shall overcome.')">🔊</button></div>
+    </div>
+
+    <div class="sub-title">7. 過去の助動詞 (Past Modals)</div>
+    <div class="example-block modal">
+      <div class="example-row"><span class="example-en">I <span class="kw-modal">should have studied</span> harder.</span><span class="example-jp">もっと勉強すべきでした（しなかった）。</span><button class="tts-btn" onclick="speak('I should have studied harder.')">🔊</button></div>
+      <div class="example-row"><span class="example-en">She <span class="kw-modal">could have gone</span> to the party.</span><span class="example-jp">彼女はパーティーに行けたのに（行かなかった）。</span><button class="tts-btn" onclick="speak('She could have gone to the party.')">🔊</button></div>
+      <div class="example-row"><span class="example-en">He <span class="kw-modal">must have forgotten</span> the meeting.</span><span class="example-jp">彼は会議を忘れたに違いありません。</span><button class="tts-btn" onclick="speak('He must have forgotten the meeting.')">🔊</button></div>
+      <div class="example-row"><span class="example-en">They <span class="kw-modal">might have missed</span> the train.</span><span class="example-jp">彼らは電車を乗り過ごしたかもしれません。</span><button class="tts-btn" onclick="speak('They might have missed the train.')">🔊</button></div>
+      <div class="example-row"><span class="example-en">I <span class="kw-modal">would have helped</span> if I had known.</span><span class="example-jp">知っていれば手伝ったのに。</span><button class="tts-btn" onclick="speak('I would have helped if I had known.')">🔊</button></div>
+    </div>
+  </div>
+
+  <!-- MODAL QUIZ -->
+  <div class="card quiz-section">
+    <div class="card-title"><span class="badge badge-modal">Quiz</span>Practice Quizzes</div>
+    <div class="study-mode-hint">Study Mode ON: クイズは非表示です。</div>
+    <div class="quiz-nav">
+      <button class="quiz-tab-btn active-modal" onclick="showQuiz('modal','A',this)">Type A: Fill-in-Blank</button>
+      <button class="quiz-tab-btn" onclick="showQuiz('modal','B',this)">Type B: Scramble</button>
+      <button class="quiz-tab-btn" onclick="showQuiz('modal','C',this)">Type C: Translation</button>
+    </div>
+    <div class="score-display" id="score-modal">Score: 0 / 0</div>
+    <div id="quiz-modal-A" class="quiz-panel active"><div id="modal-A-questions"></div><button class="reset-quiz-btn" onclick="resetQuizA('modal')">Reset Quiz</button></div>
+    <div id="quiz-modal-B" class="quiz-panel"><div id="modal-B-scrambles"></div></div>
+    <div id="quiz-modal-C" class="quiz-panel"><div id="modal-C-translations"></div></div>
+  </div>
+</div>
+
+<script>
+// ============ QUIZ DATA ============
+const quizData = {
+  pp: {
+    A: [
+      {q:"I ___ already eaten dinner.",choices:["have","has","had","am"],ans:0,hint:"現在完了形: I + have"},
+      {q:"She ___ gone to the library.",choices:["have","has","is","was"],ans:1,hint:"She + has (現在完了)"},
+      {q:"The letter was ___ by my mother.",choices:["write","wrote","written","writing"],ans:2,hint:"受動態では過去分詞を使う"},
+      {q:"The window was ___ by the ball.",choices:["break","broke","broken","breaking"],ans:2,hint:"was + 過去分詞 (broken)"},
+      {q:"Look at that ___ car. It's very old.",choices:["use","uses","used","using"],ans:2,hint:"形容詞として: used car (中古車)"},
+      {q:"The students look ___. The lesson is boring.",choices:["bored","boring","bore","bores"],ans:0,hint:"感情を表す: bored (退屈した)"},
+      {q:"We have ___ our homework.",choices:["finish","finishes","finished","finishing"],ans:2,hint:"have + 過去分詞 (finished)"},
+      {q:"They ___ a decision last week.",choices:["have made","has made","made","make"],ans:2,hint:"last weekがあるので過去形"},
+      {q:"She got ___ at the party.",choices:["excite","excites","excited","exciting"],ans:2,hint:"get + 過去分詞: get excited"},
+      {q:"He has ___ the window.",choices:["break","broke","broken","breaking"],ans:2,hint:"has + 過去分詞 (broken)"}
+    ],
+    B: [
+      {jp:"彼女はすでに宿題を終えました。",words:["She","has","already","finished","her","homework","."],answer:"She has already finished her homework ."},
+      {jp:"その手紙は昨日送られました。",words:["The","letter","was","sent","yesterday","."],answer:"The letter was sent yesterday ."},
+      {jp:"私は疲れて道に迷いました。",words:["I","got","tired","and","lost","."],answer:"I got tired and lost ."},
+      {jp:"その本はヘミングウェイによって書かれました。",words:["The","book","was","written","by","Hemingway","."],answer:"The book was written by Hemingway ."},
+      {jp:"彼らは重要な決断を下しました。",words:["They","have","made","an","important","decision","."],answer:"They have made an important decision ."}
+    ],
+    C: [
+      {jp:"窓は割れています。",en:"The window is broken.",audio:"The window is broken."},
+      {jp:"私はすでに昼食を食べました。",en:"I have already eaten lunch.",audio:"I have already eaten lunch."},
+      {jp:"その家は1990年に建てられました。",en:"The house was built in 1990.",audio:"The house was built in 1990."},
+      {jp:"ケーキは子供たちに食べられました。",en:"The cake was eaten by the children.",audio:"The cake was eaten by the children."},
+      {jp:"彼は若い頃、速く走れました。",en:"He could run fast when he was young.",audio:"He could run fast when he was young."}
+    ]
+  },
+  ger: {
+    A: [
+      {q:"___ is my favorite hobby. (swim)",choices:["Swim","Swims","Swimming","To swim"],ans:2,hint:"主語として: Swimming (動名詞)"},
+      {q:"I enjoy ___ books in the evening.",choices:["read","reads","reading","to read"],ans:2,hint:"enjoy の後は動名詞"},
+      {q:"She finished ___ the report.",choices:["write","writes","writing","to write"],ans:2,hint:"finish の後は動名詞"},
+      {q:"He avoided ___ to his boss.",choices:["talk","talks","talking","to talk"],ans:2,hint:"avoid の後は動名詞"},
+      {q:"They suggest ___ a taxi.",choices:["take","takes","taking","to take"],ans:2,hint:"suggest の後は動名詞"},
+      {q:"She is good at ___.",choices:["cook","cooks","cooking","to cook"],ans:2,hint:"前置詞 at の後は動名詞"},
+      {q:"He is interested in ___ Japanese.",choices:["learn","learns","learning","to learn"],ans:2,hint:"前置詞 in の後は動名詞"},
+      {q:"We are tired of ___.",choices:["wait","waits","waiting","to wait"],ans:2,hint:"前置詞 of の後は動名詞"},
+      {q:"___ every day is good for your health.",choices:["Run","Runs","Running","To running"],ans:2,hint:"主語として動名詞 Running"},
+      {q:"Would you mind ___ the window?",choices:["open","opens","opening","to open"],ans:2,hint:"mind の後は動名詞"}
+    ],
+    B: [
+      {jp:"水泳は楽しいです。",words:["Swimming","is","fun","."],answer:"Swimming is fun ."},
+      {jp:"彼女は料理が得意です。",words:["She","is","good","at","cooking","."],answer:"She is good at cooking ."},
+      {jp:"私は読書を楽しみます。",words:["I","enjoy","reading","books","."],answer:"I enjoy reading books ."},
+      {jp:"毎日走ることは健康を保ちます。",words:["Running","every","day","keeps","you","healthy","."],answer:"Running every day keeps you healthy ."},
+      {jp:"彼女は日本語学習に興味があります。",words:["She","is","interested","in","learning","Japanese","."],answer:"She is interested in learning Japanese ."}
+    ],
+    C: [
+      {jp:"本を読むことは大切です。",en:"Reading books is important.",audio:"Reading books is important."},
+      {jp:"彼は彼女と話すことを避けました。",en:"He avoided talking to her.",audio:"He avoided talking to her."},
+      {jp:"私は飛行機が怖いです。",en:"I am afraid of flying.",audio:"I am afraid of flying."},
+      {jp:"彼らは東京への引越しを検討しています。",en:"They consider moving to Tokyo.",audio:"They consider moving to Tokyo."},
+      {jp:"食事を作ることは時間がかかります。",en:"Cooking meals takes time.",audio:"Cooking meals takes time."}
+    ]
+  },
+  inf: {
+    A: [
+      {q:"I want ___ to Japan someday.",choices:["go","goes","going","to go"],ans:3,hint:"want の後は to不定詞"},
+      {q:"She decided ___ early.",choices:["leave","leaves","leaving","to leave"],ans:3,hint:"decide の後は to不定詞"},
+      {q:"He needs ___ more.",choices:["study","studies","studying","to study"],ans:3,hint:"need の後は to不定詞"},
+      {q:"We went to the store ___ milk.",choices:["buy","buys","buying","to buy"],ans:3,hint:"目的を表す to不定詞"},
+      {q:"It is important ___ every day.",choices:["practice","practices","practicing","to practice"],ans:3,hint:"It is + adj + to不定詞"},
+      {q:"She is too tired ___ now.",choices:["work","works","working","to work"],ans:3,hint:"too + adj + to不定詞"},
+      {q:"He is old enough ___.",choices:["vote","votes","voting","to vote"],ans:3,hint:"adj + enough + to不定詞"},
+      {q:"They promised ___ us.",choices:["help","helps","helping","to help"],ans:3,hint:"promise の後は to不定詞"},
+      {q:"I am happy ___ you.",choices:["meet","meets","meeting","to meet"],ans:3,hint:"形容詞の後: happy to meet"},
+      {q:"She refused ___ the question.",choices:["answer","answers","answering","to answer"],ans:3,hint:"refuse の後は to不定詞"}
+    ],
+    B: [
+      {jp:"私はパリに行きたいです。",words:["I","want","to","go","to","Paris","."],answer:"I want to go to Paris ."},
+      {jp:"試験に合格するために一生懸命勉強しました。",words:["She","studied","hard","to","pass","the","exam","."],answer:"She studied hard to pass the exam ."},
+      {jp:"疲れすぎて仕事できません。",words:["I","am","too","tired","to","work","."],answer:"I am too tired to work ."},
+      {jp:"毎日勉強することは大切です。",words:["It","is","important","to","study","every","day","."],answer:"It is important to study every day ."},
+      {jp:"彼女は投票できる年齢です。",words:["She","is","old","enough","to","vote","."],answer:"She is old enough to vote ."}
+    ],
+    C: [
+      {jp:"私は早く出発することに決めました。",en:"I decided to leave early.",audio:"I decided to leave early."},
+      {jp:"それを聞いて嬉しいです。",en:"I am happy to hear that.",audio:"I am happy to hear that."},
+      {jp:"海外旅行は楽しいです。",en:"It is fun to travel abroad.",audio:"It is fun to travel abroad."},
+      {jp:"彼女は車を買うためにお金を貯めました。",en:"She saved money to buy a car.",audio:"She saved money to buy a car."},
+      {jp:"重すぎて持ち上げられません。",en:"It is too heavy to lift.",audio:"It is too heavy to lift."}
+    ]
+  },
+  prep: {
+    A: [
+      {q:"The meeting starts ___ 9am.",choices:["at","on","in","by"],ans:0,hint:"時刻には at を使う"},
+      {q:"She was born ___ Monday.",choices:["at","on","in","by"],ans:1,hint:"曜日には on を使う"},
+      {q:"I was born ___ 2000.",choices:["at","on","in","by"],ans:2,hint:"年には in を使う"},
+      {q:"The book is ___ the table.",choices:["at","on","in","under"],ans:1,hint:"表面の上には on を使う"},
+      {q:"He lives ___ Japan.",choices:["at","on","in","to"],ans:2,hint:"国・地域には in を使う"},
+      {q:"She went ___ school this morning.",choices:["at","on","in","to"],ans:3,hint:"移動先には to を使う"},
+      {q:"I am interested ___ music.",choices:["at","on","in","for"],ans:2,hint:"interested in (熟語)"},
+      {q:"He is good ___ math.",choices:["at","on","in","for"],ans:0,hint:"good at (熟語)"},
+      {q:"We are tired ___ waiting.",choices:["at","on","of","for"],ans:2,hint:"tired of (熟語)"},
+      {q:"She walked ___ the room.",choices:["to","into","in","on"],ans:1,hint:"内部への移動: into"}
+    ],
+    B: [
+      {jp:"彼女は月曜日に学校に行きます。",words:["She","goes","to","school","on","Monday","."],answer:"She goes to school on Monday ."},
+      {jp:"本はテーブルの上にあります。",words:["The","book","is","on","the","table","."],answer:"The book is on the table ."},
+      {jp:"私は音楽に興味があります。",words:["I","am","interested","in","music","."],answer:"I am interested in music ."},
+      {jp:"彼女は部屋に歩いて入りました。",words:["She","walked","into","the","room","."],answer:"She walked into the room ."},
+      {jp:"私は朝に英語を勉強します。",words:["I","study","English","in","the","morning","."],answer:"I study English in the morning ."}
+    ],
+    C: [
+      {jp:"会議は午後3時です。",en:"The meeting is at 3pm.",audio:"The meeting is at 3pm."},
+      {jp:"彼女は数学が得意です。",en:"She is good at math.",audio:"She is good at math."},
+      {jp:"彼は日本に住んでいます。",en:"He lives in Japan.",audio:"He lives in Japan."},
+      {jp:"お会いするのを楽しみにしています。",en:"I look forward to meeting you.",audio:"I look forward to meeting you."},
+      {jp:"私たちは公園を通り抜けました。",en:"We walked through the park.",audio:"We walked through the park."}
+    ]
+  },
+  modal: {
+    A: [
+      {q:"I ___ swim very well. (ability)",choices:["can","must","should","shall"],ans:0,hint:"能力を表す: can"},
+      {q:"___ I use your phone? (polite permission)",choices:["Can","May","Must","Shall"],ans:1,hint:"丁寧な許可: May"},
+      {q:"You ___ wear a seatbelt. It's the law.",choices:["can","may","must","would"],ans:2,hint:"義務・法律: must"},
+      {q:"It ___ rain tomorrow. The sky is cloudy.",choices:["must","should","might","shall"],ans:2,hint:"可能性: might"},
+      {q:"You ___ study more. Your grades are low.",choices:["can","may","should","shall"],ans:2,hint:"アドバイス: should"},
+      {q:"___ you like some coffee?",choices:["Will","Would","Shall","Must"],ans:1,hint:"丁寧な申し出: Would"},
+      {q:"You ___ not smoke in this building.",choices:["can","should","must","might"],ans:2,hint:"禁止: must not"},
+      {q:"She ___ come later. I'm not sure.",choices:["must","shall","might","can"],ans:2,hint:"不確かさ: might"},
+      {q:"___ we go for a walk?",choices:["Will","Would","Shall","Must"],ans:2,hint:"提案: Shall we"},
+      {q:"I ___ have studied harder. I failed.",choices:["must","should","can","may"],ans:1,hint:"過去の後悔: should have"}
+    ],
+    B: [
+      {jp:"窓を開けてもいいですか？",words:["Can","I","open","the","window","?"],answer:"Can I open the window ?"},
+      {jp:"あなたはもっと勉強すべきです。",words:["You","should","study","more","."],answer:"You should study more ."},
+      {jp:"明日は雨かもしれません。",words:["It","might","rain","tomorrow","."],answer:"It might rain tomorrow ."},
+      {jp:"踊りましょうか？",words:["Shall","we","dance","?"],answer:"Shall we dance ?"},
+      {jp:"彼は会議を忘れたに違いありません。",words:["He","must","have","forgotten","the","meeting","."],answer:"He must have forgotten the meeting ."}
+    ],
+    C: [
+      {jp:"手伝っていただけますか？",en:"Could you help me?",audio:"Could you help me?"},
+      {jp:"ここで喫煙してはいけません。",en:"You must not smoke here.",audio:"You must not smoke here."},
+      {jp:"私はもっと勉強すべきでした。",en:"I should have studied harder.",audio:"I should have studied harder."},
+      {jp:"お茶はいかがですか？",en:"Would you like some tea?",audio:"Would you like some tea?"},
+      {jp:"ドアを開けましょうか？",en:"Shall I open the door?",audio:"Shall I open the door?"}
+    ]
+  }
+};
+
+// ============ STATE ============
+const state = JSON.parse(localStorage.getItem('egState') || '{}');
+// state structure: {pp:{A:{0:{answered:true,correct:true},...},B:{...},C:{...}}, ger:{...}, ...}
+
+function saveState(){localStorage.setItem('egState',JSON.stringify(state));}
+
+function initTopicState(topic){
+  if(!state[topic]) state[topic]={A:{},B:{},C:{}};
+  if(!state[topic].A) state[topic].A={};
+  if(!state[topic].B) state[topic].B={};
+  if(!state[topic].C) state[topic].C={};
+}
+
+// ============ SCORE ============
+function calcScore(topic){
+  initTopicState(topic);
+  let correct=0, total=0;
+  ['A','B','C'].forEach(type=>{
+    const data = quizData[topic][type];
+    data.forEach((_,i)=>{
+      const s = state[topic][type][i];
+      if(s){ total++; if(s.correct) correct++; }
+    });
+  });
+  return {correct,total};
+}
+
+function updateScore(topic){
+  const {correct,total}=calcScore(topic);
+  document.getElementById('score-'+topic).textContent='Score: '+correct+' / '+total;
+  updateGlobalProgress();
+}
+
+function updateGlobalProgress(){
+  let tc=0,tt=0;
+  ['pp','ger','inf','prep','modal'].forEach(t=>{
+    const s=calcScore(t);
+    tc+=s.correct; tt+=s.total;
+  });
+  const pct = tt>0?Math.round(tc/tt*100):0;
+  document.getElementById('progressFill').style.width=pct+'%';
+  document.getElementById('progressLabel').textContent=tc+' / '+tt+' correct ('+pct+'%)';
+}
+
+// ============ TTS ============
+function speak(text){
+  if(!window.speechSynthesis) return alert('このブラウザはTTSに対応していません。');
+  window.speechSynthesis.cancel();
+  const u=new SpeechSynthesisUtterance(text);
+  u.lang='en-US'; u.rate=0.9;
+  window.speechSynthesis.speak(u);
+}
+
+// ============ TOPIC NAV ============
+function showTopic(topic,btn){
+  document.querySelectorAll('.topic-section').forEach(s=>s.classList.remove('active'));
+  document.querySelectorAll('.nav-tab').forEach(t=>t.classList.remove('active'));
+  document.getElementById('section-'+topic).classList.add('active');
+  btn.classList.add('active');
+}
+
+// ============ QUIZ NAV ============
+function showQuiz(topic,type,btn){
+  const panels = document.querySelectorAll('#section-'+topic+' .quiz-panel');
+  panels.forEach(p=>p.classList.remove('active'));
+  document.getElementById('quiz-'+topic+'-'+type).classList.add('active');
+  const btns = document.querySelectorAll('#section-'+topic+' .quiz-tab-btn');
+  btns.forEach(b=>b.className='quiz-tab-btn');
+  btn.className='quiz-tab-btn active-'+topic;
+}
+
+// ============ QUIZ A ============
+function buildQuizA(topic){
+  initTopicState(topic);
+  const container=document.getElementById(topic+'-A-questions');
+  container.innerHTML='';
+  quizData[topic].A.forEach((q,i)=>{
+    const div=document.createElement('div');
+    div.className='quiz-question';
+    div.id='qa-'+topic+'-'+i;
+    const saved=state[topic].A[i];
+    div.innerHTML=`<p><strong>Q${i+1}.</strong> ${q.q}</p>
+    <div class="quiz-choices" id="qac-${topic}-${i}"></div>
+    <div class="quiz-feedback" id="qaf-${topic}-${i}"></div>`;
+    container.appendChild(div);
+    const choicesDiv=document.getElementById('qac-'+topic+'-'+i);
+    q.choices.forEach((c,ci)=>{
+      const btn=document.createElement('button');
+      btn.className='choice-btn';
+      btn.textContent=c;
+      if(saved){
+        btn.disabled=true;
+        if(ci===q.ans) btn.classList.add('correct');
+        else if(ci===saved.chosen) btn.classList.add('wrong');
+      }
+      btn.onclick=()=>answerA(topic,i,ci,q.ans,q.hint);
+      choicesDiv.appendChild(btn);
+    });
+    if(saved){
+      const fb=document.getElementById('qaf-'+topic+'-'+i);
+      fb.classList.add('show');
+      if(saved.correct){fb.classList.add('ok');fb.textContent='Correct!';}
+      else{fb.classList.add('ng');fb.textContent='Wrong. Hint: '+q.hint;}
+    }
+  });
+  updateScore(topic);
+}
+
+function answerA(topic,qi,chosen,ans,hint){
+  if(state[topic].A[qi]) return;
+  const correct=chosen===ans;
+  state[topic].A[qi]={answered:true,correct,chosen};
+  saveState();
+  const choicesDiv=document.getElementById('qac-'+topic+'-'+qi);
+  Array.from(choicesDiv.children).forEach((btn,ci)=>{
+    btn.disabled=true;
+    if(ci===ans) btn.classList.add('correct');
+    else if(ci===chosen) btn.classList.add('wrong');
+  });
+  const fb=document.getElementById('qaf-'+topic+'-'+qi);
+  fb.classList.add('show');
+  if(correct){fb.classList.add('ok');fb.textContent='Correct! Well done!';}
+  else{fb.classList.add('ng');fb.textContent='Wrong. Hint: '+hint;}
+  updateScore(topic);
+}
+
+function resetQuizA(topic){
+  state[topic].A={};
+  saveState();
+  buildQuizA(topic);
+}
+
+// ============ QUIZ B (SCRAMBLE) ============
+function buildQuizB(topic){
+  initTopicState(topic);
+  const container=document.getElementById(topic+'-B-scrambles');
+  container.innerHTML='';
+  quizData[topic].B.forEach((q,i)=>{
+    const shuffled=[...q.words].sort(()=>Math.random()-.5);
+    const div=document.createElement('div');
+    div.className='scramble-question';
+    div.innerHTML=`
+      <div class="scramble-prompt">並び替えて英文を作ってください:</div>
+      <div class="scramble-jp">${q.jp}</div>
+      <div class="answer-area" id="sba-${topic}-${i}"></div>
+      <div class="word-bank" id="sbb-${topic}-${i}"></div>
+      <div>
+        <button class="scramble-check-btn" onclick="checkScramble('${topic}',${i})">Check</button>
+        <button class="scramble-reset-btn" onclick="resetScramble('${topic}',${i})">Reset</button>
+      </div>
+      <div class="scramble-result" id="sbr-${topic}-${i}"></div>`;
+    container.appendChild(div);
+    const bank=document.getElementById('sbb-'+topic+'-'+i);
+    shuffled.forEach((w,wi)=>{
+      const chip=document.createElement('span');
+      chip.className='word-chip';
+      chip.textContent=w;
+      chip.dataset.word=w;
+      chip.dataset.idx=wi;
+      chip.onclick=()=>moveToAnswer(chip,topic,i);
+      bank.appendChild(chip);
+    });
+  });
+}
+
+function moveToAnswer(chip,topic,i){
+  const ansArea=document.getElementById('sba-'+topic+'-'+i);
+  const bank=document.getElementById('sbb-'+topic+'-'+i);
+  if(chip.parentElement===bank){
+    chip.classList.add('in-answer');
+    ansArea.appendChild(chip);
+    chip.onclick=()=>moveToBank(chip,topic,i);
+  }
+}
+
+function moveToBank(chip,topic,i){
+  const bank=document.getElementById('sbb-'+topic+'-'+i);
+  chip.classList.remove('in-answer');
+  bank.appendChild(chip);
+  chip.onclick=()=>moveToAnswer(chip,topic,i);
+}
+
+function checkScramble(topic,i){
+  const ansArea=document.getElementById('sba-'+topic+'-'+i);
+  const chips=Array.from(ansArea.children);
+  const ans=chips.map(c=>c.textContent).join(' ');
+  const correct=quizData[topic].B[i].answer;
+  const res=document.getElementById('sbr-'+topic+'-'+i);
+  res.classList.add('show');
+  const isCorrect=ans.trim()===correct.trim();
+  if(isCorrect){
+    res.classList.add('ok');res.classList.remove('ng');
+    res.textContent='Correct! '+correct;
+    state[topic].B[i]={answered:true,correct:true};
+  } else {
+    res.classList.add('ng');res.classList.remove('ok');
+    res.textContent='Try again! Answer: '+correct;
+    state[topic].B[i]={answered:true,correct:false};
+  }
+  saveState();
+  updateScore(topic);
+}
+
+function resetScramble(topic,i){
+  const ansArea=document.getElementById('sba-'+topic+'-'+i);
+  const bank=document.getElementById('sbb-'+topic+'-'+i);
+  const res=document.getElementById('sbr-'+topic+'-'+i);
+  Array.from(ansArea.children).forEach(chip=>{
+    chip.classList.remove('in-answer');
+    bank.appendChild(chip);
+    chip.onclick=()=>moveToAnswer(chip,topic,i);
+  });
+  res.classList.remove('show','ok','ng');
+  res.textContent='';
+}
+
+// ============ QUIZ C (TRANSLATION) ============
+function buildQuizC(topic){
+  const container=document.getElementById(topic+'-C-translations');
+  container.innerHTML='';
+  quizData[topic].C.forEach((q,i)=>{
+    const div=document.createElement('div');
+    div.className='trans-question';
+    div.innerHTML=`
+      <div class="trans-jp"><strong>Q${i+1}.</strong> ${q.jp}</div>
+      <button class="trans-show-btn" id="tsb-${topic}-${i}" onclick="toggleTrans('${topic}',${i})">Show Answer</button>
+      <div class="trans-answer" id="tsa-${topic}-${i}">
+        ${q.en}
+        <button class="trans-audio-btn" onclick="speak('${q.audio}')">🔊</button>
+      </div>`;
+    container.appendChild(div);
+  });
+}
+
+function toggleTrans(topic,i){
+  const ans=document.getElementById('tsa-'+topic+'-'+i);
+  const btn=document.getElementById('tsb-'+topic+'-'+i);
+  if(ans.classList.contains('show')){
+    ans.classList.remove('show');
+    btn.textContent='Show Answer';
+  } else {
+    ans.classList.add('show');
+    btn.textContent='Hide Answer';
+    if(!state[topic].C[i]){
+      state[topic].C[i]={answered:true,correct:true};
+      saveState();
+      updateScore(topic);
+    }
+  }
+}
+
+// ============ STUDY MODE ============
+function toggleStudyMode(chk){
+  if(chk.checked) document.body.classList.add('study-mode');
+  else document.body.classList.remove('study-mode');
+}
+
+// ============ INIT ============
+function init(){
+  ['pp','ger','inf','prep','modal'].forEach(t=>{
+    initTopicState(t);
+    buildQuizA(t);
+    buildQuizB(t);
+    buildQuizC(t);
+  });
+  updateGlobalProgress();
+}
+
+window.addEventListener('load',init);
+</script>
+</body>
+</html>
