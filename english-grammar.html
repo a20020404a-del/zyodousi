@@ -181,6 +181,38 @@ header h1{font-size:1.3rem}
 .modal-table th{background:#fef2f2;padding:8px 12px;text-align:left;font-weight:600;color:#991b1b}
 .modal-table td{padding:8px 12px;border-bottom:1px solid #fef2f2;vertical-align:top}
 .modal-table tr:hover td{background:#fff7f7}
+
+/* Type D Quiz */
+.typeDquiz-wrap { margin-top: 8px; }
+.typeD-question { background:#f8fafc; border-radius:10px; padding:16px; margin-bottom:14px; border-left: 4px solid #e2e8f0; }
+.typeD-question.pp-border { border-left-color: #3b82f6; }
+.typeD-question.ger-border { border-left-color: #10b981; }
+.typeD-question.inf-border { border-left-color: #8b5cf6; }
+.typeD-question.prep-border { border-left-color: #f59e0b; }
+.typeD-question.modal-border { border-left-color: #ef4444; }
+.typeD-num { font-size:.75rem; color:#94a3b8; font-weight:600; margin-bottom:6px; }
+.typeD-jp { font-size:1rem; font-weight:700; color:#1e293b; margin-bottom:10px; line-height:1.6; }
+.typeD-textarea { width:100%; padding:10px 14px; border:2px solid #e2e8f0; border-radius:8px; font-size:.9rem; font-family:'Noto Sans JP',sans-serif; resize:vertical; min-height:70px; transition:border-color .2s; }
+.typeD-textarea:focus { outline:none; border-color:#3b82f6; }
+.typeD-btn { margin-top:8px; padding:8px 18px; border-radius:8px; border:none; cursor:pointer; font-size:.85rem; font-weight:600; transition:all .2s; }
+.typeD-show-btn { background:#e2e8f0; color:#475569; }
+.typeD-show-btn:hover { background:#cbd5e1; }
+.typeD-answer-box { display:none; margin-top:10px; background:#f0fdf4; border-radius:8px; padding:12px 14px; border:1px solid #bbf7d0; }
+.typeD-answer-box.show { display:block; }
+.typeD-model { font-weight:600; color:#065f46; margin-bottom:4px; }
+.typeD-alt { color:#047857; font-size:.85rem; margin-bottom:4px; }
+.typeD-tip { color:#6b7280; font-size:.82rem; background:#f9fafb; border-radius:6px; padding:6px 10px; margin-top:6px; }
+.typeD-tts { margin-left:8px; padding:3px 8px; background:none; border:1px solid #10b981; border-radius:5px; cursor:pointer; font-size:.8rem; color:#065f46; }
+
+/* Japanese explanation boxes */
+.jp-explain-box { background:#fffbeb; border:1px solid #fde68a; border-radius:10px; padding:16px 20px; margin:12px 0; font-size:.88rem; line-height:1.9; color:#1e293b; }
+.jp-explain-box h4 { font-size:.92rem; font-weight:700; color:#92400e; margin-bottom:8px; border-bottom:1px solid #fde68a; padding-bottom:6px; }
+.jp-explain-box .rule-block { background:#fff; border-radius:6px; padding:10px 14px; margin:8px 0; border-left:3px solid #f59e0b; }
+.jp-explain-box .rule-block strong { color:#b45309; }
+.warn-box { background:#fef2f2; border:1px solid #fecaca; border-radius:8px; padding:10px 14px; margin:8px 0; font-size:.85rem; color:#991b1b; }
+.warn-box::before { content:'\26A0\FE0F '; }
+.tip-box { background:#eff6ff; border:1px solid #bfdbfe; border-radius:8px; padding:10px 14px; margin:8px 0; font-size:.85rem; color:#1e40af; }
+.tip-box::before { content:'\1F4A1 '; }
 </style>
 </head>
 <body>
@@ -210,7 +242,6 @@ header h1{font-size:1.3rem}
   <button class="nav-tab" data-topic="prep" onclick="showTopic('prep',this)">Prepositions</button>
   <button class="nav-tab" data-topic="modal" onclick="showTopic('modal',this)">Modal Verbs</button>
 </div>
-
 <!-- ========== PAST PARTICIPLE ========== -->
 <div id="section-pp" class="topic-section active">
   <div class="card">
@@ -279,6 +310,52 @@ header h1{font-size:1.3rem}
     </table>
   </div>
 
+  <!-- PP Japanese Explanation -->
+  <div class="card">
+    <div class="card-title"><span class="badge badge-pp">📖</span>詳しい日本語解説</div>
+    <div class="jp-explain-box">
+      <h4>【基本概念】過去分詞とは？</h4>
+      <p>過去分詞（Past Participle）は動詞の第3形（V3）で、以下の3つの主要な用法があります。見た目は過去形と同じ場合もありますが、役割が全く異なります。</p>
+      <div class="rule-block">
+        <strong>用法①：現在完了形 (have/has + 過去分詞)</strong><br>
+        「〜したことがある（経験）」「〜してしまった（完了）」「ずっと〜している（継続）」の3つの意味を持ちます。<br>
+        ・経験：I have visited Paris. → パリに行ったことがある<br>
+        ・完了：She has just finished. → ちょうど終えたところ<br>
+        ・継続：We have lived here for 5 years. → 5年間住んでいる（今も）
+      </div>
+      <div class="rule-block">
+        <strong>用法②：受動態 (be動詞 + 過去分詞)</strong><br>
+        「〜される・〜された」という意味。能動態の目的語が主語になります。<br>
+        能動：The chef cooked the meal.（シェフが料理を作った）<br>
+        受動：The meal was cooked by the chef.（料理はシェフによって作られた）<br>
+        ※「by + 動作主」は省略できる場合が多い
+      </div>
+      <div class="rule-block">
+        <strong>用法③：形容詞として</strong><br>
+        過去分詞が名詞を修飾します。「〜された」「〜している状態の」という意味。<br>
+        ・名詞の前：a broken window（割れた窓）、a used car（中古車）<br>
+        ・be動詞の後：I am tired.（疲れている）、She is excited.（興奮している）
+      </div>
+      <div class="warn-box">
+        よく間違える！ interested（人が興味を持っている）vs interesting（人を興味深くさせる）<br>
+        × I am interesting in music. → ○ I am interested in music.（音楽に興味がある）
+      </div>
+      <div class="tip-box">
+        不規則動詞のグループ分けで覚えよう！<br>
+        ・A-A-A型（変化なし）: put-put-put, cut-cut-cut<br>
+        ・A-B-B型: make-made-made, have-had-had<br>
+        ・A-B-C型: go-went-gone, see-saw-seen, write-wrote-written<br>
+        ・A-B-A型（原形と同じ）: come-came-come, run-ran-run
+      </div>
+      <div class="rule-block">
+        <strong>get + 過去分詞（口語的な受動態）</strong><br>
+        be動詞の代わりにgetを使うと、より口語的・自然な表現になります。<br>
+        get married（結婚する）、get fired（クビになる）、get lost（迷子になる）<br>
+        get hurt（怪我をする）、get excited（興奮する）、get bored（退屈する）
+      </div>
+    </div>
+  </div>
+
   <!-- PP QUIZ -->
   <div class="card quiz-section">
     <div class="card-title"><span class="badge badge-pp">Quiz</span>Practice Quizzes</div>
@@ -287,6 +364,7 @@ header h1{font-size:1.3rem}
       <button class="quiz-tab-btn active-pp" onclick="showQuiz('pp','A',this)">Type A: Fill-in-Blank</button>
       <button class="quiz-tab-btn" onclick="showQuiz('pp','B',this)">Type B: Scramble</button>
       <button class="quiz-tab-btn" onclick="showQuiz('pp','C',this)">Type C: Translation</button>
+      <button class="quiz-tab-btn" onclick="showQuiz('pp','D',this)">Type D: 全文翻訳</button>
     </div>
     <div class="score-display" id="score-pp">Score: 0 / 0</div>
 
@@ -305,9 +383,194 @@ header h1{font-size:1.3rem}
     <div id="quiz-pp-C" class="quiz-panel">
       <div id="pp-C-translations"></div>
     </div>
+
+    <!-- PP Quiz D -->
+    <div id="quiz-pp-D" class="quiz-panel">
+      <div class="typeDquiz-wrap">
+        <div class="typeD-question pp-border">
+          <div class="typeD-num">Q1 / 15</div>
+          <div class="typeD-jp">私はこの映画を3回見たことがあります。</div>
+          <textarea class="typeD-textarea" placeholder="英語に翻訳してください..."></textarea>
+          <br><button class="typeD-btn typeD-show-btn" onclick="toggleTypeDAnswer(this)">答えを見る</button>
+          <div class="typeD-answer-box">
+            <div class="typeD-model">I have seen this movie three times.</div>
+            <div class="typeD-alt">別解: I've watched this movie three times.</div>
+            <div class="typeD-tip">have + 過去分詞 で経験を表す現在完了形。three timesは回数の副詞句。</div>
+            <button class="typeD-tts" onclick="speak('I have seen this movie three times.')">🔊</button>
+          </div>
+        </div>
+        <div class="typeD-question pp-border">
+          <div class="typeD-num">Q2 / 15</div>
+          <div class="typeD-jp">その橋は100年前に建てられました。</div>
+          <textarea class="typeD-textarea" placeholder="英語に翻訳してください..."></textarea>
+          <br><button class="typeD-btn typeD-show-btn" onclick="toggleTypeDAnswer(this)">答えを見る</button>
+          <div class="typeD-answer-box">
+            <div class="typeD-model">The bridge was built 100 years ago.</div>
+            <div class="typeD-alt">別解: The bridge has been built for 100 years.（継続の場合）</div>
+            <div class="typeD-tip">受動態 was + 過去分詞。build の過去分詞は built。</div>
+            <button class="typeD-tts" onclick="speak('The bridge was built 100 years ago.')">🔊</button>
+          </div>
+        </div>
+        <div class="typeD-question pp-border">
+          <div class="typeD-num">Q3 / 15</div>
+          <div class="typeD-jp">彼女はもう宿題を終えてしまいました。</div>
+          <textarea class="typeD-textarea" placeholder="英語に翻訳してください..."></textarea>
+          <br><button class="typeD-btn typeD-show-btn" onclick="toggleTypeDAnswer(this)">答えを見る</button>
+          <div class="typeD-answer-box">
+            <div class="typeD-model">She has already finished her homework.</div>
+            <div class="typeD-alt">別解: She's already done her homework.</div>
+            <div class="typeD-tip">already（すでに）は完了用法の現在完了でよく使われる。</div>
+            <button class="typeD-tts" onclick="speak('She has already finished her homework.')">🔊</button>
+          </div>
+        </div>
+        <div class="typeD-question pp-border">
+          <div class="typeD-num">Q4 / 15</div>
+          <div class="typeD-jp">この車は日本で作られています。</div>
+          <textarea class="typeD-textarea" placeholder="英語に翻訳してください..."></textarea>
+          <br><button class="typeD-btn typeD-show-btn" onclick="toggleTypeDAnswer(this)">答えを見る</button>
+          <div class="typeD-answer-box">
+            <div class="typeD-model">This car is made in Japan.</div>
+            <div class="typeD-alt">別解: This car is manufactured in Japan.</div>
+            <div class="typeD-tip">現在の受動態 is + 過去分詞。事実・習慣的なことには現在形を使う。</div>
+            <button class="typeD-tts" onclick="speak('This car is made in Japan.')">🔊</button>
+          </div>
+        </div>
+        <div class="typeD-question pp-border">
+          <div class="typeD-num">Q5 / 15</div>
+          <div class="typeD-jp">彼は昨日から何も食べていません。</div>
+          <textarea class="typeD-textarea" placeholder="英語に翻訳してください..."></textarea>
+          <br><button class="typeD-btn typeD-show-btn" onclick="toggleTypeDAnswer(this)">答えを見る</button>
+          <div class="typeD-answer-box">
+            <div class="typeD-model">He hasn't eaten anything since yesterday.</div>
+            <div class="typeD-alt">別解: He has not had anything to eat since yesterday.</div>
+            <div class="typeD-tip">since + 時点 で継続の現在完了。否定形で「一度も〜していない」。</div>
+            <button class="typeD-tts" onclick="speak("He hasn't eaten anything since yesterday.")">🔊</button>
+          </div>
+        </div>
+        <div class="typeD-question pp-border">
+          <div class="typeD-num">Q6 / 15</div>
+          <div class="typeD-jp">その手紙は彼によって書かれました。</div>
+          <textarea class="typeD-textarea" placeholder="英語に翻訳してください..."></textarea>
+          <br><button class="typeD-btn typeD-show-btn" onclick="toggleTypeDAnswer(this)">答えを見る</button>
+          <div class="typeD-answer-box">
+            <div class="typeD-model">The letter was written by him.</div>
+            <div class="typeD-alt">別解: The letter was composed by him.</div>
+            <div class="typeD-tip">by + 動作主。write の過去分詞は written（A-B-C型不規則変化）。</div>
+            <button class="typeD-tts" onclick="speak('The letter was written by him.')">🔊</button>
+          </div>
+        </div>
+        <div class="typeD-question pp-border">
+          <div class="typeD-num">Q7 / 15</div>
+          <div class="typeD-jp">私たちは10年間この町に住んでいます。</div>
+          <textarea class="typeD-textarea" placeholder="英語に翻訳してください..."></textarea>
+          <br><button class="typeD-btn typeD-show-btn" onclick="toggleTypeDAnswer(this)">答えを見る</button>
+          <div class="typeD-answer-box">
+            <div class="typeD-model">We have lived in this town for 10 years.</div>
+            <div class="typeD-alt">別解: We've been living in this town for 10 years.</div>
+            <div class="typeD-tip">for + 期間 で継続の現在完了。「今もまだ住んでいる」ことを含む。</div>
+            <button class="typeD-tts" onclick="speak('We have lived in this town for 10 years.')">🔊</button>
+          </div>
+        </div>
+        <div class="typeD-question pp-border">
+          <div class="typeD-num">Q8 / 15</div>
+          <div class="typeD-jp">その窓は昨夜割られました。</div>
+          <textarea class="typeD-textarea" placeholder="英語に翻訳してください..."></textarea>
+          <br><button class="typeD-btn typeD-show-btn" onclick="toggleTypeDAnswer(this)">答えを見る</button>
+          <div class="typeD-answer-box">
+            <div class="typeD-model">The window was broken last night.</div>
+            <div class="typeD-alt">別解: The window got broken last night.</div>
+            <div class="typeD-tip">get + 過去分詞は口語的な受動態。break の過去分詞は broken。</div>
+            <button class="typeD-tts" onclick="speak('The window was broken last night.')">🔊</button>
+          </div>
+        </div>
+        <div class="typeD-question pp-border">
+          <div class="typeD-num">Q9 / 15</div>
+          <div class="typeD-jp">あなたは以前ここに来たことがありますか？</div>
+          <textarea class="typeD-textarea" placeholder="英語に翻訳してください..."></textarea>
+          <br><button class="typeD-btn typeD-show-btn" onclick="toggleTypeDAnswer(this)">答えを見る</button>
+          <div class="typeD-answer-box">
+            <div class="typeD-model">Have you ever been here before?</div>
+            <div class="typeD-alt">別解: Have you visited here before?</div>
+            <div class="typeD-tip">ever は疑問文の現在完了でよく使われる。「一度でも〜したことがあるか」。</div>
+            <button class="typeD-tts" onclick="speak('Have you ever been here before?')">🔊</button>
+          </div>
+        </div>
+        <div class="typeD-question pp-border">
+          <div class="typeD-num">Q10 / 15</div>
+          <div class="typeD-jp">その映画はスピルバーグによって監督されました。</div>
+          <textarea class="typeD-textarea" placeholder="英語に翻訳してください..."></textarea>
+          <br><button class="typeD-btn typeD-show-btn" onclick="toggleTypeDAnswer(this)">答えを見る</button>
+          <div class="typeD-answer-box">
+            <div class="typeD-model">The movie was directed by Spielberg.</div>
+            <div class="typeD-alt">別解: The film was directed by Spielberg.</div>
+            <div class="typeD-tip">direct（監督する）の受動態。by + 動作主で誰がしたか示す。</div>
+            <button class="typeD-tts" onclick="speak('The movie was directed by Spielberg.')">🔊</button>
+          </div>
+        </div>
+        <div class="typeD-question pp-border">
+          <div class="typeD-num">Q11 / 15</div>
+          <div class="typeD-jp">彼女は疲れきっています。</div>
+          <textarea class="typeD-textarea" placeholder="英語に翻訳してください..."></textarea>
+          <br><button class="typeD-btn typeD-show-btn" onclick="toggleTypeDAnswer(this)">答えを見る</button>
+          <div class="typeD-answer-box">
+            <div class="typeD-model">She is exhausted.</div>
+            <div class="typeD-alt">別解: She is worn out. / She is completely tired.</div>
+            <div class="typeD-tip">exhausted は過去分詞の形容詞用法。be + 過去分詞で状態を表す。</div>
+            <button class="typeD-tts" onclick="speak('She is exhausted.')">🔊</button>
+          </div>
+        </div>
+        <div class="typeD-question pp-border">
+          <div class="typeD-num">Q12 / 15</div>
+          <div class="typeD-jp">私はちょうど昼食を食べ終えたところです。</div>
+          <textarea class="typeD-textarea" placeholder="英語に翻訳してください..."></textarea>
+          <br><button class="typeD-btn typeD-show-btn" onclick="toggleTypeDAnswer(this)">答えを見る</button>
+          <div class="typeD-answer-box">
+            <div class="typeD-model">I have just finished eating lunch.</div>
+            <div class="typeD-alt">別解: I just ate lunch.（過去形も可）</div>
+            <div class="typeD-tip">just（ちょうど）は完了用法の現在完了でよく使われる。finish + 動名詞。</div>
+            <button class="typeD-tts" onclick="speak('I have just finished eating lunch.')">🔊</button>
+          </div>
+        </div>
+        <div class="typeD-question pp-border">
+          <div class="typeD-num">Q13 / 15</div>
+          <div class="typeD-jp">この本は世界中で読まれています。</div>
+          <textarea class="typeD-textarea" placeholder="英語に翻訳してください..."></textarea>
+          <br><button class="typeD-btn typeD-show-btn" onclick="toggleTypeDAnswer(this)">答えを見る</button>
+          <div class="typeD-answer-box">
+            <div class="typeD-model">This book is read all over the world.</div>
+            <div class="typeD-alt">別解: This book is being read all around the world.</div>
+            <div class="typeD-tip">現在の受動態。all over the world = 世界中で。</div>
+            <button class="typeD-tts" onclick="speak('This book is read all over the world.')">🔊</button>
+          </div>
+        </div>
+        <div class="typeD-question pp-border">
+          <div class="typeD-num">Q14 / 15</div>
+          <div class="typeD-jp">彼らはまだ決断を下していません。</div>
+          <textarea class="typeD-textarea" placeholder="英語に翻訳してください..."></textarea>
+          <br><button class="typeD-btn typeD-show-btn" onclick="toggleTypeDAnswer(this)">答えを見る</button>
+          <div class="typeD-answer-box">
+            <div class="typeD-model">They haven't made a decision yet.</div>
+            <div class="typeD-alt">別解: They have not decided yet.</div>
+            <div class="typeD-tip">yet は否定文の現在完了でよく使われる。「まだ〜していない」。</div>
+            <button class="typeD-tts" onclick="speak('They have not made a decision yet.')">🔊</button>
+          </div>
+        </div>
+        <div class="typeD-question pp-border">
+          <div class="typeD-num">Q15 / 15</div>
+          <div class="typeD-jp">その問題は解決されましたか？</div>
+          <textarea class="typeD-textarea" placeholder="英語に翻訳してください..."></textarea>
+          <br><button class="typeD-btn typeD-show-btn" onclick="toggleTypeDAnswer(this)">答えを見る</button>
+          <div class="typeD-answer-box">
+            <div class="typeD-model">Has the problem been solved?</div>
+            <div class="typeD-alt">別解: Was the problem solved?（過去形も可）</div>
+            <div class="typeD-tip">現在完了の受動態疑問文 Has + 主語 + been + 過去分詞？</div>
+            <button class="typeD-tts" onclick="speak('Has the problem been solved?')">🔊</button>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
-
 <!-- ========== GERUNDS ========== -->
 <div id="section-ger" class="topic-section">
   <div class="card">
@@ -349,6 +612,46 @@ header h1{font-size:1.3rem}
     </div>
   </div>
 
+  <!-- GER Japanese Explanation -->
+  <div class="card">
+    <div class="card-title"><span class="badge badge-ger">📖</span>詳しい日本語解説</div>
+    <div class="jp-explain-box">
+      <h4>【基本概念】動名詞とは？</h4>
+      <p>動名詞（Gerund）は「動詞＋ing」の形で、「〜すること」という名詞の意味を持ちます。現在分詞と形は同じですが、働きが異なります（動名詞→名詞、現在分詞→形容詞・進行形）。</p>
+      <div class="rule-block">
+        <strong>用法①：主語として</strong><br>
+        Swimming is fun.（水泳は楽しい）<br>
+        ※ It is fun to swim. とも言えますが、動名詞の方が「一般的な事実」を強調します。
+      </div>
+      <div class="rule-block">
+        <strong>用法②：目的語として（動名詞を取る動詞を必ず覚える！）</strong><br>
+        enjoy / finish / avoid / mind / consider / suggest / practice / keep / admit / deny<br>
+        give up / put off / look forward to / can't help / be used to<br>
+        ※ これらの動詞の後ろには to不定詞は使えません！
+      </div>
+      <div class="rule-block">
+        <strong>用法③：前置詞の後には必ず動名詞！</strong><br>
+        before eating（食べる前に）/ after studying（勉強した後）<br>
+        without saying（言わずに）/ by working hard（一生懸命働くことで）<br>
+        look forward to meeting（会うのを楽しみにしている）← toは前置詞！
+      </div>
+      <div class="warn-box">
+        意味が変わる動詞に注意！<br>
+        remember + 動名詞 = 過去のことを覚えている（I remember meeting her.）<br>
+        remember + to不定詞 = これからやることを覚えている（Remember to call her.）<br>
+        stop + 動名詞 = 〜するのをやめる（He stopped smoking.）<br>
+        stop + to不定詞 = 〜するために立ち止まる（He stopped to smoke.）<br>
+        forget / try / regret も同様に意味が変わります！
+      </div>
+      <div class="tip-box">
+        動名詞の否定形：not + 動名詞<br>
+        I regret not studying harder.（もっと勉強しなかったことを後悔している）<br>
+        動名詞の意味上の主語：所有格 + 動名詞<br>
+        I appreciate your helping me.（手伝ってくれてありがとう）
+      </div>
+    </div>
+  </div>
+
   <!-- GER QUIZ -->
   <div class="card quiz-section">
     <div class="card-title"><span class="badge badge-ger">Quiz</span>Practice Quizzes</div>
@@ -357,14 +660,200 @@ header h1{font-size:1.3rem}
       <button class="quiz-tab-btn active-ger" onclick="showQuiz('ger','A',this)">Type A: Fill-in-Blank</button>
       <button class="quiz-tab-btn" onclick="showQuiz('ger','B',this)">Type B: Scramble</button>
       <button class="quiz-tab-btn" onclick="showQuiz('ger','C',this)">Type C: Translation</button>
+      <button class="quiz-tab-btn" onclick="showQuiz('ger','D',this)">Type D: 全文翻訳</button>
     </div>
     <div class="score-display" id="score-ger">Score: 0 / 0</div>
     <div id="quiz-ger-A" class="quiz-panel active"><div id="ger-A-questions"></div><button class="reset-quiz-btn" onclick="resetQuizA('ger')">Reset Quiz</button></div>
     <div id="quiz-ger-B" class="quiz-panel"><div id="ger-B-scrambles"></div></div>
     <div id="quiz-ger-C" class="quiz-panel"><div id="ger-C-translations"></div></div>
+
+    <!-- GER Quiz D -->
+    <div id="quiz-ger-D" class="quiz-panel">
+      <div class="typeDquiz-wrap">
+        <div class="typeD-question ger-border">
+          <div class="typeD-num">Q1 / 15</div>
+          <div class="typeD-jp">毎朝走ることは健康に良い。</div>
+          <textarea class="typeD-textarea" placeholder="英語に翻訳してください..."></textarea>
+          <br><button class="typeD-btn typeD-show-btn" onclick="toggleTypeDAnswer(this)">答えを見る</button>
+          <div class="typeD-answer-box">
+            <div class="typeD-model">Running every morning is good for your health.</div>
+            <div class="typeD-alt">別解: Jogging every morning is healthy.</div>
+            <div class="typeD-tip">動名詞が主語。Running は単数扱いなので動詞は is。</div>
+            <button class="typeD-tts" onclick="speak('Running every morning is good for your health.')">🔊</button>
+          </div>
+        </div>
+        <div class="typeD-question ger-border">
+          <div class="typeD-num">Q2 / 15</div>
+          <div class="typeD-jp">彼女は料理を楽しんでいます。</div>
+          <textarea class="typeD-textarea" placeholder="英語に翻訳してください..."></textarea>
+          <br><button class="typeD-btn typeD-show-btn" onclick="toggleTypeDAnswer(this)">答えを見る</button>
+          <div class="typeD-answer-box">
+            <div class="typeD-model">She enjoys cooking.</div>
+            <div class="typeD-alt">別解: She loves cooking.</div>
+            <div class="typeD-tip">enjoy は必ず動名詞を取る動詞。enjoy to cook とは言えない！</div>
+            <button class="typeD-tts" onclick="speak('She enjoys cooking.')">🔊</button>
+          </div>
+        </div>
+        <div class="typeD-question ger-border">
+          <div class="typeD-num">Q3 / 15</div>
+          <div class="typeD-jp">彼は音楽を聴くことをやめました。</div>
+          <textarea class="typeD-textarea" placeholder="英語に翻訳してください..."></textarea>
+          <br><button class="typeD-btn typeD-show-btn" onclick="toggleTypeDAnswer(this)">答えを見る</button>
+          <div class="typeD-answer-box">
+            <div class="typeD-model">He stopped listening to music.</div>
+            <div class="typeD-alt">別解: He quit listening to music.</div>
+            <div class="typeD-tip">stop + 動名詞 = 〜するのをやめる。stop to listen（〜するために止まる）と区別。</div>
+            <button class="typeD-tts" onclick="speak('He stopped listening to music.')">🔊</button>
+          </div>
+        </div>
+        <div class="typeD-question ger-border">
+          <div class="typeD-num">Q4 / 15</div>
+          <div class="typeD-jp">私は早起きするのが苦手です。</div>
+          <textarea class="typeD-textarea" placeholder="英語に翻訳してください..."></textarea>
+          <br><button class="typeD-btn typeD-show-btn" onclick="toggleTypeDAnswer(this)">答えを見る</button>
+          <div class="typeD-answer-box">
+            <div class="typeD-model">I am not good at waking up early.</div>
+            <div class="typeD-alt">別解: I'm bad at getting up early.</div>
+            <div class="typeD-tip">be good at + 動名詞。at は前置詞なので後ろに動名詞が来る。</div>
+            <button class="typeD-tts" onclick="speak('I am not good at waking up early.')">🔊</button>
+          </div>
+        </div>
+        <div class="typeD-question ger-border">
+          <div class="typeD-num">Q5 / 15</div>
+          <div class="typeD-jp">彼女は英語を勉強することを提案しました。</div>
+          <textarea class="typeD-textarea" placeholder="英語に翻訳してください..."></textarea>
+          <br><button class="typeD-btn typeD-show-btn" onclick="toggleTypeDAnswer(this)">答えを見る</button>
+          <div class="typeD-answer-box">
+            <div class="typeD-model">She suggested studying English.</div>
+            <div class="typeD-alt">別解: She suggested that we study English.</div>
+            <div class="typeD-tip">suggest は動名詞を取る動詞。suggest to study とは言えない！</div>
+            <button class="typeD-tts" onclick="speak('She suggested studying English.')">🔊</button>
+          </div>
+        </div>
+        <div class="typeD-question ger-border">
+          <div class="typeD-num">Q6 / 15</div>
+          <div class="typeD-jp">私は一人で旅行することを楽しんでいます。</div>
+          <textarea class="typeD-textarea" placeholder="英語に翻訳してください..."></textarea>
+          <br><button class="typeD-btn typeD-show-btn" onclick="toggleTypeDAnswer(this)">答えを見る</button>
+          <div class="typeD-answer-box">
+            <div class="typeD-model">I enjoy traveling alone.</div>
+            <div class="typeD-alt">別解: I love traveling by myself.</div>
+            <div class="typeD-tip">by oneself = 一人で。enjoy + 動名詞。</div>
+            <button class="typeD-tts" onclick="speak('I enjoy traveling alone.')">🔊</button>
+          </div>
+        </div>
+        <div class="typeD-question ger-border">
+          <div class="typeD-num">Q7 / 15</div>
+          <div class="typeD-jp">食べる前に手を洗うことを忘れないでください。</div>
+          <textarea class="typeD-textarea" placeholder="英語に翻訳してください..."></textarea>
+          <br><button class="typeD-btn typeD-show-btn" onclick="toggleTypeDAnswer(this)">答えを見る</button>
+          <div class="typeD-answer-box">
+            <div class="typeD-model">Don't forget to wash your hands before eating.</div>
+            <div class="typeD-alt">別解: Remember to wash your hands before eating.</div>
+            <div class="typeD-tip">before + 動名詞（前置詞の後）。forget + to不定詞 = これからやることを忘れる。</div>
+            <button class="typeD-tts" onclick="speak('Don\'t forget to wash your hands before eating.')">🔊</button>
+          </div>
+        </div>
+        <div class="typeD-question ger-border">
+          <div class="typeD-num">Q8 / 15</div>
+          <div class="typeD-jp">私の趣味は写真を撮ることです。</div>
+          <textarea class="typeD-textarea" placeholder="英語に翻訳してください..."></textarea>
+          <br><button class="typeD-btn typeD-show-btn" onclick="toggleTypeDAnswer(this)">答えを見る</button>
+          <div class="typeD-answer-box">
+            <div class="typeD-model">My hobby is taking pictures.</div>
+            <div class="typeD-alt">別解: My hobby is photography.</div>
+            <div class="typeD-tip">be動詞の後の動名詞は補語。taking は「撮ること」という名詞の役割。</div>
+            <button class="typeD-tts" onclick="speak('My hobby is taking pictures.')">🔊</button>
+          </div>
+        </div>
+        <div class="typeD-question ger-border">
+          <div class="typeD-num">Q9 / 15</div>
+          <div class="typeD-jp">彼は嘘をついたことを認めました。</div>
+          <textarea class="typeD-textarea" placeholder="英語に翻訳してください..."></textarea>
+          <br><button class="typeD-btn typeD-show-btn" onclick="toggleTypeDAnswer(this)">答えを見る</button>
+          <div class="typeD-answer-box">
+            <div class="typeD-model">He admitted telling a lie.</div>
+            <div class="typeD-alt">別解: He admitted lying.</div>
+            <div class="typeD-tip">admit は動名詞を取る動詞。過去のことを認める場合に使う。</div>
+            <button class="typeD-tts" onclick="speak('He admitted telling a lie.')">🔊</button>
+          </div>
+        </div>
+        <div class="typeD-question ger-border">
+          <div class="typeD-num">Q10 / 15</div>
+          <div class="typeD-jp">子供たちは外で遊ぶのが好きです。</div>
+          <textarea class="typeD-textarea" placeholder="英語に翻訳してください..."></textarea>
+          <br><button class="typeD-btn typeD-show-btn" onclick="toggleTypeDAnswer(this)">答えを見る</button>
+          <div class="typeD-answer-box">
+            <div class="typeD-model">Children like playing outside.</div>
+            <div class="typeD-alt">別解: Kids enjoy playing outdoors.</div>
+            <div class="typeD-tip">like は動名詞・to不定詞どちらも可。playing = 外で遊ぶこと。</div>
+            <button class="typeD-tts" onclick="speak('Children like playing outside.')">🔊</button>
+          </div>
+        </div>
+        <div class="typeD-question ger-border">
+          <div class="typeD-num">Q11 / 15</div>
+          <div class="typeD-jp">彼女は毎日ピアノを練習し続けています。</div>
+          <textarea class="typeD-textarea" placeholder="英語に翻訳してください..."></textarea>
+          <br><button class="typeD-btn typeD-show-btn" onclick="toggleTypeDAnswer(this)">答えを見る</button>
+          <div class="typeD-answer-box">
+            <div class="typeD-model">She keeps practicing the piano every day.</div>
+            <div class="typeD-alt">別解: She continues to practice the piano every day.</div>
+            <div class="typeD-tip">keep + 動名詞 = 〜し続ける。keep は動名詞のみ（to不定詞は×）。</div>
+            <button class="typeD-tts" onclick="speak('She keeps practicing the piano every day.')">🔊</button>
+          </div>
+        </div>
+        <div class="typeD-question ger-border">
+          <div class="typeD-num">Q12 / 15</div>
+          <div class="typeD-jp">私はその知らせを聞いて泣かずにはいられませんでした。</div>
+          <textarea class="typeD-textarea" placeholder="英語に翻訳してください..."></textarea>
+          <br><button class="typeD-btn typeD-show-btn" onclick="toggleTypeDAnswer(this)">答えを見る</button>
+          <div class="typeD-answer-box">
+            <div class="typeD-model">I couldn't help crying when I heard the news.</div>
+            <div class="typeD-alt">別解: I couldn't stop myself from crying when I heard the news.</div>
+            <div class="typeD-tip">can't help + 動名詞 = 〜せずにはいられない。</div>
+            <button class="typeD-tts" onclick="speak('I could not help crying when I heard the news.')">🔊</button>
+          </div>
+        </div>
+        <div class="typeD-question ger-border">
+          <div class="typeD-num">Q13 / 15</div>
+          <div class="typeD-jp">映画を見た後、私たちはレストランへ行きました。</div>
+          <textarea class="typeD-textarea" placeholder="英語に翻訳してください..."></textarea>
+          <br><button class="typeD-btn typeD-show-btn" onclick="toggleTypeDAnswer(this)">答えを見る</button>
+          <div class="typeD-answer-box">
+            <div class="typeD-model">After watching the movie, we went to a restaurant.</div>
+            <div class="typeD-alt">別解: After seeing the movie, we went to a restaurant.</div>
+            <div class="typeD-tip">after は前置詞なので後ろに動名詞。went（go の過去形）。</div>
+            <button class="typeD-tts" onclick="speak('After watching the movie, we went to a restaurant.')">🔊</button>
+          </div>
+        </div>
+        <div class="typeD-question ger-border">
+          <div class="typeD-num">Q14 / 15</div>
+          <div class="typeD-jp">彼は飲みすぎることを避けるべきです。</div>
+          <textarea class="typeD-textarea" placeholder="英語に翻訳してください..."></textarea>
+          <br><button class="typeD-btn typeD-show-btn" onclick="toggleTypeDAnswer(this)">答えを見る</button>
+          <div class="typeD-answer-box">
+            <div class="typeD-model">He should avoid drinking too much.</div>
+            <div class="typeD-alt">別解: He ought to avoid drinking excessively.</div>
+            <div class="typeD-tip">avoid は動名詞のみ（to不定詞は×）。should + 動詞原形。</div>
+            <button class="typeD-tts" onclick="speak('He should avoid drinking too much.')">🔊</button>
+          </div>
+        </div>
+        <div class="typeD-question ger-border">
+          <div class="typeD-num">Q15 / 15</div>
+          <div class="typeD-jp">この本は読む価値があります。</div>
+          <textarea class="typeD-textarea" placeholder="英語に翻訳してください..."></textarea>
+          <br><button class="typeD-btn typeD-show-btn" onclick="toggleTypeDAnswer(this)">答えを見る</button>
+          <div class="typeD-answer-box">
+            <div class="typeD-model">This book is worth reading.</div>
+            <div class="typeD-alt">別解: It's worth reading this book.</div>
+            <div class="typeD-tip">be worth + 動名詞 = 〜する価値がある。worth to read とは言えない！</div>
+            <button class="typeD-tts" onclick="speak('This book is worth reading.')">🔊</button>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
-
 <!-- ========== TO-INFINITIVES ========== -->
 <div id="section-inf" class="topic-section">
   <div class="card">
@@ -429,6 +918,49 @@ header h1{font-size:1.3rem}
     </div>
   </div>
 
+  <!-- INF Japanese Explanation -->
+  <div class="card">
+    <div class="card-title"><span class="badge badge-inf">📖</span>詳しい日本語解説</div>
+    <div class="jp-explain-box">
+      <h4>【基本概念】to不定詞とは？</h4>
+      <p>to不定詞（To-Infinitive）は「to + 動詞の原形」の形で、名詞・形容詞・副詞の3つの用法があります。</p>
+      <div class="rule-block">
+        <strong>用法①：名詞的用法「〜すること」</strong><br>
+        主語：To study English is important. → It is important to study English.（より自然）<br>
+        目的語：I want to travel abroad.（海外旅行がしたい）<br>
+        補語：My dream is to become a doctor.（私の夢は医者になること）
+      </div>
+      <div class="rule-block">
+        <strong>用法②：形容詞的用法「〜するための」「〜すべき」</strong><br>
+        名詞の直後に置いて修飾します。<br>
+        I have a lot of homework to do.（やるべき宿題がたくさんある）<br>
+        She has no time to waste.（無駄にする時間がない）
+      </div>
+      <div class="rule-block">
+        <strong>用法③：副詞的用法「〜するために」「〜して」</strong><br>
+        目的：I studied hard to pass the exam.（合格するために一生懸命勉強した）<br>
+        感情の原因：I am happy to meet you.（あなたに会えて嬉しい）<br>
+        結果：She grew up to be a singer.（成長して歌手になった）
+      </div>
+      <div class="rule-block">
+        <strong>重要構文まとめ</strong><br>
+        ・It is + 形容詞 + to：It is easy to learn.（学ぶのは簡単だ）<br>
+        ・too + 形容詞 + to：too tired to work（疲れすぎて働けない）← 否定の意味を含む！<br>
+        ・形容詞 + enough + to：old enough to drive（運転できる年齢）<br>
+        ・疑問詞 + to：what to do（何をすべきか）、how to use（使い方）
+      </div>
+      <div class="warn-box">
+        to不定詞を取る動詞（動名詞は×）: want, hope, wish, decide, plan, promise, agree, refuse, expect, manage<br>
+        両方取れるが意味が変わる動詞: remember, forget, stop, try, regret
+      </div>
+      <div class="tip-box">
+        原形不定詞（to なし）を使う場合：<br>
+        使役動詞：make/let/have + 人 + 原形（He made me laugh. / Let me try.）<br>
+        知覚動詞：see/hear/feel + 人 + 原形（I saw him run.）
+      </div>
+    </div>
+  </div>
+
   <!-- INF QUIZ -->
   <div class="card quiz-section">
     <div class="card-title"><span class="badge badge-inf">Quiz</span>Practice Quizzes</div>
@@ -437,14 +969,200 @@ header h1{font-size:1.3rem}
       <button class="quiz-tab-btn active-inf" onclick="showQuiz('inf','A',this)">Type A: Fill-in-Blank</button>
       <button class="quiz-tab-btn" onclick="showQuiz('inf','B',this)">Type B: Scramble</button>
       <button class="quiz-tab-btn" onclick="showQuiz('inf','C',this)">Type C: Translation</button>
+      <button class="quiz-tab-btn" onclick="showQuiz('inf','D',this)">Type D: 全文翻訳</button>
     </div>
     <div class="score-display" id="score-inf">Score: 0 / 0</div>
     <div id="quiz-inf-A" class="quiz-panel active"><div id="inf-A-questions"></div><button class="reset-quiz-btn" onclick="resetQuizA('inf')">Reset Quiz</button></div>
     <div id="quiz-inf-B" class="quiz-panel"><div id="inf-B-scrambles"></div></div>
     <div id="quiz-inf-C" class="quiz-panel"><div id="inf-C-translations"></div></div>
+
+    <!-- INF Quiz D -->
+    <div id="quiz-inf-D" class="quiz-panel">
+      <div class="typeDquiz-wrap">
+        <div class="typeD-question inf-border">
+          <div class="typeD-num">Q1 / 15</div>
+          <div class="typeD-jp">私は医者になりたいです。</div>
+          <textarea class="typeD-textarea" placeholder="英語に翻訳してください..."></textarea>
+          <br><button class="typeD-btn typeD-show-btn" onclick="toggleTypeDAnswer(this)">答えを見る</button>
+          <div class="typeD-answer-box">
+            <div class="typeD-model">I want to become a doctor.</div>
+            <div class="typeD-alt">別解: I'd like to become a doctor.</div>
+            <div class="typeD-tip">want + to不定詞。動名詞は使えない（want becoming とは言えない）。</div>
+            <button class="typeD-tts" onclick="speak('I want to become a doctor.')">🔊</button>
+          </div>
+        </div>
+        <div class="typeD-question inf-border">
+          <div class="typeD-num">Q2 / 15</div>
+          <div class="typeD-jp">彼女は英語を勉強するためにアメリカへ行きました。</div>
+          <textarea class="typeD-textarea" placeholder="英語に翻訳してください..."></textarea>
+          <br><button class="typeD-btn typeD-show-btn" onclick="toggleTypeDAnswer(this)">答えを見る</button>
+          <div class="typeD-answer-box">
+            <div class="typeD-model">She went to America to study English.</div>
+            <div class="typeD-alt">別解: She went to America in order to study English.</div>
+            <div class="typeD-tip">to不定詞の副詞的用法（目的）。in order to でより明確に目的を示せる。</div>
+            <button class="typeD-tts" onclick="speak('She went to America to study English.')">🔊</button>
+          </div>
+        </div>
+        <div class="typeD-question inf-border">
+          <div class="typeD-num">Q3 / 15</div>
+          <div class="typeD-jp">私は彼が合格したと聞いて嬉しかった。</div>
+          <textarea class="typeD-textarea" placeholder="英語に翻訳してください..."></textarea>
+          <br><button class="typeD-btn typeD-show-btn" onclick="toggleTypeDAnswer(this)">答えを見る</button>
+          <div class="typeD-answer-box">
+            <div class="typeD-model">I was happy to hear that he passed.</div>
+            <div class="typeD-alt">別解: I was glad to hear that he passed.</div>
+            <div class="typeD-tip">感情の形容詞 + to不定詞。to hear が「聞いて」という感情の原因を表す。</div>
+            <button class="typeD-tts" onclick="speak('I was happy to hear that he passed.')">🔊</button>
+          </div>
+        </div>
+        <div class="typeD-question inf-border">
+          <div class="typeD-num">Q4 / 15</div>
+          <div class="typeD-jp">牛乳を買うのを忘れないでください。</div>
+          <textarea class="typeD-textarea" placeholder="英語に翻訳してください..."></textarea>
+          <br><button class="typeD-btn typeD-show-btn" onclick="toggleTypeDAnswer(this)">答えを見る</button>
+          <div class="typeD-answer-box">
+            <div class="typeD-model">Don't forget to buy milk.</div>
+            <div class="typeD-alt">別解: Remember to buy milk.</div>
+            <div class="typeD-tip">forget + to不定詞 = これからやることを忘れる（未来のこと）。</div>
+            <button class="typeD-tts" onclick="speak('Don\'t forget to buy milk.')">🔊</button>
+          </div>
+        </div>
+        <div class="typeD-question inf-border">
+          <div class="typeD-num">Q5 / 15</div>
+          <div class="typeD-jp">中国語を学ぶことは難しい。</div>
+          <textarea class="typeD-textarea" placeholder="英語に翻訳してください..."></textarea>
+          <br><button class="typeD-btn typeD-show-btn" onclick="toggleTypeDAnswer(this)">答えを見る</button>
+          <div class="typeD-answer-box">
+            <div class="typeD-model">It is difficult to learn Chinese.</div>
+            <div class="typeD-alt">別解: Learning Chinese is difficult.</div>
+            <div class="typeD-tip">It is + 形容詞 + to不定詞。It は形式主語で、to以下が本当の主語。</div>
+            <button class="typeD-tts" onclick="speak('It is difficult to learn Chinese.')">🔊</button>
+          </div>
+        </div>
+        <div class="typeD-question inf-border">
+          <div class="typeD-num">Q6 / 15</div>
+          <div class="typeD-jp">私は何を着ればいいかわかりません。</div>
+          <textarea class="typeD-textarea" placeholder="英語に翻訳してください..."></textarea>
+          <br><button class="typeD-btn typeD-show-btn" onclick="toggleTypeDAnswer(this)">答えを見る</button>
+          <div class="typeD-answer-box">
+            <div class="typeD-model">I don't know what to wear.</div>
+            <div class="typeD-alt">別解: I'm not sure what to put on.</div>
+            <div class="typeD-tip">疑問詞 + to不定詞。what to do（何をすべきか）、how to use（使い方）と同じパターン。</div>
+            <button class="typeD-tts" onclick="speak('I do not know what to wear.')">🔊</button>
+          </div>
+        </div>
+        <div class="typeD-question inf-border">
+          <div class="typeD-num">Q7 / 15</div>
+          <div class="typeD-jp">彼女は疲れすぎて話せませんでした。</div>
+          <textarea class="typeD-textarea" placeholder="英語に翻訳してください..."></textarea>
+          <br><button class="typeD-btn typeD-show-btn" onclick="toggleTypeDAnswer(this)">答えを見る</button>
+          <div class="typeD-answer-box">
+            <div class="typeD-model">She was too tired to talk.</div>
+            <div class="typeD-alt">別解: She was so tired that she couldn't talk.</div>
+            <div class="typeD-tip">too + 形容詞 + to不定詞 = 〜すぎて〜できない（否定の意味を含む）。</div>
+            <button class="typeD-tts" onclick="speak('She was too tired to talk.')">🔊</button>
+          </div>
+        </div>
+        <div class="typeD-question inf-border">
+          <div class="typeD-num">Q8 / 15</div>
+          <div class="typeD-jp">彼は医者になるために一生懸命勉強しました。</div>
+          <textarea class="typeD-textarea" placeholder="英語に翻訳してください..."></textarea>
+          <br><button class="typeD-btn typeD-show-btn" onclick="toggleTypeDAnswer(this)">答えを見る</button>
+          <div class="typeD-answer-box">
+            <div class="typeD-model">He studied hard to become a doctor.</div>
+            <div class="typeD-alt">別解: He worked hard in order to become a doctor.</div>
+            <div class="typeD-tip">to不定詞の副詞的用法（目的）。動詞の後に目的を表すto不定詞を置く。</div>
+            <button class="typeD-tts" onclick="speak('He studied hard to become a doctor.')">🔊</button>
+          </div>
+        </div>
+        <div class="typeD-question inf-border">
+          <div class="typeD-num">Q9 / 15</div>
+          <div class="typeD-jp">これはあなたに読んでほしい本です。</div>
+          <textarea class="typeD-textarea" placeholder="英語に翻訳してください..."></textarea>
+          <br><button class="typeD-btn typeD-show-btn" onclick="toggleTypeDAnswer(this)">答えを見る</button>
+          <div class="typeD-answer-box">
+            <div class="typeD-model">This is a book for you to read.</div>
+            <div class="typeD-alt">別解: This is a book I want you to read.</div>
+            <div class="typeD-tip">for + 人 + to不定詞。不定詞の意味上の主語をforで示す。</div>
+            <button class="typeD-tts" onclick="speak('This is a book for you to read.')">🔊</button>
+          </div>
+        </div>
+        <div class="typeD-question inf-border">
+          <div class="typeD-num">Q10 / 15</div>
+          <div class="typeD-jp">彼女は十分な年齢で一人で旅行できます。</div>
+          <textarea class="typeD-textarea" placeholder="英語に翻訳してください..."></textarea>
+          <br><button class="typeD-btn typeD-show-btn" onclick="toggleTypeDAnswer(this)">答えを見る</button>
+          <div class="typeD-answer-box">
+            <div class="typeD-model">She is old enough to travel alone.</div>
+            <div class="typeD-alt">別解: She is old enough to travel by herself.</div>
+            <div class="typeD-tip">形容詞 + enough + to不定詞 = 〜するのに十分〜。too〜to の反対の意味。</div>
+            <button class="typeD-tts" onclick="speak('She is old enough to travel alone.')">🔊</button>
+          </div>
+        </div>
+        <div class="typeD-question inf-border">
+          <div class="typeD-num">Q11 / 15</div>
+          <div class="typeD-jp">宿題をするために図書館に行きました。</div>
+          <textarea class="typeD-textarea" placeholder="英語に翻訳してください..."></textarea>
+          <br><button class="typeD-btn typeD-show-btn" onclick="toggleTypeDAnswer(this)">答えを見る</button>
+          <div class="typeD-answer-box">
+            <div class="typeD-model">I went to the library to do my homework.</div>
+            <div class="typeD-alt">別解: I went to the library in order to do my homework.</div>
+            <div class="typeD-tip">to不定詞の副詞的用法（目的）。「〜するために」。</div>
+            <button class="typeD-tts" onclick="speak('I went to the library to do my homework.')">🔊</button>
+          </div>
+        </div>
+        <div class="typeD-question inf-border">
+          <div class="typeD-num">Q12 / 15</div>
+          <div class="typeD-jp">正直であることが大切です。</div>
+          <textarea class="typeD-textarea" placeholder="英語に翻訳してください..."></textarea>
+          <br><button class="typeD-btn typeD-show-btn" onclick="toggleTypeDAnswer(this)">答えを見る</button>
+          <div class="typeD-answer-box">
+            <div class="typeD-model">It is important to be honest.</div>
+            <div class="typeD-alt">別解: Being honest is important.</div>
+            <div class="typeD-tip">It is + 形容詞 + to不定詞の形式主語構文。be + 形容詞で状態を表す。</div>
+            <button class="typeD-tts" onclick="speak('It is important to be honest.')">🔊</button>
+          </div>
+        </div>
+        <div class="typeD-question inf-border">
+          <div class="typeD-num">Q13 / 15</div>
+          <div class="typeD-jp">私の夢はプロの選手になることです。</div>
+          <textarea class="typeD-textarea" placeholder="英語に翻訳してください..."></textarea>
+          <br><button class="typeD-btn typeD-show-btn" onclick="toggleTypeDAnswer(this)">答えを見る</button>
+          <div class="typeD-answer-box">
+            <div class="typeD-model">My dream is to become a professional athlete.</div>
+            <div class="typeD-alt">別解: My dream is to be a professional player.</div>
+            <div class="typeD-tip">be動詞の後のto不定詞は補語（名詞的用法）。My dream = to become a professional athlete。</div>
+            <button class="typeD-tts" onclick="speak('My dream is to become a professional athlete.')">🔊</button>
+          </div>
+        </div>
+        <div class="typeD-question inf-border">
+          <div class="typeD-num">Q14 / 15</div>
+          <div class="typeD-jp">彼は試験に合格するために毎日勉強しています。</div>
+          <textarea class="typeD-textarea" placeholder="英語に翻訳してください..."></textarea>
+          <br><button class="typeD-btn typeD-show-btn" onclick="toggleTypeDAnswer(this)">答えを見る</button>
+          <div class="typeD-answer-box">
+            <div class="typeD-model">He studies every day to pass the exam.</div>
+            <div class="typeD-alt">別解: He studies every day in order to pass the test.</div>
+            <div class="typeD-tip">to不定詞の目的用法。主語が三人称単数なので studies（三単現のs）。</div>
+            <button class="typeD-tts" onclick="speak('He studies every day to pass the exam.')">🔊</button>
+          </div>
+        </div>
+        <div class="typeD-question inf-border">
+          <div class="typeD-num">Q15 / 15</div>
+          <div class="typeD-jp">あなたに会えて光栄です。</div>
+          <textarea class="typeD-textarea" placeholder="英語に翻訳してください..."></textarea>
+          <br><button class="typeD-btn typeD-show-btn" onclick="toggleTypeDAnswer(this)">答えを見る</button>
+          <div class="typeD-answer-box">
+            <div class="typeD-model">I am honored to meet you.</div>
+            <div class="typeD-alt">別解: It's an honor to meet you.</div>
+            <div class="typeD-tip">感情・状態の形容詞 + to不定詞。honored は「光栄に感じている」状態。</div>
+            <button class="typeD-tts" onclick="speak('I am honored to meet you.')">🔊</button>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
-
 <!-- ========== PREPOSITIONS ========== -->
 <div id="section-prep" class="topic-section">
   <div class="card">
@@ -469,7 +1187,6 @@ header h1{font-size:1.3rem}
       <div class="phrase-card"><strong><span class="kw-prep">in</span> January</strong><span>1月に</span></div>
       <div class="phrase-card"><strong><span class="kw-prep">in</span> the future</strong><span>将来に</span></div>
     </div>
-
     <div class="example-block prep">
       <div class="example-row"><span class="example-en">The meeting is <span class="kw-prep">at</span> 3pm.</span><span class="example-jp">会議は午後3時です。</span><button class="tts-btn" onclick="speak('The meeting is at 3pm.')">🔊</button></div>
       <div class="example-row"><span class="example-en">She was born <span class="kw-prep">on</span> July 4th.</span><span class="example-jp">彼女は7月4日に生まれました。</span><button class="tts-btn" onclick="speak('She was born on July 4th.')">🔊</button></div>
@@ -491,7 +1208,6 @@ header h1{font-size:1.3rem}
       <div class="phrase-card"><strong><span class="kw-prep">in</span> the room</strong><span>部屋の中に</span></div>
       <div class="phrase-card"><strong><span class="kw-prep">in</span> the car</strong><span>車の中に</span></div>
     </div>
-
     <div class="example-block prep">
       <div class="example-row"><span class="example-en">She is <span class="kw-prep">at</span> school now.</span><span class="example-jp">彼女は今学校にいます。</span><button class="tts-btn" onclick="speak('She is at school now.')">🔊</button></div>
       <div class="example-row"><span class="example-en">The book is <span class="kw-prep">on</span> the table.</span><span class="example-jp">本はテーブルの上にあります。</span><button class="tts-btn" onclick="speak('The book is on the table.')">🔊</button></div>
@@ -528,6 +1244,49 @@ header h1{font-size:1.3rem}
     </div>
   </div>
 
+  <!-- PREP Japanese Explanation -->
+  <div class="card">
+    <div class="card-title"><span class="badge badge-prep">📖</span>詳しい日本語解説</div>
+    <div class="jp-explain-box">
+      <h4>【基本概念】前置詞とは？</h4>
+      <p>前置詞（Preposition）は名詞・代名詞の前に置いて、時間・場所・方向・関係などを表します。特に at / on / in の使い分けが最重要です。</p>
+      <div class="rule-block">
+        <strong>時を表す at / on / in の違い（範囲が小さい→大きい順）</strong><br>
+        at：特定の時刻・時点 → at 3 o'clock, at noon, at midnight, at Christmas<br>
+        on：特定の日・曜日 → on Monday, on July 4th, on my birthday, on weekdays<br>
+        in：より長い期間 → in 2024, in winter, in January, in the morning<br>
+        ※ 例外：at night（夜に）/ on the morning of July 4th（7月4日の朝）
+      </div>
+      <div class="rule-block">
+        <strong>場所を表す at / on / in の違い</strong><br>
+        at：特定の地点（点として捉える） → at home, at school, at the bus stop, at the corner<br>
+        on：表面・接触している → on the table, on the wall, on the second floor<br>
+        in：空間の内側・囲まれた場所 → in the box, in Japan, in the room
+      </div>
+      <div class="rule-block">
+        <strong>紛らわしい前置詞ペア</strong><br>
+        during vs for：<br>
+        ・during + 期間の名前：I slept during the movie.（映画の間ずっと寝ていた）<br>
+        ・for + 数値：I slept for 8 hours.（8時間眠った）<br><br>
+        by vs until：<br>
+        ・by = 期限「〜までに（完了）」：Finish this by Friday.（金曜日までに終えて）<br>
+        ・until = 継続「〜までずっと」：I waited until 5 o'clock.（5時まで待った）
+      </div>
+      <div class="warn-box">
+        よく間違える前置詞！<br>
+        × I am good in English. → ○ I am good at English.（英語が得意）<br>
+        × I am interested on music. → ○ I am interested in music.（音楽に興味がある）<br>
+        × I look forward to meet you. → ○ I look forward to meeting you.（to は前置詞！）
+      </div>
+      <div class="tip-box">
+        方向を表す前置詞まとめ：<br>
+        to（〜へ）、from（〜から）、into（〜の中へ）、out of（〜の外へ）<br>
+        through（〜を通り抜けて）、across（〜を横切って）、along（〜に沿って）<br>
+        toward（〜の方向へ）、past（〜を通り過ぎて）、around（〜の周りを）
+      </div>
+    </div>
+  </div>
+
   <!-- PREP QUIZ -->
   <div class="card quiz-section">
     <div class="card-title"><span class="badge badge-prep">Quiz</span>Practice Quizzes</div>
@@ -536,14 +1295,200 @@ header h1{font-size:1.3rem}
       <button class="quiz-tab-btn active-prep" onclick="showQuiz('prep','A',this)">Type A: Fill-in-Blank</button>
       <button class="quiz-tab-btn" onclick="showQuiz('prep','B',this)">Type B: Scramble</button>
       <button class="quiz-tab-btn" onclick="showQuiz('prep','C',this)">Type C: Translation</button>
+      <button class="quiz-tab-btn" onclick="showQuiz('prep','D',this)">Type D: 全文翻訳</button>
     </div>
     <div class="score-display" id="score-prep">Score: 0 / 0</div>
     <div id="quiz-prep-A" class="quiz-panel active"><div id="prep-A-questions"></div><button class="reset-quiz-btn" onclick="resetQuizA('prep')">Reset Quiz</button></div>
     <div id="quiz-prep-B" class="quiz-panel"><div id="prep-B-scrambles"></div></div>
     <div id="quiz-prep-C" class="quiz-panel"><div id="prep-C-translations"></div></div>
+
+    <!-- PREP Quiz D -->
+    <div id="quiz-prep-D" class="quiz-panel">
+      <div class="typeDquiz-wrap">
+        <div class="typeD-question prep-border">
+          <div class="typeD-num">Q1 / 15</div>
+          <div class="typeD-jp">私は毎朝6時に起きます。</div>
+          <textarea class="typeD-textarea" placeholder="英語に翻訳してください..."></textarea>
+          <br><button class="typeD-btn typeD-show-btn" onclick="toggleTypeDAnswer(this)">答えを見る</button>
+          <div class="typeD-answer-box">
+            <div class="typeD-model">I wake up at 6 o'clock every morning.</div>
+            <div class="typeD-alt">別解: I get up at six every morning.</div>
+            <div class="typeD-tip">時刻には at を使う。at 6 o'clock = at six。</div>
+            <button class="typeD-tts" onclick="speak('I wake up at 6 o clock every morning.')">🔊</button>
+          </div>
+        </div>
+        <div class="typeD-question prep-border">
+          <div class="typeD-num">Q2 / 15</div>
+          <div class="typeD-jp">彼女は月曜日に英語のレッスンがあります。</div>
+          <textarea class="typeD-textarea" placeholder="英語に翻訳してください..."></textarea>
+          <br><button class="typeD-btn typeD-show-btn" onclick="toggleTypeDAnswer(this)">答えを見る</button>
+          <div class="typeD-answer-box">
+            <div class="typeD-model">She has English lessons on Mondays.</div>
+            <div class="typeD-alt">別解: She takes English lessons on Monday.</div>
+            <div class="typeD-tip">曜日には on を使う。on Mondays（毎週月曜日）。</div>
+            <button class="typeD-tts" onclick="speak('She has English lessons on Mondays.')">🔊</button>
+          </div>
+        </div>
+        <div class="typeD-question prep-border">
+          <div class="typeD-num">Q3 / 15</div>
+          <div class="typeD-jp">私たちは2020年に引っ越しました。</div>
+          <textarea class="typeD-textarea" placeholder="英語に翻訳してください..."></textarea>
+          <br><button class="typeD-btn typeD-show-btn" onclick="toggleTypeDAnswer(this)">答えを見る</button>
+          <div class="typeD-answer-box">
+            <div class="typeD-model">We moved in 2020.</div>
+            <div class="typeD-alt">別解: We relocated in 2020.</div>
+            <div class="typeD-tip">年には in を使う。in 2020, in the summer, in January も同様。</div>
+            <button class="typeD-tts" onclick="speak('We moved in 2020.')">🔊</button>
+          </div>
+        </div>
+        <div class="typeD-question prep-border">
+          <div class="typeD-num">Q4 / 15</div>
+          <div class="typeD-jp">図書館で会いましょう。</div>
+          <textarea class="typeD-textarea" placeholder="英語に翻訳してください..."></textarea>
+          <br><button class="typeD-btn typeD-show-btn" onclick="toggleTypeDAnswer(this)">答えを見る</button>
+          <div class="typeD-answer-box">
+            <div class="typeD-model">Let's meet at the library.</div>
+            <div class="typeD-alt">別解: Let's get together at the library.</div>
+            <div class="typeD-tip">特定の地点（場所の名前）には at を使う。at home, at school と同じ。</div>
+            <button class="typeD-tts" onclick="speak('Let\'s meet at the library.')">🔊</button>
+          </div>
+        </div>
+        <div class="typeD-question prep-border">
+          <div class="typeD-num">Q5 / 15</div>
+          <div class="typeD-jp">猫はソファの上で寝ています。</div>
+          <textarea class="typeD-textarea" placeholder="英語に翻訳してください..."></textarea>
+          <br><button class="typeD-btn typeD-show-btn" onclick="toggleTypeDAnswer(this)">答えを見る</button>
+          <div class="typeD-answer-box">
+            <div class="typeD-model">The cat is sleeping on the sofa.</div>
+            <div class="typeD-alt">別解: The cat is lying on the couch.</div>
+            <div class="typeD-tip">表面に接触している場所には on を使う。on the table, on the floor も同様。</div>
+            <button class="typeD-tts" onclick="speak('The cat is sleeping on the sofa.')">🔊</button>
+          </div>
+        </div>
+        <div class="typeD-question prep-border">
+          <div class="typeD-num">Q6 / 15</div>
+          <div class="typeD-jp">鍵はバッグの中にあります。</div>
+          <textarea class="typeD-textarea" placeholder="英語に翻訳してください..."></textarea>
+          <br><button class="typeD-btn typeD-show-btn" onclick="toggleTypeDAnswer(this)">答えを見る</button>
+          <div class="typeD-answer-box">
+            <div class="typeD-model">The key is in the bag.</div>
+            <div class="typeD-alt">別解: The key is inside the bag.</div>
+            <div class="typeD-tip">空間の内側には in を使う。in the box, in the room, in Japan も同様。</div>
+            <button class="typeD-tts" onclick="speak('The key is in the bag.')">🔊</button>
+          </div>
+        </div>
+        <div class="typeD-question prep-border">
+          <div class="typeD-num">Q7 / 15</div>
+          <div class="typeD-jp">彼は音楽に興味があります。</div>
+          <textarea class="typeD-textarea" placeholder="英語に翻訳してください..."></textarea>
+          <br><button class="typeD-btn typeD-show-btn" onclick="toggleTypeDAnswer(this)">答えを見る</button>
+          <div class="typeD-answer-box">
+            <div class="typeD-model">He is interested in music.</div>
+            <div class="typeD-alt">別解: He has an interest in music.</div>
+            <div class="typeD-tip">be interested in = 〜に興味がある。in は固定の前置詞（熟語）。</div>
+            <button class="typeD-tts" onclick="speak('He is interested in music.')">🔊</button>
+          </div>
+        </div>
+        <div class="typeD-question prep-border">
+          <div class="typeD-num">Q8 / 15</div>
+          <div class="typeD-jp">私は彼女に感謝しています。</div>
+          <textarea class="typeD-textarea" placeholder="英語に翻訳してください..."></textarea>
+          <br><button class="typeD-btn typeD-show-btn" onclick="toggleTypeDAnswer(this)">答えを見る</button>
+          <div class="typeD-answer-box">
+            <div class="typeD-model">I am grateful to her.</div>
+            <div class="typeD-alt">別解: I am thankful to her. / I appreciate her.</div>
+            <div class="typeD-tip">be grateful to + 人 = 〜に感謝している。thankful to も同じ。</div>
+            <button class="typeD-tts" onclick="speak('I am grateful to her.')">🔊</button>
+          </div>
+        </div>
+        <div class="typeD-question prep-border">
+          <div class="typeD-num">Q9 / 15</div>
+          <div class="typeD-jp">電車は午後3時に出発します。</div>
+          <textarea class="typeD-textarea" placeholder="英語に翻訳してください..."></textarea>
+          <br><button class="typeD-btn typeD-show-btn" onclick="toggleTypeDAnswer(this)">答えを見る</button>
+          <div class="typeD-answer-box">
+            <div class="typeD-model">The train departs at 3 p.m.</div>
+            <div class="typeD-alt">別解: The train leaves at 3 in the afternoon.</div>
+            <div class="typeD-tip">時刻には at。depart（出発する）= leave。p.m.は午後。</div>
+            <button class="typeD-tts" onclick="speak('The train departs at 3 p.m.')">🔊</button>
+          </div>
+        </div>
+        <div class="typeD-question prep-border">
+          <div class="typeD-num">Q10 / 15</div>
+          <div class="typeD-jp">彼女は夜に読書するのが好きです。</div>
+          <textarea class="typeD-textarea" placeholder="英語に翻訳してください..."></textarea>
+          <br><button class="typeD-btn typeD-show-btn" onclick="toggleTypeDAnswer(this)">答えを見る</button>
+          <div class="typeD-answer-box">
+            <div class="typeD-model">She likes reading at night.</div>
+            <div class="typeD-alt">別解: She enjoys reading at night.</div>
+            <div class="typeD-tip">at night は例外（in は使わない）。at noon, at midnight も同様に at。</div>
+            <button class="typeD-tts" onclick="speak('She likes reading at night.')">🔊</button>
+          </div>
+        </div>
+        <div class="typeD-question prep-border">
+          <div class="typeD-num">Q11 / 15</div>
+          <div class="typeD-jp">金曜日までにレポートを提出してください。</div>
+          <textarea class="typeD-textarea" placeholder="英語に翻訳してください..."></textarea>
+          <br><button class="typeD-btn typeD-show-btn" onclick="toggleTypeDAnswer(this)">答えを見る</button>
+          <div class="typeD-answer-box">
+            <div class="typeD-model">Please submit the report by Friday.</div>
+            <div class="typeD-alt">別解: Please hand in the report by Friday.</div>
+            <div class="typeD-tip">by = 〜までに（期限・締め切り）。until（〜までずっと）と区別！</div>
+            <button class="typeD-tts" onclick="speak('Please submit the report by Friday.')">🔊</button>
+          </div>
+        </div>
+        <div class="typeD-question prep-border">
+          <div class="typeD-num">Q12 / 15</div>
+          <div class="typeD-jp">私たちは映画の間ずっと静かにしていました。</div>
+          <textarea class="typeD-textarea" placeholder="英語に翻訳してください..."></textarea>
+          <br><button class="typeD-btn typeD-show-btn" onclick="toggleTypeDAnswer(this)">答えを見る</button>
+          <div class="typeD-answer-box">
+            <div class="typeD-model">We were quiet during the movie.</div>
+            <div class="typeD-alt">別解: We stayed quiet throughout the movie.</div>
+            <div class="typeD-tip">during + 期間の名前（特定の期間中）。for + 数値（どのくらいの長さ）と区別。</div>
+            <button class="typeD-tts" onclick="speak('We were quiet during the movie.')">🔊</button>
+          </div>
+        </div>
+        <div class="typeD-question prep-border">
+          <div class="typeD-num">Q13 / 15</div>
+          <div class="typeD-jp">公園を通って学校に行きます。</div>
+          <textarea class="typeD-textarea" placeholder="英語に翻訳してください..."></textarea>
+          <br><button class="typeD-btn typeD-show-btn" onclick="toggleTypeDAnswer(this)">答えを見る</button>
+          <div class="typeD-answer-box">
+            <div class="typeD-model">I go to school through the park.</div>
+            <div class="typeD-alt">別解: I walk through the park to get to school.</div>
+            <div class="typeD-tip">through = 〜を通り抜けて。across（〜を横切って）との違いに注意。</div>
+            <button class="typeD-tts" onclick="speak('I go to school through the park.')">🔊</button>
+          </div>
+        </div>
+        <div class="typeD-question prep-border">
+          <div class="typeD-num">Q14 / 15</div>
+          <div class="typeD-jp">彼は数学が得意です。</div>
+          <textarea class="typeD-textarea" placeholder="英語に翻訳してください..."></textarea>
+          <br><button class="typeD-btn typeD-show-btn" onclick="toggleTypeDAnswer(this)">答えを見る</button>
+          <div class="typeD-answer-box">
+            <div class="typeD-model">He is good at math.</div>
+            <div class="typeD-alt">別解: He excels at mathematics.</div>
+            <div class="typeD-tip">be good at = 〜が得意。at は固定の前置詞。be good in とは言わない！</div>
+            <button class="typeD-tts" onclick="speak('He is good at math.')">🔊</button>
+          </div>
+        </div>
+        <div class="typeD-question prep-border">
+          <div class="typeD-num">Q15 / 15</div>
+          <div class="typeD-jp">私の家から駅まで歩いて10分です。</div>
+          <textarea class="typeD-textarea" placeholder="英語に翻訳してください..."></textarea>
+          <br><button class="typeD-btn typeD-show-btn" onclick="toggleTypeDAnswer(this)">答えを見る</button>
+          <div class="typeD-answer-box">
+            <div class="typeD-model">It takes 10 minutes to walk from my house to the station.</div>
+            <div class="typeD-alt">別解: My house is a 10-minute walk from the station.</div>
+            <div class="typeD-tip">It takes + 時間 + to + 動詞原形。from〜to〜（〜から〜まで）。</div>
+            <button class="typeD-tts" onclick="speak('It takes 10 minutes to walk from my house to the station.')">🔊</button>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
-
 <!-- ========== MODAL VERBS ========== -->
 <div id="section-modal" class="topic-section">
   <div class="card">
@@ -607,6 +1552,56 @@ header h1{font-size:1.3rem}
     </div>
   </div>
 
+  <!-- MODAL Japanese Explanation -->
+  <div class="card">
+    <div class="card-title"><span class="badge badge-modal">📖</span>詳しい日本語解説</div>
+    <div class="jp-explain-box">
+      <h4>【基本概念】助動詞とは？</h4>
+      <p>助動詞（Modal Verb）は動詞の前に置いて、話し手の気持ち・判断・可能性などを表します。助動詞の後には必ず「動詞の原形」が来ます（三単現のsもつけない）。</p>
+      <div class="rule-block">
+        <strong>can / could：能力・可能性・許可</strong><br>
+        can：現在の能力・許可（I can swim. / Can I use this?）<br>
+        could：過去の能力（I could run fast when young.）/ 丁寧な依頼（Could you help me?）<br>
+        ※ could の方が can より丁寧な表現になります
+      </div>
+      <div class="rule-block">
+        <strong>may / might：許可・推量</strong><br>
+        may：許可（May I come in?）/ 推量 約50%（It may rain.）<br>
+        might：推量 約30%（It might rain.）<br>
+        ※ might の方が可能性が低い / may の方がフォーマルな許可
+      </div>
+      <div class="rule-block">
+        <strong>must / have to：義務・禁止・不必要</strong><br>
+        must：主観的義務「絶対〜しなければ」（You must be quiet.）<br>
+        have to：客観的義務・外部からのルール（I have to wear a uniform.）<br>
+        must not：絶対禁止（You must not smoke here.）<br>
+        don't have to：不必要「〜しなくていい」（You don't have to come.）← 禁止ではない！
+      </div>
+      <div class="rule-block">
+        <strong>過去助動詞（modal + have + 過去分詞）← 超重要！</strong><br>
+        should have + 過去分詞：「〜すべきだったのに（しなかった）」後悔<br>
+        　→ I should have studied harder.（もっと勉強すべきだった）<br>
+        could have + 過去分詞：「〜できたのに（しなかった）」<br>
+        　→ You could have told me.（教えてくれればよかったのに）<br>
+        must have + 過去分詞：「〜だったに違いない」過去の強い推量<br>
+        　→ She must have forgotten.（彼女は忘れたに違いない）<br>
+        might have + 過去分詞：「〜だったかもしれない」過去の弱い推量<br>
+        　→ He might have missed the train.（乗り遅れたかもしれない）
+      </div>
+      <div class="warn-box">
+        助動詞は2つ連続して使えない！<br>
+        × He will can swim. → ○ He will be able to swim.（泳げるようになるだろう）<br>
+        × She must can do it. → ○ She must be able to do it.
+      </div>
+      <div class="tip-box">
+        shall の使い方：<br>
+        提案：Shall we dance?（踊りましょうか？）<br>
+        申し出：Shall I open the door?（ドアを開けましょうか？）<br>
+        フォーマルな未来（英国英語）：We shall overcome.
+      </div>
+    </div>
+  </div>
+
   <!-- MODAL QUIZ -->
   <div class="card quiz-section">
     <div class="card-title"><span class="badge badge-modal">Quiz</span>Practice Quizzes</div>
@@ -615,14 +1610,200 @@ header h1{font-size:1.3rem}
       <button class="quiz-tab-btn active-modal" onclick="showQuiz('modal','A',this)">Type A: Fill-in-Blank</button>
       <button class="quiz-tab-btn" onclick="showQuiz('modal','B',this)">Type B: Scramble</button>
       <button class="quiz-tab-btn" onclick="showQuiz('modal','C',this)">Type C: Translation</button>
+      <button class="quiz-tab-btn" onclick="showQuiz('modal','D',this)">Type D: 全文翻訳</button>
     </div>
     <div class="score-display" id="score-modal">Score: 0 / 0</div>
     <div id="quiz-modal-A" class="quiz-panel active"><div id="modal-A-questions"></div><button class="reset-quiz-btn" onclick="resetQuizA('modal')">Reset Quiz</button></div>
     <div id="quiz-modal-B" class="quiz-panel"><div id="modal-B-scrambles"></div></div>
     <div id="quiz-modal-C" class="quiz-panel"><div id="modal-C-translations"></div></div>
+
+    <!-- MODAL Quiz D -->
+    <div id="quiz-modal-D" class="quiz-panel">
+      <div class="typeDquiz-wrap">
+        <div class="typeD-question modal-border">
+          <div class="typeD-num">Q1 / 15</div>
+          <div class="typeD-jp">彼女は英語を流暢に話すことができます。</div>
+          <textarea class="typeD-textarea" placeholder="英語に翻訳してください..."></textarea>
+          <br><button class="typeD-btn typeD-show-btn" onclick="toggleTypeDAnswer(this)">答えを見る</button>
+          <div class="typeD-answer-box">
+            <div class="typeD-model">She can speak English fluently.</div>
+            <div class="typeD-alt">別解: She is able to speak English fluently.</div>
+            <div class="typeD-tip">can = be able to。助動詞の後は動詞の原形（speaks とはならない）。</div>
+            <button class="typeD-tts" onclick="speak('She can speak English fluently.')">🔊</button>
+          </div>
+        </div>
+        <div class="typeD-question modal-border">
+          <div class="typeD-num">Q2 / 15</div>
+          <div class="typeD-jp">明日雨が降るかもしれません。</div>
+          <textarea class="typeD-textarea" placeholder="英語に翻訳してください..."></textarea>
+          <br><button class="typeD-btn typeD-show-btn" onclick="toggleTypeDAnswer(this)">答えを見る</button>
+          <div class="typeD-answer-box">
+            <div class="typeD-model">It may rain tomorrow.</div>
+            <div class="typeD-alt">別解: It might rain tomorrow.（確信度が低い場合）</div>
+            <div class="typeD-tip">may（約50%の可能性）/ might（約30%の可能性）。rain は動詞原形。</div>
+            <button class="typeD-tts" onclick="speak('It may rain tomorrow.')">🔊</button>
+          </div>
+        </div>
+        <div class="typeD-question modal-border">
+          <div class="typeD-num">Q3 / 15</div>
+          <div class="typeD-jp">あなたはもっと野菜を食べるべきです。</div>
+          <textarea class="typeD-textarea" placeholder="英語に翻訳してください..."></textarea>
+          <br><button class="typeD-btn typeD-show-btn" onclick="toggleTypeDAnswer(this)">答えを見る</button>
+          <div class="typeD-answer-box">
+            <div class="typeD-model">You should eat more vegetables.</div>
+            <div class="typeD-alt">別解: You ought to eat more vegetables.</div>
+            <div class="typeD-tip">should = ought to（アドバイス・推薦）。should の後は動詞原形。</div>
+            <button class="typeD-tts" onclick="speak('You should eat more vegetables.')">🔊</button>
+          </div>
+        </div>
+        <div class="typeD-question modal-border">
+          <div class="typeD-num">Q4 / 15</div>
+          <div class="typeD-jp">私はこの仕事を今週中に終えなければなりません。</div>
+          <textarea class="typeD-textarea" placeholder="英語に翻訳してください..."></textarea>
+          <br><button class="typeD-btn typeD-show-btn" onclick="toggleTypeDAnswer(this)">答えを見る</button>
+          <div class="typeD-answer-box">
+            <div class="typeD-model">I must finish this work by the end of this week.</div>
+            <div class="typeD-alt">別解: I have to complete this work by the end of this week.</div>
+            <div class="typeD-tip">must / have to（義務・必要性）。by the end of this week = 今週末までに。</div>
+            <button class="typeD-tts" onclick="speak('I must finish this work by the end of this week.')">🔊</button>
+          </div>
+        </div>
+        <div class="typeD-question modal-border">
+          <div class="typeD-num">Q5 / 15</div>
+          <div class="typeD-jp">ここで写真を撮ってもいいですか？</div>
+          <textarea class="typeD-textarea" placeholder="英語に翻訳してください..."></textarea>
+          <br><button class="typeD-btn typeD-show-btn" onclick="toggleTypeDAnswer(this)">答えを見る</button>
+          <div class="typeD-answer-box">
+            <div class="typeD-model">May I take pictures here?</div>
+            <div class="typeD-alt">別解: Can I take photos here?（より口語的）</div>
+            <div class="typeD-tip">May I〜? は丁寧な許可を求める表現。Can I〜? より改まった印象。</div>
+            <button class="typeD-tts" onclick="speak('May I take pictures here?')">🔊</button>
+          </div>
+        </div>
+        <div class="typeD-question modal-border">
+          <div class="typeD-num">Q6 / 15</div>
+          <div class="typeD-jp">彼はもっと早く出発すべきだったのに。</div>
+          <textarea class="typeD-textarea" placeholder="英語に翻訳してください..."></textarea>
+          <br><button class="typeD-btn typeD-show-btn" onclick="toggleTypeDAnswer(this)">答えを見る</button>
+          <div class="typeD-answer-box">
+            <div class="typeD-model">He should have left earlier.</div>
+            <div class="typeD-alt">別解: He ought to have left earlier.</div>
+            <div class="typeD-tip">should have + 過去分詞 = 〜すべきだったのに（過去の後悔・批判）。</div>
+            <button class="typeD-tts" onclick="speak('He should have left earlier.')">🔊</button>
+          </div>
+        </div>
+        <div class="typeD-question modal-border">
+          <div class="typeD-num">Q7 / 15</div>
+          <div class="typeD-jp">昨日もっと勉強すればよかった。</div>
+          <textarea class="typeD-textarea" placeholder="英語に翻訳してください..."></textarea>
+          <br><button class="typeD-btn typeD-show-btn" onclick="toggleTypeDAnswer(this)">答えを見る</button>
+          <div class="typeD-answer-box">
+            <div class="typeD-model">I should have studied more yesterday.</div>
+            <div class="typeD-alt">別解: I wish I had studied more yesterday.</div>
+            <div class="typeD-tip">should have + 過去分詞。過去の自分への後悔を表す最重要構文！</div>
+            <button class="typeD-tts" onclick="speak('I should have studied more yesterday.')">🔊</button>
+          </div>
+        </div>
+        <div class="typeD-question modal-border">
+          <div class="typeD-num">Q8 / 15</div>
+          <div class="typeD-jp">彼女は電車に乗り遅れたかもしれません。</div>
+          <textarea class="typeD-textarea" placeholder="英語に翻訳してください..."></textarea>
+          <br><button class="typeD-btn typeD-show-btn" onclick="toggleTypeDAnswer(this)">答えを見る</button>
+          <div class="typeD-answer-box">
+            <div class="typeD-model">She might have missed the train.</div>
+            <div class="typeD-alt">別解: She may have missed the train.（確信度が高い場合）</div>
+            <div class="typeD-tip">might have + 過去分詞 = 〜だったかもしれない（過去の弱い推量）。</div>
+            <button class="typeD-tts" onclick="speak('She might have missed the train.')">🔊</button>
+          </div>
+        </div>
+        <div class="typeD-question modal-border">
+          <div class="typeD-num">Q9 / 15</div>
+          <div class="typeD-jp">制服を着なくてもいいです。</div>
+          <textarea class="typeD-textarea" placeholder="英語に翻訳してください..."></textarea>
+          <br><button class="typeD-btn typeD-show-btn" onclick="toggleTypeDAnswer(this)">答えを見る</button>
+          <div class="typeD-answer-box">
+            <div class="typeD-model">You don't have to wear a uniform.</div>
+            <div class="typeD-alt">別解: You are not required to wear a uniform.</div>
+            <div class="typeD-tip">don't have to = 〜しなくていい（不必要）。must not（禁止）と全く違う！</div>
+            <button class="typeD-tts" onclick="speak('You don\'t have to wear a uniform.')">🔊</button>
+          </div>
+        </div>
+        <div class="typeD-question modal-border">
+          <div class="typeD-num">Q10 / 15</div>
+          <div class="typeD-jp">ここでは煙草を吸ってはいけません。</div>
+          <textarea class="typeD-textarea" placeholder="英語に翻訳してください..."></textarea>
+          <br><button class="typeD-btn typeD-show-btn" onclick="toggleTypeDAnswer(this)">答えを見る</button>
+          <div class="typeD-answer-box">
+            <div class="typeD-model">You must not smoke here.</div>
+            <div class="typeD-alt">別解: You cannot smoke here. / No smoking here.</div>
+            <div class="typeD-tip">must not = 絶対禁止。don't have to（不必要）と混同しないように！</div>
+            <button class="typeD-tts" onclick="speak('You must not smoke here.')">🔊</button>
+          </div>
+        </div>
+        <div class="typeD-question modal-border">
+          <div class="typeD-num">Q11 / 15</div>
+          <div class="typeD-jp">窓を開けていただけますか？</div>
+          <textarea class="typeD-textarea" placeholder="英語に翻訳してください..."></textarea>
+          <br><button class="typeD-btn typeD-show-btn" onclick="toggleTypeDAnswer(this)">答えを見る</button>
+          <div class="typeD-answer-box">
+            <div class="typeD-model">Could you open the window?</div>
+            <div class="typeD-alt">別解: Would you mind opening the window?</div>
+            <div class="typeD-tip">Could you〜? は丁寧な依頼。Can you〜? より丁寧。Would you mind + 動名詞? はさらに丁寧。</div>
+            <button class="typeD-tts" onclick="speak('Could you open the window?')">🔊</button>
+          </div>
+        </div>
+        <div class="typeD-question modal-border">
+          <div class="typeD-num">Q12 / 15</div>
+          <div class="typeD-jp">彼は若い頃はもっと速く走れました。</div>
+          <textarea class="typeD-textarea" placeholder="英語に翻訳してください..."></textarea>
+          <br><button class="typeD-btn typeD-show-btn" onclick="toggleTypeDAnswer(this)">答えを見る</button>
+          <div class="typeD-answer-box">
+            <div class="typeD-model">He could run faster when he was young.</div>
+            <div class="typeD-alt">別解: He was able to run faster when he was young.</div>
+            <div class="typeD-tip">could = 過去の能力（can の過去形）。when he was young = 若い頃は。</div>
+            <button class="typeD-tts" onclick="speak('He could run faster when he was young.')">🔊</button>
+          </div>
+        </div>
+        <div class="typeD-question modal-border">
+          <div class="typeD-num">Q13 / 15</div>
+          <div class="typeD-jp">彼女はもう家に帰ったに違いありません。</div>
+          <textarea class="typeD-textarea" placeholder="英語に翻訳してください..."></textarea>
+          <br><button class="typeD-btn typeD-show-btn" onclick="toggleTypeDAnswer(this)">答えを見る</button>
+          <div class="typeD-answer-box">
+            <div class="typeD-model">She must have gone home already.</div>
+            <div class="typeD-alt">別解: She has certainly gone home already.</div>
+            <div class="typeD-tip">must have + 過去分詞 = 〜だったに違いない（過去の強い推量）。</div>
+            <button class="typeD-tts" onclick="speak('She must have gone home already.')">🔊</button>
+          </div>
+        </div>
+        <div class="typeD-question modal-border">
+          <div class="typeD-num">Q14 / 15</div>
+          <div class="typeD-jp">コーヒーはいかがですか？</div>
+          <textarea class="typeD-textarea" placeholder="英語に翻訳してください..."></textarea>
+          <br><button class="typeD-btn typeD-show-btn" onclick="toggleTypeDAnswer(this)">答えを見る</button>
+          <div class="typeD-answer-box">
+            <div class="typeD-model">Would you like some coffee?</div>
+            <div class="typeD-alt">別解: Can I get you some coffee?</div>
+            <div class="typeD-tip">Would you like〜? = 〜はいかがですか（丁寧な申し出）。Do you want〜? より丁寧。</div>
+            <button class="typeD-tts" onclick="speak('Would you like some coffee?')">🔊</button>
+          </div>
+        </div>
+        <div class="typeD-question modal-border">
+          <div class="typeD-num">Q15 / 15</div>
+          <div class="typeD-jp">将来、宇宙旅行ができるようになるでしょう。</div>
+          <textarea class="typeD-textarea" placeholder="英語に翻訳してください..."></textarea>
+          <br><button class="typeD-btn typeD-show-btn" onclick="toggleTypeDAnswer(this)">答えを見る</button>
+          <div class="typeD-answer-box">
+            <div class="typeD-model">We will be able to travel to space in the future.</div>
+            <div class="typeD-alt">別解: In the future, space travel will become possible.</div>
+            <div class="typeD-tip">will（未来）+ be able to（〜できる）。can は will と一緒に使えない！</div>
+            <button class="typeD-tts" onclick="speak('We will be able to travel to space in the future.')">🔊</button>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
-
 <script>
 // ============ QUIZ DATA ============
 const quizData = {
@@ -770,7 +1951,6 @@ const quizData = {
 
 // ============ STATE ============
 const state = JSON.parse(localStorage.getItem('egState') || '{}');
-// state structure: {pp:{A:{0:{answered:true,correct:true},...},B:{...},C:{...}}, ger:{...}, ...}
 
 function saveState(){localStorage.setItem('egState',JSON.stringify(state));}
 
@@ -1016,6 +2196,18 @@ function toggleTrans(topic,i){
       saveState();
       updateScore(topic);
     }
+  }
+}
+
+// ============ TYPE D TOGGLE ============
+function toggleTypeDAnswer(btn) {
+  const box = btn.nextElementSibling;
+  if (box.classList.contains('show')) {
+    box.classList.remove('show');
+    btn.textContent = '答えを見る';
+  } else {
+    box.classList.add('show');
+    btn.textContent = '隠す';
   }
 }
 
