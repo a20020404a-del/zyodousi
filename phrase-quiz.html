@@ -1,0 +1,811 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>英会話フレーズ問題集</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Noto Sans JP',sans-serif;background:#f0f4f8;color:#1e293b;min-height:100vh}
+header{background:linear-gradient(135deg,#1e293b,#334155);color:#fff;padding:20px 24px;text-align:center}
+header h1{font-size:1.8rem;font-weight:700;letter-spacing:.05em}
+header p{font-size:.9rem;color:#94a3b8;margin-top:4px}
+
+.progress-bar-wrap{background:#1e293b;padding:8px 24px;display:flex;align-items:center;gap:12px}
+.progress-bar-wrap span{color:#94a3b8;font-size:.8rem;white-space:nowrap}
+.progress-bar{flex:1;height:8px;background:#334155;border-radius:4px;overflow:hidden}
+.progress-fill{height:100%;background:linear-gradient(90deg,#3b82f6,#10b981);border-radius:4px;transition:width .5s}
+.progress-label{color:#cbd5e1;font-size:.8rem;white-space:nowrap}
+
+.nav-tabs{display:flex;overflow-x:auto;background:#fff;border-bottom:3px solid #e2e8f0;scrollbar-width:none}
+.nav-tabs::-webkit-scrollbar{display:none}
+.nav-tab{flex:1;min-width:120px;padding:14px 8px;text-align:center;cursor:pointer;font-size:.8rem;font-weight:600;border:none;background:none;transition:all .2s;border-bottom:4px solid transparent;color:#64748b;white-space:nowrap}
+.nav-tab:hover{background:#f8fafc}
+.nav-tab.active{color:#fff;border-bottom-color:transparent}
+.nav-tab[data-sec="s1"].active{background:#3b82f6}
+.nav-tab[data-sec="s2"].active{background:#10b981}
+.nav-tab[data-sec="s3"].active{background:#8b5cf6}
+.nav-tab[data-sec="s4"].active{background:#f59e0b}
+
+.topic-section{display:none;padding:24px;max-width:960px;margin:0 auto}
+.topic-section.active{display:block}
+
+.card{background:#fff;border-radius:12px;padding:24px;margin-bottom:20px;box-shadow:0 1px 3px rgba(0,0,0,.08)}
+.card-title{font-size:1.1rem;font-weight:700;margin-bottom:16px;display:flex;align-items:center;gap:8px}
+.badge{font-size:.7rem;padding:3px 8px;border-radius:20px;color:#fff;font-weight:600}
+.badge-s1{background:#3b82f6}
+.badge-s2{background:#10b981}
+.badge-s3{background:#8b5cf6}
+.badge-s4{background:#f59e0b}
+
+.phrase-header{background:#f8fafc;border-left:4px solid #3b82f6;border-radius:0 8px 8px 0;padding:10px 16px;margin-bottom:16px;font-weight:700;color:#1e293b;font-size:1rem}
+.phrase-header.s2{border-left-color:#10b981}
+.phrase-header.s3{border-left-color:#8b5cf6}
+.phrase-header.s4{border-left-color:#f59e0b}
+
+.quiz-question{background:#f8fafc;border-radius:10px;padding:16px;margin-bottom:12px}
+.quiz-question p{font-size:.95rem;margin-bottom:10px;font-weight:500;line-height:1.6}
+.q-num{font-size:.75rem;color:#94a3b8;font-weight:600;margin-bottom:4px}
+
+.quiz-choices{display:flex;flex-wrap:wrap;gap:8px}
+.choice-btn{padding:8px 16px;border-radius:8px;border:2px solid #e2e8f0;background:#fff;cursor:pointer;font-size:.85rem;font-weight:500;transition:all .2s}
+.choice-btn:hover:not(:disabled){border-color:#94a3b8}
+.choice-btn.correct{background:#dcfce7;border-color:#10b981;color:#065f46}
+.choice-btn.wrong{background:#fee2e2;border-color:#ef4444;color:#991b1b}
+.choice-btn:disabled{cursor:not-allowed}
+
+.quiz-feedback{font-size:.85rem;margin-top:8px;padding:6px 10px;border-radius:6px;display:none}
+.quiz-feedback.show{display:block}
+.quiz-feedback.ok{background:#dcfce7;color:#065f46}
+.quiz-feedback.ng{background:#fee2e2;color:#991b1b}
+
+.fill-wrap{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-bottom:8px}
+.fill-input{padding:8px 12px;border:2px solid #e2e8f0;border-radius:8px;font-size:.9rem;font-family:'Noto Sans JP',sans-serif;width:200px;transition:border-color .2s}
+.fill-input:focus{outline:none;border-color:#3b82f6}
+.fill-input.correct{border-color:#10b981;background:#f0fdf4}
+.fill-input.wrong{border-color:#ef4444;background:#fef2f2}
+.check-btn{padding:8px 16px;border-radius:8px;border:none;background:#3b82f6;color:#fff;cursor:pointer;font-size:.85rem;font-weight:600;transition:all .2s}
+.check-btn:hover{background:#2563eb}
+
+.trans-show-btn{padding:8px 16px;border-radius:8px;border:2px solid #e2e8f0;background:#fff;cursor:pointer;font-size:.85rem;font-weight:500;transition:all .2s}
+.trans-show-btn:hover{background:#f1f5f9}
+.trans-answer{display:none;margin-top:10px;padding:10px 14px;background:#dcfce7;border-radius:8px;color:#065f46;font-weight:500}
+.trans-answer.show{display:block}
+
+.score-display{text-align:center;padding:12px;background:#f0f9ff;border-radius:10px;margin-bottom:16px;font-size:.9rem;color:#1e40af;font-weight:600}
+
+@media(max-width:600px){
+.nav-tab{font-size:.7rem;padding:12px 6px;min-width:80px}
+header h1{font-size:1.3rem}
+.topic-section{padding:12px}
+.card{padding:16px}
+.fill-input{width:150px}
+}
+</style>
+</head>
+<body>
+<header>
+  <h1>英会話フレーズ問題集</h1>
+  <p>動画フレーズ練習 - 99フレーズ × 3問 = 297問</p>
+</header>
+
+<div class="progress-bar-wrap">
+  <span>進捗:</span>
+  <div class="progress-bar"><div class="progress-fill" id="progressFill" style="width:0%"></div></div>
+  <span class="progress-label" id="progressLabel">0 / 0 正解</span>
+</div>
+
+<div class="nav-tabs">
+  <button class="nav-tab active" data-sec="s1" onclick="showSec('s1',this)">基本フレーズ①</button>
+  <button class="nav-tab" data-sec="s2" onclick="showSec('s2',this)">疑問文</button>
+  <button class="nav-tab" data-sec="s3" onclick="showSec('s3',this)">応用フレーズ②</button>
+  <button class="nav-tab" data-sec="s4" onclick="showSec('s4',this)">丁寧な表現</button>
+</div>
+
+<div id="section-s1" class="topic-section active"></div>
+<div id="section-s2" class="topic-section"></div>
+<div id="section-s3" class="topic-section"></div>
+<div id="section-s4" class="topic-section"></div>
+
+<script>
+// ===================== QUIZ DATA =====================
+const quizData = {
+  s1: {
+    title: '基本フレーズ①',
+    badge: 'badge-s1',
+    phraseClass: '',
+    phrases: [
+      { phrase: 'I wanna', jp: '〜したい（カジュアル）', qs: [
+        { type:'mc', q:'「映画を見たい」→ I _____ watch a movie.', choices:['wanna','gonna','used to','have to'], ans:0, ok:'wanna は "want to" のカジュアルな言い方です' },
+        { type:'fill', q:'「もっと知りたい」= I _____ know more.', ans:'wanna', ok:'I wanna know more.' },
+        { type:'trans', jp:'あなたに会いたい', en:'I wanna see you.' }
+      ]},
+      { phrase: 'Let me', jp: '〜させてください', qs: [
+        { type:'mc', q:'「確認させて」→ _____ check.', choices:['Let me','Make me','Give me','Help me'], ans:0, ok:'Let me ＋ 動詞の原形 で「〜させて」' },
+        { type:'fill', q:'「説明させてください」= _____ explain.', ans:'Let me', ok:'Let me explain.' },
+        { type:'trans', jp:'試させてください', en:'Let me try.' }
+      ]},
+      { phrase: 'Thank you for', jp: '〜してくれてありがとう', qs: [
+        { type:'mc', q:'「来てくれてありがとう」→ Thank you _____ coming.', choices:['for','to','of','about'], ans:0, ok:'Thank you for ＋ 動名詞（〜ing）' },
+        { type:'fill', q:'「助けてくれてありがとう」= Thank you _____ your help.', ans:'for', ok:'Thank you for your help.' },
+        { type:'trans', jp:'招待してくれてありがとう', en:'Thank you for inviting me.' }
+      ]},
+      { phrase: "Don't be", jp: '〜にならないで', qs: [
+        { type:'mc', q:'「心配しないで」→ Don\'t be _____.', choices:['worried','worry','worrying','worries'], ans:0, ok:"Don't be + 形容詞" },
+        { type:'fill', q:'「恥ずかしがらないで」= Don\'t be _____.', ans:'shy', ok:"Don't be shy." },
+        { type:'trans', jp:'遅れないで', en:"Don't be late." }
+      ]},
+      { phrase: "Don't forget", jp: '〜するのを忘れないで', qs: [
+        { type:'mc', q:'「ドアを閉めるのを忘れないで」→ Don\'t forget _____ the door.', choices:['to close','closing','close','closed'], ans:0, ok:"Don't forget to + 動詞の原形" },
+        { type:'fill', q:'「傘を持っていくのを忘れないで」= Don\'t forget _____ your umbrella.', ans:'to bring', ok:"Don't forget to bring your umbrella." },
+        { type:'trans', jp:'私に電話するのを忘れないで', en:"Don't forget to call me." }
+      ]},
+      { phrase: 'There is', jp: '〜がある / いる', qs: [
+        { type:'mc', q:'「テーブルの上に本がある」→ There _____ a book on the table.', choices:['is','are','be','has'], ans:0, ok:'単数には There is、複数には There are' },
+        { type:'fill', q:'「近くにコンビニがある」= There _____ a convenience store nearby.', ans:'is', ok:'There is a convenience store nearby.' },
+        { type:'trans', jp:'公園に犬がいる', en:'There is a dog in the park.' }
+      ]},
+      { phrase: "I'm happy to", jp: '喜んで〜します', qs: [
+        { type:'mc', q:'「喜んでお手伝いします」→ I\'m happy _____ help you.', choices:['to','for','about','at'], ans:0, ok:"I'm happy to + 動詞の原形" },
+        { type:'fill', q:'「喜んで参加します」= I\'m happy _____ join you.', ans:'to', ok:"I'm happy to join you." },
+        { type:'trans', jp:'またお会いできて嬉しいです', en:"I'm happy to see you again." }
+      ]},
+      { phrase: "I'm gonna", jp: '〜するつもり（カジュアル）', qs: [
+        { type:'mc', q:'「映画を見に行くつもり」→ I\'m gonna _____ a movie.', choices:['watch','watching','watched','watches'], ans:0, ok:"I'm gonna = I'm going to のカジュアル表現" },
+        { type:'fill', q:'「もう寝るつもり」= I\'m gonna go to _____.', ans:'bed', ok:"I'm gonna go to bed." },
+        { type:'trans', jp:'買い物に行くつもり', en:"I'm gonna go shopping." }
+      ]},
+      { phrase: 'That sounds', jp: '〜そうですね', qs: [
+        { type:'mc', q:'「楽しそうですね」→ That sounds _____.', choices:['fun','funnily','funnier','funniest'], ans:0, ok:'That sounds + 形容詞' },
+        { type:'fill', q:'「良さそうですね」= That sounds _____.', ans:'good', ok:'That sounds good.' },
+        { type:'trans', jp:'面白そうですね', en:'That sounds interesting.' }
+      ]},
+      { phrase: "I'd like to", jp: '〜したいのですが（丁寧）', qs: [
+        { type:'mc', q:'「予約したいのですが」→ I\'d like to _____ a reservation.', choices:['make','making','made','makes'], ans:0, ok:"I'd like to = I want to の丁寧な言い方" },
+        { type:'fill', q:'「もっと詳しく知りたいのですが」= I\'d like to _____ more about it.', ans:'know', ok:"I'd like to know more about it." },
+        { type:'trans', jp:'コーヒーを一杯いただきたいのですが', en:"I'd like to have a cup of coffee." }
+      ]},
+      { phrase: 'I enjoyed', jp: '〜を楽しみました', qs: [
+        { type:'mc', q:'「あなたと話すのを楽しみました」→ I enjoyed _____ with you.', choices:['talking','talk','talked','to talk'], ans:0, ok:'enjoyed + 動名詞（〜ing）' },
+        { type:'fill', q:'「パーティーを楽しみました」= I enjoyed the _____.', ans:'party', ok:'I enjoyed the party.' },
+        { type:'trans', jp:'映画を楽しみました', en:'I enjoyed the movie.' }
+      ]},
+      { phrase: "I'm ready", jp: '準備ができています', qs: [
+        { type:'mc', q:'「出発する準備ができています」→ I\'m ready _____ go.', choices:['to','for','about','at'], ans:0, ok:"I'm ready to + 動詞の原形、I'm ready for + 名詞" },
+        { type:'fill', q:'「始める準備ができています」= I\'m ready _____ start.', ans:'to', ok:"I'm ready to start." },
+        { type:'trans', jp:'テストの準備ができています', en:"I'm ready for the test." }
+      ]},
+      { phrase: 'I wonder', jp: '〜かな / 〜だろうか', qs: [
+        { type:'mc', q:'「明日雨が降るかな」→ I wonder _____ it will rain tomorrow.', choices:['if','that','what','which'], ans:0, ok:'I wonder if … で「〜かどうかな」' },
+        { type:'fill', q:'「彼女はなぜ遅いのかな」= I wonder _____ she is late.', ans:'why', ok:'I wonder why she is late.' },
+        { type:'trans', jp:'彼は何をしているのかな', en:"I wonder what he's doing." }
+      ]},
+      { phrase: 'I mean', jp: 'つまり / 〜が言いたいのは', qs: [
+        { type:'mc', q:'「つまり、もっと練習が必要だということ」→ I mean, you need more _____.', choices:['practice','practicing','practiced','practices'], ans:0, ok:'I mean は発言を言い直したり補足するときに使う' },
+        { type:'fill', q:'「つまり、それは本当じゃないってこと」= I mean, it\'s not _____.', ans:'true', ok:"I mean, it's not true." },
+        { type:'trans', jp:'つまり、私はあなたを信頼しているということ', en:"I mean, I trust you." }
+      ]},
+      { phrase: 'I forgot to', jp: '〜するのを忘れた', qs: [
+        { type:'mc', q:'「宿題をするのを忘れた」→ I forgot to do my _____.', choices:['homework','homeplay','homeworks','schoolwork'], ans:0, ok:'I forgot to + 動詞の原形' },
+        { type:'fill', q:'「財布を持ってくるのを忘れた」= I forgot _____ bring my wallet.', ans:'to', ok:'I forgot to bring my wallet.' },
+        { type:'trans', jp:'ドアを閉めるのを忘れた', en:'I forgot to close the door.' }
+      ]},
+      { phrase: 'It was nice', jp: '〜は良かったです', qs: [
+        { type:'mc', q:'「あなたに会えて良かったです」→ It was nice _____ you.', choices:['meeting','to meeting','meet','met'], ans:0, ok:'It was nice meeting you. / It was nice to meet you. どちらも可' },
+        { type:'fill', q:'「あなたと話せて良かったです」= It was nice _____ with you.', ans:'talking', ok:'It was nice talking with you.' },
+        { type:'trans', jp:'あなたと一緒に過ごせて良かったです', en:'It was nice spending time with you.' }
+      ]},
+      { phrase: 'See you', jp: 'またね / さようなら', qs: [
+        { type:'mc', q:'「また明日ね」→ See you _____.', choices:['tomorrow','yesterday','today','now'], ans:0, ok:'See you + 時を表す言葉' },
+        { type:'fill', q:'「また後でね」= See you _____.', ans:'later', ok:'See you later.' },
+        { type:'trans', jp:'また来週ね', en:'See you next week.' }
+      ]},
+      { phrase: 'It seems', jp: '〜のようです', qs: [
+        { type:'mc', q:'「彼は疲れているようです」→ It seems he is _____.', choices:['tired','tiring','tiredly','tiresome'], ans:0, ok:'It seems (like) + 文 / It seems + 形容詞' },
+        { type:'fill', q:'「彼女は怒っているようです」= It seems she is _____.', ans:'angry', ok:'It seems she is angry.' },
+        { type:'trans', jp:'雨が降りそうです', en:"It seems like it's going to rain." }
+      ]},
+      { phrase: 'I used to', jp: '以前は〜していた', qs: [
+        { type:'mc', q:'「以前は毎日走っていた」→ I used to _____ every day.', choices:['run','ran','running','runs'], ans:0, ok:'used to + 動詞の原形（過去の習慣）' },
+        { type:'fill', q:'「以前はここに住んでいた」= I used to _____ here.', ans:'live', ok:'I used to live here.' },
+        { type:'trans', jp:'以前はコーヒーが好きだった', en:'I used to like coffee.' }
+      ]},
+      { phrase: "I'm used to", jp: '〜に慣れている', qs: [
+        { type:'mc', q:'「私は早起きに慣れています」→ I\'m used to _____ up early.', choices:['getting','get','got','gets'], ans:0, ok:"I'm used to + 動名詞（〜ing）※ used to との違いに注意" },
+        { type:'fill', q:'「私は日本食に慣れています」= I\'m used to Japanese _____.', ans:'food', ok:"I'm used to Japanese food." },
+        { type:'trans', jp:'私は長時間働くことに慣れています', en:"I'm used to working long hours." }
+      ]},
+      { phrase: 'You must be', jp: '〜に違いない / さぞ〜でしょう', qs: [
+        { type:'mc', q:'「さぞお腹が空いているでしょう」→ You must be _____.', choices:['hungry','hunger','hungrily','hungriness'], ans:0, ok:'You must be + 形容詞' },
+        { type:'fill', q:'「さぞ疲れたでしょう」= You must be _____.', ans:'tired', ok:'You must be tired.' },
+        { type:'trans', jp:'さぞうれしいでしょう', en:'You must be happy.' }
+      ]},
+      { phrase: "I'm afraid", jp: '残念ながら〜 / 〜が心配です', qs: [
+        { type:'mc', q:'「残念ながら行けません」→ I\'m afraid I _____ go.', choices:["can't",'couldn\'t','don\'t','won\'t'], ans:0, ok:"I'm afraid (that) + 文 で「残念ながら〜」" },
+        { type:'fill', q:'「残念ながら同意できません」= I\'m afraid I _____ agree.', ans:"can't", ok:"I'm afraid I can't agree." },
+        { type:'trans', jp:'残念ながらそれはできません', en:"I'm afraid I can't do that." }
+      ]},
+      { phrase: "I'm sure", jp: 'きっと〜だと思います', qs: [
+        { type:'mc', q:'「きっとうまくいくと思います」→ I\'m sure it _____ work out.', choices:['will','would','can','shall'], ans:0, ok:"I'm sure + 文 で「きっと〜」" },
+        { type:'fill', q:'「きっと彼は来ると思います」= I\'m sure he _____ come.', ans:'will', ok:"I'm sure he will come." },
+        { type:'trans', jp:'きっとあなたは成功すると思います', en:"I'm sure you'll succeed." }
+      ]},
+      { phrase: 'Have a nice', jp: '良い〜を', qs: [
+        { type:'mc', q:'「良い週末を」→ Have a nice _____.', choices:['weekend','weekday','weekly','week'], ans:0, ok:'Have a nice + 名詞' },
+        { type:'fill', q:'「良い旅を」= Have a _____ trip.', ans:'nice', ok:'Have a nice trip.' },
+        { type:'trans', jp:'良い一日を', en:'Have a nice day.' }
+      ]},
+      { phrase: "It's time to", jp: '〜する時間です', qs: [
+        { type:'mc', q:'「起きる時間です」→ It\'s time _____ up.', choices:['to get','getting','get','got'], ans:0, ok:"It's time to + 動詞の原形" },
+        { type:'fill', q:'「出発する時間です」= It\'s time _____ leave.', ans:'to', ok:"It's time to leave." },
+        { type:'trans', jp:'寝る時間です', en:"It's time to go to bed." }
+      ]},
+      { phrase: 'Tell me about', jp: '〜について教えてください', qs: [
+        { type:'mc', q:'「あなたの仕事について教えてください」→ Tell me _____ your job.', choices:['about','for','on','at'], ans:0, ok:'Tell me about + 名詞' },
+        { type:'fill', q:'「あなたの趣味について教えてください」= Tell me about your _____.', ans:'hobby', ok:'Tell me about your hobby.' },
+        { type:'trans', jp:'あなたの旅行について教えてください', en:'Tell me about your trip.' }
+      ]},
+      { phrase: 'I feel like ...ing', jp: '〜したい気分です', qs: [
+        { type:'mc', q:'「散歩したい気分です」→ I feel like _____ a walk.', choices:['taking','take','took','to take'], ans:0, ok:'I feel like + 動名詞（〜ing）' },
+        { type:'fill', q:'「ピザを食べたい気分です」= I feel like _____ pizza.', ans:'eating', ok:'I feel like eating pizza.' },
+        { type:'trans', jp:'歌いたい気分です', en:'I feel like singing.' }
+      ]},
+      { phrase: "I don't care about", jp: '〜はどうでもいい', qs: [
+        { type:'mc', q:'「お金はどうでもいい」→ I don\'t care _____ money.', choices:['about','for','of','at'], ans:0, ok:"I don't care about + 名詞" },
+        { type:'fill', q:'「他人の意見はどうでもいい」= I don\'t care about what _____ think.', ans:'others', ok:"I don't care about what others think." },
+        { type:'trans', jp:'天気はどうでもいい', en:"I don't care about the weather." }
+      ]},
+      { phrase: "I'm not sure", jp: '〜かどうかわかりません', qs: [
+        { type:'mc', q:'「行けるかどうかわかりません」→ I\'m not sure if I can _____.', choices:['go','going','went','to go'], ans:0, ok:"I'm not sure if + 文" },
+        { type:'fill', q:'「彼が来るかどうかわかりません」= I\'m not sure if he\'ll _____.', ans:'come', ok:"I'm not sure if he'll come." },
+        { type:'trans', jp:'正しいかどうかわかりません', en:"I'm not sure if I'm right." }
+      ]},
+      { phrase: "I'm good at", jp: '〜が得意です', qs: [
+        { type:'mc', q:'「料理が得意です」→ I\'m good at _____.', choices:['cooking','cook','cooked','to cook'], ans:0, ok:"I'm good at + 動名詞（〜ing）" },
+        { type:'fill', q:'「数学が得意です」= I\'m good at _____.', ans:'math', ok:"I'm good at math." },
+        { type:'trans', jp:'英語を話すのが得意です', en:"I'm good at speaking English." }
+      ]},
+      { phrase: "don't have to", jp: '〜しなくていい', qs: [
+        { type:'mc', q:'「急がなくていいよ」→ You don\'t have _____ hurry.', choices:['to','for','about','of'], ans:0, ok:"don't have to + 動詞の原形 ※ must not との違いに注意" },
+        { type:'fill', q:'「心配しなくていいよ」= You don\'t have to _____.', ans:'worry', ok:"You don't have to worry." },
+        { type:'trans', jp:'今やらなくていいよ', en:"You don't have to do it now." }
+      ]},
+      { phrase: "You'd better", jp: '〜した方がいい', qs: [
+        { type:'mc', q:'「急いだ方がいい」→ You\'d better _____.', choices:['hurry','hurrying','to hurry','hurried'], ans:0, ok:"You'd better + 動詞の原形（命令に近いニュアンス）" },
+        { type:'fill', q:'「医者に行った方がいい」= You\'d better see a _____.', ans:'doctor', ok:"You'd better see a doctor." },
+        { type:'trans', jp:'今すぐ出発した方がいい', en:"You'd better leave now." }
+      ]},
+      { phrase: "I don't mind", jp: '〜でも構いません', qs: [
+        { type:'mc', q:'「待っても構いません」→ I don\'t mind _____.', choices:['waiting','wait','to wait','waited'], ans:0, ok:"I don't mind + 動名詞（〜ing）" },
+        { type:'fill', q:'「歩いても構いません」= I don\'t mind _____.', ans:'walking', ok:"I don't mind walking." },
+        { type:'trans', jp:'早く来ても構いません', en:"I don't mind coming early." }
+      ]}
+    ]
+  },
+
+  s2: {
+    title: '疑問文パターン',
+    badge: 'badge-s2',
+    phraseClass: 's2',
+    phrases: [
+      { phrase: 'Can I ...?', jp: '〜していいですか', qs: [
+        { type:'mc', q:'「ここに座ってもいいですか」→ Can I _____ here?', choices:['sit','sitting','sat','to sit'], ans:0, ok:'Can I + 動詞の原形 ?（許可を求める）' },
+        { type:'fill', q:'「窓を開けてもいいですか」= Can I _____ the window?', ans:'open', ok:'Can I open the window?' },
+        { type:'trans', jp:'ここで写真を撮ってもいいですか', en:'Can I take a photo here?' }
+      ]},
+      { phrase: "How's ... going?", jp: '〜はどんな調子ですか', qs: [
+        { type:'mc', q:'「仕事はどんな調子ですか」→ How\'s _____ going?', choices:['work','working','works','worked'], ans:0, ok:"How's + 名詞 + going?" },
+        { type:'fill', q:'「プロジェクトはどんな調子ですか」= How\'s the _____ going?', ans:'project', ok:"How's the project going?" },
+        { type:'trans', jp:'学校はどんな調子ですか', en:"How's school going?" }
+      ]},
+      { phrase: 'Do you like ...?', jp: '〜は好きですか', qs: [
+        { type:'mc', q:'「映画を見るのは好きですか」→ Do you like _____ movies?', choices:['watching','watch','watched','to watch'], ans:0, ok:'Do you like + 動名詞（〜ing）/ 名詞' },
+        { type:'fill', q:'「音楽は好きですか」= Do you like _____?', ans:'music', ok:'Do you like music?' },
+        { type:'trans', jp:'日本食は好きですか', en:'Do you like Japanese food?' }
+      ]},
+      { phrase: 'Do you want to ...?', jp: '〜したいですか', qs: [
+        { type:'mc', q:'「一緒に昼ごはんを食べませんか」→ Do you want to _____ lunch together?', choices:['have','having','had','has'], ans:0, ok:'Do you want to + 動詞の原形?' },
+        { type:'fill', q:'「映画を見に行きたいですか」= Do you want to go _____ a movie?', ans:'watch', ok:'Do you want to go watch a movie?' },
+        { type:'trans', jp:'散歩したいですか', en:'Do you want to take a walk?' }
+      ]},
+      { phrase: 'Do you have ...?', jp: '〜を持っていますか / 〜がありますか', qs: [
+        { type:'mc', q:'「ペンを持っていますか」→ Do you have a _____?', choices:['pen','pencil box','pens','pan'], ans:0, ok:'Do you have + 名詞?' },
+        { type:'fill', q:'「質問はありますか」= Do you have any _____?', ans:'questions', ok:'Do you have any questions?' },
+        { type:'trans', jp:'時間はありますか', en:'Do you have time?' }
+      ]},
+      { phrase: 'Is there ...?', jp: '〜はありますか', qs: [
+        { type:'mc', q:'「近くにレストランはありますか」→ Is there a restaurant _____?', choices:['nearby','near by','nearer','nearly'], ans:0, ok:'Is there + 名詞 + 場所?' },
+        { type:'fill', q:'「問題はありますか」= Is there any _____?', ans:'problem', ok:'Is there any problem?' },
+        { type:'trans', jp:'空いている席はありますか', en:'Is there a seat available?' }
+      ]},
+      { phrase: 'How did you ...?', jp: 'どうやって〜しましたか', qs: [
+        { type:'mc', q:'「どうやってここに来ましたか」→ How did you _____ here?', choices:['get','got','getting','gets'], ans:0, ok:'How did you + 動詞の原形?' },
+        { type:'fill', q:'「どうやってそれを知りましたか」= How did you _____ that?', ans:'know', ok:'How did you know that?' },
+        { type:'trans', jp:'どうやって英語を学びましたか', en:'How did you learn English?' }
+      ]},
+      { phrase: 'Are you ready ...?', jp: '準備はできていますか', qs: [
+        { type:'mc', q:'「出発する準備はできていますか」→ Are you ready _____ leave?', choices:['to','for','about','at'], ans:0, ok:'Are you ready to + 動詞の原形 / Are you ready for + 名詞?' },
+        { type:'fill', q:'「注文する準備はできていますか」= Are you ready _____ order?', ans:'to', ok:'Are you ready to order?' },
+        { type:'trans', jp:'試合の準備はできていますか', en:'Are you ready for the game?' }
+      ]},
+      { phrase: 'How come ...?', jp: 'なぜ〜なんですか', qs: [
+        { type:'mc', q:'「なぜ彼は来なかったの？」→ How come he _____ come?', choices:["didn't","don't","hasn't","won't"], ans:0, ok:'How come + 主語 + 動詞?（疑問文と語順が違う点に注意）' },
+        { type:'fill', q:'「なぜそんなに遅いの？」= How come you\'re so _____?', ans:'late', ok:"How come you're so late?" },
+        { type:'trans', jp:'なぜそれを知っているの？', en:'How come you know that?' }
+      ]},
+      { phrase: 'Do you mind if ...?', jp: '〜してもいいですか（許可）', qs: [
+        { type:'mc', q:'「窓を開けてもいいですか」→ Do you mind if I _____ the window?', choices:['open','opening','opened','opens'], ans:0, ok:'Do you mind if + 主語 + 動詞? ※ No = 構いません' },
+        { type:'fill', q:'「ここに座ってもいいですか」= Do you mind if I _____ here?', ans:'sit', ok:'Do you mind if I sit here?' },
+        { type:'trans', jp:'音楽を流してもいいですか', en:'Do you mind if I play some music?' }
+      ]},
+      { phrase: 'What do you think of ...?', jp: '〜についてどう思いますか', qs: [
+        { type:'mc', q:'「この映画についてどう思いますか」→ What do you think _____ this movie?', choices:['of','to','on','from'], ans:0, ok:'What do you think of / about + 名詞?' },
+        { type:'fill', q:'「私の計画についてどう思いますか」= What do you think of my _____?', ans:'plan', ok:'What do you think of my plan?' },
+        { type:'trans', jp:'このアイデアについてどう思いますか', en:'What do you think of this idea?' }
+      ]},
+      { phrase: 'Should I ...?', jp: '〜した方がいいですか', qs: [
+        { type:'mc', q:'「医者に行った方がいいですか」→ Should I see a _____?', choices:['doctor','medicine','hospital','nurse'], ans:0, ok:'Should I + 動詞の原形?' },
+        { type:'fill', q:'「今謝った方がいいですか」= Should I _____ now?', ans:'apologize', ok:'Should I apologize now?' },
+        { type:'trans', jp:'傘を持っていった方がいいですか', en:'Should I bring an umbrella?' }
+      ]},
+      { phrase: 'Do you know how to ...?', jp: '〜の仕方を知っていますか', qs: [
+        { type:'mc', q:'「泳ぎ方を知っていますか」→ Do you know how _____ swim?', choices:['to','for','about','of'], ans:0, ok:'Do you know how to + 動詞の原形?' },
+        { type:'fill', q:'「料理の仕方を知っていますか」= Do you know how to _____?', ans:'cook', ok:'Do you know how to cook?' },
+        { type:'trans', jp:'この機械の使い方を知っていますか', en:'Do you know how to use this machine?' }
+      ]},
+      { phrase: 'Have you ever ...?', jp: '〜したことがありますか', qs: [
+        { type:'mc', q:'「日本に行ったことがありますか」→ Have you ever _____ to Japan?', choices:['been','went','gone','go'], ans:0, ok:'Have you ever been to + 場所?（経験を聞く）' },
+        { type:'fill', q:'「スキーをしたことがありますか」= Have you ever _____ skiing?', ans:'gone', ok:'Have you ever gone skiing?' },
+        { type:'trans', jp:'富士山に登ったことがありますか', en:'Have you ever climbed Mt. Fuji?' }
+      ]},
+      { phrase: 'How was ...?', jp: '〜はどうでしたか', qs: [
+        { type:'mc', q:'「旅行はどうでしたか」→ How was your _____?', choices:['trip','travel','travelling','trips'], ans:0, ok:'How was + 名詞?（過去のことを聞く）' },
+        { type:'fill', q:'「週末はどうでしたか」= How was your _____?', ans:'weekend', ok:'How was your weekend?' },
+        { type:'trans', jp:'試験はどうでしたか', en:'How was the exam?' }
+      ]},
+      { phrase: 'How about ...?', jp: '〜はどうですか / 〜しませんか', qs: [
+        { type:'mc', q:'「コーヒーはどうですか」→ How about some _____?', choices:['coffee','a coffee','coffees','the coffee'], ans:0, ok:'How about + 名詞 / 動名詞?' },
+        { type:'fill', q:'「明日会うのはどうですか」= How about _____ tomorrow?', ans:'meeting', ok:'How about meeting tomorrow?' },
+        { type:'trans', jp:'散歩しませんか', en:'How about going for a walk?' }
+      ]},
+      { phrase: 'Where can I ...?', jp: 'どこで〜できますか', qs: [
+        { type:'mc', q:'「どこで切符を買えますか」→ Where can I _____ a ticket?', choices:['buy','buying','bought','buys'], ans:0, ok:'Where can I + 動詞の原形?' },
+        { type:'fill', q:'「どこで両替できますか」= Where can I _____ money?', ans:'exchange', ok:'Where can I exchange money?' },
+        { type:'trans', jp:'どこでタクシーに乗れますか', en:'Where can I get a taxi?' }
+      ]},
+      { phrase: 'How many ...?', jp: 'いくつ〜ですか', qs: [
+        { type:'mc', q:'「何語話せますか」→ How many _____ can you speak?', choices:['languages','language','words','tongues'], ans:0, ok:'How many + 可算名詞の複数形?' },
+        { type:'fill', q:'「何人兄弟がいますか」= How many _____ do you have?', ans:'siblings', ok:'How many siblings do you have?' },
+        { type:'trans', jp:'何個必要ですか', en:'How many do you need?' }
+      ]},
+      { phrase: "How's ...?", jp: '〜はどうですか（状態を聞く）', qs: [
+        { type:'mc', q:'「お母さんはお元気ですか」→ How\'s your _____?', choices:['mother','mothers','mom is','moms'], ans:0, ok:"How's + 名詞?（現在の状態）" },
+        { type:'fill', q:'「新しい仕事はどうですか」= How\'s your new _____?', ans:'job', ok:"How's your new job?" },
+        { type:'trans', jp:'体の調子はどうですか', en:"How's your health?" }
+      ]},
+      { phrase: 'Is it OK if ...?', jp: '〜してもいいですか', qs: [
+        { type:'mc', q:'「少し遅れてもいいですか」→ Is it OK if I come a little _____?', choices:['late','lately','later','latest'], ans:0, ok:'Is it OK if + 主語 + 動詞?' },
+        { type:'fill', q:'「友達を連れてきてもいいですか」= Is it OK if I bring a _____?', ans:'friend', ok:'Is it OK if I bring a friend?' },
+        { type:'trans', jp:'窓を閉めてもいいですか', en:'Is it OK if I close the window?' }
+      ]},
+      { phrase: 'How can I ...?', jp: 'どうすれば〜できますか', qs: [
+        { type:'mc', q:'「どうすれば役に立てますか」→ How can I _____ you?', choices:['help','helping','helped','helps'], ans:0, ok:'How can I + 動詞の原形?' },
+        { type:'fill', q:'「どうすればあなたに連絡できますか」= How can I _____ you?', ans:'reach', ok:'How can I reach you?' },
+        { type:'trans', jp:'どうすれば英語が上手になれますか', en:'How can I get better at English?' }
+      ]},
+      { phrase: 'Do I have to ...?', jp: '〜しなければなりませんか', qs: [
+        { type:'mc', q:'「予約しなければなりませんか」→ Do I have to make a _____?', choices:['reservation','reserve','reserving','reserved'], ans:0, ok:'Do I have to + 動詞の原形?' },
+        { type:'fill', q:'「今支払わなければなりませんか」= Do I have to _____ now?', ans:'pay', ok:'Do I have to pay now?' },
+        { type:'trans', jp:'制服を着なければなりませんか', en:'Do I have to wear a uniform?' }
+      ]},
+      { phrase: "Don't you think ...?", jp: '〜だと思いませんか', qs: [
+        { type:'mc', q:'「これは高すぎると思いませんか」→ Don\'t you think this is too _____?', choices:['expensive','expensively','expense','expensed'], ans:0, ok:"Don't you think + 文?（同意を求める）" },
+        { type:'fill', q:'「彼は正しいと思いませんか」= Don\'t you think he is _____?', ans:'right', ok:"Don't you think he is right?" },
+        { type:'trans', jp:'もっと練習すべきだと思いませんか', en:"Don't you think we should practice more?" }
+      ]}
+    ]
+  },
+
+  s3: {
+    title: '応用フレーズ②',
+    badge: 'badge-s3',
+    phraseClass: 's3',
+    phrases: [
+      { phrase: 'Make sure', jp: '必ず〜してください', qs: [
+        { type:'mc', q:'「ドアに鍵をかけるのを忘れずに」→ Make sure to _____ the door.', choices:['lock','locking','locked','locks'], ans:0, ok:'Make sure to + 動詞 / Make sure + that節' },
+        { type:'fill', q:'「時間通りに来るようにしてください」= Make sure you _____ on time.', ans:'arrive', ok:'Make sure you arrive on time.' },
+        { type:'trans', jp:'パスポートを持ってくるのを確認してください', en:'Make sure you bring your passport.' }
+      ]},
+      { phrase: "I'm planning to", jp: '〜する予定です', qs: [
+        { type:'mc', q:'「来月海外旅行する予定です」→ I\'m planning to travel _____ next month.', choices:['abroad','aboard','forward','around'], ans:0, ok:"I'm planning to + 動詞の原形" },
+        { type:'fill', q:'「新しい仕事を始める予定です」= I\'m planning to start a new _____.', ans:'job', ok:"I'm planning to start a new job." },
+        { type:'trans', jp:'来週友達に会う予定です', en:"I'm planning to meet my friends next week." }
+      ]},
+      { phrase: "It's worth", jp: '〜する価値があります', qs: [
+        { type:'mc', q:'「見る価値があります」→ It\'s worth _____.', choices:['watching','watch','watched','to watch'], ans:0, ok:"It's worth + 動名詞（〜ing）" },
+        { type:'fill', q:'「試してみる価値があります」= It\'s worth _____.', ans:'trying', ok:"It's worth trying." },
+        { type:'trans', jp:'この本は読む価値があります', en:"This book is worth reading." }
+      ]},
+      { phrase: "That's what", jp: 'それが〜ということです', qs: [
+        { type:'mc', q:'「それが私の言いたかったことです」→ That\'s _____ I meant.', choices:['what','which','that','why'], ans:0, ok:"That's what + 主語 + 動詞" },
+        { type:'fill', q:'「それが大事なことです」= That\'s what _____.', ans:'matters', ok:"That's what matters." },
+        { type:'trans', jp:'それが彼の言ったことです', en:"That's what he said." }
+      ]},
+      { phrase: "I didn't mean to", jp: '〜するつもりじゃなかった', qs: [
+        { type:'mc', q:'「傷つけるつもりじゃなかった」→ I didn\'t mean _____ hurt you.', choices:['to','of','for','about'], ans:0, ok:"I didn't mean to + 動詞の原形" },
+        { type:'fill', q:'「嘘をつくつもりじゃなかった」= I didn\'t mean to _____.', ans:'lie', ok:"I didn't mean to lie." },
+        { type:'trans', jp:'あなたを怒らせるつもりじゃなかった', en:"I didn't mean to make you angry." }
+      ]},
+      { phrase: 'I wish', jp: '〜だったらいいのに', qs: [
+        { type:'mc', q:'「英語が上手だったらいいのに」→ I wish I _____ speak English better.', choices:['could','can','will','would'], ans:0, ok:'I wish + 過去形（現実とは違う願望）' },
+        { type:'fill', q:'「もっと時間があればいいのに」= I wish I had more _____.', ans:'time', ok:'I wish I had more time.' },
+        { type:'trans', jp:'彼がここにいればいいのに', en:'I wish he were here.' }
+      ]},
+      { phrase: 'I should have', jp: '〜すべきだったのに', qs: [
+        { type:'mc', q:'「もっと早く起きるべきだった」→ I should have _____ up earlier.', choices:['gotten','get','getting','got up'], ans:0, ok:'I should have + 過去分詞（後悔・反省）' },
+        { type:'fill', q:'「謝るべきだった」= I should have _____.', ans:'apologized', ok:'I should have apologized.' },
+        { type:'trans', jp:'もっと勉強すべきだった', en:'I should have studied more.' }
+      ]},
+      { phrase: 'According to', jp: '〜によると', qs: [
+        { type:'mc', q:'「天気予報によると明日は雨らしい」→ According _____ the forecast, it will rain tomorrow.', choices:['to','for','by','from'], ans:0, ok:'According to + 情報源' },
+        { type:'fill', q:'「ニュースによると試合は中止になった」= According to the news, the game was _____.', ans:'canceled', ok:'According to the news, the game was canceled.' },
+        { type:'trans', jp:'彼によると、その映画はとても面白いそうです', en:'According to him, the movie is very interesting.' }
+      ]},
+      { phrase: 'I might have', jp: '〜したかもしれない', qs: [
+        { type:'mc', q:'「財布を落としたかもしれない」→ I might have _____ my wallet.', choices:['lost','lose','losing','loses'], ans:0, ok:'I might have + 過去分詞' },
+        { type:'fill', q:'「間違いを犯したかもしれない」= I might have made a _____.', ans:'mistake', ok:'I might have made a mistake.' },
+        { type:'trans', jp:'鍵を家に忘れてきたかもしれない', en:'I might have left my keys at home.' }
+      ]},
+      { phrase: "I'd rather", jp: '〜の方がいい', qs: [
+        { type:'mc', q:'「家にいた方がいい」→ I\'d rather _____ home.', choices:['stay','staying','stayed','to stay'], ans:0, ok:"I'd rather + 動詞の原形" },
+        { type:'fill', q:'「コーヒーよりお茶の方がいい」= I\'d rather have _____ than coffee.', ans:'tea', ok:"I'd rather have tea than coffee." },
+        { type:'trans', jp:'歩いた方がいい', en:"I'd rather walk." }
+      ]},
+      { phrase: 'No wonder', jp: 'どうりで〜なわけだ', qs: [
+        { type:'mc', q:'「どうりで彼が怒っているわけだ」→ No wonder he\'s _____.', choices:['angry','anger','angrily','angriness'], ans:0, ok:'No wonder + 主語 + 動詞' },
+        { type:'fill', q:'「どうりで遅かったわけだ」= No wonder you were _____.', ans:'late', ok:'No wonder you were late.' },
+        { type:'trans', jp:'どうりで彼女が疲れているわけだ', en:"No wonder she's tired." }
+      ]},
+      { phrase: 'You mean ...?', jp: 'つまり〜ということですか', qs: [
+        { type:'mc', q:'「つまり、キャンセルするということですか」→ You mean you\'re going to _____ it?', choices:['cancel','canceling','canceled','cancellation'], ans:0, ok:'You mean + 文?（確認・聞き返し）' },
+        { type:'fill', q:'「つまり、同意しないということですか」= You mean you don\'t _____?', ans:'agree', ok:"You mean you don't agree?" },
+        { type:'trans', jp:'つまり、パーティーには行かないということですか', en:"You mean you're not going to the party?" }
+      ]},
+      { phrase: '... , right?', jp: '〜ですよね？（確認）', qs: [
+        { type:'mc', q:'「明日会いますよね？」→ We\'re meeting tomorrow, _____?', choices:['right','wright','rite','write'], ans:0, ok:'文末に right? をつけて確認する' },
+        { type:'fill', q:'「あなたは田中さんですよね」= You\'re Mr. Tanaka, _____?', ans:'right', ok:"You're Mr. Tanaka, right?" },
+        { type:'trans', jp:'これは正しいですよね？', en:"This is correct, right?" }
+      ]},
+      { phrase: "That's why", jp: 'だから〜なんです', qs: [
+        { type:'mc', q:'「だから彼は怒っているんです」→ That\'s why he is _____.', choices:['angry','anger','angrily','angriness'], ans:0, ok:"That's why + 主語 + 動詞（結果を説明）" },
+        { type:'fill', q:'「だから私は遅刻したんです」= That\'s why I was _____.', ans:'late', ok:"That's why I was late." },
+        { type:'trans', jp:'だからあなたを選んだんです', en:"That's why I chose you." }
+      ]},
+      { phrase: 'I told you', jp: 'だから言ったでしょう', qs: [
+        { type:'mc', q:'「だから気をつけろって言ったでしょう」→ I told you _____ be careful.', choices:['to','that','for','about'], ans:0, ok:'I told you to + 動詞の原形 / I told you + that節' },
+        { type:'fill', q:'「だから大変だって言ったでしょう」= I told you it would be _____.', ans:'hard', ok:'I told you it would be hard.' },
+        { type:'trans', jp:'だから早く出発すべきだって言ったでしょう', en:'I told you we should leave early.' }
+      ]},
+      { phrase: 'As far as I know', jp: '私の知る限りでは', qs: [
+        { type:'mc', q:'「私の知る限りでは彼はまだここに住んでいます」→ As far as I know, he still _____ here.', choices:['lives','live','living','lived'], ans:0, ok:'As far as I know, + 文' },
+        { type:'fill', q:'「私の知る限りでは問題はありません」= As far as I know, there is no _____.', ans:'problem', ok:'As far as I know, there is no problem.' },
+        { type:'trans', jp:'私の知る限りでは、彼女は結婚しています', en:'As far as I know, she is married.' }
+      ]},
+      { phrase: "I'm looking forward to", jp: '〜を楽しみにしています', qs: [
+        { type:'mc', q:'「あなたに会うのを楽しみにしています」→ I\'m looking forward to _____ you.', choices:['seeing','see','saw','seen'], ans:0, ok:"I'm looking forward to + 動名詞（〜ing）" },
+        { type:'fill', q:'「休暇を楽しみにしています」= I\'m looking forward to my _____.', ans:'vacation', ok:"I'm looking forward to my vacation." },
+        { type:'trans', jp:'パーティーを楽しみにしています', en:"I'm looking forward to the party." }
+      ]},
+      { phrase: "That's because", jp: 'それは〜だからです', qs: [
+        { type:'mc', q:'「それは彼が一生懸命働いているからです」→ That\'s because he works very _____.', choices:['hard','hardly','harder','hardest'], ans:0, ok:"That's because + 理由の文（That's why との違い：because は理由、why は結果）" },
+        { type:'fill', q:'「それは私がミスをしたからです」= That\'s because I made a _____.', ans:'mistake', ok:"That's because I made a mistake." },
+        { type:'trans', jp:'それは彼女が経験が豊富だからです', en:"That's because she has a lot of experience." }
+      ]},
+      { phrase: "I've been to", jp: '〜に行ったことがあります', qs: [
+        { type:'mc', q:'「パリに行ったことがあります」→ I\'ve been to _____ twice.', choices:['Paris','the Paris','a Paris','paris'], ans:0, ok:"I've been to + 場所（経験）" },
+        { type:'fill', q:'「日本に3回行ったことがあります」= I\'ve been to Japan _____ times.', ans:'three', ok:"I've been to Japan three times." },
+        { type:'trans', jp:'そのレストランに行ってきました', en:"I've been to that restaurant." }
+      ]},
+      { phrase: 'Congratulations on', jp: '〜おめでとうございます', qs: [
+        { type:'mc', q:'「卒業おめでとうございます」→ Congratulations _____ your graduation.', choices:['on','for','about','at'], ans:0, ok:'Congratulations on + 名詞 / 動名詞' },
+        { type:'fill', q:'「昇進おめでとうございます」= Congratulations on your _____.', ans:'promotion', ok:'Congratulations on your promotion.' },
+        { type:'trans', jp:'結婚おめでとうございます', en:'Congratulations on your wedding.' }
+      ]},
+      { phrase: "Why don't you ...?", jp: '〜してみませんか / 〜したらどうですか', qs: [
+        { type:'mc', q:'「少し休んだらどうですか」→ Why don\'t you take a _____?', choices:['break','brake','breakfast','breaks'], ans:0, ok:"Why don't you + 動詞の原形?（提案）" },
+        { type:'fill', q:'「医者に相談したらどうですか」= Why don\'t you see a _____?', ans:'doctor', ok:"Why don't you see a doctor?" },
+        { type:'trans', jp:'新しい趣味を始めたらどうですか', en:"Why don't you start a new hobby?" }
+      ]},
+      { phrase: 'Kind of', jp: 'なんか〜 / ちょっと〜', qs: [
+        { type:'mc', q:'「なんか疲れた感じがします」→ I feel kind of _____.', choices:['tired','tiredly','tireds','tiresome'], ans:0, ok:'kind of + 形容詞（程度を和らげる）' },
+        { type:'fill', q:'「この映画はなんか退屈です」= This movie is kind of _____.', ans:'boring', ok:'This movie is kind of boring.' },
+        { type:'trans', jp:'なんかへんな感じがします', en:'It feels kind of strange.' }
+      ]},
+      { phrase: 'You know,', jp: 'えーと / あのー / ご存知のように', qs: [
+        { type:'mc', q:'「あのー、実は行きたくないんだよね」→ You know, I don\'t really _____ to go.', choices:['want','wants','wanted','wanting'], ans:0, ok:'You know は会話のつなぎ言葉として使われる' },
+        { type:'fill', q:'「あのー、もう一度聞いてもいいですか」= You know, can I _____ again?', ans:'ask', ok:'You know, can I ask again?' },
+        { type:'trans', jp:'ご存知のように、これは難しい問題です', en:"You know, this is a difficult problem." }
+      ]},
+      { phrase: 'I know, but', jp: 'わかってるけど / そうだけど', qs: [
+        { type:'mc', q:'「わかってるけど、どうしようもない」→ I know, but there\'s nothing I can _____.', choices:['do','doing','did','done'], ans:0, ok:'I know, but + 理由や説明' },
+        { type:'fill', q:'「わかってるけど、難しいんです」= I know, but it\'s _____.', ans:'hard', ok:"I know, but it's hard." },
+        { type:'trans', jp:'わかってるけど、もう少し待ってください', en:'I know, but please wait a little longer.' }
+      ]},
+      { phrase: "That's a waste of", jp: '〜の無駄です', qs: [
+        { type:'mc', q:'「時間の無駄です」→ That\'s a waste of _____.', choices:['time','times','timing','timed'], ans:0, ok:"That's a waste of + 名詞" },
+        { type:'fill', q:'「お金の無駄です」= That\'s a waste of _____.', ans:'money', ok:"That's a waste of money." },
+        { type:'trans', jp:'それは才能の無駄です', en:"That's a waste of talent." }
+      ]},
+      { phrase: 'It depends on', jp: '〜によります / 〜次第です', qs: [
+        { type:'mc', q:'「天気によります」→ It depends _____ the weather.', choices:['on','in','at','by'], ans:0, ok:'It depends on + 名詞' },
+        { type:'fill', q:'「状況によります」= It depends on the _____.', ans:'situation', ok:'It depends on the situation.' },
+        { type:'trans', jp:'あなた次第です', en:'It depends on you.' }
+      ]},
+      { phrase: "I'm into", jp: '〜にハマっています', qs: [
+        { type:'mc', q:'「最近ヨガにハマっています」→ I\'m into _____ lately.', choices:['yoga','doing yoga','a yoga','the yoga'], ans:0, ok:"I'm into + 名詞 / 動名詞" },
+        { type:'fill', q:'「日本のアニメにハマっています」= I\'m into Japanese _____.', ans:'anime', ok:"I'm into Japanese anime." },
+        { type:'trans', jp:'最近料理にハマっています', en:"I'm into cooking lately." }
+      ]},
+      { phrase: "I'm in", jp: '参加します！', qs: [
+        { type:'mc', q:'「私も参加します！」→ I\'m _____!', choices:['in','into','on','at'], ans:0, ok:"I'm in! = 参加します・乗りました！" },
+        { type:'fill', q:'「今会議中です」= I\'m in a _____.', ans:'meeting', ok:"I'm in a meeting." },
+        { type:'trans', jp:'私もやります！', en:"I'm in!" }
+      ]},
+      { phrase: "I'm on", jp: '〜中です / 担当しています', qs: [
+        { type:'mc', q:'「今電話中です」→ I\'m on the _____.', choices:['phone','call','talk','speak'], ans:0, ok:"I'm on the phone = 電話中 / I'm on it = 担当しています" },
+        { type:'fill', q:'「今その件を担当しています」= I\'m _____ it.', ans:'on', ok:"I'm on it." },
+        { type:'trans', jp:'今仕事中です', en:"I'm on the job." }
+      ]},
+      { phrase: 'You look', jp: '〜に見えます', qs: [
+        { type:'mc', q:'「疲れているみたいですね」→ You look _____.', choices:['tired','tiredly','tiring','tiresome'], ans:0, ok:'You look + 形容詞' },
+        { type:'fill', q:'「嬉しそうですね」= You look _____.', ans:'happy', ok:'You look happy.' },
+        { type:'trans', jp:'素敵に見えます', en:'You look great.' }
+      ]},
+      { phrase: 'In short,', jp: '要するに / 一言で言えば', qs: [
+        { type:'mc', q:'「要するに失敗したということです」→ In short, we _____.', choices:['failed','failure','failing','fail'], ans:0, ok:'In short, + 要約の文' },
+        { type:'fill', q:'「要するに、もっと努力が必要です」= In short, we need more _____.', ans:'effort', ok:'In short, we need more effort.' },
+        { type:'trans', jp:'要するに、時間がないということです', en:"In short, we don't have time." }
+      ]},
+      { phrase: "It doesn't matter", jp: '〜はどうでもいい / 関係ない', qs: [
+        { type:'mc', q:'「値段はどうでもいい」→ It doesn\'t matter how much it _____.', choices:['costs','cost','costing','costed'], ans:0, ok:"It doesn't matter + what/how/whether + 文" },
+        { type:'fill', q:'「色はどうでもいい」= It doesn\'t matter what _____ it is.', ans:'color', ok:"It doesn't matter what color it is." },
+        { type:'trans', jp:'彼が来るかどうかはどうでもいい', en:"It doesn't matter whether he comes." }
+      ]},
+      { phrase: "It's a shame", jp: '残念です', qs: [
+        { type:'mc', q:'「あなたが来られないのは残念です」→ It\'s a shame you can\'t _____.', choices:['come','coming','came','to come'], ans:0, ok:"It's a shame + that節 / + 主語 + 動詞" },
+        { type:'fill', q:'「試合に負けたのは残念です」= It\'s a shame we _____ the game.', ans:'lost', ok:"It's a shame we lost the game." },
+        { type:'trans', jp:'その映画が終わってしまったのは残念です', en:"It's a shame the movie ended." }
+      ]}
+    ]
+  },
+
+  s4: {
+    title: '丁寧な表現',
+    badge: 'badge-s4',
+    phraseClass: 's4',
+    phrases: [
+      { phrase: 'Would you like ...?', jp: '〜はいかがですか（丁寧な提案）', qs: [
+        { type:'mc', q:'「お茶はいかがですか」→ Would you like some _____?', choices:['tea','teas','a tea','the tea'], ans:0, ok:'Would you like + 名詞 / to + 動詞の原形?（Do you want より丁寧）' },
+        { type:'fill', q:'「もう一杯いかがですか」= Would you like _____ more?', ans:'some', ok:'Would you like some more?' },
+        { type:'trans', jp:'一緒に夕食しませんか', en:'Would you like to have dinner together?' }
+      ]},
+      { phrase: 'Would you mind if ...?', jp: '〜してもよろしいでしょうか', qs: [
+        { type:'mc', q:'「窓を開けてもよろしいでしょうか」→ Would you mind if I _____ the window?', choices:['opened','open','opening','opens'], ans:0, ok:'Would you mind if + 主語 + 過去形?（Do you mind if より丁寧）' },
+        { type:'fill', q:'「ここに座ってもよろしいでしょうか」= Would you mind if I _____ here?', ans:'sat', ok:'Would you mind if I sat here?' },
+        { type:'trans', jp:'少し早めに帰ってもよろしいでしょうか', en:'Would you mind if I left early?' }
+      ]},
+      { phrase: 'I apologize for', jp: '〜についてお詫びします', qs: [
+        { type:'mc', q:'「ご迷惑をおかけしたことをお詫びします」→ I apologize _____ the inconvenience.', choices:['for','about','of','at'], ans:0, ok:'I apologize for + 名詞 / 動名詞（Sorry より丁寧）' },
+        { type:'fill', q:'「遅れたことをお詫びします」= I apologize for being _____.', ans:'late', ok:'I apologize for being late.' },
+        { type:'trans', jp:'誤解が生じたことをお詫びします', en:'I apologize for the misunderstanding.' }
+      ]},
+      { phrase: 'Sorry to bother you, but', jp: 'お手数ですが / お邪魔して申し訳ないのですが', qs: [
+        { type:'mc', q:'「お手数ですが少しよろしいですか」→ Sorry to bother you, but do you have a _____?', choices:['moment','moments','time','minute'], ans:0, ok:'Sorry to bother you, but ... は相手の時間を取るときの丁寧な前置き' },
+        { type:'fill', q:'「お手数ですが道を教えていただけますか」= Sorry to bother you, but could you tell me the _____?', ans:'way', ok:'Sorry to bother you, but could you tell me the way?' },
+        { type:'trans', jp:'お邪魔して申し訳ないのですが、助けていただけますか', en:'Sorry to bother you, but could you help me?' }
+      ]},
+      { phrase: "It's a pleasure to", jp: '〜できて光栄です', qs: [
+        { type:'mc', q:'「お会いできて光栄です」→ It\'s a pleasure to _____ you.', choices:['meet','meeting','met','meets'], ans:0, ok:"It's a pleasure to + 動詞の原形（Nice to meet you より丁寧）" },
+        { type:'fill', q:'「ご協力できて嬉しいです」= It\'s a pleasure to _____ with you.', ans:'work', ok:"It's a pleasure to work with you." },
+        { type:'trans', jp:'あなたをサポートできて嬉しいです', en:"It's a pleasure to support you." }
+      ]},
+      { phrase: 'Could you ...?', jp: '〜していただけますか', qs: [
+        { type:'mc', q:'「もう一度おっしゃっていただけますか」→ Could you _____ that again?', choices:['say','saying','said','says'], ans:0, ok:'Could you + 動詞の原形?（Can you より丁寧）' },
+        { type:'fill', q:'「ゆっくり話していただけますか」= Could you speak more _____?', ans:'slowly', ok:'Could you speak more slowly?' },
+        { type:'trans', jp:'ドアを開けていただけますか', en:'Could you open the door?' }
+      ]},
+      { phrase: 'May I', jp: '〜してもよろしいでしょうか（最丁寧）', qs: [
+        { type:'mc', q:'「お名前をお伺いしてもよろしいでしょうか」→ May I ask your _____?', choices:['name','names','naming','named'], ans:0, ok:'May I + 動詞の原形?（最も丁寧な許可表現）' },
+        { type:'fill', q:'「入ってもよろしいでしょうか」= May I come _____?', ans:'in', ok:'May I come in?' },
+        { type:'trans', jp:'ご注文をお伺いしてもよろしいでしょうか', en:'May I take your order?' }
+      ]},
+      { phrase: 'Excuse me, but', jp: 'すみませんが / 失礼ですが', qs: [
+        { type:'mc', q:'「失礼ですが、この席は空いていますか」→ Excuse me, but is this seat _____?', choices:['taken','take','taking','took'], ans:0, ok:'Excuse me, but ... は見知らぬ人に話しかけるときの定番フレーズ' },
+        { type:'fill', q:'「すみませんが駅はどこですか」= Excuse me, but where is the _____?', ans:'station', ok:'Excuse me, but where is the station?' },
+        { type:'trans', jp:'失礼ですが、時間を教えていただけますか', en:'Excuse me, but could you tell me the time?' }
+      ]},
+      { phrase: 'I appreciate', jp: '〜に感謝しています', qs: [
+        { type:'mc', q:'「ご支援に感謝しています」→ I appreciate your _____.', choices:['support','supporting','to support','supported'], ans:0, ok:'I appreciate + 名詞 / 動名詞（Thank you for より丁寧なビジネス表現）' },
+        { type:'fill', q:'「あなたの親切に感謝しています」= I appreciate your _____.', ans:'kindness', ok:'I appreciate your kindness.' },
+        { type:'trans', jp:'あなたが助けてくれたことに感謝しています', en:'I appreciate your help.' }
+      ]},
+      { phrase: "I'd love to, but", jp: 'ぜひそうしたいのですが〜', qs: [
+        { type:'mc', q:'「ぜひ行きたいのですが、用事があります」→ I\'d love to, but I have _____.', choices:['plans','plan','planning','planned'], ans:0, ok:"I'd love to, but ... = 断るときの丁寧な表現" },
+        { type:'fill', q:'「ぜひそうしたいのですが、時間がありません」= I\'d love to, but I don\'t have _____.', ans:'time', ok:"I'd love to, but I don't have time." },
+        { type:'trans', jp:'ぜひ手伝いたいのですが、今は忙しいです', en:"I'd love to, but I'm busy right now." }
+      ]}
+    ]
+  }
+};
+
+// ===================== STATE =====================
+let totalCorrect = 0;
+let totalAnswered = 0;
+const answered = {}; // key: sec-pIdx-qIdx
+
+// ===================== BUILD UI =====================
+function buildSection(secId) {
+  const sec = quizData[secId];
+  const container = document.getElementById('section-' + secId);
+  if (!container || container.dataset.built) return;
+  container.dataset.built = '1';
+
+  let html = `<div class="score-display" id="score-${secId}">このセクションの正解: 0 / 0</div>`;
+
+  sec.phrases.forEach((phrase, pIdx) => {
+    html += `<div class="card">
+      <div class="phrase-header ${sec.phraseClass}">
+        📌 ${phrase.phrase} <span style="font-size:.8rem;color:#64748b;font-weight:400">— ${phrase.jp}</span>
+      </div>`;
+
+    phrase.qs.forEach((q, qIdx) => {
+      const qKey = `${secId}-${pIdx}-${qIdx}`;
+      const qNum = `Q${pIdx * 3 + qIdx + 1}`;
+
+      if (q.type === 'mc') {
+        html += `<div class="quiz-question" id="qq-${qKey}">
+          <div class="q-num">${qNum} ｜ 選択式</div>
+          <p>${q.q}</p>
+          <div class="quiz-choices">`;
+        q.choices.forEach((c, cIdx) => {
+          html += `<button class="choice-btn" onclick="answerMC('${qKey}',${cIdx},${q.ans},'${secId}')">${c}</button>`;
+        });
+        html += `</div>
+          <div class="quiz-feedback" id="fb-${qKey}"></div>
+        </div>`;
+      } else if (q.type === 'fill') {
+        html += `<div class="quiz-question" id="qq-${qKey}">
+          <div class="q-num">${qNum} ｜ 穴埋め式</div>
+          <p>${q.q}</p>
+          <div class="fill-wrap">
+            <input class="fill-input" id="fi-${qKey}" type="text" placeholder="ここに入力..." onkeydown="if(event.key==='Enter')checkFill('${qKey}','${escapeAns(q.ans)}','${secId}')">
+            <button class="check-btn" onclick="checkFill('${qKey}','${escapeAns(q.ans)}','${secId}')">確認</button>
+          </div>
+          <div class="quiz-feedback" id="fb-${qKey}"></div>
+        </div>`;
+      } else if (q.type === 'trans') {
+        html += `<div class="quiz-question" id="qq-${qKey}">
+          <div class="q-num">${qNum} ｜ 日→英 翻訳</div>
+          <p>🇯🇵 「${q.jp}」を英語で言ってみよう</p>
+          <button class="trans-show-btn" onclick="showTrans('${qKey}')">答えを見る</button>
+          <div class="trans-answer" id="ta-${qKey}">🇬🇧 ${q.en}</div>
+        </div>`;
+      }
+    });
+
+    html += `</div>`;
+  });
+
+  container.innerHTML = html;
+}
+
+function escapeAns(s) {
+  return s.replace(/'/g, "\\'");
+}
+
+// ===================== ANSWER HANDLERS =====================
+function answerMC(qKey, chosen, correct, secId) {
+  if (answered[qKey]) return;
+  answered[qKey] = true;
+
+  const btns = document.querySelectorAll(`#qq-${qKey} .choice-btn`);
+  btns.forEach((b, i) => {
+    b.disabled = true;
+    if (i === correct) b.classList.add('correct');
+    else if (i === chosen) b.classList.add('wrong');
+  });
+
+  const fb = document.getElementById('fb-' + qKey);
+  const [secIdK, pIdxStr, qIdxStr] = qKey.split('-');
+  const q = quizData[secId].phrases[+pIdxStr].qs[+qIdxStr];
+
+  if (chosen === correct) {
+    fb.className = 'quiz-feedback show ok';
+    fb.textContent = '✅ 正解！ ' + (q.ok || '');
+    addScore(true, secId);
+  } else {
+    fb.className = 'quiz-feedback show ng';
+    fb.textContent = '❌ 不正解。正解: ' + q.choices[correct] + '　' + (q.ok || '');
+    addScore(false, secId);
+  }
+}
+
+function checkFill(qKey, correctAns, secId) {
+  if (answered[qKey]) return;
+
+  const input = document.getElementById('fi-' + qKey);
+  const val = input.value.trim().toLowerCase();
+  const correct = correctAns.trim().toLowerCase();
+  const fb = document.getElementById('fb-' + qKey);
+
+  // Accept close answers (ignore trailing period/punctuation)
+  const normalize = s => s.replace(/[.,!?']/g, '').trim();
+  const isCorrect = normalize(val) === normalize(correct);
+
+  answered[qKey] = true;
+  input.disabled = true;
+
+  if (isCorrect) {
+    input.classList.add('correct');
+    fb.className = 'quiz-feedback show ok';
+    fb.textContent = '✅ 正解！';
+    addScore(true, secId);
+  } else {
+    input.classList.add('wrong');
+    fb.className = 'quiz-feedback show ng';
+    fb.textContent = `❌ 不正解。正解: ${correctAns}`;
+    addScore(false, secId);
+  }
+}
+
+function showTrans(qKey) {
+  document.getElementById('ta-' + qKey).classList.add('show');
+}
+
+// ===================== SCORE =====================
+function addScore(correct, secId) {
+  totalAnswered++;
+  if (correct) totalCorrect++;
+  updateProgress();
+  updateSecScore(secId);
+}
+
+function updateProgress() {
+  const pct = totalAnswered > 0 ? Math.round(totalCorrect / totalAnswered * 100) : 0;
+  document.getElementById('progressFill').style.width = pct + '%';
+  document.getElementById('progressLabel').textContent = `${totalCorrect} / ${totalAnswered} 正解`;
+}
+
+function updateSecScore(secId) {
+  const sec = quizData[secId];
+  let secCorrect = 0, secTotal = 0;
+  sec.phrases.forEach((p, pIdx) => {
+    p.qs.forEach((q, qIdx) => {
+      if (q.type === 'trans') return; // translation not scored
+      const k = `${secId}-${pIdx}-${qIdx}`;
+      if (answered[k]) {
+        secTotal++;
+        const fb = document.getElementById('fb-' + k);
+        if (fb && fb.classList.contains('ok')) secCorrect++;
+      }
+    });
+  });
+  const el = document.getElementById('score-' + secId);
+  if (el) el.textContent = `このセクションの正解: ${secCorrect} / ${secTotal}`;
+}
+
+// ===================== NAV =====================
+function showSec(secId, btn) {
+  document.querySelectorAll('.topic-section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+  document.getElementById('section-' + secId).classList.add('active');
+  btn.classList.add('active');
+  buildSection(secId);
+}
+
+// Build first section on load
+buildSection('s1');
+</script>
+</body>
+</html>
