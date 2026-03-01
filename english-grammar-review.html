@@ -1,0 +1,966 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>中学英文法 確認・復習テスト</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Noto Sans JP',sans-serif;background:#f0f4f8;color:#1e293b;min-height:100vh}
+header{background:linear-gradient(135deg,#1e293b,#334155);color:#fff;padding:24px;text-align:center}
+header h1{font-size:1.8rem;font-weight:700;letter-spacing:.05em}
+header p{font-size:.9rem;color:#94a3b8;margin-top:6px}
+.grade-tabs{display:flex;background:#fff;border-bottom:3px solid #e2e8f0;position:sticky;top:0;z-index:10}
+.grade-tab{flex:1;padding:14px 8px;text-align:center;cursor:pointer;font-size:.9rem;font-weight:700;border:none;background:none;transition:all .2s;color:#64748b}
+.grade-tab:hover:not(.active){background:#f8fafc;color:#1e293b}
+.grade-tab.active{color:#fff}
+.grade-tab:nth-child(1).active{background:#3b82f6}
+.grade-tab:nth-child(2).active{background:#10b981}
+.grade-tab:nth-child(3).active{background:#8b5cf6}
+.grade-section{display:none;max-width:900px;margin:0 auto;padding:24px}
+.grade-section.active{display:block}
+.topic-card{background:#fff;border-radius:14px;padding:24px;margin-bottom:24px;box-shadow:0 2px 8px rgba(0,0,0,.08)}
+.topic-title{font-size:1.1rem;font-weight:700;margin-bottom:6px;display:flex;align-items:center;gap:10px}
+.topic-badge{font-size:.72rem;padding:3px 10px;border-radius:20px;color:#fff;font-weight:700}
+.topic-desc{font-size:.85rem;color:#64748b;margin-bottom:18px;line-height:1.7;background:#f8fafc;padding:10px 14px;border-radius:8px}
+.score-bar{background:#f1f5f9;border-radius:8px;padding:10px 16px;margin-bottom:16px;display:flex;justify-content:space-between;align-items:center}
+.score-text{font-size:.82rem;color:#64748b}
+.score-num{font-weight:700;font-size:1rem;color:#1e293b}
+.question-item{border:2px solid #e2e8f0;border-radius:10px;padding:16px;margin-bottom:14px;transition:border-color .3s,background .3s}
+.question-item.answered-correct{border-color:#10b981;background:#f0fdf4}
+.question-item.answered-wrong{border-color:#ef4444;background:#fff5f5}
+.q-num{font-size:.75rem;color:#94a3b8;font-weight:700;margin-bottom:6px;text-transform:uppercase;letter-spacing:.05em}
+.q-text{font-size:.95rem;font-weight:600;line-height:1.8;margin-bottom:12px;color:#1e293b}
+.q-hint{font-size:.82rem;color:#64748b;font-weight:400}
+.q-choices{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:10px}
+.choice-btn{padding:10px 14px;border-radius:8px;border:2px solid #e2e8f0;background:#fff;cursor:pointer;font-size:.85rem;font-weight:500;transition:all .2s;text-align:left;line-height:1.4}
+.choice-btn:hover:not(:disabled){border-color:#94a3b8;background:#f8fafc}
+.choice-btn.correct{background:#dcfce7!important;border-color:#10b981!important;color:#065f46!important;font-weight:700}
+.choice-btn.wrong{background:#fee2e2!important;border-color:#ef4444!important;color:#991b1b!important}
+.choice-btn:disabled{cursor:not-allowed}
+.explanation{display:none;margin-top:10px;padding:12px 16px;border-radius:8px;font-size:.85rem;line-height:1.75}
+.explanation.show{display:block}
+.explanation.ok{background:#dcfce7;border-left:4px solid #10b981}
+.explanation.ng{background:#fff0f0;border-left:4px solid #ef4444}
+.explanation-title{font-weight:700;margin-bottom:4px;font-size:.9rem}
+.explanation.ok .explanation-title{color:#065f46}
+.explanation.ng .explanation-title{color:#991b1b}
+.explanation-body{color:#374151}
+.reset-btn{padding:8px 20px;border-radius:8px;border:2px solid #e2e8f0;background:#fff;cursor:pointer;font-size:.82rem;font-weight:600;transition:all .2s;margin-top:4px;color:#64748b}
+.reset-btn:hover{background:#f1f5f9;border-color:#94a3b8}
+@media(max-width:600px){
+.q-choices{grid-template-columns:1fr}
+header h1{font-size:1.3rem}
+.grade-section{padding:12px}
+.topic-card{padding:16px}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <h1>中学英文法 確認・復習テスト</h1>
+  <p>各問題を解いて、解説で理解を深めよう！ | 中1〜中3 全9単元・45問</p>
+</header>
+
+<div class="grade-tabs">
+  <button class="grade-tab active" onclick="showGrade(0)">📘 中学1年</button>
+  <button class="grade-tab" onclick="showGrade(1)">📗 中学2年</button>
+  <button class="grade-tab" onclick="showGrade(2)">📙 中学3年</button>
+</div>
+
+<!-- ========== 中学1年 ========== -->
+<div class="grade-section active" id="grade-0">
+
+  <!-- be動詞・一般動詞 -->
+  <div class="topic-card">
+    <div class="topic-title">
+      <span class="topic-badge" style="background:#3b82f6">中1</span>
+      be動詞 / 一般動詞（三単現）
+    </div>
+    <p class="topic-desc">
+      <b>ポイント</b>: be動詞は I→am、He/She/It→is、You/We/They→are。一般動詞は三人称単数の主語のとき語尾に <b>s/es</b> をつける（三単現のs）。否定文のdoesn'tの後は動詞の原形。
+    </p>
+    <div class="score-bar">
+      <span class="score-text">スコア</span>
+      <span class="score-num" id="score-0-0">0 / 5</span>
+    </div>
+
+    <div class="question-item" id="q-0-0-0">
+      <div class="q-num">問題 1</div>
+      <div class="q-text">( &nbsp;) am a student.<br><span class="q-hint">空欄に入る適切な主語を選びなさい。</span></div>
+      <div class="q-choices">
+        <button class="choice-btn" onclick="answer(this,'0-0-0','A','A')">A. I</button>
+        <button class="choice-btn" onclick="answer(this,'0-0-0','B','A')">B. He</button>
+        <button class="choice-btn" onclick="answer(this,'0-0-0','C','A')">C. She</button>
+        <button class="choice-btn" onclick="answer(this,'0-0-0','D','A')">D. They</button>
+      </div>
+      <div class="explanation" id="exp-0-0-0">
+        <div class="explanation-title">✓ 正解: A. I</div>
+        <div class="explanation-body">be動詞「am」を使えるのは主語が「I（私）」のときだけです。He/She → is、You/We/They → are を使います。</div>
+      </div>
+    </div>
+
+    <div class="question-item" id="q-0-0-1">
+      <div class="q-num">問題 2</div>
+      <div class="q-text">She ( &nbsp;) my teacher.<br><span class="q-hint">正しいbe動詞を選びなさい。</span></div>
+      <div class="q-choices">
+        <button class="choice-btn" onclick="answer(this,'0-0-1','A','B')">A. am</button>
+        <button class="choice-btn" onclick="answer(this,'0-0-1','B','B')">B. is</button>
+        <button class="choice-btn" onclick="answer(this,'0-0-1','C','B')">C. are</button>
+        <button class="choice-btn" onclick="answer(this,'0-0-1','D','B')">D. be</button>
+      </div>
+      <div class="explanation" id="exp-0-0-1">
+        <div class="explanation-title">✓ 正解: B. is</div>
+        <div class="explanation-body">主語が「She（彼女）」など三人称単数（he/she/it）のときはbe動詞「is」を使います。</div>
+      </div>
+    </div>
+
+    <div class="question-item" id="q-0-0-2">
+      <div class="q-num">問題 3</div>
+      <div class="q-text">They ( &nbsp;) from Australia.<br><span class="q-hint">正しいbe動詞を選びなさい。</span></div>
+      <div class="q-choices">
+        <button class="choice-btn" onclick="answer(this,'0-0-2','A','C')">A. am</button>
+        <button class="choice-btn" onclick="answer(this,'0-0-2','B','C')">B. is</button>
+        <button class="choice-btn" onclick="answer(this,'0-0-2','C','C')">C. are</button>
+        <button class="choice-btn" onclick="answer(this,'0-0-2','D','C')">D. be</button>
+      </div>
+      <div class="explanation" id="exp-0-0-2">
+        <div class="explanation-title">✓ 正解: C. are</div>
+        <div class="explanation-body">主語が「They（彼ら）」などの複数形や「You」の場合はbe動詞「are」を使います。</div>
+      </div>
+    </div>
+
+    <div class="question-item" id="q-0-0-3">
+      <div class="q-num">問題 4</div>
+      <div class="q-text">He ( &nbsp;) tennis every day.<br><span class="q-hint">正しい一般動詞の形を選びなさい。</span></div>
+      <div class="q-choices">
+        <button class="choice-btn" onclick="answer(this,'0-0-3','A','B')">A. play</button>
+        <button class="choice-btn" onclick="answer(this,'0-0-3','B','B')">B. plays</button>
+        <button class="choice-btn" onclick="answer(this,'0-0-3','C','B')">C. playing</button>
+        <button class="choice-btn" onclick="answer(this,'0-0-3','D','B')">D. played</button>
+      </div>
+      <div class="explanation" id="exp-0-0-3">
+        <div class="explanation-title">✓ 正解: B. plays</div>
+        <div class="explanation-body">主語が三人称単数（He）のとき、一般動詞には「s」や「es」をつけます（三単現のs）。play → plays。</div>
+      </div>
+    </div>
+
+    <div class="question-item" id="q-0-0-4">
+      <div class="q-num">問題 5</div>
+      <div class="q-text">She doesn't ( &nbsp;) coffee.<br><span class="q-hint">正しい動詞の形を選びなさい。</span></div>
+      <div class="q-choices">
+        <button class="choice-btn" onclick="answer(this,'0-0-4','A','A')">A. drink</button>
+        <button class="choice-btn" onclick="answer(this,'0-0-4','B','A')">B. drinks</button>
+        <button class="choice-btn" onclick="answer(this,'0-0-4','C','A')">C. drinking</button>
+        <button class="choice-btn" onclick="answer(this,'0-0-4','D','A')">D. drank</button>
+      </div>
+      <div class="explanation" id="exp-0-0-4">
+        <div class="explanation-title">✓ 正解: A. drink</div>
+        <div class="explanation-body">「doesn't（does not）」の後ろには動詞の原形を使います。doesn'tがすでに三人称単数を示しているので動詞にsは不要。</div>
+      </div>
+    </div>
+    <button class="reset-btn" onclick="resetTopic('0-0',5)">↺ リセット</button>
+  </div>
+
+  <!-- 現在進行形・can -->
+  <div class="topic-card">
+    <div class="topic-title">
+      <span class="topic-badge" style="background:#06b6d4">中1</span>
+      現在進行形 / can
+    </div>
+    <p class="topic-desc">
+      <b>ポイント</b>: 現在進行形は「am/is/are + 動詞ing」で「〜している」を表す。canは助動詞で主語によって形は変わらない。疑問文は「Can + 主語 + 動詞の原形?」。
+    </p>
+    <div class="score-bar">
+      <span class="score-text">スコア</span>
+      <span class="score-num" id="score-0-1">0 / 5</span>
+    </div>
+
+    <div class="question-item" id="q-0-1-0">
+      <div class="q-num">問題 1</div>
+      <div class="q-text">I ( &nbsp;) a book right now.<br><span class="q-hint">現在進行形になるよう選びなさい。</span></div>
+      <div class="q-choices">
+        <button class="choice-btn" onclick="answer(this,'0-1-0','A','C')">A. read</button>
+        <button class="choice-btn" onclick="answer(this,'0-1-0','B','C')">B. reads</button>
+        <button class="choice-btn" onclick="answer(this,'0-1-0','C','C')">C. am reading</button>
+        <button class="choice-btn" onclick="answer(this,'0-1-0','D','C')">D. is reading</button>
+      </div>
+      <div class="explanation" id="exp-0-1-0">
+        <div class="explanation-title">✓ 正解: C. am reading</div>
+        <div class="explanation-body">現在進行形は「am/is/are + 動詞のing形」で作ります。主語がIなのでamを使います。</div>
+      </div>
+    </div>
+
+    <div class="question-item" id="q-0-1-1">
+      <div class="q-num">問題 2</div>
+      <div class="q-text">They ( &nbsp;) in the garden.<br><span class="q-hint">現在進行形になるよう選びなさい。</span></div>
+      <div class="q-choices">
+        <button class="choice-btn" onclick="answer(this,'0-1-1','A','D')">A. play</button>
+        <button class="choice-btn" onclick="answer(this,'0-1-1','B','D')">B. plays</button>
+        <button class="choice-btn" onclick="answer(this,'0-1-1','C','D')">C. is playing</button>
+        <button class="choice-btn" onclick="answer(this,'0-1-1','D','D')">D. are playing</button>
+      </div>
+      <div class="explanation" id="exp-0-1-1">
+        <div class="explanation-title">✓ 正解: D. are playing</div>
+        <div class="explanation-body">主語がThey（複数）の場合、現在進行形は「are + 動詞ing」になります。</div>
+      </div>
+    </div>
+
+    <div class="question-item" id="q-0-1-2">
+      <div class="q-num">問題 3</div>
+      <div class="q-text">( &nbsp;) she studying now?<br><span class="q-hint">現在進行形の疑問文になるよう選びなさい。</span></div>
+      <div class="q-choices">
+        <button class="choice-btn" onclick="answer(this,'0-1-2','A','B')">A. Am</button>
+        <button class="choice-btn" onclick="answer(this,'0-1-2','B','B')">B. Is</button>
+        <button class="choice-btn" onclick="answer(this,'0-1-2','C','B')">C. Are</button>
+        <button class="choice-btn" onclick="answer(this,'0-1-2','D','B')">D. Do</button>
+      </div>
+      <div class="explanation" id="exp-0-1-2">
+        <div class="explanation-title">✓ 正解: B. Is</div>
+        <div class="explanation-body">現在進行形の疑問文は「Am/Is/Are + 主語 + 動詞ing?」の形。主語がshe（三人称単数）なのでIsを使います。</div>
+      </div>
+    </div>
+
+    <div class="question-item" id="q-0-1-3">
+      <div class="q-num">問題 4</div>
+      <div class="q-text">She ( &nbsp;) play the violin.<br><span class="q-hint">「彼女はバイオリンを弾くことができる」→ 空欄に入る語を選びなさい。</span></div>
+      <div class="q-choices">
+        <button class="choice-btn" onclick="answer(this,'0-1-3','A','A')">A. can</button>
+        <button class="choice-btn" onclick="answer(this,'0-1-3','B','A')">B. cans</button>
+        <button class="choice-btn" onclick="answer(this,'0-1-3','C','A')">C. is can</button>
+        <button class="choice-btn" onclick="answer(this,'0-1-3','D','A')">D. does can</button>
+      </div>
+      <div class="explanation" id="exp-0-1-3">
+        <div class="explanation-title">✓ 正解: A. can</div>
+        <div class="explanation-body">canは助動詞なので、主語が何であっても形は変わりません。「can + 動詞の原形」で「〜できる」を表します。cansとは言いません。</div>
+      </div>
+    </div>
+
+    <div class="question-item" id="q-0-1-4">
+      <div class="q-num">問題 5</div>
+      <div class="q-text">( &nbsp;) you speak English?<br><span class="q-hint">「英語を話せますか？」→ 空欄に入る語を選びなさい。</span></div>
+      <div class="q-choices">
+        <button class="choice-btn" onclick="answer(this,'0-1-4','A','C')">A. Do</button>
+        <button class="choice-btn" onclick="answer(this,'0-1-4','B','C')">B. Are</button>
+        <button class="choice-btn" onclick="answer(this,'0-1-4','C','C')">C. Can</button>
+        <button class="choice-btn" onclick="answer(this,'0-1-4','D','C')">D. Is</button>
+      </div>
+      <div class="explanation" id="exp-0-1-4">
+        <div class="explanation-title">✓ 正解: C. Can</div>
+        <div class="explanation-body">canの疑問文は「Can + 主語 + 動詞の原形?」の形で作ります。「〜できますか？」という意味になります。</div>
+      </div>
+    </div>
+    <button class="reset-btn" onclick="resetTopic('0-1',5)">↺ リセット</button>
+  </div>
+
+  <!-- 過去形 -->
+  <div class="topic-card">
+    <div class="topic-title">
+      <span class="topic-badge" style="background:#f59e0b">中1</span>
+      過去形
+    </div>
+    <p class="topic-desc">
+      <b>ポイント</b>: 規則動詞はed/dをつける（play→played）。不規則動詞は個別暗記（go→went, eat→ate, find→found）。Did/didn'tの後は動詞の原形。
+    </p>
+    <div class="score-bar">
+      <span class="score-text">スコア</span>
+      <span class="score-num" id="score-0-2">0 / 5</span>
+    </div>
+
+    <div class="question-item" id="q-0-2-0">
+      <div class="q-num">問題 1</div>
+      <div class="q-text">I ( &nbsp;) soccer yesterday.<br><span class="q-hint">過去形になるよう選びなさい。</span></div>
+      <div class="q-choices">
+        <button class="choice-btn" onclick="answer(this,'0-2-0','A','C')">A. play</button>
+        <button class="choice-btn" onclick="answer(this,'0-2-0','B','C')">B. plays</button>
+        <button class="choice-btn" onclick="answer(this,'0-2-0','C','C')">C. played</button>
+        <button class="choice-btn" onclick="answer(this,'0-2-0','D','C')">D. playing</button>
+      </div>
+      <div class="explanation" id="exp-0-2-0">
+        <div class="explanation-title">✓ 正解: C. played</div>
+        <div class="explanation-body">規則動詞の過去形は動詞に「ed」をつけます。play → played。yesterdayなど過去を示す語が目印です。</div>
+      </div>
+    </div>
+
+    <div class="question-item" id="q-0-2-1">
+      <div class="q-num">問題 2</div>
+      <div class="q-text">She ( &nbsp;) to Tokyo last week.<br><span class="q-hint">goの過去形を選びなさい。</span></div>
+      <div class="q-choices">
+        <button class="choice-btn" onclick="answer(this,'0-2-1','A','C')">A. go</button>
+        <button class="choice-btn" onclick="answer(this,'0-2-1','B','C')">B. goed</button>
+        <button class="choice-btn" onclick="answer(this,'0-2-1','C','C')">C. went</button>
+        <button class="choice-btn" onclick="answer(this,'0-2-1','D','C')">D. gone</button>
+      </div>
+      <div class="explanation" id="exp-0-2-1">
+        <div class="explanation-title">✓ 正解: C. went</div>
+        <div class="explanation-body">goは不規則動詞で、過去形はwentになります。「goed」とは言いません。不規則動詞はそのまま暗記しましょう。</div>
+      </div>
+    </div>
+
+    <div class="question-item" id="q-0-2-2">
+      <div class="q-num">問題 3</div>
+      <div class="q-text">Did you ( &nbsp;) lunch?<br><span class="q-hint">過去の疑問文：空欄に入る動詞の形を選びなさい。</span></div>
+      <div class="q-choices">
+        <button class="choice-btn" onclick="answer(this,'0-2-2','A','A')">A. eat</button>
+        <button class="choice-btn" onclick="answer(this,'0-2-2','B','A')">B. ate</button>
+        <button class="choice-btn" onclick="answer(this,'0-2-2','C','A')">C. eaten</button>
+        <button class="choice-btn" onclick="answer(this,'0-2-2','D','A')">D. eating</button>
+      </div>
+      <div class="explanation" id="exp-0-2-2">
+        <div class="explanation-title">✓ 正解: A. eat</div>
+        <div class="explanation-body">「Did + 主語 + 動詞の原形?」が過去形の疑問文の形です。Didがすでに過去を示しているので動詞は原形を使います。</div>
+      </div>
+    </div>
+
+    <div class="question-item" id="q-0-2-3">
+      <div class="q-num">問題 4</div>
+      <div class="q-text">He didn't ( &nbsp;) TV last night.<br><span class="q-hint">過去の否定文：空欄に入る動詞の形を選びなさい。</span></div>
+      <div class="q-choices">
+        <button class="choice-btn" onclick="answer(this,'0-2-3','A','A')">A. watch</button>
+        <button class="choice-btn" onclick="answer(this,'0-2-3','B','A')">B. watches</button>
+        <button class="choice-btn" onclick="answer(this,'0-2-3','C','A')">C. watched</button>
+        <button class="choice-btn" onclick="answer(this,'0-2-3','D','A')">D. watching</button>
+      </div>
+      <div class="explanation" id="exp-0-2-3">
+        <div class="explanation-title">✓ 正解: A. watch</div>
+        <div class="explanation-body">「didn't（did not）+ 動詞の原形」が過去形の否定文です。didn'tがすでに過去を示しているので原形を使います。</div>
+      </div>
+    </div>
+
+    <div class="question-item" id="q-0-2-4">
+      <div class="q-num">問題 5</div>
+      <div class="q-text">I ( &nbsp;) a new book at the library.<br><span class="q-hint">「図書館で新しい本を見つけた」→ findの過去形を選びなさい。</span></div>
+      <div class="q-choices">
+        <button class="choice-btn" onclick="answer(this,'0-2-4','A','B')">A. finded</button>
+        <button class="choice-btn" onclick="answer(this,'0-2-4','B','B')">B. found</button>
+        <button class="choice-btn" onclick="answer(this,'0-2-4','C','B')">C. finds</button>
+        <button class="choice-btn" onclick="answer(this,'0-2-4','D','B')">D. finding</button>
+      </div>
+      <div class="explanation" id="exp-0-2-4">
+        <div class="explanation-title">✓ 正解: B. found</div>
+        <div class="explanation-body">findは不規則動詞で、過去形はfoundになります。「finded」という形は存在しません。不規則動詞は一つ一つ覚えましょう。</div>
+      </div>
+    </div>
+    <button class="reset-btn" onclick="resetTopic('0-2',5)">↺ リセット</button>
+  </div>
+
+</div><!-- end grade-0 -->
+
+<!-- ========== 中学2年 ========== -->
+<div class="grade-section" id="grade-1">
+
+  <!-- 未来形 -->
+  <div class="topic-card">
+    <div class="topic-title">
+      <span class="topic-badge" style="background:#10b981">中2</span>
+      未来形（will / be going to）
+    </div>
+    <p class="topic-desc">
+      <b>ポイント</b>: 「will + 動詞の原形」で未来・意志を表す。「be going to + 動詞の原形」で予定・計画を表す。willの後は必ず動詞の原形（主語がsheでもwillsとしない）。
+    </p>
+    <div class="score-bar">
+      <span class="score-text">スコア</span>
+      <span class="score-num" id="score-1-0">0 / 5</span>
+    </div>
+
+    <div class="question-item" id="q-1-0-0">
+      <div class="q-num">問題 1</div>
+      <div class="q-text">I ( &nbsp;) call you later.<br><span class="q-hint">「後で電話します」→ 空欄に入る語を選びなさい。</span></div>
+      <div class="q-choices">
+        <button class="choice-btn" onclick="answer(this,'1-0-0','A','A')">A. will</button>
+        <button class="choice-btn" onclick="answer(this,'1-0-0','B','A')">B. wills</button>
+        <button class="choice-btn" onclick="answer(this,'1-0-0','C','A')">C. am going</button>
+        <button class="choice-btn" onclick="answer(this,'1-0-0','D','A')">D. going to</button>
+      </div>
+      <div class="explanation" id="exp-1-0-0">
+        <div class="explanation-title">✓ 正解: A. will</div>
+        <div class="explanation-body">「will + 動詞の原形」で未来を表します。willは主語が何であっても形は変わりません。wills という形は存在しません。</div>
+      </div>
+    </div>
+
+    <div class="question-item" id="q-1-0-1">
+      <div class="q-num">問題 2</div>
+      <div class="q-text">She will ( &nbsp;) her homework tonight.<br><span class="q-hint">空欄に入る動詞の形を選びなさい。</span></div>
+      <div class="q-choices">
+        <button class="choice-btn" onclick="answer(this,'1-0-1','A','A')">A. finish</button>
+        <button class="choice-btn" onclick="answer(this,'1-0-1','B','A')">B. finishes</button>
+        <button class="choice-btn" onclick="answer(this,'1-0-1','C','A')">C. finished</button>
+        <button class="choice-btn" onclick="answer(this,'1-0-1','D','A')">D. finishing</button>
+      </div>
+      <div class="explanation" id="exp-1-0-1">
+        <div class="explanation-title">✓ 正解: A. finish</div>
+        <div class="explanation-body">「will」の後には必ず動詞の原形を使います。主語がsheであっても、willの後ろにsをつけません。</div>
+      </div>
+    </div>
+
+    <div class="question-item" id="q-1-0-2">
+      <div class="q-num">問題 3</div>
+      <div class="q-text">Will you ( &nbsp;) to the party?<br><span class="q-hint">空欄に入る動詞の形を選びなさい。</span></div>
+      <div class="q-choices">
+        <button class="choice-btn" onclick="answer(this,'1-0-2','A','A')">A. come</button>
+        <button class="choice-btn" onclick="answer(this,'1-0-2','B','A')">B. comes</button>
+        <button class="choice-btn" onclick="answer(this,'1-0-2','C','A')">C. came</button>
+        <button class="choice-btn" onclick="answer(this,'1-0-2','D','A')">D. coming</button>
+      </div>
+      <div class="explanation" id="exp-1-0-2">
+        <div class="explanation-title">✓ 正解: A. come</div>
+        <div class="explanation-body">willの疑問文は「Will + 主語 + 動詞の原形?」の形です。Will you come...? で「来てくれますか？」という意味になります。</div>
+      </div>
+    </div>
+
+    <div class="question-item" id="q-1-0-3">
+      <div class="q-num">問題 4</div>
+      <div class="q-text">I am going ( &nbsp;) visit my grandma.<br><span class="q-hint">「おばあちゃんを訪ねるつもりです」→ 空欄に入る語を選びなさい。</span></div>
+      <div class="q-choices">
+        <button class="choice-btn" onclick="answer(this,'1-0-3','A','A')">A. to</button>
+        <button class="choice-btn" onclick="answer(this,'1-0-3','B','A')">B. for</button>
+        <button class="choice-btn" onclick="answer(this,'1-0-3','C','A')">C. by</button>
+        <button class="choice-btn" onclick="answer(this,'1-0-3','D','A')">D. of</button>
+      </div>
+      <div class="explanation" id="exp-1-0-3">
+        <div class="explanation-title">✓ 正解: A. to</div>
+        <div class="explanation-body">「be going to + 動詞の原形」で計画や予定を表します。goingの後に必ず「to」が来ます。</div>
+      </div>
+    </div>
+
+    <div class="question-item" id="q-1-0-4">
+      <div class="q-num">問題 5</div>
+      <div class="q-text">He ( &nbsp;) not come to school tomorrow.<br><span class="q-hint">「明日学校に来ないでしょう」→ 空欄に入る語を選びなさい。</span></div>
+      <div class="q-choices">
+        <button class="choice-btn" onclick="answer(this,'1-0-4','A','A')">A. will</button>
+        <button class="choice-btn" onclick="answer(this,'1-0-4','B','A')">B. does</button>
+        <button class="choice-btn" onclick="answer(this,'1-0-4','C','A')">C. is</button>
+        <button class="choice-btn" onclick="answer(this,'1-0-4','D','A')">D. did</button>
+      </div>
+      <div class="explanation" id="exp-1-0-4">
+        <div class="explanation-title">✓ 正解: A. will</div>
+        <div class="explanation-body">willの否定は「will not（= won't）」です。will not come で「来ないでしょう」という意味になります。</div>
+      </div>
+    </div>
+    <button class="reset-btn" onclick="resetTopic('1-0',5)">↺ リセット</button>
+  </div>
+
+  <!-- 不定詞・動名詞 -->
+  <div class="topic-card">
+    <div class="topic-title">
+      <span class="topic-badge" style="background:#8b5cf6">中2</span>
+      不定詞 / 動名詞
+    </div>
+    <p class="topic-desc">
+      <b>ポイント</b>: 不定詞「to + 動詞の原形」は名詞・形容詞・副詞の役割を持つ。動名詞「動詞のing形」は主語や目的語になる。enjoy/stopの後は動名詞のみ。前置詞の後は動名詞。
+    </p>
+    <div class="score-bar">
+      <span class="score-text">スコア</span>
+      <span class="score-num" id="score-1-1">0 / 5</span>
+    </div>
+
+    <div class="question-item" id="q-1-1-0">
+      <div class="q-num">問題 1</div>
+      <div class="q-text">I want ( &nbsp;) be a doctor.<br><span class="q-hint">「医者になりたい」→ 空欄に入る語を選びなさい。</span></div>
+      <div class="q-choices">
+        <button class="choice-btn" onclick="answer(this,'1-1-0','A','A')">A. to</button>
+        <button class="choice-btn" onclick="answer(this,'1-1-0','B','A')">B. for</button>
+        <button class="choice-btn" onclick="answer(this,'1-1-0','C','A')">C. of</button>
+        <button class="choice-btn" onclick="answer(this,'1-1-0','D','A')">D. in</button>
+      </div>
+      <div class="explanation" id="exp-1-1-0">
+        <div class="explanation-title">✓ 正解: A. to</div>
+        <div class="explanation-body">「want to + 動詞の原形」で「〜したい」を表します。wantの後はto不定詞を使います（want + to不定詞）。</div>
+      </div>
+    </div>
+
+    <div class="question-item" id="q-1-1-1">
+      <div class="q-num">問題 2</div>
+      <div class="q-text">He went to the store ( &nbsp;) buy milk.<br><span class="q-hint">「牛乳を買うために」→ 空欄に入る語を選びなさい。</span></div>
+      <div class="q-choices">
+        <button class="choice-btn" onclick="answer(this,'1-1-1','A','A')">A. to</button>
+        <button class="choice-btn" onclick="answer(this,'1-1-1','B','A')">B. for</button>
+        <button class="choice-btn" onclick="answer(this,'1-1-1','C','A')">C. by</button>
+        <button class="choice-btn" onclick="answer(this,'1-1-1','D','A')">D. at</button>
+      </div>
+      <div class="explanation" id="exp-1-1-1">
+        <div class="explanation-title">✓ 正解: A. to</div>
+        <div class="explanation-body">目的を表す不定詞（副詞用法）。「to + 動詞の原形」で「〜するために」を表します。</div>
+      </div>
+    </div>
+
+    <div class="question-item" id="q-1-1-2">
+      <div class="q-num">問題 3</div>
+      <div class="q-text">I enjoy ( &nbsp;) music.<br><span class="q-hint">「音楽を聴くことを楽しんでいる」→ 空欄に入る形を選びなさい。</span></div>
+      <div class="q-choices">
+        <button class="choice-btn" onclick="answer(this,'1-1-2','A','C')">A. listen</button>
+        <button class="choice-btn" onclick="answer(this,'1-1-2','B','C')">B. to listen</button>
+        <button class="choice-btn" onclick="answer(this,'1-1-2','C','C')">C. listening</button>
+        <button class="choice-btn" onclick="answer(this,'1-1-2','D','C')">D. listened</button>
+      </div>
+      <div class="explanation" id="exp-1-1-2">
+        <div class="explanation-title">✓ 正解: C. listening</div>
+        <div class="explanation-body">enjoyの後ろには動名詞（動詞のing形）を使います。enjoy + -ing で「〜することを楽しむ」。to不定詞は使えません（enjoy to listenはNG）。</div>
+      </div>
+    </div>
+
+    <div class="question-item" id="q-1-1-3">
+      <div class="q-num">問題 4</div>
+      <div class="q-text">Thank you for ( &nbsp;) me.<br><span class="q-hint">「手伝ってくれてありがとう」→ 空欄に入る形を選びなさい。</span></div>
+      <div class="q-choices">
+        <button class="choice-btn" onclick="answer(this,'1-1-3','A','D')">A. help</button>
+        <button class="choice-btn" onclick="answer(this,'1-1-3','B','D')">B. to help</button>
+        <button class="choice-btn" onclick="answer(this,'1-1-3','C','D')">C. helped</button>
+        <button class="choice-btn" onclick="answer(this,'1-1-3','D','D')">D. helping</button>
+      </div>
+      <div class="explanation" id="exp-1-1-3">
+        <div class="explanation-title">✓ 正解: D. helping</div>
+        <div class="explanation-body">前置詞（for）の後ろには動名詞（-ing形）を使います。「for + 動名詞」の形。前置詞の後にto不定詞は使えません。</div>
+      </div>
+    </div>
+
+    <div class="question-item" id="q-1-1-4">
+      <div class="q-num">問題 5</div>
+      <div class="q-text">She is good at ( &nbsp;) the piano.<br><span class="q-hint">「彼女はピアノを弾くのが得意」→ 空欄に入る形を選びなさい。</span></div>
+      <div class="q-choices">
+        <button class="choice-btn" onclick="answer(this,'1-1-4','A','C')">A. play</button>
+        <button class="choice-btn" onclick="answer(this,'1-1-4','B','C')">B. to play</button>
+        <button class="choice-btn" onclick="answer(this,'1-1-4','C','C')">C. playing</button>
+        <button class="choice-btn" onclick="answer(this,'1-1-4','D','C')">D. played</button>
+      </div>
+      <div class="explanation" id="exp-1-1-4">
+        <div class="explanation-title">✓ 正解: C. playing</div>
+        <div class="explanation-body">「be good at + 動名詞」で「〜するのが得意」。atは前置詞なので後ろに動名詞（-ing形）を使います。</div>
+      </div>
+    </div>
+    <button class="reset-btn" onclick="resetTopic('1-1',5)">↺ リセット</button>
+  </div>
+
+  <!-- 比較級・最上級 -->
+  <div class="topic-card">
+    <div class="topic-title">
+      <span class="topic-badge" style="background:#f59e0b">中2</span>
+      比較級 / 最上級
+    </div>
+    <p class="topic-desc">
+      <b>ポイント</b>: 短い形容詞は er/est（tall→taller→tallest）。長い形容詞は more/most（more expensive / the most beautiful）。比較級はthan、最上級はtheとセット。
+    </p>
+    <div class="score-bar">
+      <span class="score-text">スコア</span>
+      <span class="score-num" id="score-1-2">0 / 5</span>
+    </div>
+
+    <div class="question-item" id="q-1-2-0">
+      <div class="q-num">問題 1</div>
+      <div class="q-text">She is ( &nbsp;) than her sister.<br><span class="q-hint">「姉より背が高い」→ tallの比較級を選びなさい。</span></div>
+      <div class="q-choices">
+        <button class="choice-btn" onclick="answer(this,'1-2-0','A','B')">A. tall</button>
+        <button class="choice-btn" onclick="answer(this,'1-2-0','B','B')">B. taller</button>
+        <button class="choice-btn" onclick="answer(this,'1-2-0','C','B')">C. tallest</button>
+        <button class="choice-btn" onclick="answer(this,'1-2-0','D','B')">D. most tall</button>
+      </div>
+      <div class="explanation" id="exp-1-2-0">
+        <div class="explanation-title">✓ 正解: B. taller</div>
+        <div class="explanation-body">2つを比べるときは「形容詞er + than」の形（比較級）を使います。tall → taller。最上級のtallestはthe〜〜est in/ofとセットで使います。</div>
+      </div>
+    </div>
+
+    <div class="question-item" id="q-1-2-1">
+      <div class="q-num">問題 2</div>
+      <div class="q-text">This is the ( &nbsp;) mountain in Japan.<br><span class="q-hint">「日本で一番高い山」→ highの最上級を選びなさい。</span></div>
+      <div class="q-choices">
+        <button class="choice-btn" onclick="answer(this,'1-2-1','A','C')">A. high</button>
+        <button class="choice-btn" onclick="answer(this,'1-2-1','B','C')">B. higher</button>
+        <button class="choice-btn" onclick="answer(this,'1-2-1','C','C')">C. highest</button>
+        <button class="choice-btn" onclick="answer(this,'1-2-1','D','C')">D. most high</button>
+      </div>
+      <div class="explanation" id="exp-1-2-1">
+        <div class="explanation-title">✓ 正解: C. highest</div>
+        <div class="explanation-body">最上級は「the + 形容詞est」の形を使います。high → highest。「〜の中で一番〜」という意味になります。in Japanは範囲を示します。</div>
+      </div>
+    </div>
+
+    <div class="question-item" id="q-1-2-2">
+      <div class="q-num">問題 3</div>
+      <div class="q-text">This bag is ( &nbsp;) expensive than that one.<br><span class="q-hint">「そのバッグより高い（値段）」→ 空欄に入る語を選びなさい。</span></div>
+      <div class="q-choices">
+        <button class="choice-btn" onclick="answer(this,'1-2-2','A','A')">A. more</button>
+        <button class="choice-btn" onclick="answer(this,'1-2-2','B','A')">B. most</button>
+        <button class="choice-btn" onclick="answer(this,'1-2-2','C','A')">C. very</button>
+        <button class="choice-btn" onclick="answer(this,'1-2-2','D','A')">D. much</button>
+      </div>
+      <div class="explanation" id="exp-1-2-2">
+        <div class="explanation-title">✓ 正解: A. more</div>
+        <div class="explanation-body">expensiveなど長い形容詞の比較級は「more + 形容詞 + than」で作ります。more expensive than〜で「〜より高い」という意味になります。</div>
+      </div>
+    </div>
+
+    <div class="question-item" id="q-1-2-3">
+      <div class="q-num">問題 4</div>
+      <div class="q-text">He runs the ( &nbsp;) of all.<br><span class="q-hint">「全員の中で一番速く走る」→ fastの最上級を選びなさい。</span></div>
+      <div class="q-choices">
+        <button class="choice-btn" onclick="answer(this,'1-2-3','A','D')">A. fast</button>
+        <button class="choice-btn" onclick="answer(this,'1-2-3','B','D')">B. faster</button>
+        <button class="choice-btn" onclick="answer(this,'1-2-3','C','D')">C. more fast</button>
+        <button class="choice-btn" onclick="answer(this,'1-2-3','D','D')">D. fastest</button>
+      </div>
+      <div class="explanation" id="exp-1-2-3">
+        <div class="explanation-title">✓ 正解: D. fastest</div>
+        <div class="explanation-body">「of all（全員の中で）」は最上級のサインです。fastの最上級はfastest。the fastest of allで「全員の中で一番速い」という意味になります。</div>
+      </div>
+    </div>
+
+    <div class="question-item" id="q-1-2-4">
+      <div class="q-num">問題 5</div>
+      <div class="q-text">This is the ( &nbsp;) beautiful flower in the garden.<br><span class="q-hint">「庭で一番きれいな花」→ 空欄に入る語を選びなさい。</span></div>
+      <div class="q-choices">
+        <button class="choice-btn" onclick="answer(this,'1-2-4','A','B')">A. more</button>
+        <button class="choice-btn" onclick="answer(this,'1-2-4','B','B')">B. most</button>
+        <button class="choice-btn" onclick="answer(this,'1-2-4','C','B')">C. very</button>
+        <button class="choice-btn" onclick="answer(this,'1-2-4','D','B')">D. much</button>
+      </div>
+      <div class="explanation" id="exp-1-2-4">
+        <div class="explanation-title">✓ 正解: B. most</div>
+        <div class="explanation-body">長い形容詞の最上級は「the most + 形容詞」で作ります。the most beautiful で「一番きれいな」という意味になります。</div>
+      </div>
+    </div>
+    <button class="reset-btn" onclick="resetTopic('1-2',5)">↺ リセット</button>
+  </div>
+
+</div><!-- end grade-1 -->
+
+<!-- ========== 中学3年 ========== -->
+<div class="grade-section" id="grade-2">
+
+  <!-- 現在完了形 -->
+  <div class="topic-card">
+    <div class="topic-title">
+      <span class="topic-badge" style="background:#8b5cf6">中3</span>
+      現在完了形
+    </div>
+    <p class="topic-desc">
+      <b>ポイント</b>: 「have/has + 過去分詞」の形。主語がI/you/we/they → have、he/she/it → has。forは期間（for 10 years）、sinceは起点（since 2020）。everは「今までに」（経験）。
+    </p>
+    <div class="score-bar">
+      <span class="score-text">スコア</span>
+      <span class="score-num" id="score-2-0">0 / 5</span>
+    </div>
+
+    <div class="question-item" id="q-2-0-0">
+      <div class="q-num">問題 1</div>
+      <div class="q-text">I ( &nbsp;) never been to Paris.<br><span class="q-hint">空欄に入る語を選びなさい。</span></div>
+      <div class="q-choices">
+        <button class="choice-btn" onclick="answer(this,'2-0-0','A','A')">A. have</button>
+        <button class="choice-btn" onclick="answer(this,'2-0-0','B','A')">B. has</button>
+        <button class="choice-btn" onclick="answer(this,'2-0-0','C','A')">C. had</button>
+        <button class="choice-btn" onclick="answer(this,'2-0-0','D','A')">D. am</button>
+      </div>
+      <div class="explanation" id="exp-2-0-0">
+        <div class="explanation-title">✓ 正解: A. have</div>
+        <div class="explanation-body">現在完了形は「have/has + 過去分詞」。主語がI（一人称）の場合はhaveを使います。「一度もパリに行ったことがない」（経験の否定）。</div>
+      </div>
+    </div>
+
+    <div class="question-item" id="q-2-0-1">
+      <div class="q-num">問題 2</div>
+      <div class="q-text">She ( &nbsp;) just finished her homework.<br><span class="q-hint">空欄に入る語を選びなさい。</span></div>
+      <div class="q-choices">
+        <button class="choice-btn" onclick="answer(this,'2-0-1','A','B')">A. have</button>
+        <button class="choice-btn" onclick="answer(this,'2-0-1','B','B')">B. has</button>
+        <button class="choice-btn" onclick="answer(this,'2-0-1','C','B')">C. had</button>
+        <button class="choice-btn" onclick="answer(this,'2-0-1','D','B')">D. is</button>
+      </div>
+      <div class="explanation" id="exp-2-0-1">
+        <div class="explanation-title">✓ 正解: B. has</div>
+        <div class="explanation-body">主語が三人称単数（She）の場合はhaveではなくhasを使います。justは「ちょうど〜したところ」（完了）を表します。</div>
+      </div>
+    </div>
+
+    <div class="question-item" id="q-2-0-2">
+      <div class="q-num">問題 3</div>
+      <div class="q-text">He has lived here ( &nbsp;) ten years.<br><span class="q-hint">「10年間ここに住んでいる」→ 空欄に入る語を選びなさい。</span></div>
+      <div class="q-choices">
+        <button class="choice-btn" onclick="answer(this,'2-0-2','A','A')">A. for</button>
+        <button class="choice-btn" onclick="answer(this,'2-0-2','B','A')">B. since</button>
+        <button class="choice-btn" onclick="answer(this,'2-0-2','C','A')">C. from</button>
+        <button class="choice-btn" onclick="answer(this,'2-0-2','D','A')">D. during</button>
+      </div>
+      <div class="explanation" id="exp-2-0-2">
+        <div class="explanation-title">✓ 正解: A. for</div>
+        <div class="explanation-body">「for + 期間（数字）」で「〜の間ずっと」を表します。sinceは「〜以来（起点）」。ten yearsは期間なのでforを使います。</div>
+      </div>
+    </div>
+
+    <div class="question-item" id="q-2-0-3">
+      <div class="q-num">問題 4</div>
+      <div class="q-text">Have you ever ( &nbsp;) sushi?<br><span class="q-hint">「寿司を食べたことがありますか？」→ eatの過去分詞を選びなさい。</span></div>
+      <div class="q-choices">
+        <button class="choice-btn" onclick="answer(this,'2-0-3','A','D')">A. eat</button>
+        <button class="choice-btn" onclick="answer(this,'2-0-3','B','D')">B. eats</button>
+        <button class="choice-btn" onclick="answer(this,'2-0-3','C','D')">C. ate</button>
+        <button class="choice-btn" onclick="answer(this,'2-0-3','D','D')">D. eaten</button>
+      </div>
+      <div class="explanation" id="exp-2-0-3">
+        <div class="explanation-title">✓ 正解: D. eaten</div>
+        <div class="explanation-body">現在完了形は「have/has + 過去分詞」。eatの活用はeat（原形）→ ate（過去形）→ eaten（過去分詞）。everは「今までに」（経験）を表します。</div>
+      </div>
+    </div>
+
+    <div class="question-item" id="q-2-0-4">
+      <div class="q-num">問題 5</div>
+      <div class="q-text">I have studied English ( &nbsp;) I was ten.<br><span class="q-hint">「10歳のころから英語を勉強している」→ 空欄に入る語を選びなさい。</span></div>
+      <div class="q-choices">
+        <button class="choice-btn" onclick="answer(this,'2-0-4','A','B')">A. for</button>
+        <button class="choice-btn" onclick="answer(this,'2-0-4','B','B')">B. since</button>
+        <button class="choice-btn" onclick="answer(this,'2-0-4','C','B')">C. from</button>
+        <button class="choice-btn" onclick="answer(this,'2-0-4','D','B')">D. during</button>
+      </div>
+      <div class="explanation" id="exp-2-0-4">
+        <div class="explanation-title">✓ 正解: B. since</div>
+        <div class="explanation-body">「since + 起点（時刻・年・節）」で「〜以来ずっと」を表します。「I was ten（10歳のとき）」は過去の時点（起点）なのでsinceを使います。</div>
+      </div>
+    </div>
+    <button class="reset-btn" onclick="resetTopic('2-0',5)">↺ リセット</button>
+  </div>
+
+  <!-- 受動態 -->
+  <div class="topic-card">
+    <div class="topic-title">
+      <span class="topic-badge" style="background:#ef4444">中3</span>
+      受動態
+    </div>
+    <p class="topic-desc">
+      <b>ポイント</b>: 「be動詞 + 過去分詞」で「〜される/された」を表す。現在はis/am/are、過去はwas/were。単数→was/is、複数→were/are。動作主は「by + 人」で表す。
+    </p>
+    <div class="score-bar">
+      <span class="score-text">スコア</span>
+      <span class="score-num" id="score-2-1">0 / 5</span>
+    </div>
+
+    <div class="question-item" id="q-2-1-0">
+      <div class="q-num">問題 1</div>
+      <div class="q-text">English ( &nbsp;) all over the world.<br><span class="q-hint">「英語は世界中で話されています」→ 正しい形を選びなさい。</span></div>
+      <div class="q-choices">
+        <button class="choice-btn" onclick="answer(this,'2-1-0','A','C')">A. speak</button>
+        <button class="choice-btn" onclick="answer(this,'2-1-0','B','C')">B. speaks</button>
+        <button class="choice-btn" onclick="answer(this,'2-1-0','C','C')">C. is spoken</button>
+        <button class="choice-btn" onclick="answer(this,'2-1-0','D','C')">D. spoken</button>
+      </div>
+      <div class="explanation" id="exp-2-1-0">
+        <div class="explanation-title">✓ 正解: C. is spoken</div>
+        <div class="explanation-body">受動態は「be動詞 + 過去分詞」。Englishは単数扱いなのでisを使い、speakの過去分詞はspokenです。「〜される」という現在の受動態です。</div>
+      </div>
+    </div>
+
+    <div class="question-item" id="q-2-1-1">
+      <div class="q-num">問題 2</div>
+      <div class="q-text">The window ( &nbsp;) broken by the boy.<br><span class="q-hint">「窓は男の子に割られた」→ 過去の受動態を選びなさい。</span></div>
+      <div class="q-choices">
+        <button class="choice-btn" onclick="answer(this,'2-1-1','A','A')">A. was</button>
+        <button class="choice-btn" onclick="answer(this,'2-1-1','B','A')">B. is</button>
+        <button class="choice-btn" onclick="answer(this,'2-1-1','C','A')">C. were</button>
+        <button class="choice-btn" onclick="answer(this,'2-1-1','D','A')">D. be</button>
+      </div>
+      <div class="explanation" id="exp-2-1-1">
+        <div class="explanation-title">✓ 正解: A. was</div>
+        <div class="explanation-body">過去の受動態は「was/were + 過去分詞」。The window（単数）なのでwasを使います。brokenはbreakの過去分詞です。</div>
+      </div>
+    </div>
+
+    <div class="question-item" id="q-2-1-2">
+      <div class="q-num">問題 3</div>
+      <div class="q-text">This letter was written ( &nbsp;) her.<br><span class="q-hint">「この手紙は彼女によって書かれた」→ 空欄に入る語を選びなさい。</span></div>
+      <div class="q-choices">
+        <button class="choice-btn" onclick="answer(this,'2-1-2','A','B')">A. to</button>
+        <button class="choice-btn" onclick="answer(this,'2-1-2','B','B')">B. by</button>
+        <button class="choice-btn" onclick="answer(this,'2-1-2','C','B')">C. for</button>
+        <button class="choice-btn" onclick="answer(this,'2-1-2','D','B')">D. from</button>
+      </div>
+      <div class="explanation" id="exp-2-1-2">
+        <div class="explanation-title">✓ 正解: B. by</div>
+        <div class="explanation-body">受動態で「〜によって」という動作主を表すときはbyを使います。「by + 動作をした人/もの」の形です。</div>
+      </div>
+    </div>
+
+    <div class="question-item" id="q-2-1-3">
+      <div class="q-num">問題 4</div>
+      <div class="q-text">The pictures ( &nbsp;) taken by my father.<br><span class="q-hint">「写真は父が撮った」→ 過去の受動態を選びなさい。picturesは複数</span></div>
+      <div class="q-choices">
+        <button class="choice-btn" onclick="answer(this,'2-1-3','A','B')">A. was</button>
+        <button class="choice-btn" onclick="answer(this,'2-1-3','B','B')">B. were</button>
+        <button class="choice-btn" onclick="answer(this,'2-1-3','C','B')">C. are</button>
+        <button class="choice-btn" onclick="answer(this,'2-1-3','D','B')">D. is</button>
+      </div>
+      <div class="explanation" id="exp-2-1-3">
+        <div class="explanation-title">✓ 正解: B. were</div>
+        <div class="explanation-body">主語が複数（The pictures）の場合、過去の受動態はwere + 過去分詞を使います。単数ならwas、複数ならwereです。</div>
+      </div>
+    </div>
+
+    <div class="question-item" id="q-2-1-4">
+      <div class="q-num">問題 5</div>
+      <div class="q-text">Is this cake ( &nbsp;) by your mom?<br><span class="q-hint">「このケーキはお母さんが作ったの？」→ makeの過去分詞を選びなさい。</span></div>
+      <div class="q-choices">
+        <button class="choice-btn" onclick="answer(this,'2-1-4','A','C')">A. make</button>
+        <button class="choice-btn" onclick="answer(this,'2-1-4','B','C')">B. makes</button>
+        <button class="choice-btn" onclick="answer(this,'2-1-4','C','C')">C. made</button>
+        <button class="choice-btn" onclick="answer(this,'2-1-4','D','C')">D. making</button>
+      </div>
+      <div class="explanation" id="exp-2-1-4">
+        <div class="explanation-title">✓ 正解: C. made</div>
+        <div class="explanation-body">受動態の疑問文「Is/Are + 主語 + 過去分詞 + by...?」の形。makeの活用はmake → made → made（過去形・過去分詞とも同じ形）。</div>
+      </div>
+    </div>
+    <button class="reset-btn" onclick="resetTopic('2-1',5)">↺ リセット</button>
+  </div>
+
+  <!-- 関係代名詞 -->
+  <div class="topic-card">
+    <div class="topic-title">
+      <span class="topic-badge" style="background:#0ea5e9">中3</span>
+      関係代名詞
+    </div>
+    <p class="topic-desc">
+      <b>ポイント</b>: 先行詞が人 → who、先行詞が物・動物 → which、どちらにも使えるthat。関係代名詞は2つの文をつなぎ、名詞を後ろから説明する役割を持つ。
+    </p>
+    <div class="score-bar">
+      <span class="score-text">スコア</span>
+      <span class="score-num" id="score-2-2">0 / 5</span>
+    </div>
+
+    <div class="question-item" id="q-2-2-0">
+      <div class="q-num">問題 1</div>
+      <div class="q-text">I have a friend ( &nbsp;) can speak three languages.<br><span class="q-hint">「3つの言語を話せる友達がいる」→ 空欄に入る語を選びなさい。</span></div>
+      <div class="q-choices">
+        <button class="choice-btn" onclick="answer(this,'2-2-0','A','A')">A. who</button>
+        <button class="choice-btn" onclick="answer(this,'2-2-0','B','A')">B. which</button>
+        <button class="choice-btn" onclick="answer(this,'2-2-0','C','A')">C. what</button>
+        <button class="choice-btn" onclick="answer(this,'2-2-0','D','A')">D. where</button>
+      </div>
+      <div class="explanation" id="exp-2-2-0">
+        <div class="explanation-title">✓ 正解: A. who</div>
+        <div class="explanation-body">先行詞（説明する名詞）が人（friend）の場合は関係代名詞whoを使います。whichは物・動物に使います。</div>
+      </div>
+    </div>
+
+    <div class="question-item" id="q-2-2-1">
+      <div class="q-num">問題 2</div>
+      <div class="q-text">This is the book ( &nbsp;) I bought yesterday.<br><span class="q-hint">「昨日買った本です」→ 空欄に入る語を選びなさい。</span></div>
+      <div class="q-choices">
+        <button class="choice-btn" onclick="answer(this,'2-2-1','A','B')">A. who</button>
+        <button class="choice-btn" onclick="answer(this,'2-2-1','B','B')">B. which</button>
+        <button class="choice-btn" onclick="answer(this,'2-2-1','C','B')">C. what</button>
+        <button class="choice-btn" onclick="answer(this,'2-2-1','D','B')">D. whom</button>
+      </div>
+      <div class="explanation" id="exp-2-2-1">
+        <div class="explanation-title">✓ 正解: B. which</div>
+        <div class="explanation-body">先行詞が物（book）の場合は関係代名詞whichを使います。thatも使えます。whoは人にしか使えません。</div>
+      </div>
+    </div>
+
+    <div class="question-item" id="q-2-2-2">
+      <div class="q-num">問題 3</div>
+      <div class="q-text">She is the girl ( &nbsp;) won the prize.<br><span class="q-hint">「賞を取った女の子です」→ 空欄に入る語を選びなさい。</span></div>
+      <div class="q-choices">
+        <button class="choice-btn" onclick="answer(this,'2-2-2','A','A')">A. who</button>
+        <button class="choice-btn" onclick="answer(this,'2-2-2','B','A')">B. which</button>
+        <button class="choice-btn" onclick="answer(this,'2-2-2','C','A')">C. what</button>
+        <button class="choice-btn" onclick="answer(this,'2-2-2','D','A')">D. whose</button>
+      </div>
+      <div class="explanation" id="exp-2-2-2">
+        <div class="explanation-title">✓ 正解: A. who</div>
+        <div class="explanation-body">先行詞が人（girl）で、関係代名詞が関係詞節の主語の役割をする場合はwho（またはthat）を使います。the girlがwonの主語になっています。</div>
+      </div>
+    </div>
+
+    <div class="question-item" id="q-2-2-3">
+      <div class="q-num">問題 4</div>
+      <div class="q-text">I have a dog ( &nbsp;) loves to swim.<br><span class="q-hint">「泳ぐのが好きな犬を飼っている」→ 空欄に入る語を選びなさい。</span></div>
+      <div class="q-choices">
+        <button class="choice-btn" onclick="answer(this,'2-2-3','A','B')">A. who</button>
+        <button class="choice-btn" onclick="answer(this,'2-2-3','B','B')">B. that</button>
+        <button class="choice-btn" onclick="answer(this,'2-2-3','C','B')">C. what</button>
+        <button class="choice-btn" onclick="answer(this,'2-2-3','D','B')">D. whom</button>
+      </div>
+      <div class="explanation" id="exp-2-2-3">
+        <div class="explanation-title">✓ 正解: B. that</div>
+        <div class="explanation-body">thatは人にも物・動物にも使える関係代名詞です。動物（dog）にはthatまたはwhichが使えます。whoは人専用なので不適切です。</div>
+      </div>
+    </div>
+
+    <div class="question-item" id="q-2-2-4">
+      <div class="q-num">問題 5</div>
+      <div class="q-text">The movie ( &nbsp;) we watched was amazing.<br><span class="q-hint">「私たちが見た映画はすばらしかった」→ 空欄に入る語を選びなさい。</span></div>
+      <div class="q-choices">
+        <button class="choice-btn" onclick="answer(this,'2-2-4','A','B')">A. who</button>
+        <button class="choice-btn" onclick="answer(this,'2-2-4','B','B')">B. which</button>
+        <button class="choice-btn" onclick="answer(this,'2-2-4','C','B')">C. what</button>
+        <button class="choice-btn" onclick="answer(this,'2-2-4','D','B')">D. whose</button>
+      </div>
+      <div class="explanation" id="exp-2-2-4">
+        <div class="explanation-title">✓ 正解: B. which</div>
+        <div class="explanation-body">先行詞が物（movie）の場合はwhich（またはthat）を使います。ここでは関係代名詞が目的格として使われており（we watchedの目的語）、省略も可能です。</div>
+      </div>
+    </div>
+    <button class="reset-btn" onclick="resetTopic('2-2',5)">↺ リセット</button>
+  </div>
+
+</div><!-- end grade-2 -->
+
+<script>
+const scores = {};
+
+function answer(btn, qid, chosen, correct) {
+  const qEl = document.getElementById('q-' + qid);
+  const expEl = document.getElementById('exp-' + qid);
+  if (qEl.classList.contains('answered-correct') || qEl.classList.contains('answered-wrong')) return;
+
+  const btns = qEl.querySelectorAll('.choice-btn');
+  btns.forEach(b => b.disabled = true);
+
+  const isCorrect = chosen === correct;
+  btn.classList.add(isCorrect ? 'correct' : 'wrong');
+
+  if (!isCorrect) {
+    btns.forEach(b => {
+      if (b.textContent.trim().startsWith(correct + '.')) b.classList.add('correct');
+    });
+    expEl.classList.add('ng');
+  } else {
+    expEl.classList.add('ok');
+  }
+
+  expEl.classList.add('show');
+  qEl.classList.add(isCorrect ? 'answered-correct' : 'answered-wrong');
+
+  const parts = qid.split('-');
+  const topicKey = parts[0] + '-' + parts[1];
+  if (!scores[topicKey]) scores[topicKey] = { correct: 0 };
+  if (isCorrect) scores[topicKey].correct++;
+
+  const scoreEl = document.getElementById('score-' + topicKey);
+  if (scoreEl) scoreEl.textContent = scores[topicKey].correct + ' / 5';
+}
+
+function resetTopic(topicKey, count) {
+  if (scores[topicKey]) scores[topicKey].correct = 0;
+  const scoreEl = document.getElementById('score-' + topicKey);
+  if (scoreEl) scoreEl.textContent = '0 / 5';
+
+  for (let i = 0; i < count; i++) {
+    const qEl = document.getElementById('q-' + topicKey + '-' + i);
+    const expEl = document.getElementById('exp-' + topicKey + '-' + i);
+    if (!qEl) continue;
+    qEl.classList.remove('answered-correct', 'answered-wrong');
+    expEl.classList.remove('show', 'ok', 'ng');
+    qEl.querySelectorAll('.choice-btn').forEach(b => {
+      b.disabled = false;
+      b.classList.remove('correct', 'wrong');
+    });
+  }
+}
+
+function showGrade(idx) {
+  document.querySelectorAll('.grade-section').forEach((s, i) => s.classList.toggle('active', i === idx));
+  document.querySelectorAll('.grade-tab').forEach((t, i) => t.classList.toggle('active', i === idx));
+}
+</script>
+</body>
+</html>
