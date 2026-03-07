@@ -91,6 +91,8 @@ header p{font-size:.9rem;color:#94a3b8;margin-top:4px}
 .review-placeholder p{font-size:.95rem;margin-bottom:4px}
 .review-item{background:#fff;border-radius:12px;padding:20px;margin-bottom:16px;box-shadow:0 1px 4px rgba(239,68,68,.12);border-left:4px solid #ef4444;transition:opacity .5s}
 .review-item.cleared{opacity:.35;pointer-events:none;border-left-color:#10b981}
+.review-bonus{border-left-color:#8b5cf6}
+.trans-input{width:100%;max-width:440px}
 
 @media(max-width:600px){
 .nav-tab{font-size:.7rem;padding:12px 6px;min-width:80px}
@@ -686,8 +688,21 @@ let revCounter = 0;
 function addWrong(secId, pIdx, qIdx) {
   const key = `${secId}-${pIdx}-${qIdx}`;
   if (wrongList.find(w => w.key === key)) return;
-  wrongList.push({secId, pIdx, qIdx, key});
-  renderReviewItem(secId, pIdx, qIdx, key);
+  wrongList.push({secId, pIdx, qIdx, key, isBonus: false});
+  renderReviewItem(secId, pIdx, qIdx, key, false);
+
+  // 類似問題を同フレーズから2問追加
+  const phrase = quizData[secId].phrases[pIdx];
+  let bonusAdded = 0;
+  phrase.qs.forEach((bq, qi) => {
+    if (bonusAdded >= 2 || qi === qIdx) return;
+    const bKey = `bonus-${secId}-${pIdx}-${qi}`;
+    if (wrongList.find(w => w.key === bKey)) return;
+    wrongList.push({secId, pIdx, qIdx: qi, key: bKey, isBonus: true});
+    renderReviewItem(secId, pIdx, qi, bKey, true);
+    bonusAdded++;
+  });
+
   updateReviewUI();
 }
 
@@ -726,7 +741,7 @@ function updateReviewUI() {
   }
 }
 
-function renderReviewItem(secId, pIdx, qIdx, key) {
+function renderReviewItem(secId, pIdx, qIdx, key, isBonus) {
   const placeholder = document.getElementById('review-placeholder');
   if (placeholder) placeholder.style.display = 'none';
 
@@ -734,14 +749,17 @@ function renderReviewItem(secId, pIdx, qIdx, key) {
   const sec = quizData[secId];
   const phrase = sec.phrases[pIdx];
   const q = phrase.qs[qIdx];
-  const rk = 'ri' + key.replace(/-/g, '_');
+  const rk = 'ri' + key.replace(/[-]/g, '_');
 
   const div = document.createElement('div');
-  div.className = 'review-item';
+  div.className = 'review-item' + (isBonus ? ' review-bonus' : '');
   div.id = 'ri-' + key;
 
+  const labelColor = isBonus ? '#8b5cf6' : '#ef4444';
+  const labelText = isBonus ? '📎 類似問題' : '🔴 苦手問題';
+
   let inner = `
-    <div style="font-size:.72rem;color:#ef4444;font-weight:700;margin-bottom:8px;text-transform:uppercase;letter-spacing:.05em">苦手問題</div>
+    <div style="font-size:.72rem;color:${labelColor};font-weight:700;margin-bottom:8px;letter-spacing:.05em">${labelText}</div>
     <div class="phrase-header ${sec.phraseClass}" style="margin-bottom:12px">
       📌 ${phrase.phrase} <span style="font-size:.8rem;color:#64748b;font-weight:400">— ${phrase.jp}</span>
     </div>
@@ -760,11 +778,38 @@ function renderReviewItem(secId, pIdx, qIdx, key) {
         <button class="check-btn" onclick="riFill('${rk}','${key}','${escapeAns(q.ans)}','${secId}',${pIdx},${qIdx})">確認</button>
       </div>
       <div class="quiz-feedback" id="fb-${rk}"></div>`;
+  } else if (q.type === 'trans') {
+    inner += `<div class="q-num">日→英 翻訳</div>
+      <p>🇯🇵 「${q.jp}」を英語で書いてみよう</p>
+      <div class="fill-wrap">
+        <input class="fill-input trans-input" id="fi-${rk}" type="text" placeholder="英語で答えてください..." onkeydown="if(event.key==='Enter')riTrans('${rk}','${key}','${escapeAns(q.en)}','${secId}',${pIdx},${qIdx})">
+        <button class="check-btn" onclick="riTrans('${rk}','${key}','${escapeAns(q.en)}','${secId}',${pIdx},${qIdx})">確認</button>
+      </div>
+      <div class="quiz-feedback" id="fb-${rk}"></div>`;
   }
 
   inner += `</div><div class="ri-status" style="margin-top:6px;font-size:.85rem;color:#065f46;font-weight:600"></div>`;
   div.innerHTML = inner;
   reviewList.appendChild(div);
+}
+
+function riTrans(rk, origKey, correctEn, secId, pIdx, qIdx) {
+  const input = document.getElementById('fi-' + rk);
+  if (!input || input.disabled) return;
+  const normalize = s => s.toLowerCase().replace(/[.,!?'"']/g, '').replace(/\s+/g, ' ').trim();
+  const isCorrect = normalize(input.value) === normalize(correctEn);
+  const fb = document.getElementById('fb-' + rk);
+  input.disabled = true;
+  if (isCorrect) {
+    input.classList.add('correct');
+    fb.className = 'quiz-feedback show ok';
+    fb.textContent = '✅ 正解！ 🇬🇧 ' + correctEn;
+    removeWrong(origKey);
+  } else {
+    input.classList.add('wrong');
+    fb.className = 'quiz-feedback show ng';
+    fb.textContent = `❌ 不正解。正解: ${correctEn}`;
+  }
 }
 
 function shuffleReview() {
@@ -876,9 +921,12 @@ function buildSection(secId) {
       } else if (q.type === 'trans') {
         html += `<div class="quiz-question" id="qq-${qKey}">
           <div class="q-num">${qNum} ｜ 日→英 翻訳</div>
-          <p>🇯🇵 「${q.jp}」を英語で言ってみよう</p>
-          <button class="trans-show-btn" onclick="showTrans('${qKey}')">答えを見る</button>
-          <div class="trans-answer" id="ta-${qKey}">🇬🇧 ${q.en}</div>
+          <p>🇯🇵 「${q.jp}」を英語で書いてみよう</p>
+          <div class="fill-wrap">
+            <input class="fill-input trans-input" id="fi-${qKey}" type="text" placeholder="英語で答えてください..." onkeydown="if(event.key==='Enter')checkTrans('${qKey}','${secId}')">
+            <button class="check-btn" onclick="checkTrans('${qKey}','${secId}')">確認</button>
+          </div>
+          <div class="quiz-feedback" id="fb-${qKey}"></div>
         </div>`;
       }
     });
@@ -891,6 +939,31 @@ function buildSection(secId) {
 
 function escapeAns(s) {
   return s.replace(/\\/g, '\\\\').replace(/'/g, "\\'");
+}
+
+function checkTrans(qKey, secId) {
+  if (answered[qKey]) return;
+  const input = document.getElementById('fi-' + qKey);
+  const parts = qKey.split('-');
+  const pIdx = +parts[1], qIdx = +parts[2];
+  const q = quizData[secId].phrases[pIdx].qs[qIdx];
+  const fb = document.getElementById('fb-' + qKey);
+  const normalize = s => s.toLowerCase().replace(/[.,!?'"']/g, '').replace(/\s+/g, ' ').trim();
+  const isCorrect = normalize(input.value) === normalize(q.en);
+  answered[qKey] = true;
+  input.disabled = true;
+  if (isCorrect) {
+    input.classList.add('correct');
+    fb.className = 'quiz-feedback show ok';
+    fb.textContent = '✅ 正解！ 🇬🇧 ' + q.en;
+    addScore(true, secId);
+  } else {
+    input.classList.add('wrong');
+    fb.className = 'quiz-feedback show ng';
+    fb.textContent = `❌ 不正解。正解: ${q.en}`;
+    addScore(false, secId);
+    addWrong(secId, pIdx, qIdx);
+  }
 }
 
 // ===================== ANSWER HANDLERS =====================
@@ -976,7 +1049,6 @@ function updateSecScore(secId) {
   let secCorrect = 0, secTotal = 0;
   sec.phrases.forEach((p, pIdx) => {
     p.qs.forEach((q, qIdx) => {
-      if (q.type === 'trans') return;
       const k = `${secId}-${pIdx}-${qIdx}`;
       if (answered[k]) {
         secTotal++;
