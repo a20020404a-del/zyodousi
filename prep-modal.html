@@ -1,0 +1,823 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>英語文法マスター | 前置詞 & 助動詞</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --prep: #3b82f6;
+  --prep-g: linear-gradient(135deg, #3b82f6, #06b6d4);
+  --prep-light: #eff6ff;
+  --modal: #8b5cf6;
+  --modal-g: linear-gradient(135deg, #8b5cf6, #ec4899);
+  --modal-light: #f5f3ff;
+  --ok: #10b981; --ng: #ef4444;
+  --bg: #f1f5f9; --card: #fff;
+  --text: #1e293b; --muted: #64748b;
+  --border: #e2e8f0;
+  --r: 14px;
+  --shadow: 0 4px 20px rgba(0,0,0,.07);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Noto Sans JP',sans-serif;background:var(--bg);color:var(--text);min-height:100vh}
+
+/* ===== HEADER ===== */
+header{background:linear-gradient(135deg,#0a0f1e 0%,#0f172a 50%,#0a0f1e 100%);padding:48px 24px 40px;text-align:center;position:relative;overflow:hidden}
+header::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 25% 50%,rgba(59,130,246,.18) 0,transparent 60%),radial-gradient(ellipse at 75% 50%,rgba(139,92,246,.18) 0,transparent 60%);pointer-events:none}
+.header-tag{display:inline-block;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);border-radius:20px;padding:4px 16px;font-size:.75rem;color:#94a3b8;letter-spacing:.1em;text-transform:uppercase;margin-bottom:16px;position:relative}
+header h1{position:relative;font-size:2rem;font-weight:700;margin-bottom:8px;background:linear-gradient(90deg,#60a5fa,#a78bfa,#f472b6,#60a5fa);background-size:200% auto;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:shine 4s linear infinite}
+@keyframes shine{to{background-position:200% center}}
+header p{position:relative;color:#94a3b8;font-size:.9rem;line-height:1.6}
+.header-stats{display:flex;justify-content:center;gap:24px;margin-top:20px;position:relative}
+.stat-pill{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:20px;padding:6px 18px;font-size:.78rem;color:#cbd5e1}
+.stat-pill b{color:#fff;font-weight:700}
+
+/* ===== PROGRESS ===== */
+.prog-bar{background:#0a0f1e;padding:10px 24px;display:flex;align-items:center;gap:12px}
+.prog-bar span{color:#475569;font-size:.78rem;white-space:nowrap}
+.prog-track{flex:1;height:5px;background:#1e293b;border-radius:3px;overflow:hidden}
+.prog-fill{height:100%;background:linear-gradient(90deg,#3b82f6,#8b5cf6,#ec4899);border-radius:3px;transition:width .6s cubic-bezier(.4,0,.2,1);width:0%}
+.prog-label{color:#64748b;font-size:.78rem;white-space:nowrap}
+
+/* ===== NAV ===== */
+.nav{background:#fff;border-bottom:1px solid var(--border);display:flex;position:sticky;top:0;z-index:100;box-shadow:0 2px 12px rgba(0,0,0,.06);overflow-x:auto;scrollbar-width:none}
+.nav::-webkit-scrollbar{display:none}
+.nav-btn{flex:1;min-width:140px;padding:16px 20px;border:none;background:none;cursor:pointer;font-family:inherit;font-size:.85rem;font-weight:600;color:var(--muted);white-space:nowrap;border-bottom:3px solid transparent;transition:all .2s;display:flex;align-items:center;justify-content:center;gap:6px}
+.nav-btn:hover{background:#f8fafc;color:var(--text)}
+.nav-btn.ap{color:var(--prep);border-bottom-color:var(--prep);background:#f0f7ff}
+.nav-btn.am{color:var(--modal);border-bottom-color:var(--modal);background:#faf5ff}
+
+/* ===== SECTIONS ===== */
+.section{display:none}
+.section.active{display:block}
+.main{max-width:860px;margin:0 auto;padding:32px 20px}
+
+/* ===== HERO CARD ===== */
+.hero-card{border-radius:var(--r);padding:36px;margin-bottom:32px;color:#fff;position:relative;overflow:hidden}
+.hero-card.prep{background:var(--prep-g)}
+.hero-card.modal{background:var(--modal-g)}
+.hero-card::after{content:attr(data-bg);position:absolute;right:28px;top:50%;transform:translateY(-50%);font-size:7rem;opacity:.12;line-height:1;pointer-events:none}
+.hero-card h2{font-size:1.6rem;font-weight:700;margin-bottom:6px}
+.hero-card p{opacity:.88;font-size:.92rem;line-height:1.6}
+.hero-pill{display:inline-block;background:rgba(255,255,255,.2);border-radius:8px;padding:3px 12px;font-size:.72rem;font-weight:700;letter-spacing:.08em;margin-bottom:14px}
+
+/* ===== UNIT CARD ===== */
+.unit{background:#fff;border-radius:var(--r);overflow:hidden;margin-bottom:28px;box-shadow:var(--shadow);transition:transform .2s}
+.unit:hover{transform:translateY(-2px)}
+.unit-head{padding:22px 26px;display:flex;align-items:center;gap:16px;border-bottom:1px solid var(--border)}
+.unit-badge{width:52px;height:52px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:1.5rem;flex-shrink:0}
+.unit-badge.prep{background:linear-gradient(135deg,#dbeafe,#bfdbfe)}
+.unit-badge.modal{background:linear-gradient(135deg,#ede9fe,#ddd6fe)}
+.unit-no{font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:var(--muted);margin-bottom:2px}
+.unit-title{font-size:1.05rem;font-weight:700}
+
+/* ===== EXPLAIN ===== */
+.explain{padding:22px 26px;border-bottom:1px solid #f1f5f9}
+.explain-intro{font-size:.88rem;color:var(--muted);margin-bottom:16px;line-height:1.7}
+.word-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:10px;margin-bottom:16px}
+.chip{border-radius:10px;padding:14px 16px;border:1px solid var(--border)}
+.chip.prep{border-left:4px solid var(--prep);background:linear-gradient(135deg,#eff6ff,#f0f9ff)}
+.chip.modal{border-left:4px solid var(--modal);background:linear-gradient(135deg,#f5f3ff,#fdf4ff)}
+.chip-word{font-size:1.1rem;font-weight:700;margin-bottom:3px}
+.chip.prep .chip-word{color:var(--prep)}
+.chip.modal .chip-word{color:var(--modal)}
+.chip-jp{font-size:.78rem;color:var(--muted);margin-bottom:5px}
+.chip-ex{font-size:.76rem;color:#475569;font-style:italic;line-height:1.5}
+.examples{display:flex;flex-direction:column;gap:0}
+.ex-row{display:flex;gap:16px;padding:10px 0;border-bottom:1px dashed #f1f5f9;align-items:flex-start}
+.ex-row:last-child{border-bottom:none}
+.ex-en{flex:1;font-size:.88rem;line-height:1.6}
+.ex-en b.p{color:var(--prep);font-weight:700}
+.ex-en b.m{color:var(--modal);font-weight:700}
+.ex-jp{flex:1;font-size:.83rem;color:var(--muted);line-height:1.6}
+.tip{background:linear-gradient(135deg,#fefce8,#fef9c3);border:1px solid #fde68a;border-radius:10px;padding:12px 16px;font-size:.82rem;color:#78350f;margin-top:14px;line-height:1.6}
+
+/* ===== QUESTIONS ===== */
+.questions{padding:22px 26px}
+.q-section-title{font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:var(--muted);margin-bottom:14px;display:flex;align-items:center;gap:8px}
+.q-section-title::after{content:'';flex:1;height:1px;background:var(--border)}
+.qblock{background:#f8fafc;border-radius:10px;padding:16px;margin-bottom:10px}
+.q-label{font-size:.7rem;font-weight:700;letter-spacing:.08em;margin-bottom:6px}
+.q-label.mc{color:var(--prep)}
+.q-label.fill{color:#0891b2}
+.q-label.trans{color:var(--modal)}
+.q-text{font-size:.93rem;font-weight:500;margin-bottom:12px;line-height:1.7}
+.choices{display:flex;flex-wrap:wrap;gap:8px}
+.choice{padding:8px 20px;border-radius:8px;border:2px solid var(--border);background:#fff;cursor:pointer;font-size:.84rem;font-weight:500;font-family:inherit;transition:all .2s}
+.choice:hover:not(:disabled){border-color:#94a3b8;transform:translateY(-1px);box-shadow:0 2px 8px rgba(0,0,0,.08)}
+.choice.correct{background:#dcfce7;border-color:var(--ok);color:#065f46}
+.choice.wrong{background:#fee2e2;border-color:var(--ng);color:#991b1b}
+.choice:disabled{cursor:not-allowed}
+.input-row{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.fill-in{padding:9px 14px;border:2px solid var(--border);border-radius:8px;font-size:.9rem;font-family:inherit;width:220px;transition:border-color .2s}
+.fill-in:focus{outline:none;border-color:var(--prep)}
+.trans-in{padding:9px 14px;border:2px solid var(--border);border-radius:8px;font-size:.9rem;font-family:inherit;width:100%;max-width:440px;transition:border-color .2s}
+.trans-in:focus{outline:none;border-color:var(--modal)}
+.fill-in.correct,.trans-in.correct{border-color:var(--ok);background:#f0fdf4}
+.fill-in.wrong,.trans-in.wrong{border-color:var(--ng);background:#fef2f2}
+.btn-check{padding:9px 22px;border-radius:8px;border:none;cursor:pointer;font-size:.84rem;font-weight:600;font-family:inherit;transition:all .2s}
+.btn-check.p{background:var(--prep);color:#fff}
+.btn-check.p:hover{background:#2563eb}
+.btn-check.m{background:var(--modal);color:#fff}
+.btn-check.m:hover{background:#7c3aed}
+.feedback{margin-top:8px;padding:8px 12px;border-radius:8px;font-size:.83rem;display:none;line-height:1.5}
+.feedback.show{display:block}
+.feedback.ok{background:#dcfce7;color:#065f46}
+.feedback.ng{background:#fee2e2;color:#991b1b}
+
+/* ===== REVIEW ===== */
+.review-zone{background:linear-gradient(180deg,#fff5f5,#fff);border-top:3px solid var(--ng);padding:40px 20px}
+.review-center{max-width:860px;margin:0 auto}
+.review-top{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:14px;margin-bottom:24px}
+.review-left{display:flex;align-items:center;gap:10px}
+.review-title{font-size:1.1rem;font-weight:700}
+.rev-count{background:var(--ng);color:#fff;border-radius:20px;padding:2px 14px;font-size:.78rem;font-weight:700}
+.btn-shuffle{padding:10px 24px;border-radius:8px;border:none;background:var(--ng);color:#fff;cursor:pointer;font-size:.84rem;font-weight:600;font-family:inherit;transition:all .2s}
+.btn-shuffle:hover{background:#dc2626;transform:translateY(-1px)}
+.rev-placeholder{background:#fff;border:2px dashed #fca5a5;border-radius:12px;padding:40px;text-align:center;color:var(--muted)}
+.rev-placeholder p:first-child{font-size:.95rem;margin-bottom:6px;font-weight:500}
+.rev-placeholder p:last-child{font-size:.82rem}
+.rev-item{background:#fff;border-radius:12px;padding:20px 22px;margin-bottom:14px;box-shadow:0 2px 12px rgba(239,68,68,.1);border-left:4px solid var(--ng)}
+.rev-item.bonus{border-left-color:var(--modal)}
+.rev-item.cleared{opacity:.25;pointer-events:none;border-left-color:var(--ok);transition:opacity .5s}
+.rev-tag{font-size:.68rem;font-weight:700;letter-spacing:.08em;margin-bottom:6px}
+.rev-tag.wrong{color:var(--ng)}
+.rev-tag.bonus{color:var(--modal)}
+.rev-unit{font-size:.78rem;color:var(--muted);margin-bottom:12px;font-weight:500;padding:4px 0;border-bottom:1px dashed var(--border)}
+
+/* ===== RESPONSIVE ===== */
+@media(max-width:600px){
+header h1{font-size:1.5rem}
+.main{padding:20px 14px}
+.unit-head,.explain,.questions{padding:16px}
+.word-grid{grid-template-columns:1fr}
+.fill-in{width:150px}
+.trans-in{max-width:100%}
+.hero-card{padding:24px}
+.hero-card::after{display:none}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-tag">English Grammar</div>
+  <h1>前置詞 & 助動詞 完全マスター</h1>
+  <p>英語初心者のための丁寧でわかりやすい文法教材<br>各ユニットに練習問題つき</p>
+  <div class="header-stats">
+    <div class="stat-pill">📍 前置詞 <b>7</b> ユニット</div>
+    <div class="stat-pill">🔮 助動詞 <b>7</b> ユニット</div>
+    <div class="stat-pill">✏️ 問題 <b>56</b> 問</div>
+  </div>
+</header>
+
+<div class="prog-bar">
+  <span>進捗</span>
+  <div class="prog-track"><div class="prog-fill" id="pFill"></div></div>
+  <span class="prog-label" id="pLabel">0 / 0</span>
+</div>
+
+<div class="nav">
+  <button class="nav-btn ap" onclick="switchSec('prep',this)">📍 前置詞</button>
+  <button class="nav-btn" onclick="switchSec('modal',this)">🔮 助動詞</button>
+</div>
+
+<div id="sec-prep" class="section active"><div class="main" id="main-prep"></div></div>
+<div id="sec-modal" class="section"><div class="main" id="main-modal"></div></div>
+
+<div class="review-zone">
+  <div class="review-center">
+    <div class="review-top">
+      <div class="review-left">
+        <span style="font-size:1.4rem">🔴</span>
+        <span class="review-title">苦手問題リスト</span>
+        <span class="rev-count" id="rev-badge" style="display:none">0問</span>
+      </div>
+      <button class="btn-shuffle" id="btn-shuffle" onclick="shuffleReview()" style="display:none">🔀 シャッフルしてやり直す</button>
+    </div>
+    <div id="rev-list">
+      <div class="rev-placeholder" id="rev-ph">
+        <p>✏️ 不正解になった問題がここに自動追加されます</p>
+        <p>繰り返し練習して苦手を克服しましょう！</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+// ================================================================
+// DATA
+// ================================================================
+const D = {
+  prep: {
+    label:'前置詞', icon:'📍', cls:'prep',
+    desc:'場所・時間・方向など、名詞の前に置いて関係を表す言葉',
+    units: [
+      {
+        icon:'🏠', title:'in / on / at — 場所',
+        intro:'「どこに」を表すとき、3つの前置詞を使い分けます。空間・表面・地点がキーワードです。',
+        words:[
+          {w:'in',jp:'〜の中・空間の内側',ex:'in the room, in Japan, in a bag, in the box'},
+          {w:'on',jp:'〜の上・表面に接触',ex:'on the table, on the wall, on the bus, on the floor'},
+          {w:'at',jp:'〜で・〜に（特定の1点）',ex:'at school, at home, at the station, at the door'},
+        ],
+        examples:[
+          {en:'There is a cat <b class="p">in</b> the box.',jp:'箱の中に猫がいます。'},
+          {en:'The book is <b class="p">on</b> the desk.',jp:'本は机の上にあります。'},
+          {en:'I\'ll see you <b class="p">at</b> the station.',jp:'駅でお会いしましょう。'},
+        ],
+        tip:'💡 in = 囲まれた空間の中　on = 面に接触している　at = 特定の一点・場所。この3つをしっかり区別しよう！',
+        qs:[
+          {type:'mc',q:'「部屋の中に」→ ___ the room',choices:['on','in','at','to'],ans:1,ok:'空間・領域の中は in！「in the room」'},
+          {type:'mc',q:'「駅で待つ」→ wait ___ the station',choices:['in','on','at','by'],ans:2,ok:'特定の地点・場所は at！「at the station」'},
+          {type:'fill',q:'「壁にポスターがある」→ There is a poster ___ the wall.',ans:'on',ok:'壁の「表面」なので on。壁に貼り付いているイメージ！'},
+          {type:'trans',jp:'私は日本に住んでいます',en:'I live in Japan.'},
+        ]
+      },
+      {
+        icon:'🕐', title:'in / on / at — 時間',
+        intro:'時間を表すときも in / on / at を使います。「どのくらい長い・特定の時間か」で決まります。',
+        words:[
+          {w:'in',jp:'〜に（月・季節・年・午前午後）',ex:'in April, in summer, in 2024, in the morning'},
+          {w:'on',jp:'〜に（曜日・特定の日付）',ex:'on Monday, on my birthday, on New Year\'s Day'},
+          {w:'at',jp:'〜に（特定の時刻）',ex:'at 7:00, at noon, at midnight, at night'},
+        ],
+        examples:[
+          {en:'I was born <b class="p">in</b> April.',jp:'私は4月に生まれました。'},
+          {en:'We have a test <b class="p">on</b> Monday.',jp:'月曜日にテストがあります。'},
+          {en:'The class starts <b class="p">at</b> 9:00.',jp:'授業は9時に始まります。'},
+        ],
+        tip:'💡 覚え方：年・月・季節・午前午後 → in　曜日・日付 → on　時刻 → at。大きい単位から小さい単位の順！',
+        qs:[
+          {type:'mc',q:'「月曜日に」→ ___ Monday',choices:['in','on','at','by'],ans:1,ok:'曜日は on！「on Monday」'},
+          {type:'mc',q:'「夏に」→ ___ summer',choices:['on','in','at','for'],ans:1,ok:'季節は in！「in summer」'},
+          {type:'fill',q:'「正午に」→ ___ noon',ans:'at',ok:'特定の時刻は at。「at noon」'},
+          {type:'trans',jp:'彼女は朝に走ります',en:'She runs in the morning.'},
+        ]
+      },
+      {
+        icon:'➡️', title:'to / from — 方向と出発点',
+        intro:'「to」は向かう先、「from」は出発点・起源を表します。セットで覚えると便利です。',
+        words:[
+          {w:'to',jp:'〜へ・〜まで（目的地・方向）',ex:'go to school, fly to Tokyo, come to me'},
+          {w:'from',jp:'〜から（出発点・起源・出身）',ex:'come from Canada, a message from Tom, from 9 to 5'},
+        ],
+        examples:[
+          {en:'I walk <b class="p">to</b> school every day.',jp:'私は毎日歩いて学校に行きます。'},
+          {en:'She is <b class="p">from</b> Australia.',jp:'彼女はオーストラリア出身です。'},
+          {en:'The train goes <b class="p">from</b> Osaka <b class="p">to</b> Tokyo.',jp:'電車は大阪から東京へ行きます。'},
+        ],
+        tip:'💡 from A to B = AからBまで。「from Monday to Friday（月〜金）」のようにセットで使うことが多い！',
+        qs:[
+          {type:'mc',q:'「学校へ行く」→ go ___ school',choices:['from','at','to','in'],ans:2,ok:'目的地・方向は to！「go to school」'},
+          {type:'mc',q:'「彼はカナダ出身だ」→ He is ___ Canada.',choices:['to','at','in','from'],ans:3,ok:'出発点・出身は from！「from Canada」'},
+          {type:'fill',q:'「東京から大阪まで」→ ___ Tokyo to Osaka',ans:'from',ok:'出発点は from。from A to B の形！'},
+          {type:'trans',jp:'私は東京へ行きます',en:'I go to Tokyo.'},
+        ]
+      },
+      {
+        icon:'🎯', title:'for — 目的・期間・対象',
+        intro:'「for」はとても多用途な前置詞。目的・期間・対象など様々な場面で登場します。',
+        words:[
+          {w:'for + 目的',jp:'〜のために',ex:'study for the exam, a present for you'},
+          {w:'for + 期間',jp:'〜の間（数字と一緒に）',ex:'for 3 hours, for a week, for a long time'},
+          {w:'for + 対象',jp:'〜にとって・〜向けに',ex:'good for you, easy for me, a book for beginners'},
+        ],
+        examples:[
+          {en:'I bought this <b class="p">for</b> you.',jp:'あなたのためにこれを買いました。'},
+          {en:'I waited <b class="p">for</b> 2 hours.',jp:'2時間待ちました。'},
+          {en:'This is good <b class="p">for</b> your health.',jp:'これはあなたの健康に良いです。'},
+        ],
+        tip:'💡 「〜の間」の for は期間を表す数字と使う。「during + 特定のイベント」（during the holidays など）と混同しないように！',
+        qs:[
+          {type:'mc',q:'「あなたのために」→ ___ you',choices:['of','to','for','by'],ans:2,ok:'目的・対象は for！'},
+          {type:'mc',q:'「3時間待つ」→ wait ___ 3 hours',choices:['during','in','at','for'],ans:3,ok:'期間（数字）は for！'},
+          {type:'fill',q:'「試験のために勉強する」→ study ___ the exam',ans:'for',ok:'目的は for！「study for〜」'},
+          {type:'trans',jp:'これはあなたにとって難しいですか',en:'Is this difficult for you?'},
+        ]
+      },
+      {
+        icon:'🔗', title:'of — 所属・部分・内容',
+        intro:'「of」は日本語の「〜の」に近い前置詞。所属・部分・内容など多くの場面で使います。',
+        words:[
+          {w:'of + 所属・関係',jp:'〜の（関係・所属）',ex:'the color of the sky, a friend of mine'},
+          {w:'of + 部分',jp:'〜のうちの',ex:'one of them, most of the students, all of us'},
+          {w:'容器 + of + 中身',jp:'〜一杯・一本',ex:'a cup of tea, a glass of water, a piece of cake'},
+        ],
+        examples:[
+          {en:'Look at the color <b class="p">of</b> the sky.',jp:'空の色を見てください。'},
+          {en:'One <b class="p">of</b> my friends is a nurse.',jp:'私の友人の1人は看護師です。'},
+          {en:'Can I have a glass <b class="p">of</b> water?',jp:'水を1杯いただけますか？'},
+        ],
+        tip:'💡 "a cup of coffee"「コーヒー1杯」、"a piece of cake"「ケーキ1切れ」など、容器＋of＋中身の形をまとめて覚えよう！',
+        qs:[
+          {type:'mc',q:'「コーヒー1杯」→ a cup ___ coffee',choices:['for','to','of','from'],ans:2,ok:'容器＋of＋中身！「a cup of coffee」'},
+          {type:'mc',q:'「彼らのうちの1人」→ one ___ them',choices:['from','at','to','of'],ans:3,ok:'部分・所属は of！「one of them」'},
+          {type:'fill',q:'「空の色」→ the color ___ the sky',ans:'of',ok:'所属・関係は of！'},
+          {type:'trans',jp:'水を一杯ください',en:'Please give me a glass of water.'},
+        ]
+      },
+      {
+        icon:'🤝', title:'with / by — 手段・一緒に',
+        intro:'「with」は「一緒に」「使って」、「by」は「手段・方法」を表します。',
+        words:[
+          {w:'with',jp:'〜と一緒に・〜を使って（器具・道具）',ex:'go with friends, write with a pen, coffee with milk'},
+          {w:'by',jp:'〜によって・〜で（交通手段・方法）',ex:'by train, by email, by hand, made by AI'},
+        ],
+        examples:[
+          {en:'I went to the park <b class="p">with</b> my friends.',jp:'友達と公園に行きました。'},
+          {en:'Please write <b class="p">with</b> a pen.',jp:'ペンで書いてください。'},
+          {en:'I go to school <b class="p">by</b> bus.',jp:'バスで学校に行きます。'},
+        ],
+        tip:'💡 道具・器具は with（箸で・ペンで）。交通機関・伝達手段は by（電車で・メールで）。手で持てるかどうかが目安！',
+        qs:[
+          {type:'mc',q:'「電車で行く」→ go ___ train',choices:['with','in','at','by'],ans:3,ok:'交通機関は by！「by train」'},
+          {type:'mc',q:'「友達と一緒に」→ ___ my friends',choices:['by','to','at','with'],ans:3,ok:'一緒に・同伴は with！'},
+          {type:'fill',q:'「箸で食べる」→ eat ___ chopsticks',ans:'with',ok:'道具・器具は with！「with chopsticks」'},
+          {type:'trans',jp:'私は自転車で学校に行きます',en:'I go to school by bike.'},
+        ]
+      },
+      {
+        icon:'💬', title:'about / between / around',
+        intro:'会話でよく登場するその他の重要な前置詞です。ニュアンスを覚えましょう。',
+        words:[
+          {w:'about',jp:'〜について・〜に関して',ex:'talk about music, think about it, a book about history'},
+          {w:'between',jp:'〜の間（2者の間）',ex:'between you and me, between 9 and 5, between the two'},
+          {w:'around',jp:'〜のまわりに・〜ごろ（おおよそ）',ex:'around the world, around 3 o\'clock, sit around the table'},
+        ],
+        examples:[
+          {en:'Tell me <b class="p">about</b> yourself.',jp:'自分について話してください。'},
+          {en:'This is <b class="p">between</b> you and me.',jp:'これは私たちだけの話です。'},
+          {en:'She arrived <b class="p">around</b> 10:00.',jp:'彼女は10時ごろ到着しました。'},
+        ],
+        tip:'💡 between は2者の間、among は3者以上の間。around はおおよその時間にも使える。「around 3 o\'clock（3時ごろ）」',
+        qs:[
+          {type:'mc',q:'「音楽について話す」→ talk ___ music',choices:['with','by','for','about'],ans:3,ok:'〜について は about！「talk about〜」'},
+          {type:'mc',q:'「2人の間の秘密」→ a secret ___ us two',choices:['among','from','between','around'],ans:2,ok:'2者の間は between！'},
+          {type:'fill',q:'「世界中を旅する」→ travel ___ the world',ans:'around',ok:'まわりに・中を は around！'},
+          {type:'trans',jp:'彼は日本について本を書きました',en:'He wrote a book about Japan.'},
+        ]
+      },
+    ]
+  },
+  modal: {
+    label:'助動詞', icon:'🔮', cls:'modal',
+    desc:'動詞の前に置いて、気持ち・可能性・義務などのニュアンスを加える言葉',
+    units: [
+      {
+        icon:'💪', title:'can / can\'t — 能力と可能性',
+        intro:'「can」は「〜できる」を表す最も基本的な助動詞です。日常会話で毎日使います！',
+        words:[
+          {w:'can',jp:'〜できる（能力・可能性・許可）',ex:'I can swim. / Can you help me? / You can go.'},
+          {w:"can't",jp:'〜できない（不可能・禁止）',ex:"I can't drive. / You can't park here."},
+        ],
+        examples:[
+          {en:'She <b class="m">can</b> speak three languages.',jp:'彼女は3ヶ国語を話せます。'},
+          {en:'<b class="m">Can</b> you open the window?',jp:'窓を開けてもらえますか？'},
+          {en:'I <b class="m">can\'t</b> come today. Sorry.',jp:'今日は行けません。ごめんなさい。'},
+        ],
+        tip:'💡 can + 動詞の原形（-s や -ingはつけない）。疑問文は Can + 主語 + 動詞？ 否定は can\'t / cannot。',
+        qs:[
+          {type:'mc',q:'「私は泳げます」→ I ___ swim.',choices:["can't",'could','would','can'],ans:3,ok:'能力・可能は can！'},
+          {type:'mc',q:'「彼女は来られません」→ She ___ come.',choices:['can','must','would',"can't"],ans:3,ok:'不可能は can\'t！'},
+          {type:'fill',q:'「手伝ってもらえますか」→ ___ you help me?',ans:'Can',ok:'依頼の疑問文は Can you〜?'},
+          {type:'trans',jp:'私はピアノが弾けます',en:'I can play the piano.'},
+        ]
+      },
+      {
+        icon:'🌅', title:'will / won\'t — 未来と意志',
+        intro:'「will」で未来の出来事や自分の強い意志を表します。会話でとてもよく使われます。',
+        words:[
+          {w:'will',jp:'〜するだろう・〜するつもり（未来・意志）',ex:'It will rain. / I will help you. / She will be fine.'},
+          {w:"won't",jp:'〜しない・〜しないだろう（will not の短縮）',ex:"I won't give up. / He won't be there."},
+        ],
+        examples:[
+          {en:'It <b class="m">will</b> be sunny tomorrow.',jp:'明日は晴れるでしょう。'},
+          {en:'I <b class="m">will</b> call you back.',jp:'折り返し電話します。'},
+          {en:'She <b class="m">won\'t</b> tell anyone.',jp:'彼女は誰にも言いません。'},
+        ],
+        tip:'💡 will は主語に関わらず同じ形。be going to とほぼ同じ意味。会話では短縮形「I\'ll, you\'ll, he\'ll」がよく使われる！',
+        qs:[
+          {type:'mc',q:'「彼は来るでしょう」→ He ___ come.',choices:['would','should','can','will'],ans:3,ok:'未来・推量は will！'},
+          {type:'mc',q:'「私は諦めません」→ I ___ give up.',choices:['will',"won't","shouldn't","can't"],ans:1,ok:'否定の意志は won\'t！'},
+          {type:'fill',q:'「後で電話します」→ I ___ call you later.',ans:'will',ok:'意志・未来は will！'},
+          {type:'trans',jp:'明日は雨が降るでしょう',en:'It will rain tomorrow.'},
+        ]
+      },
+      {
+        icon:'🎩', title:'would — 丁寧な表現・仮定',
+        intro:'「would」はwillの過去形ですが、丁寧な依頼・希望・仮定の話にも使います。',
+        words:[
+          {w:'Would you〜?',jp:'〜していただけますか（丁寧な依頼・提案）',ex:"Would you help me? / Would you like coffee?"},
+          {w:"I'd like to",jp:'〜したいのですが（丁寧な希望）',ex:"I'd like to make a reservation."},
+          {w:'would + 仮定',jp:'〜するのに（現実と違う話）',ex:"I would go if I had time."},
+        ],
+        examples:[
+          {en:'<b class="m">Would</b> you like some tea?',jp:'お茶はいかがですか？'},
+          {en:'I <b class="m">\'d like to</b> reserve a table.',jp:'テーブルを予約したいのですが。'},
+          {en:'I <b class="m">would</b> travel the world if I were rich.',jp:'お金持ちなら世界旅行するのに。'},
+        ],
+        tip:'💡 Would you〜? は Can you〜? より丁寧！レストランやホテルでの会話に最適。I\'d = I would の短縮形。',
+        qs:[
+          {type:'mc',q:'「お茶はいかがですか」→ ___ you like some tea?',choices:['Will','Can','Should','Would'],ans:3,ok:'丁寧な提案は Would you like〜?'},
+          {type:'mc',q:'「予約したいのですが」→ I ___ like to make a reservation.',choices:["'ll","'d",'can','must'],ans:1,ok:"I'd = I would。丁寧な希望！"},
+          {type:'fill',q:'「ゆっくり話していただけますか」→ ___ you speak more slowly?',ans:'Would',ok:'丁寧な依頼は Would you〜?'},
+          {type:'trans',jp:'一緒に夕食はいかがですか',en:'Would you like to have dinner together?'},
+        ]
+      },
+      {
+        icon:'🌸', title:'may / might — 許可と推量',
+        intro:'「may」は許可と推量の両方に使えます。「might」はさらに不確かなニュアンスです。',
+        words:[
+          {w:'may',jp:'〜してもよい（許可）・〜かもしれない（推量50%）',ex:'You may go. / It may rain. / May I help you?'},
+          {w:'might',jp:'〜かもしれない（mayより不確か・30%程度）',ex:'He might be late. / She might not know. / It might work.'},
+        ],
+        examples:[
+          {en:'<b class="m">May</b> I use your pen?',jp:'ペンをお借りしてもいいですか？'},
+          {en:'It <b class="m">may</b> rain this afternoon.',jp:'今日の午後は雨かもしれません。'},
+          {en:'She <b class="m">might</b> not come to the party.',jp:'彼女はパーティーに来ないかもしれません。'},
+        ],
+        tip:'💡 May I〜? は「〜してもいいですか？」という最も丁寧な許可表現。Can I〜? よりフォーマルな場面で使おう！',
+        qs:[
+          {type:'mc',q:'「電話してもいいですか（丁寧）」→ ___ I call you?',choices:['Must','Should','Will','May'],ans:3,ok:'丁寧な許可の要求は May I〜?'},
+          {type:'mc',q:'「彼は遅れるかもしれない（かなり不確か）」→ He ___ be late.',choices:['must','may','will','might'],ans:3,ok:'不確かな推量は might！'},
+          {type:'fill',q:'「午後は晴れるかもしれない」→ It ___ be sunny this afternoon.',ans:'may',ok:'推量（50%程度）は may！'},
+          {type:'trans',jp:'彼女はここにいるかもしれません',en:'She may be here.'},
+        ]
+      },
+      {
+        icon:'✅', title:'should — アドバイス・義務',
+        intro:'「should」はアドバイスや軽い義務を表します。「〜すべき・〜した方がいい」です。',
+        words:[
+          {w:'should',jp:'〜すべき・〜した方がいい（アドバイス）',ex:'You should rest. / We should try. / You should know that.'},
+          {w:"shouldn't",jp:'〜すべきでない・〜しない方がいい',ex:"You shouldn't smoke. / We shouldn't be late."},
+        ],
+        examples:[
+          {en:'You <b class="m">should</b> see a doctor.',jp:'医者に行った方がいいですよ。'},
+          {en:'We <b class="m">should</b> leave early.',jp:'早めに出発すべきです。'},
+          {en:'You <b class="m">shouldn\'t</b> eat too much sugar.',jp:'砂糖を食べ過ぎない方がいいですよ。'},
+        ],
+        tip:'💡 should は must より弱い義務感。「〜すべき」だが強制ではない。友達へのアドバイスに最適！You should try this restaurant.（このレストランに行ってみて！）',
+        qs:[
+          {type:'mc',q:'「休んだ方がいい」→ You ___ rest.',choices:['will','may','can','should'],ans:3,ok:'アドバイス・義務は should！'},
+          {type:'mc',q:'「遅刻しない方がいい」→ You ___ be late.',choices:["won't","can't","may not","shouldn't"],ans:3,ok:'否定のアドバイスは shouldn\'t！'},
+          {type:'fill',q:'「もっと練習すべきです」→ You ___ practice more.',ans:'should',ok:'軽い義務・アドバイスは should！'},
+          {type:'trans',jp:'あなたはもっと水を飲んだ方がいいです',en:'You should drink more water.'},
+        ]
+      },
+      {
+        icon:'⚠️', title:'must / have to — 強い義務',
+        intro:'「must」と「have to」はどちらも「〜しなければならない」。否定形の意味の違いに注意！',
+        words:[
+          {w:'must',jp:'〜しなければならない（話し手の強い意志・規則）',ex:'You must stop. / I must finish this today.'},
+          {w:'have to',jp:'〜しなければならない（外からの義務・必要性）',ex:'I have to work. / She has to take medicine.'},
+          {w:"don't have to",jp:'〜しなくてもいい（義務がない）※mustn\'tと大違い！',ex:"You don't have to come. / He doesn't have to pay."},
+        ],
+        examples:[
+          {en:'You <b class="m">must</b> wear a mask here.',jp:'ここではマスクを着用しなければなりません。'},
+          {en:'I <b class="m">have to</b> leave by 6.',jp:'6時までに出発しなければなりません。'},
+          {en:'You <b class="m">don\'t have to</b> hurry.',jp:'急がなくてもいいですよ。'},
+        ],
+        tip:'💡 重要！mustn\'t（してはいけない・禁止）と don\'t have to（しなくていい・義務なし）は意味が全く違う！必ず区別しよう。',
+        qs:[
+          {type:'mc',q:'「ここでは静かにしなければならない」→ You ___ be quiet here.',choices:['can','should','would','must'],ans:3,ok:'強い義務・規則は must！'},
+          {type:'mc',q:'「急がなくていいよ」→ You ___ hurry.',choices:["mustn't","can't","shouldn't","don't have to"],ans:3,ok:"don't have to = 義務なし。mustn't（禁止）と混同しないで！"},
+          {type:'fill',q:'「今すぐ出発しなければならない」→ I ___ go now.',ans:'have to',ok:'外的な義務・必要性は have to！'},
+          {type:'trans',jp:'あなたは心配しなくてもいいです',en:"You don't have to worry."},
+        ]
+      },
+      {
+        icon:'🕰️', title:'could — 過去の能力・丁寧な依頼',
+        intro:'「could」は can の過去形。でも過去だけでなく、丁寧な表現や推量にも使います。',
+        words:[
+          {w:'could（過去）',jp:'〜できた（過去の能力）',ex:'I could swim when I was young. / She could speak French.'},
+          {w:'Could you〜?',jp:'〜していただけますか（Can you〜? より丁寧）',ex:"Could you repeat that? / Could you help me?"},
+          {w:'could（推量）',jp:'〜かもしれない（控えめな推量）',ex:"That could be right. / It could work."},
+        ],
+        examples:[
+          {en:'I <b class="m">could</b> run fast when I was a child.',jp:'子供のころは速く走れました。'},
+          {en:'<b class="m">Could</b> you say that again, please?',jp:'もう一度おっしゃっていただけますか？'},
+          {en:'That <b class="m">could</b> be a problem.',jp:'それは問題になるかもしれません。'},
+        ],
+        tip:'💡 Could you〜? は Can you〜? より丁寧！初対面の人やビジネスの場面では Could を使うとスマートに聞こえる。',
+        qs:[
+          {type:'mc',q:'「子供のころ木に登れた」→ I ___ climb trees as a child.',choices:['can','will','should','could'],ans:3,ok:'過去の能力は could！'},
+          {type:'mc',q:'「ゆっくり話していただけますか（丁寧）」→ ___ you speak slowly?',choices:['Can','Will','Should','Could'],ans:3,ok:'丁寧な依頼は Could you〜?'},
+          {type:'fill',q:'「それは本当かもしれない」→ That ___ be true.',ans:'could',ok:'控えめな推量も could！'},
+          {type:'trans',jp:'ドアを閉めていただけますか',en:'Could you close the door?'},
+        ]
+      },
+    ]
+  }
+};
+
+// ================================================================
+// STATE
+// ================================================================
+let totalOk = 0, totalDone = 0;
+const done = {};
+let wrongs = [];
+
+// ================================================================
+// SCORE
+// ================================================================
+function addScore(isOk) {
+  totalDone++;
+  if (isOk) totalOk++;
+  const pct = totalDone > 0 ? Math.round(totalOk / totalDone * 100) : 0;
+  document.getElementById('pFill').style.width = pct + '%';
+  document.getElementById('pLabel').textContent = `${totalOk} / ${totalDone} 正解`;
+}
+
+// ================================================================
+// WRONG LIST
+// ================================================================
+function addWrong(secKey, uIdx, qIdx) {
+  const key = `${secKey}-${uIdx}-${qIdx}`;
+  if (wrongs.find(w => w.key === key)) return;
+  wrongs.push({secKey, uIdx, qIdx, key, bonus: false});
+  renderRevItem(secKey, uIdx, qIdx, key, false);
+
+  // 類似問題 2問追加
+  const unit = D[secKey].units[uIdx];
+  let n = 0;
+  unit.qs.forEach((q, qi) => {
+    if (n >= 2 || qi === qIdx) return;
+    const bk = `bonus-${secKey}-${uIdx}-${qi}`;
+    if (wrongs.find(w => w.key === bk)) return;
+    wrongs.push({secKey, uIdx, qIdx: qi, key: bk, bonus: true});
+    renderRevItem(secKey, uIdx, qi, bk, true);
+    n++;
+  });
+  syncRevUI();
+}
+
+function removeWrong(key) {
+  wrongs = wrongs.filter(w => w.key !== key);
+  const el = document.getElementById('ri-' + key);
+  if (el) {
+    el.classList.add('cleared');
+    setTimeout(() => { if (el.parentNode) { el.remove(); syncRevUI(); } }, 1500);
+  } else syncRevUI();
+}
+
+function syncRevUI() {
+  const badge = document.getElementById('rev-badge');
+  const btn = document.getElementById('btn-shuffle');
+  const ph = document.getElementById('rev-ph');
+  const n = wrongs.length;
+  if (n > 0) {
+    badge.style.display = 'inline';
+    badge.textContent = n + '問';
+    btn.style.display = 'block';
+    if (ph) ph.style.display = 'none';
+  } else {
+    badge.style.display = 'none';
+    btn.style.display = 'none';
+    const list = document.getElementById('rev-list');
+    if (list && !list.querySelector('.rev-item:not(.cleared)')) {
+      list.innerHTML = '<div class="rev-placeholder" id="rev-ph"><p>✏️ 不正解になった問題がここに自動追加されます</p><p>繰り返し練習して苦手を克服しましょう！</p></div>';
+    }
+  }
+}
+
+function renderRevItem(secKey, uIdx, qIdx, key, isBonus) {
+  const ph = document.getElementById('rev-ph');
+  if (ph) ph.style.display = 'none';
+  const sec = D[secKey];
+  const unit = sec.units[uIdx];
+  const q = unit.qs[qIdx];
+  const rk = 'ri' + key.replace(/[-]/g, '_');
+  const isMod = secKey === 'modal';
+  const bCls = isMod ? 'm' : 'p';
+
+  const div = document.createElement('div');
+  div.className = 'rev-item' + (isBonus ? ' bonus' : '');
+  div.id = 'ri-' + key;
+
+  const tag = isBonus
+    ? '<div class="rev-tag bonus">📎 類似問題</div>'
+    : '<div class="rev-tag wrong">🔴 苦手問題</div>';
+  const uinfo = `<div class="rev-unit">${sec.icon} ${sec.label} › ${unit.icon} ${unit.title}</div>`;
+
+  let body = '';
+  if (q.type === 'mc') {
+    body = `<div class="q-label mc">選択式</div><div class="q-text">${q.q}</div><div class="choices">`;
+    q.choices.forEach((c, ci) => {
+      body += `<button class="choice" onclick="riMC('${rk}','${key}',${ci},${q.ans},'${secKey}',${uIdx},${qIdx})">${c}</button>`;
+    });
+    body += `</div><div class="feedback" id="fb-${rk}"></div>`;
+  } else if (q.type === 'fill') {
+    body = `<div class="q-label fill">穴埋め式</div><div class="q-text">${q.q}</div>
+      <div class="input-row">
+        <input class="fill-in" id="fi-${rk}" type="text" placeholder="答えを入力..." onkeydown="if(event.key==='Enter')riFill('${rk}','${key}','${esc(q.ans)}','${secKey}',${uIdx},${qIdx})">
+        <button class="btn-check ${bCls}" onclick="riFill('${rk}','${key}','${esc(q.ans)}','${secKey}',${uIdx},${qIdx})">確認</button>
+      </div><div class="feedback" id="fb-${rk}"></div>`;
+  } else {
+    body = `<div class="q-label trans">日→英 翻訳</div><div class="q-text">🇯🇵 「${q.jp}」を英語で書いてみよう</div>
+      <div class="input-row">
+        <input class="trans-in" id="fi-${rk}" type="text" placeholder="英語で答えてください..." onkeydown="if(event.key==='Enter')riTrans('${rk}','${key}','${esc(q.en)}')">
+        <button class="btn-check ${bCls}" onclick="riTrans('${rk}','${key}','${esc(q.en)}')">確認</button>
+      </div><div class="feedback" id="fb-${rk}"></div>`;
+  }
+
+  div.innerHTML = tag + uinfo + body;
+  document.getElementById('rev-list').appendChild(div);
+}
+
+function shuffleReview() {
+  const list = document.getElementById('rev-list');
+  const items = Array.from(list.querySelectorAll('.rev-item:not(.cleared)'));
+  items.sort(() => Math.random() - 0.5);
+  items.forEach(item => {
+    list.appendChild(item);
+    item.querySelectorAll('.choice').forEach(b => { b.disabled = false; b.classList.remove('correct','wrong'); });
+    item.querySelectorAll('.fill-in,.trans-in').forEach(i => { i.disabled = false; i.value = ''; i.classList.remove('correct','wrong'); });
+    item.querySelectorAll('.feedback').forEach(f => { f.className = 'feedback'; f.textContent = ''; });
+  });
+}
+
+// ================================================================
+// REVIEW ANSWER HANDLERS
+// ================================================================
+function riMC(rk, key, chosen, correct, secKey, uIdx, qIdx) {
+  const q = D[secKey].units[uIdx].qs[qIdx];
+  const btns = document.querySelectorAll(`#ri-${key} .choice`);
+  if (btns.length && btns[0].disabled) return;
+  btns.forEach((b,i) => { b.disabled = true; if (i===correct) b.classList.add('correct'); else if (i===chosen) b.classList.add('wrong'); });
+  const fb = document.getElementById('fb-'+rk);
+  if (chosen === correct) { fb.className='feedback show ok'; fb.textContent='✅ 正解！ '+(q.ok||''); removeWrong(key); }
+  else { fb.className='feedback show ng'; fb.textContent='❌ 不正解。正解: '+q.choices[correct]; }
+}
+
+function riFill(rk, key, ans, secKey, uIdx, qIdx) {
+  const input = document.getElementById('fi-'+rk);
+  if (!input || input.disabled) return;
+  const norm = s => s.toLowerCase().replace(/[.,!?'"]/g,'').trim();
+  const ok = norm(input.value) === norm(ans);
+  const fb = document.getElementById('fb-'+rk);
+  input.disabled = true;
+  if (ok) { input.classList.add('correct'); fb.className='feedback show ok'; fb.textContent='✅ 正解！'; removeWrong(key); }
+  else { input.classList.add('wrong'); fb.className='feedback show ng'; fb.textContent=`❌ 不正解。正解: ${ans}`; }
+}
+
+function riTrans(rk, key, en) {
+  const input = document.getElementById('fi-'+rk);
+  if (!input || input.disabled) return;
+  const norm = s => s.toLowerCase().replace(/[.,!?'"']/g,'').replace(/\s+/g,' ').trim();
+  const ok = norm(input.value) === norm(en);
+  const fb = document.getElementById('fb-'+rk);
+  input.disabled = true;
+  if (ok) { input.classList.add('correct'); fb.className='feedback show ok'; fb.textContent='✅ 正解！ 🇬🇧 '+en; removeWrong(key); }
+  else { input.classList.add('wrong'); fb.className='feedback show ng'; fb.textContent=`❌ 不正解。正解: ${en}`; }
+}
+
+// ================================================================
+// MAIN ANSWER HANDLERS
+// ================================================================
+function esc(s) { return s.replace(/\\/g,'\\\\').replace(/'/g,"\\'"); }
+
+function doMC(qKey, chosen, correct, secKey, uIdx, qIdx) {
+  if (done[qKey]) return;
+  done[qKey] = true;
+  const q = D[secKey].units[uIdx].qs[qIdx];
+  const btns = document.querySelectorAll(`#qq-${qKey} .choice`);
+  btns.forEach((b,i) => { b.disabled=true; if(i===correct) b.classList.add('correct'); else if(i===chosen) b.classList.add('wrong'); });
+  const fb = document.getElementById('fb-'+qKey);
+  if (chosen === correct) { fb.className='feedback show ok'; fb.textContent='✅ 正解！ '+(q.ok||''); addScore(true); }
+  else { fb.className='feedback show ng'; fb.textContent='❌ 不正解。正解: '+q.choices[correct]+'　'+(q.ok||''); addScore(false); addWrong(secKey, uIdx, qIdx); }
+}
+
+function doFill(qKey, ans, secKey, uIdx, qIdx) {
+  if (done[qKey]) return;
+  const input = document.getElementById('fi-'+qKey);
+  const norm = s => s.toLowerCase().replace(/[.,!?'"]/g,'').trim();
+  const ok = norm(input.value) === norm(ans);
+  done[qKey] = true; input.disabled = true;
+  const fb = document.getElementById('fb-'+qKey);
+  if (ok) { input.classList.add('correct'); fb.className='feedback show ok'; fb.textContent='✅ 正解！'; addScore(true); }
+  else { input.classList.add('wrong'); fb.className='feedback show ng'; fb.textContent=`❌ 不正解。正解: ${ans}`; addScore(false); addWrong(secKey, uIdx, qIdx); }
+}
+
+function doTrans(qKey, secKey, uIdx, qIdx) {
+  if (done[qKey]) return;
+  const input = document.getElementById('fi-'+qKey);
+  const q = D[secKey].units[uIdx].qs[qIdx];
+  const norm = s => s.toLowerCase().replace(/[.,!?'"']/g,'').replace(/\s+/g,' ').trim();
+  const ok = norm(input.value) === norm(q.en);
+  done[qKey] = true; input.disabled = true;
+  const fb = document.getElementById('fb-'+qKey);
+  if (ok) { input.classList.add('correct'); fb.className='feedback show ok'; fb.textContent='✅ 正解！ 🇬🇧 '+q.en; addScore(true); }
+  else { input.classList.add('wrong'); fb.className='feedback show ng'; fb.textContent=`❌ 不正解。正解: ${q.en}`; addScore(false); addWrong(secKey, uIdx, qIdx); }
+}
+
+// ================================================================
+// BUILD
+// ================================================================
+function buildSec(secKey) {
+  const sec = D[secKey];
+  const isMod = secKey === 'modal';
+  const bCls = isMod ? 'm' : 'p';
+  let html = `<div class="hero-card ${sec.cls}" data-bg="${sec.icon}">
+    <div class="hero-pill">${sec.label}</div>
+    <h2>${sec.icon} ${sec.label}を学ぼう</h2>
+    <p>${sec.desc}</p>
+  </div>`;
+
+  sec.units.forEach((unit, uIdx) => {
+    const chips = unit.words.map(w => `<div class="chip ${sec.cls}">
+      <div class="chip-word">${w.w}</div>
+      <div class="chip-jp">${w.jp}</div>
+      <div class="chip-ex">${w.ex}</div>
+    </div>`).join('');
+
+    const exs = unit.examples.map(e => `<div class="ex-row">
+      <div class="ex-en">${e.en}</div>
+      <div class="ex-jp">${e.jp}</div>
+    </div>`).join('');
+
+    const typeMap = {mc:'① 選択式',fill:'③ 穴埋め式',trans:'④ 日→英 翻訳'};
+    const typeIdx = {mc:0,fill:0,trans:0};
+    let qIdx2 = {mc:1,fill:3,trans:4};
+    let qsHtml = '';
+    unit.qs.forEach((q, qIdx) => {
+      const qKey = `${secKey}-${uIdx}-${qIdx}`;
+      const nums = ['①','②','③','④'][qIdx];
+
+      if (q.type === 'mc') {
+        const cHtml = q.choices.map((c,ci) =>
+          `<button class="choice" onclick="doMC('${qKey}',${ci},${q.ans},'${secKey}',${uIdx},${qIdx})">${c}</button>`
+        ).join('');
+        qsHtml += `<div class="qblock" id="qq-${qKey}">
+          <div class="q-label mc">${nums} 選択式</div>
+          <div class="q-text">${q.q}</div>
+          <div class="choices">${cHtml}</div>
+          <div class="feedback" id="fb-${qKey}"></div>
+        </div>`;
+      } else if (q.type === 'fill') {
+        qsHtml += `<div class="qblock" id="qq-${qKey}">
+          <div class="q-label fill">${nums} 穴埋め式</div>
+          <div class="q-text">${q.q}</div>
+          <div class="input-row">
+            <input class="fill-in" id="fi-${qKey}" type="text" placeholder="答えを入力..." onkeydown="if(event.key==='Enter')doFill('${qKey}','${esc(q.ans)}','${secKey}',${uIdx},${qIdx})">
+            <button class="btn-check ${bCls}" onclick="doFill('${qKey}','${esc(q.ans)}','${secKey}',${uIdx},${qIdx})">確認</button>
+          </div>
+          <div class="feedback" id="fb-${qKey}"></div>
+        </div>`;
+      } else {
+        qsHtml += `<div class="qblock" id="qq-${qKey}">
+          <div class="q-label trans">${nums} 日→英 翻訳</div>
+          <div class="q-text">🇯🇵 「${q.jp}」を英語で書いてみよう</div>
+          <div class="input-row">
+            <input class="trans-in" id="fi-${qKey}" type="text" placeholder="英語で答えてください..." onkeydown="if(event.key==='Enter')doTrans('${qKey}','${secKey}',${uIdx},${qIdx})">
+            <button class="btn-check ${bCls}" onclick="doTrans('${qKey}','${secKey}',${uIdx},${qIdx})">確認</button>
+          </div>
+          <div class="feedback" id="fb-${qKey}"></div>
+        </div>`;
+      }
+    });
+
+    html += `<div class="unit">
+      <div class="unit-head">
+        <div class="unit-badge ${sec.cls}">${unit.icon}</div>
+        <div>
+          <div class="unit-no">Unit ${uIdx + 1}</div>
+          <div class="unit-title">${unit.title}</div>
+        </div>
+      </div>
+      <div class="explain">
+        <div class="explain-intro">${unit.intro}</div>
+        <div class="word-grid">${chips}</div>
+        <div class="examples">${exs}</div>
+        <div class="tip">${unit.tip}</div>
+      </div>
+      <div class="questions">
+        <div class="q-section-title">✏️ 練習問題</div>
+        ${qsHtml}
+      </div>
+    </div>`;
+  });
+
+  document.getElementById('main-' + secKey).innerHTML = html;
+}
+
+// ================================================================
+// NAV
+// ================================================================
+const built = new Set();
+function switchSec(secKey, btn) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('ap','am'));
+  document.getElementById('sec-' + secKey).classList.add('active');
+  btn.classList.add(secKey === 'prep' ? 'ap' : 'am');
+  if (!built.has(secKey)) { buildSec(secKey); built.add(secKey); }
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+buildSec('prep');
+built.add('prep');
+</script>
+</body>
+</html>
