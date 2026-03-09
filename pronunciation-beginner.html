@@ -53,6 +53,13 @@ header p{font-size:.95rem;color:#bfdbfe;margin-top:6px}
 .sound-hint{font-size:.78rem;color:#64748b;margin-top:4px;line-height:1.4}
 .sound-jp{font-size:.82rem;color:#7c3aed;margin-top:4px;font-weight:600}
 
+/* 口の形SVGイメージ */
+.mouth-img{display:block;width:88px;height:62px;margin:0 auto 6px}
+.mouth-img svg{width:100%;height:100%}
+.cross-view{background:#f0f6ff;border:1px solid #bfdbfe;border-radius:12px;padding:14px;margin:14px 0;text-align:center}
+.cross-view svg{max-width:100%;width:100%;height:auto;display:block;margin:0 auto}
+.cross-view figcaption{font-size:.8rem;color:#374151;margin-top:8px;font-weight:600;text-align:center}
+
 /* 口の形ガイド */
 .mouth-guide{background:#fefce8;border:1px solid #fde68a;border-radius:10px;padding:14px 16px;margin-top:10px}
 .mouth-guide h4{font-size:.85rem;font-weight:700;color:#92400e;margin-bottom:8px;display:flex;align-items:center;gap:6px}
@@ -501,6 +508,69 @@ header p{font-size:.95rem;color:#bfdbfe;margin-top:6px}
       </div>
     </div>
 
+    <!-- R/L 断面図 -->
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px">
+      <div class="cross-view">
+        <figcaption>🔴 /r/ の舌の断面図（横から）</figcaption>
+        <svg viewBox="0 0 260 130" xmlns="http://www.w3.org/2000/svg">
+          <rect width="260" height="130" fill="#f0f6ff" rx="8"/>
+          <!-- 口蓋（上あご）-->
+          <path d="M52,44 Q85,30 130,32 Q175,36 220,55 L220,64 Q175,45 130,41 Q85,39 52,54Z" fill="#fcd5d5" stroke="#d06060" stroke-width="1.2"/>
+          <!-- 上の歯 -->
+          <rect x="30" y="24" width="20" height="32" rx="4" fill="#f5f2e8" stroke="#bbb" stroke-width="1"/>
+          <!-- 下の歯 -->
+          <rect x="30" y="78" width="20" height="26" rx="4" fill="#f5f2e8" stroke="#bbb" stroke-width="1"/>
+          <!-- 顎の底 -->
+          <path d="M50,104 Q130,120 220,112" fill="none" stroke="#d06060" stroke-width="2" stroke-linecap="round"/>
+          <!-- 喉の後ろ -->
+          <line x1="220" y1="62" x2="220" y2="112" stroke="#d06060" stroke-width="2"/>
+          <!-- 舌の体 -->
+          <path d="M50,104 C75,94 108,80 148,68 C178,59 202,60 218,70 C225,76 226,96 220,112 Z" fill="#e06070" stroke="#c04055" stroke-width="1.2" fill-opacity="0.9"/>
+          <!-- 舌先（丸めて後ろへ）-->
+          <path d="M112,66 C126,50 146,42 158,48 C165,53 158,64 146,68 Z" fill="#e06070" stroke="#c04055" stroke-width="1"/>
+          <!-- 舌先と口蓋の間のギャップを示す矢印ラベル -->
+          <text x="162" y="40" font-size="9" fill="#dc2626" font-family="sans-serif" font-weight="bold">↑触れない！</text>
+          <!-- 空気の流れ（矢印） -->
+          <path d="M210,46 Q165,40 120,38 Q95,37 72,38" fill="none" stroke="#2563eb" stroke-width="2" stroke-dasharray="5,3"/>
+          <polygon points="62,38 76,33 76,43" fill="#2563eb"/>
+          <!-- ラベル -->
+          <text x="130" y="92" font-size="11" fill="#fff" font-family="sans-serif" font-weight="bold" text-anchor="middle">舌</text>
+          <text x="60" y="125" font-size="9.5" fill="#1e293b" font-family="sans-serif">舌先を丸めて後ろへ浮かせる</text>
+          <text x="195" y="50" font-size="8.5" fill="#2563eb" font-family="sans-serif">空気→</text>
+        </svg>
+      </div>
+      <div class="cross-view">
+        <figcaption>🔵 /l/ の舌の断面図（横から）</figcaption>
+        <svg viewBox="0 0 260 130" xmlns="http://www.w3.org/2000/svg">
+          <rect width="260" height="130" fill="#eff6ff" rx="8"/>
+          <!-- 口蓋 -->
+          <path d="M52,44 Q85,30 130,32 Q175,36 220,55 L220,64 Q175,45 130,41 Q85,39 52,54Z" fill="#fcd5d5" stroke="#d06060" stroke-width="1.2"/>
+          <!-- 上の歯 -->
+          <rect x="30" y="24" width="20" height="32" rx="4" fill="#f5f2e8" stroke="#bbb" stroke-width="1"/>
+          <!-- 下の歯 -->
+          <rect x="30" y="78" width="20" height="26" rx="4" fill="#f5f2e8" stroke="#bbb" stroke-width="1"/>
+          <!-- 顎の底 -->
+          <path d="M50,104 Q130,120 220,112" fill="none" stroke="#d06060" stroke-width="2" stroke-linecap="round"/>
+          <!-- 喉の後ろ -->
+          <line x1="220" y1="62" x2="220" y2="112" stroke="#d06060" stroke-width="2"/>
+          <!-- 舌の体 -->
+          <path d="M50,104 C72,96 75,80 72,64 C70,55 64,47 62,42 C65,38 72,36 78,38 C80,40 76,50 76,60 C78,75 82,92 90,104 Z" fill="#e06070" stroke="#c04055" stroke-width="1.2" fill-opacity="0.9"/>
+          <!-- 舌の残り（後ろ） -->
+          <path d="M76,60 C100,55 140,60 175,68 C200,74 215,88 220,112 L90,104 C82,92 78,75 76,60Z" fill="#e06070" stroke="#c04055" stroke-width="1" fill-opacity="0.9"/>
+          <!-- タッチポイント（歯茎） -->
+          <circle cx="66" cy="41" r="6" fill="#2563eb" fill-opacity="0.8"/>
+          <text x="72" y="32" font-size="9" fill="#1d4ed8" font-family="sans-serif" font-weight="bold">歯茎にタッチ!</text>
+          <!-- 空気は両側へ -->
+          <path d="M66,41 Q55,36 42,30" fill="none" stroke="#2563eb" stroke-width="1.8" stroke-dasharray="4,3"/>
+          <polygon points="35,28 46,25 46,34" fill="#2563eb"/>
+          <text x="38" y="24" font-size="8" fill="#2563eb" font-family="sans-serif">両側へ→</text>
+          <!-- ラベル -->
+          <text x="145" y="95" font-size="11" fill="#fff" font-family="sans-serif" font-weight="bold" text-anchor="middle">舌</text>
+          <text x="60" y="125" font-size="9.5" fill="#1e293b" font-family="sans-serif">舌先を歯茎の裏につける</text>
+        </svg>
+      </div>
+    </div>
+
     <div class="card-title" style="margin-top:8px;font-size:.95rem">ミニマルペア練習（クリックして聞き比べ）</div>
     <div id="rl-pairs"></div>
   </div>
@@ -559,6 +629,39 @@ header p{font-size:.95rem;color:#bfdbfe;margin-top:6px}
       </div>
     </div>
 
+    <!-- TH 断面図 -->
+    <div class="cross-view" style="max-width:400px;margin:14px auto">
+      <figcaption>👅 TH音の舌の断面図（横から）— 舌先を歯の間に挟む</figcaption>
+      <svg viewBox="0 0 280 130" xmlns="http://www.w3.org/2000/svg">
+        <rect width="280" height="130" fill="#f0fdf4" rx="8"/>
+        <!-- 口蓋 -->
+        <path d="M65,44 Q100,30 148,32 Q192,36 235,55 L235,64 Q192,45 148,41 Q100,39 65,54Z" fill="#fcd5d5" stroke="#d06060" stroke-width="1.2"/>
+        <!-- 上の歯（前へ）-->
+        <rect x="38" y="22" width="24" height="34" rx="4" fill="#f5f2e8" stroke="#bbb" stroke-width="1"/>
+        <!-- 下の歯 -->
+        <rect x="38" y="78" width="24" height="28" rx="4" fill="#f5f2e8" stroke="#bbb" stroke-width="1"/>
+        <!-- 顎の底 -->
+        <path d="M62,106 Q145,122 235,114" fill="none" stroke="#d06060" stroke-width="2" stroke-linecap="round"/>
+        <!-- 喉の後ろ -->
+        <line x1="235" y1="62" x2="235" y2="114" stroke="#d06060" stroke-width="2"/>
+        <!-- 舌の体 -->
+        <path d="M62,106 C80,100 90,88 95,74 C98,64 96,60 100,58 C115,53 145,56 178,65 C205,72 222,88 235,114 Z" fill="#e06070" stroke="#c04055" stroke-width="1.2" fill-opacity="0.9"/>
+        <!-- 舌先（歯と歯の間に） -->
+        <path d="M10,55 Q25,50 38,52 L62,57 Q62,66 38,68 Q24,68 10,64 Z" fill="#e55060" stroke="#c04055" stroke-width="1.3"/>
+        <!-- 空気の隙間（舌の上） -->
+        <rect x="10" y="50" width="30" height="5" rx="2" fill="#bfdbfe" fill-opacity="0.8" stroke="#2563eb" stroke-width="0.8"/>
+        <!-- 空気矢印 -->
+        <path d="M10,52 L2,52" fill="none" stroke="#2563eb" stroke-width="2"/>
+        <polygon points="-4,52 6,47 6,57" fill="#2563eb"/>
+        <!-- ラベル -->
+        <text x="22" y="44" font-size="9" fill="#dc2626" font-family="sans-serif" font-weight="bold">舌先が歯の外へ!</text>
+        <text x="2" y="44" font-size="8" fill="#2563eb" font-family="sans-serif">← 空気</text>
+        <text x="155" y="95" font-size="11" fill="#fff" font-family="sans-serif" font-weight="bold" text-anchor="middle">舌</text>
+        <text x="90" y="126" font-size="9.5" fill="#1e293b" font-family="sans-serif" text-anchor="middle">舌先を上下の歯の間に挟む</text>
+        <text x="210" y="126" font-size="9.5" fill="#2563eb" font-family="sans-serif" text-anchor="middle">空気はスーッと流れる</text>
+      </svg>
+    </div>
+
     <div id="th-pairs"></div>
   </div>
 
@@ -602,6 +705,33 @@ header p{font-size:.95rem;color:#bfdbfe;margin-top:6px}
           </div>
         </div>
       </div>
+    </div>
+    <!-- F/V 断面図 -->
+    <div class="cross-view" style="max-width:400px;margin:10px auto 0">
+      <figcaption>🦷 F・V音の口の断面図（横から）— 上の歯を下唇に当てる</figcaption>
+      <svg viewBox="0 0 280 120" xmlns="http://www.w3.org/2000/svg">
+        <rect width="280" height="120" fill="#fffbeb" rx="8"/>
+        <!-- 口蓋 -->
+        <path d="M70,42 Q110,28 155,30 Q200,34 240,54 L240,62 Q200,44 155,40 Q110,36 70,52Z" fill="#fcd5d5" stroke="#d06060" stroke-width="1.2"/>
+        <!-- 上の歯（くっきり） -->
+        <rect x="42" y="20" width="26" height="34" rx="4" fill="#f5f2e8" stroke="#bbb" stroke-width="1.2"/>
+        <!-- 下唇（上歯の裏に触れている） -->
+        <path d="M5,72 Q20,60 42,55 Q50,53 65,56 Q70,60 70,66 Q58,72 42,76 Q20,80 5,76 Z" fill="#e88888" stroke="#c06060" stroke-width="1.2"/>
+        <!-- 上歯が下唇に当たっているポイント -->
+        <line x1="44" y1="54" x2="44" y2="60" stroke="#dc2626" stroke-width="2.5" stroke-linecap="round"/>
+        <circle cx="44" cy="57" r="4" fill="#dc2626" fill-opacity="0.8"/>
+        <!-- 空気の流れ（歯と唇の隙間から） -->
+        <path d="M44,50 Q30,44 15,40" fill="none" stroke="#2563eb" stroke-width="2" stroke-dasharray="5,3"/>
+        <polygon points="8,38 20,35 20,44" fill="#2563eb"/>
+        <!-- 舌は後ろにある -->
+        <path d="M68,100 C90,95 130,88 165,82 C195,77 220,80 240,92 L240,108 L68,108 Z" fill="#e06070" stroke="#c04055" stroke-width="1" fill-opacity="0.7"/>
+        <!-- ラベル -->
+        <text x="50" y="44" font-size="9" fill="#1e293b" font-family="sans-serif" font-weight="bold">上の歯</text>
+        <text x="5" y="92" font-size="9" fill="#1e293b" font-family="sans-serif">下唇</text>
+        <text x="52" y="64" font-size="8.5" fill="#dc2626" font-family="sans-serif">歯が当たる</text>
+        <text x="2" y="34" font-size="8.5" fill="#2563eb" font-family="sans-serif">← 空気フーッ</text>
+        <text x="165" y="100" font-size="9" fill="#fff" font-family="sans-serif" text-anchor="middle">舌</text>
+      </svg>
     </div>
   </div>
 
@@ -870,6 +1000,51 @@ const speedPracticeWords = [
   {w:'congratulations',ipa:'/kənˌɡrætʃəˈleɪʃənz/',jp:'おめでとう'},
 ];
 
+// ===================== 口の形SVGデータ =====================
+const MSVG = {
+  // 広いスマイル・薄い開口 /iː/
+  S:`<svg viewBox="0 0 100 68" xmlns="http://www.w3.org/2000/svg"><ellipse cx="50" cy="38" rx="44" ry="25" fill="#fde4e4"/><path d="M6,40 C18,26 36,23 50,26 C64,23 82,26 94,40" fill="#d07070"/><path d="M6,40 C18,53 36,57 50,58 C64,57 82,53 94,40" fill="#c05858"/><ellipse cx="50" cy="40" rx="38" ry="4" fill="#160303"/><rect x="13" y="36" width="74" height="5" rx="2" fill="#f5f2e8"/><rect x="13" y="40" width="74" height="3" rx="1" fill="#e8e5d5"/></svg>`,
+  // 横広・中程度開口 /æ/
+  WH:`<svg viewBox="0 0 100 68" xmlns="http://www.w3.org/2000/svg"><ellipse cx="50" cy="38" rx="44" ry="27" fill="#fde4e4"/><path d="M8,43 C22,30 38,27 50,29 C62,27 78,30 92,43" fill="#d07070"/><path d="M8,43 C22,64 38,68 50,68 C62,68 78,64 92,43" fill="#c05858"/><ellipse cx="50" cy="51" rx="34" ry="16" fill="#160303"/><rect x="17" y="33" width="66" height="7" rx="3" fill="#f5f2e8"/><rect x="19" y="57" width="62" height="7" rx="3" fill="#e8e5d5"/></svg>`,
+  // 縦広・大きく開口 /ɑ/（あくび）
+  OT:`<svg viewBox="0 0 100 68" xmlns="http://www.w3.org/2000/svg"><ellipse cx="50" cy="36" rx="44" ry="27" fill="#fde4e4"/><path d="M14,40 C26,24 40,20 50,22 C60,20 74,24 86,40" fill="#d07070"/><path d="M14,40 C26,65 40,68 50,68 C60,68 74,65 86,40" fill="#c05858"/><ellipse cx="50" cy="50" rx="28" ry="22" fill="#160303"/><rect x="23" y="26" width="54" height="8" rx="3" fill="#f5f2e8"/><rect x="23" y="60" width="54" height="7" rx="3" fill="#e8e5d5"/><ellipse cx="50" cy="64" rx="18" ry="4" fill="#e55060"/></svg>`,
+  // 小さめ・リラックス /ɪ/
+  SR:`<svg viewBox="0 0 100 68" xmlns="http://www.w3.org/2000/svg"><ellipse cx="50" cy="38" rx="44" ry="26" fill="#fde4e4"/><path d="M10,43 C24,34 38,31 50,33 C62,31 76,34 90,43" fill="#d07070"/><path d="M10,43 C24,56 38,59 50,60 C62,59 76,56 90,43" fill="#c05858"/><ellipse cx="50" cy="46" rx="30" ry="9" fill="#160303"/></svg>`,
+  // 中程度開口 /ɛ/ /ʌ/
+  MO:`<svg viewBox="0 0 100 68" xmlns="http://www.w3.org/2000/svg"><ellipse cx="50" cy="38" rx="44" ry="26" fill="#fde4e4"/><path d="M9,43 C22,32 38,28 50,30 C62,28 78,32 91,43" fill="#d07070"/><path d="M9,43 C22,61 38,65 50,65 C62,65 78,61 91,43" fill="#c05858"/><ellipse cx="50" cy="49" rx="32" ry="13" fill="#160303"/><rect x="18" y="33" width="64" height="6" rx="2.5" fill="#f5f2e8"/><rect x="20" y="55" width="60" height="6" rx="2.5" fill="#e8e5d5"/></svg>`,
+  // 丸めた唇・小さいO /uː/ /w/
+  RO:`<svg viewBox="0 0 100 68" xmlns="http://www.w3.org/2000/svg"><ellipse cx="50" cy="36" rx="44" ry="26" fill="#fde4e4"/><ellipse cx="50" cy="40" rx="24" ry="22" fill="#d07878"/><ellipse cx="50" cy="40" rx="15" ry="16" fill="#160303"/><ellipse cx="50" cy="40" rx="24" ry="22" fill="none" stroke="#a04040" stroke-width="2.5"/></svg>`,
+  // やや丸めた唇 /r/ /oʊ/
+  RPO:`<svg viewBox="0 0 100 68" xmlns="http://www.w3.org/2000/svg"><ellipse cx="50" cy="36" rx="44" ry="26" fill="#fde4e4"/><path d="M20,42 C28,26 40,22 50,23 C60,22 72,26 80,42 C72,58 60,64 50,64 C40,64 28,58 20,42Z" fill="#d07878"/><ellipse cx="50" cy="42" rx="20" ry="17" fill="#160303"/></svg>`,
+  // 舌が歯の間に /θ/ /ð/
+  TH:`<svg viewBox="0 0 100 68" xmlns="http://www.w3.org/2000/svg"><ellipse cx="50" cy="38" rx="44" ry="26" fill="#fde4e4"/><path d="M9,43 C22,32 38,28 50,30 C62,28 78,32 91,43" fill="#d07070"/><path d="M9,43 C22,61 38,65 50,65 C62,65 78,61 91,43" fill="#c05858"/><ellipse cx="50" cy="48" rx="32" ry="12" fill="#160303"/><rect x="18" y="33" width="64" height="7" rx="3" fill="#f5f2e8"/><rect x="20" y="53" width="60" height="7" rx="3" fill="#e8e5d5"/><rect x="22" y="38" width="56" height="9" rx="3" fill="#e55060"/></svg>`,
+  // 上歯が下唇に触れる /f/ /v/
+  FV:`<svg viewBox="0 0 100 68" xmlns="http://www.w3.org/2000/svg"><ellipse cx="50" cy="38" rx="44" ry="26" fill="#fde4e4"/><path d="M9,42 C22,30 38,27 50,29 C62,27 78,30 91,42" fill="#d07070"/><path d="M9,42 C22,56 38,60 50,61 C62,60 78,56 91,42" fill="#c05858"/><rect x="18" y="32" width="64" height="7" rx="3" fill="#f5f2e8"/><rect x="16" y="40" width="68" height="8" rx="3" fill="#fbd5d5" stroke="#d07070" stroke-width="1"/></svg>`,
+  // 唇を閉じる /m/ /p/ /b/
+  CL:`<svg viewBox="0 0 100 68" xmlns="http://www.w3.org/2000/svg"><ellipse cx="50" cy="38" rx="44" ry="26" fill="#fde4e4"/><path d="M8,43 C22,32 38,30 50,31 C62,30 78,32 92,43" fill="#d07070"/><path d="M8,43 C22,55 38,58 50,58 C62,58 78,55 92,43" fill="#c05858"/><line x1="8" y1="43" x2="92" y2="43" stroke="#b05050" stroke-width="2"/></svg>`,
+  // 歯がほぼ閉じる /s/ /z/ /t/ /d/ /n/
+  NT:`<svg viewBox="0 0 100 68" xmlns="http://www.w3.org/2000/svg"><ellipse cx="50" cy="38" rx="44" ry="26" fill="#fde4e4"/><path d="M9,43 C22,33 38,31 50,32 C62,31 78,33 91,43" fill="#d07070"/><path d="M9,43 C22,55 38,58 50,59 C62,58 78,55 91,43" fill="#c05858"/><ellipse cx="50" cy="46" rx="30" ry="7" fill="#160303"/><rect x="20" y="36" width="60" height="5" rx="2" fill="#f5f2e8"/><rect x="20" y="44" width="60" height="5" rx="2" fill="#e8e5d5"/></svg>`,
+  // 舌先が上に見える /l/
+  LT:`<svg viewBox="0 0 100 68" xmlns="http://www.w3.org/2000/svg"><ellipse cx="50" cy="38" rx="44" ry="26" fill="#fde4e4"/><path d="M9,43 C22,32 38,28 50,30 C62,28 78,32 91,43" fill="#d07070"/><path d="M9,43 C22,61 38,65 50,65 C62,65 78,61 91,43" fill="#c05858"/><ellipse cx="50" cy="48" rx="32" ry="13" fill="#160303"/><rect x="18" y="33" width="64" height="6" rx="2.5" fill="#f5f2e8"/><rect x="29" y="36" width="42" height="8" rx="4" fill="#e55060"/></svg>`,
+};
+function getMouthSVG(sym) {
+  const c = sym.replace(/[/ˈˌ]/g,'');
+  if(c.includes('iː')||c.includes('i:')) return MSVG.S;
+  if(c.includes('æ')) return MSVG.WH;
+  if(c.includes('ɑ')||c.includes('ɒ')) return MSVG.OT;
+  if(c.includes('ɪ')) return MSVG.SR;
+  if(c.includes('uː')||c.includes('u:')||c.includes('w')||c==='w') return MSVG.RO;
+  if(c.includes('r')||c.includes('oʊ')) return MSVG.RPO;
+  if(c.includes('θ')||c.includes('ð')) return MSVG.TH;
+  if(c.includes('f')||c.includes('v')) return MSVG.FV;
+  if(c.includes('m')||c.includes('p')||c.includes('b')) return MSVG.CL;
+  if(c.includes('s')||c.includes('z')||c.includes('t')||c.includes('d')||c.includes('n')||c.includes('h')) return MSVG.NT;
+  if(c.includes('l')) return MSVG.LT;
+  if(c.includes('ɛ')||c.includes('ʌ')||c.includes('ʃ')||c.includes('ʒ')||c.includes('k')||c.includes('g')||c.includes('j')) return MSVG.MO;
+  if(c.includes('eɪ')||c.includes('aɪ')||c.includes('aʊ')||c.includes('ɔɪ')) return MSVG.WH;
+  return MSVG.MO;
+}
+
 // ===================== 状態 =====================
 let currentSpeed = 0.8;
 
@@ -908,6 +1083,7 @@ function buildSoundGrid(data, targetId) {
   if (!container) return;
   container.innerHTML = data.map(d => `
     <div class="sound-card" onclick="speak('${d.word}', ${currentSpeed})">
+      <div class="mouth-img">${getMouthSVG(d.sym)}</div>
       <div class="sound-symbol">${d.sym}</div>
       <div class="sound-word">${d.word}</div>
       <div class="sound-jp">${d.jp}</div>
