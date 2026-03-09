@@ -1,0 +1,1067 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>英語発音入門 - 初心者向けステップアップ</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Noto Sans JP',sans-serif;background:#f0f4f8;color:#1e293b;min-height:100vh}
+header{background:linear-gradient(135deg,#1e3a5f,#2563eb);color:#fff;padding:24px;text-align:center}
+header h1{font-size:1.9rem;font-weight:700;letter-spacing:.05em}
+header p{font-size:.95rem;color:#bfdbfe;margin-top:6px}
+
+.nav-tabs{display:flex;overflow-x:auto;background:#fff;border-bottom:3px solid #e2e8f0;scrollbar-width:none}
+.nav-tabs::-webkit-scrollbar{display:none}
+.nav-tab{flex:1;min-width:130px;padding:14px 8px;text-align:center;cursor:pointer;font-size:.8rem;font-weight:600;border:none;background:none;transition:all .2s;border-bottom:4px solid transparent;color:#64748b;white-space:nowrap}
+.nav-tab:hover{background:#f8fafc}
+.nav-tab.active{color:#fff;border-bottom-color:transparent}
+.nav-tab[data-sec="step0"].active{background:#6366f1}
+.nav-tab[data-sec="step1"].active{background:#2563eb}
+.nav-tab[data-sec="step2"].active{background:#0891b2}
+.nav-tab[data-sec="step3"].active{background:#059669}
+.nav-tab[data-sec="step4"].active{background:#d97706}
+.nav-tab[data-sec="step5"].active{background:#dc2626}
+
+.section{display:none;padding:24px;max-width:980px;margin:0 auto}
+.section.active{display:block}
+
+.card{background:#fff;border-radius:14px;padding:24px;margin-bottom:22px;box-shadow:0 2px 8px rgba(0,0,0,.07)}
+.card-title{font-size:1.15rem;font-weight:700;margin-bottom:18px;display:flex;align-items:center;gap:10px}
+.tag{font-size:.7rem;padding:3px 10px;border-radius:20px;color:#fff;font-weight:700}
+.tag-blue{background:#2563eb}
+.tag-teal{background:#0891b2}
+.tag-green{background:#059669}
+.tag-amber{background:#d97706}
+.tag-red{background:#dc2626}
+.tag-purple{background:#7c3aed}
+.tag-indigo{background:#6366f1}
+
+/* 概念説明ボックス */
+.concept-box{background:#eff6ff;border-left:5px solid #2563eb;border-radius:0 10px 10px 0;padding:14px 18px;margin-bottom:16px}
+.concept-box h3{font-size:.95rem;font-weight:700;color:#1d4ed8;margin-bottom:6px}
+.concept-box p{font-size:.88rem;color:#374151;line-height:1.7}
+
+/* 音カード */
+.sound-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:14px;margin-bottom:18px}
+.sound-card{background:#f8fafc;border:2px solid #e2e8f0;border-radius:12px;padding:16px;text-align:center;cursor:pointer;transition:all .2s}
+.sound-card:hover{border-color:#2563eb;background:#eff6ff;transform:translateY(-2px);box-shadow:0 4px 12px rgba(37,99,235,.15)}
+.sound-card.playing{border-color:#059669;background:#f0fdf4}
+.sound-symbol{font-size:2rem;font-weight:700;color:#1d4ed8;font-family:'Courier New',monospace}
+.sound-word{font-size:.9rem;font-weight:600;margin-top:6px;color:#374151}
+.sound-hint{font-size:.78rem;color:#64748b;margin-top:4px;line-height:1.4}
+.sound-jp{font-size:.82rem;color:#7c3aed;margin-top:4px;font-weight:600}
+
+/* 口の形ガイド */
+.mouth-guide{background:#fefce8;border:1px solid #fde68a;border-radius:10px;padding:14px 16px;margin-top:10px}
+.mouth-guide h4{font-size:.85rem;font-weight:700;color:#92400e;margin-bottom:8px;display:flex;align-items:center;gap:6px}
+.mouth-guide ul{list-style:none;padding:0}
+.mouth-guide ul li{font-size:.83rem;color:#78350f;padding:3px 0;padding-left:18px;position:relative;line-height:1.6}
+.mouth-guide ul li::before{content:"👄";position:absolute;left:0;font-size:.75rem}
+
+/* ステップ説明 */
+.step-box{background:#fff;border-radius:12px;border:1px solid #e2e8f0;overflow:hidden;margin-bottom:16px}
+.step-header{background:#1e3a5f;color:#fff;padding:10px 18px;font-size:.9rem;font-weight:700;display:flex;align-items:center;gap:8px}
+.step-num{background:#2563eb;color:#fff;width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.8rem;font-weight:700;flex-shrink:0}
+.step-body{padding:16px 18px}
+.step-body p{font-size:.88rem;color:#374151;line-height:1.7;margin-bottom:8px}
+
+/* 比較テーブル */
+.compare-table{width:100%;border-collapse:collapse;font-size:.87rem;margin-top:10px}
+.compare-table th{background:#1e3a5f;color:#fff;padding:10px 14px;text-align:left}
+.compare-table td{padding:10px 14px;border-bottom:1px solid #e2e8f0}
+.compare-table tr:nth-child(even) td{background:#f8fafc}
+.compare-table .ipa{font-family:'Courier New',monospace;font-weight:700;color:#2563eb;font-size:1rem}
+.compare-table .word-en{font-weight:600;color:#1e293b}
+.compare-table .word-jp{color:#7c3aed;font-size:.82rem}
+
+/* ミニマルペア */
+.minimal-pair{display:flex;align-items:center;gap:12px;background:#f8fafc;border-radius:10px;padding:14px 16px;margin-bottom:10px}
+.mp-word{flex:1;text-align:center}
+.mp-word .en{font-size:1.3rem;font-weight:700;color:#1e293b}
+.mp-word .ipa{font-size:.85rem;color:#2563eb;font-family:'Courier New',monospace}
+.mp-word .jp{font-size:.8rem;color:#64748b;margin-top:2px}
+.mp-btn{background:#2563eb;color:#fff;border:none;border-radius:8px;padding:8px 14px;cursor:pointer;font-size:.85rem;font-weight:600;transition:background .2s;white-space:nowrap}
+.mp-btn:hover{background:#1d4ed8}
+.mp-vs{font-size:1.1rem;font-weight:700;color:#94a3b8}
+
+/* 練習ボタン */
+.play-btn{background:linear-gradient(135deg,#2563eb,#3b82f6);color:#fff;border:none;border-radius:8px;padding:8px 18px;cursor:pointer;font-size:.85rem;font-weight:600;transition:all .2s;display:inline-flex;align-items:center;gap:6px}
+.play-btn:hover{opacity:.9;transform:scale(1.02)}
+.play-btn.green{background:linear-gradient(135deg,#059669,#10b981)}
+.play-btn.purple{background:linear-gradient(135deg,#7c3aed,#8b5cf6)}
+.play-btn.amber{background:linear-gradient(135deg,#d97706,#f59e0b)}
+.play-btn.red{background:linear-gradient(135deg,#dc2626,#ef4444)}
+
+/* スピードコントロール */
+.speed-control{display:flex;align-items:center;gap:10px;margin-top:14px;flex-wrap:wrap}
+.speed-control span{font-size:.82rem;color:#64748b;font-weight:600}
+.speed-btn{background:#f1f5f9;border:1px solid #e2e8f0;border-radius:20px;padding:5px 12px;cursor:pointer;font-size:.8rem;font-weight:600;color:#475569;transition:all .2s}
+.speed-btn:hover,.speed-btn.active{background:#2563eb;color:#fff;border-color:#2563eb}
+
+/* ヒントバッジ */
+.tip{background:#fef3c7;border-left:4px solid #f59e0b;border-radius:0 8px 8px 0;padding:10px 14px;margin:12px 0;font-size:.84rem;color:#78350f;line-height:1.6}
+.tip strong{color:#92400e}
+
+.warning{background:#fef2f2;border-left:4px solid #ef4444;border-radius:0 8px 8px 0;padding:10px 14px;margin:12px 0;font-size:.84rem;color:#7f1d1d;line-height:1.6}
+.success-box{background:#f0fdf4;border-left:4px solid #22c55e;border-radius:0 8px 8px 0;padding:10px 14px;margin:12px 0;font-size:.84rem;color:#14532d;line-height:1.6}
+
+/* 文字と音の対応テーブル */
+.phonics-table{width:100%;border-collapse:collapse;font-size:.86rem}
+.phonics-table th{background:#0891b2;color:#fff;padding:9px 12px;text-align:center}
+.phonics-table td{padding:9px 12px;border:1px solid #e2e8f0;text-align:center}
+.phonics-table td:first-child{font-weight:700;font-size:1.1rem;color:#1d4ed8;background:#eff6ff}
+.phonics-table tr:nth-child(even) td:not(:first-child){background:#f8fafc}
+
+/* アルファベット音グリッド */
+.alpha-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:10px}
+.alpha-card{background:#f8fafc;border-radius:10px;padding:12px;text-align:center;border:1px solid #e2e8f0;cursor:pointer;transition:all .2s}
+.alpha-card:hover{background:#eff6ff;border-color:#2563eb}
+.alpha-letter{font-size:1.8rem;font-weight:700;color:#1d4ed8}
+.alpha-sound{font-size:.8rem;color:#374151;margin-top:4px;font-family:'Courier New',monospace}
+.alpha-example{font-size:.75rem;color:#64748b;margin-top:2px}
+
+/* セクション区切り */
+.section-divider{text-align:center;margin:20px 0;color:#94a3b8;font-size:.8rem;display:flex;align-items:center;gap:10px}
+.section-divider::before,.section-divider::after{content:'';flex:1;height:1px;background:#e2e8f0}
+
+/* 練習ワードリスト */
+.word-list{display:flex;flex-wrap:wrap;gap:10px;margin-top:12px}
+.word-chip{background:#eff6ff;border:1px solid #bfdbfe;border-radius:20px;padding:6px 16px;font-size:.87rem;font-weight:600;color:#1d4ed8;cursor:pointer;transition:all .2s}
+.word-chip:hover{background:#2563eb;color:#fff;border-color:#2563eb}
+
+/* レベルバッジ */
+.level-badge{display:inline-flex;align-items:center;gap:4px;padding:3px 10px;border-radius:20px;font-size:.72rem;font-weight:700}
+.level-1{background:#dcfce7;color:#15803d}
+.level-2{background:#fef9c3;color:#a16207}
+.level-3{background:#fee2e2;color:#b91c1c}
+
+/* フォニックスルール */
+.rule-card{background:#faf5ff;border:1px solid #ddd6fe;border-radius:12px;padding:16px;margin-bottom:14px}
+.rule-card h4{font-size:.92rem;font-weight:700;color:#6d28d9;margin-bottom:8px;display:flex;align-items:center;gap:8px}
+.rule-card p{font-size:.85rem;color:#374151;line-height:1.6;margin-bottom:6px}
+.rule-examples{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+.rule-ex{background:#ede9fe;border-radius:6px;padding:4px 12px;font-size:.85rem;font-weight:600;color:#5b21b6}
+
+/* アニメーション */
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.6}}
+.playing{animation:pulse 1s infinite}
+
+/* レスポンシブ */
+@media(max-width:600px){
+  .sound-grid{grid-template-columns:repeat(2,1fr)}
+  .alpha-grid{grid-template-columns:repeat(3,1fr)}
+  .minimal-pair{flex-direction:column;gap:8px}
+  .mp-vs{display:none}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <h1>🇺🇸 英語発音 完全入門</h1>
+  <p>初心者のためのステップアップ発音ガイド — 音を聞いて・見て・練習しよう</p>
+</header>
+
+<!-- タブナビゲーション -->
+<div class="nav-tabs">
+  <button class="nav-tab active" data-sec="step0">🔤 Step 0<br>アルファベット音</button>
+  <button class="nav-tab" data-sec="step1">🔵 Step 1<br>母音（5種）</button>
+  <button class="nav-tab" data-sec="step2">🟦 Step 2<br>子音のコツ</button>
+  <button class="nav-tab" data-sec="step3">🟢 Step 3<br>難しい音</button>
+  <button class="nav-tab" data-sec="step4">🟡 Step 4<br>二重母音</button>
+  <button class="nav-tab" data-sec="step5">🔴 Step 5<br>単語練習</button>
+</div>
+
+<!-- ===================== STEP 0: アルファベット ===================== -->
+<div class="section active" id="step0">
+
+  <div class="card">
+    <div class="card-title">🔤 まず最初に — アルファベットの「名前」と「音」は違う！ <span class="tag tag-indigo">基礎</span></div>
+    <div class="concept-box">
+      <h3>一番大事なポイント</h3>
+      <p>アルファベットには「名前の読み方」と「実際に単語で使う音」の2種類があります。<br>
+      例えば「B」の名前は「ビー」ですが、単語の中では「ブッ」という音を出します。<br>
+      <strong>この「実際の音」を覚えることが、発音の第一歩です！</strong></p>
+    </div>
+
+    <div class="tip">
+      💡 <strong>フォニックス</strong>とは「文字と音の関係を体系的に学ぶ方法」です。英語圏の子どもたちはこれで読み方を覚えます。
+    </div>
+
+    <div class="section-divider">母音（Vowels）— A, E, I, O, U</div>
+
+    <div class="concept-box" style="background:#fff7ed;border-color:#f97316">
+      <h3 style="color:#c2410c">母音とは？</h3>
+      <p>口を開けて空気を自由に流す音です。英語では <strong>A, E, I, O, U</strong> の5文字が母音です。<br>
+      母音は「短い音（短母音）」と「長い音（長母音）」の2種類があります。</p>
+    </div>
+
+    <div class="alpha-grid" id="vowel-alpha-grid">
+      <!-- JSで生成 -->
+    </div>
+
+    <div class="section-divider">子音（Consonants）— その他の21文字</div>
+
+    <div class="concept-box">
+      <h3>子音とは？</h3>
+      <p>口、唇、舌、歯などを使って空気の流れを一部止めたり狭めたりして出す音です。<br>
+      <strong>B, C, D, F, G, H, J, K, L, M, N, P, Q, R, S, T, V, W, X, Y, Z</strong> の21文字が子音です。</p>
+    </div>
+
+    <div class="alpha-grid" id="consonant-alpha-grid"></div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">📏 フォニックスの基本ルール <span class="tag tag-indigo">基礎</span></div>
+
+    <div class="rule-card">
+      <h4>📌 ルール1: CVC単語（子音+母音+子音）</h4>
+      <p>3文字の単語で、真ん中の母音は「短い音」で読みます。これが英語発音の基本パターンです。</p>
+      <div class="rule-examples">
+        <span class="rule-ex">c<strong>a</strong>t（キャット）</span>
+        <span class="rule-ex">d<strong>o</strong>g（ドッグ）</span>
+        <span class="rule-ex">b<strong>i</strong>g（ビッグ）</span>
+        <span class="rule-ex">h<strong>o</strong>t（ホット）</span>
+        <span class="rule-ex">r<strong>u</strong>n（ラン）</span>
+      </div>
+    </div>
+
+    <div class="rule-card">
+      <h4>📌 ルール2: Magic E（マジックE）/ CVCe</h4>
+      <p>単語の最後に「e」がつくと、その前の母音が「長い音（アルファベットの名前読み）」になります。最後の「e」は読みません！</p>
+      <div class="rule-examples">
+        <span class="rule-ex">mad → m<strong>a</strong>de（メイド）</span>
+        <span class="rule-ex">kit → k<strong>i</strong>te（カイト）</span>
+        <span class="rule-ex">hop → h<strong>o</strong>pe（ホウプ）</span>
+        <span class="rule-ex">cut → c<strong>u</strong>te（キュート）</span>
+      </div>
+    </div>
+
+    <div class="rule-card">
+      <h4>📌 ルール3: 同じ母音が2つ並ぶと長い音</h4>
+      <p>2つの同じ（または似た）母音が並ぶと、最初の母音の長い音になります。</p>
+      <div class="rule-examples">
+        <span class="rule-ex">ee → see, tree, feet</span>
+        <span class="rule-ex">oo → moon, food, cool</span>
+        <span class="rule-ex">ai → rain, tail, wait</span>
+        <span class="rule-ex">oa → boat, road, coat</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== STEP 1: 短母音 ===================== -->
+<div class="section" id="step1">
+
+  <div class="card">
+    <div class="card-title">🔵 短母音（Short Vowels）— まず5つをマスター <span class="tag tag-blue">STEP 1</span></div>
+    <div class="concept-box">
+      <h3>短母音とは？</h3>
+      <p>母音を「短く」発音する音です。日本語にない音が多いので、口の形に注意しましょう。<br>
+      まず<strong>この5つ</strong>を完全に覚えることが発音上達の近道です！</p>
+    </div>
+
+    <div class="sound-grid" id="short-vowels-grid"></div>
+
+    <div class="section-divider">各音の詳しい練習</div>
+
+    <!-- /æ/ の詳細 -->
+    <div class="step-box">
+      <div class="step-header"><span class="step-num">1</span>/æ/ — 「キャット」の「ア」</div>
+      <div class="step-body">
+        <p><strong>この音は日本語にありません！</strong>「エ」と「ア」の中間の音です。</p>
+        <div class="mouth-guide">
+          <h4>👄 口の形・舌の位置</h4>
+          <ul>
+            <li>口を横に大きく引っ張る（「エ」の口の形）</li>
+            <li>顎をしっかり下げる（「ア」より少し開ける）</li>
+            <li>舌は低く、口の底に置く</li>
+            <li>「エ」と言いながら顎を下げると「æ」になる</li>
+          </ul>
+        </div>
+        <div class="tip">💡 「ア」と言おうとして、口を横に引っ張りながら発音する感覚です</div>
+        <div class="word-list" id="ae-words"></div>
+      </div>
+    </div>
+
+    <!-- /ɛ/ の詳細 -->
+    <div class="step-box">
+      <div class="step-header"><span class="step-num">2</span>/ɛ/ — 「ベッド」の「エ」</div>
+      <div class="step-body">
+        <p>日本語の「エ」に一番近い音です。比較的発音しやすい音です。</p>
+        <div class="mouth-guide">
+          <h4>👄 口の形・舌の位置</h4>
+          <ul>
+            <li>口を少し横に引く（日本語の「エ」より少しだけ広め）</li>
+            <li>顎はわずかに下がる</li>
+            <li>舌は口の中ほどの高さ</li>
+          </ul>
+        </div>
+        <div class="word-list" id="e-words"></div>
+      </div>
+    </div>
+
+    <!-- /ɪ/ の詳細 -->
+    <div class="step-box">
+      <div class="step-header"><span class="step-num">3</span>/ɪ/ — 「シット」の「イ」</div>
+      <div class="step-body">
+        <p>日本語の「イ」より<strong>短くあいまい</strong>な音です。口の力を抜いて発音します。</p>
+        <div class="mouth-guide">
+          <h4>👄 口の形・舌の位置</h4>
+          <ul>
+            <li>口をほぼ閉じた状態（日本語の「イ」より口を開け気味）</li>
+            <li>力を入れず、リラックスして短く「イッ」と言う</li>
+            <li>舌は少し上、前方に位置する</li>
+          </ul>
+        </div>
+        <div class="warning">⚠️ 「sit /ɪ/」と「seat /iː/」は違う音！/ɪ/は短く力を抜く</div>
+        <div class="word-list" id="i-words"></div>
+      </div>
+    </div>
+
+    <!-- /ɑ/ の詳細 -->
+    <div class="step-box">
+      <div class="step-header"><span class="step-num">4</span>/ɑ/ — 「ホット」の「ア」</div>
+      <div class="step-body">
+        <p>アメリカ英語で最も口を大きく開ける音です。「ア」より喉の奥から出します。</p>
+        <div class="mouth-guide">
+          <h4>👄 口の形・舌の位置</h4>
+          <ul>
+            <li>口を縦に大きく開ける（あくびをするときの口の形）</li>
+            <li>舌は口の底に平らに置く</li>
+            <li>喉の奥から深い「ア」を出す感覚</li>
+          </ul>
+        </div>
+        <div class="tip">💡 お医者さんに「アーッ」と言うときの音に近いです</div>
+        <div class="word-list" id="a-words"></div>
+      </div>
+    </div>
+
+    <!-- /ʌ/ の詳細 -->
+    <div class="step-box">
+      <div class="step-header"><span class="step-num">5</span>/ʌ/ — 「カップ」の「ア」</div>
+      <div class="step-body">
+        <p>/ɑ/より口を小さく開けた「ア」です。英語でよく出てくる重要な音です。</p>
+        <div class="mouth-guide">
+          <h4>👄 口の形・舌の位置</h4>
+          <ul>
+            <li>口を半分くらい開ける</li>
+            <li>舌は口の中央あたりの高さ</li>
+            <li>力を抜いて短く「アッ」</li>
+          </ul>
+        </div>
+        <div class="word-list" id="u-words"></div>
+      </div>
+    </div>
+
+    <div class="section-divider">長母音（Long Vowels）</div>
+
+    <div class="concept-box">
+      <h3>長母音とは？</h3>
+      <p>アルファベットの「名前読み」に近い音です。短母音より伸ばして発音します。<br>
+      /iː/, /eɪ/, /aɪ/, /oʊ/, /juː/ の5つが基本です。</p>
+    </div>
+
+    <div class="sound-grid" id="long-vowels-grid"></div>
+
+    <div class="section-divider">シュワー（Schwa）/ə/ — 最重要の曖昧母音</div>
+
+    <div class="concept-box" style="background:#faf5ff;border-color:#7c3aed">
+      <h3 style="color:#6d28d9">シュワー /ə/ とは？</h3>
+      <p>英語で一番よく使われる母音！ストレス（強調）のない音節で出てくる<strong>力の抜けた「ア」</strong>です。<br>
+      この音を正しく使えると、英語がぐっとネイティブらしく聞こえます。</p>
+    </div>
+
+    <div class="step-box">
+      <div class="step-header"><span class="step-num">6</span>/ə/ — シュワー（曖昧母音）</div>
+      <div class="step-body">
+        <p>アクセントがない音節ではほぼすべての母音がこの音になります。</p>
+        <div class="mouth-guide">
+          <h4>👄 口の形・舌の位置</h4>
+          <ul>
+            <li>口を半開きにして、完全にリラックス</li>
+            <li>舌は口の真ん中に浮かせる</li>
+            <li>「ウ」と「ア」の中間のような、力のない音</li>
+          </ul>
+        </div>
+        <table class="compare-table" style="margin-top:12px">
+          <thead><tr><th>単語</th><th>発音記号</th><th>シュワーの位置</th></tr></thead>
+          <tbody>
+            <tr><td class="word-en">about</td><td class="ipa">/əˈbaʊt/</td><td><span class="word-jp">最初の「a」がシュワー</span></td></tr>
+            <tr><td class="word-en">problem</td><td class="ipa">/ˈprɑbləm/</td><td><span class="word-jp">最後の「e」がシュワー</span></td></tr>
+            <tr><td class="word-en">the</td><td class="ipa">/ðə/</td><td><span class="word-jp">「e」がシュワー</span></td></tr>
+            <tr><td class="word-en">a / an</td><td class="ipa">/ə/ /ən/</td><td><span class="word-jp">冠詞はほぼシュワー</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== STEP 2: 子音 ===================== -->
+<div class="section" id="step2">
+
+  <div class="card">
+    <div class="card-title">🟦 子音の基本分類 <span class="tag tag-teal">STEP 2</span></div>
+
+    <div class="concept-box" style="background:#ecfdf5;border-color:#059669">
+      <h3 style="color:#065f46">有声音 vs 無声音</h3>
+      <p>英語の子音は<strong>喉が震える（有声音）</strong>か<strong>震えない（無声音）</strong>かで分類できます。<br>
+      喉に手を当てて発音して確かめましょう！</p>
+    </div>
+
+    <table class="compare-table">
+      <thead>
+        <tr>
+          <th>種類</th>
+          <th>無声音（喉が震えない）</th>
+          <th>有声音（喉が震える）</th>
+          <th>発音の場所</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>破裂音</td><td class="ipa">/p/</td><td class="ipa">/b/</td><td>両唇</td></tr>
+        <tr><td>破裂音</td><td class="ipa">/t/</td><td class="ipa">/d/</td><td>歯茎（舌先）</td></tr>
+        <tr><td>破裂音</td><td class="ipa">/k/</td><td class="ipa">/g/</td><td>軟口蓋（喉の奥）</td></tr>
+        <tr><td>摩擦音</td><td class="ipa">/f/</td><td class="ipa">/v/</td><td>上歯 + 下唇</td></tr>
+        <tr><td>摩擦音</td><td class="ipa">/θ/</td><td class="ipa">/ð/</td><td>歯の間（舌）</td></tr>
+        <tr><td>摩擦音</td><td class="ipa">/s/</td><td class="ipa">/z/</td><td>歯茎（舌先）</td></tr>
+        <tr><td>摩擦音</td><td class="ipa">/ʃ/</td><td class="ipa">/ʒ/</td><td>歯茎後方</td></tr>
+        <tr><td>破擦音</td><td class="ipa">/tʃ/</td><td class="ipa">/dʒ/</td><td>歯茎後方</td></tr>
+      </tbody>
+    </table>
+
+    <div class="tip" style="margin-top:14px">💡 ペアになっている音は<strong>口の形はまったく同じ</strong>、喉を震わせるかどうかだけが違います！</div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">🟦 子音サウンドカード <span class="tag tag-teal">クリックして練習</span></div>
+    <div class="sound-grid" id="consonant-sound-grid"></div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">🟦 鼻音・流音・接近音 <span class="tag tag-teal">STEP 2</span></div>
+
+    <div class="concept-box">
+      <h3>鼻音（Nasals）</h3>
+      <p>空気が鼻から出る音です。口を閉じながら「ン」と言うイメージです。</p>
+    </div>
+
+    <div class="sound-grid" id="nasal-grid"></div>
+
+    <div class="concept-box" style="margin-top:16px">
+      <h3>接近音（Approximants）</h3>
+      <p>口の中を狭めるが完全には塞がない音です。日本語に近い音もありますが、微妙な違いがあります。</p>
+    </div>
+
+    <div class="sound-grid" id="approx-grid"></div>
+  </div>
+</div>
+
+<!-- ===================== STEP 3: 難しい音 ===================== -->
+<div class="section" id="step3">
+
+  <div class="card">
+    <div class="card-title">🟢 日本人が一番苦手な音 — /r/ vs /l/ <span class="tag tag-green">STEP 3</span></div>
+
+    <div class="warning">⚠️ これが英語発音で最も大切な練習です！間違うと意味が変わってしまいます</div>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px">
+      <div class="step-box">
+        <div class="step-header" style="background:#dc2626"><span class="step-num" style="background:#fff;color:#dc2626">R</span>/r/ の発音</div>
+        <div class="step-body">
+          <div class="mouth-guide">
+            <h4>👄 口の形</h4>
+            <ul>
+              <li>舌をどこにも触れさせない（宙に浮かせる）</li>
+              <li>舌先を後ろに丸める（反らせる）</li>
+              <li>唇を少し前に出して丸める</li>
+              <li>舌の両端を奥歯に軽く当てる</li>
+            </ul>
+          </div>
+          <div class="tip">💡 「ウ」と言いながら舌を後ろに引くイメージ</div>
+        </div>
+      </div>
+      <div class="step-box">
+        <div class="step-header" style="background:#2563eb"><span class="step-num" style="background:#fff;color:#2563eb">L</span>/l/ の発音</div>
+        <div class="step-body">
+          <div class="mouth-guide">
+            <h4>👄 口の形</h4>
+            <ul>
+              <li>舌先を上の歯茎（前歯の裏）にしっかりつける</li>
+              <li>舌の両側から空気を流す</li>
+              <li>唇は丸めない、普通の形でOK</li>
+              <li>「ラ・リ・ル・レ・ロ」より舌を前に置く</li>
+            </ul>
+          </div>
+          <div class="tip">💡 「ラ行」を言うとき、舌先を歯茎につけたまま止める</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card-title" style="margin-top:8px;font-size:.95rem">ミニマルペア練習（クリックして聞き比べ）</div>
+    <div id="rl-pairs"></div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">🟢 TH の音 — /θ/ と /ð/ <span class="tag tag-green">STEP 3</span></div>
+
+    <div class="concept-box">
+      <h3>THは英語特有の音！</h3>
+      <p>日本語には存在しない音です。多くの日本人は「ス/ズ」や「フ/ブ」で代用してしまいますが、<br>
+      TH音をマスターすると英語がぐっと本格的になります！</p>
+    </div>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px">
+      <div class="step-box">
+        <div class="step-header"><span class="step-num">θ</span>/θ/ — 無声TH（think）</div>
+        <div class="step-body">
+          <div class="mouth-guide">
+            <h4>👄 口の形</h4>
+            <ul>
+              <li>舌先を上下の歯の間に軽く挟む</li>
+              <li>舌先から空気を「スーッ」と出す</li>
+              <li>喉は震えない（無声）</li>
+              <li>「ス」に似ているが舌が出ている点が違う</li>
+            </ul>
+          </div>
+          <div class="word-list" style="margin-top:10px">
+            <span class="word-chip" onclick="speak('think', 0.8)">think</span>
+            <span class="word-chip" onclick="speak('three', 0.8)">three</span>
+            <span class="word-chip" onclick="speak('thanks', 0.8)">thanks</span>
+            <span class="word-chip" onclick="speak('thumb', 0.8)">thumb</span>
+            <span class="word-chip" onclick="speak('bath', 0.8)">bath</span>
+          </div>
+        </div>
+      </div>
+      <div class="step-box">
+        <div class="step-header"><span class="step-num">ð</span>/ð/ — 有声TH（this）</div>
+        <div class="step-body">
+          <div class="mouth-guide">
+            <h4>👄 口の形</h4>
+            <ul>
+              <li>舌先を上下の歯の間に軽く挟む（/θ/と同じ）</li>
+              <li>喉を震わせて「ズー」っと出す</li>
+              <li>「ズ」に似ているが舌が出ている点が違う</li>
+              <li>the, this, that など機能語に多い</li>
+            </ul>
+          </div>
+          <div class="word-list" style="margin-top:10px">
+            <span class="word-chip" onclick="speak('this', 0.8)">this</span>
+            <span class="word-chip" onclick="speak('that', 0.8)">that</span>
+            <span class="word-chip" onclick="speak('the', 0.8)">the</span>
+            <span class="word-chip" onclick="speak('they', 0.8)">they</span>
+            <span class="word-chip" onclick="speak('mother', 0.8)">mother</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="th-pairs"></div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">🟢 F/V の音 <span class="tag tag-green">STEP 3</span></div>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+      <div class="step-box">
+        <div class="step-header"><span class="step-num">F</span>/f/ — 無声</div>
+        <div class="step-body">
+          <div class="mouth-guide">
+            <h4>👄 口の形</h4>
+            <ul>
+              <li>上の前歯を下唇に軽く当てる</li>
+              <li>その隙間から空気を「フーッ」と出す</li>
+              <li>喉は震えない</li>
+            </ul>
+          </div>
+          <div class="word-list" style="margin-top:10px">
+            <span class="word-chip" onclick="speak('fish', 0.8)">fish</span>
+            <span class="word-chip" onclick="speak('food', 0.8)">food</span>
+            <span class="word-chip" onclick="speak('friend', 0.8)">friend</span>
+          </div>
+        </div>
+      </div>
+      <div class="step-box">
+        <div class="step-header"><span class="step-num">V</span>/v/ — 有声</div>
+        <div class="step-body">
+          <div class="mouth-guide">
+            <h4>👄 口の形</h4>
+            <ul>
+              <li>上の前歯を下唇に軽く当てる（/f/と同じ）</li>
+              <li>喉を震わせて「ヴーッ」と出す</li>
+              <li>日本語の「ブ」ではなく前歯を使う！</li>
+            </ul>
+          </div>
+          <div class="word-list" style="margin-top:10px">
+            <span class="word-chip" onclick="speak('very', 0.8)">very</span>
+            <span class="word-chip" onclick="speak('love', 0.8)">love</span>
+            <span class="word-chip" onclick="speak('voice', 0.8)">voice</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">🟢 アメリカ英語特有の音 <span class="tag tag-green">STEP 3</span></div>
+
+    <div class="step-box">
+      <div class="step-header"><span class="step-num">T</span>Flap T（フラップT）— water, butter の「t」</div>
+      <div class="step-body">
+        <p>アメリカ英語では、母音に挟まれた「t」は「ラ行」のような音になります！</p>
+        <table class="compare-table">
+          <thead><tr><th>単語</th><th>スペル通りの発音</th><th>実際のアメリカ発音</th></tr></thead>
+          <tbody>
+            <tr><td class="word-en">water</td><td>/ˈwɑtər/</td><td><span style="color:#059669;font-weight:700">/ˈwɑɾər/ 「ウォーラー」</span></td></tr>
+            <tr><td class="word-en">butter</td><td>/ˈbʌtər/</td><td><span style="color:#059669;font-weight:700">/ˈbʌɾər/ 「バラー」</span></td></tr>
+            <tr><td class="word-en">better</td><td>/ˈbɛtər/</td><td><span style="color:#059669;font-weight:700">/ˈbɛɾər/ 「ベラー」</span></td></tr>
+            <tr><td class="word-en">city</td><td>/ˈsɪti/</td><td><span style="color:#059669;font-weight:700">/ˈsɪɾi/ 「シリ」</span></td></tr>
+          </tbody>
+        </table>
+        <div class="tip" style="margin-top:10px">💡 日本語の「ラ行」に近い音です。舌先を歯茎に素早くはじきます</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== STEP 4: 二重母音 ===================== -->
+<div class="section" id="step4">
+
+  <div class="card">
+    <div class="card-title">🟡 二重母音（Diphthongs） <span class="tag tag-amber">STEP 4</span></div>
+
+    <div class="concept-box">
+      <h3>二重母音とは？</h3>
+      <p>1つの音節の中で<strong>2つの母音音が滑らかに移り変わる</strong>音です。<br>
+      最初の音をしっかり発音して、次の音に向かってなめらかに口を動かすのがコツです！</p>
+    </div>
+
+    <div class="sound-grid" id="diphthong-grid"></div>
+
+    <div class="section-divider">各二重母音の詳細</div>
+
+    <div id="diphthong-details"></div>
+  </div>
+</div>
+
+<!-- ===================== STEP 5: 単語練習 ===================== -->
+<div class="section" id="step5">
+
+  <div class="card">
+    <div class="card-title">🔴 よく使う単語で発音練習 <span class="tag tag-red">STEP 5</span></div>
+
+    <div class="concept-box">
+      <h3>アクセント（ストレス）の重要性</h3>
+      <p>英語では特定の音節を<strong>強く・高く・長く</strong>発音します。<br>
+      間違った音節にアクセントを置くと、ネイティブに通じないことがあります！<br>
+      発音記号で <strong>ˈ</strong> の記号がアクセントの位置です。</p>
+    </div>
+
+    <div class="section-divider">日常会話頻出100語</div>
+    <div id="common-words"></div>
+
+    <div class="section-divider">カテゴリー別練習</div>
+
+    <div class="card" style="background:#f8fafc">
+      <div class="card-title" style="font-size:1rem">🏠 日用品・場所</div>
+      <div id="daily-words"></div>
+    </div>
+
+    <div class="card" style="background:#f8fafc;margin-top:14px">
+      <div class="card-title" style="font-size:1rem">🍎 食べ物</div>
+      <div id="food-words"></div>
+    </div>
+
+    <div class="card" style="background:#f8fafc;margin-top:14px">
+      <div class="card-title" style="font-size:1rem">🎭 感情・形容詞</div>
+      <div id="adj-words"></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">🔴 ミニマルペア総まとめ練習 <span class="tag tag-red">STEP 5</span></div>
+    <div class="concept-box">
+      <h3>ミニマルペアとは？</h3>
+      <p>1つの音だけが違う単語ペアです。聞き比べて違いを耳で覚えましょう！</p>
+    </div>
+    <div id="all-minimal-pairs"></div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">🔴 スピードコントロール練習 <span class="tag tag-red">STEP 5</span></div>
+    <div class="concept-box">
+      <h3>ゆっくり → 普通 → 速くで練習</h3>
+      <p>まずゆっくり聞いて口の動きを確認、次に普通速度で、最後に速くして聞き取り練習をしましょう。</p>
+    </div>
+    <div class="speed-control">
+      <span>速度:</span>
+      <button class="speed-btn" onclick="setSpeed(0.5)">×0.5</button>
+      <button class="speed-btn active" onclick="setSpeed(0.8)">×0.8</button>
+      <button class="speed-btn" onclick="setSpeed(1.0)">×1.0</button>
+      <button class="speed-btn" onclick="setSpeed(1.2)">×1.2</button>
+      <button class="speed-btn" onclick="setSpeed(1.5)">×1.5</button>
+    </div>
+    <div id="speed-practice-words" style="margin-top:16px"></div>
+  </div>
+</div>
+
+<script>
+// ===================== データ定義 =====================
+
+const vowelAlpha = [
+  {letter:'A a',sound:'/æ/ or /eɪ/',example:'apple / cake'},
+  {letter:'E e',sound:'/ɛ/ or /iː/',example:'egg / equal'},
+  {letter:'I i',sound:'/ɪ/ or /aɪ/',example:'it / ice'},
+  {letter:'O o',sound:'/ɑ/ or /oʊ/',example:'on / open'},
+  {letter:'U u',sound:'/ʌ/ or /juː/',example:'up / use'},
+];
+
+const consonantAlpha = [
+  {letter:'B b',sound:'/b/',example:'ball'},
+  {letter:'C c',sound:'/k/ or /s/',example:'cat / city'},
+  {letter:'D d',sound:'/d/',example:'dog'},
+  {letter:'F f',sound:'/f/',example:'fish'},
+  {letter:'G g',sound:'/g/ or /dʒ/',example:'go / gym'},
+  {letter:'H h',sound:'/h/',example:'hat'},
+  {letter:'J j',sound:'/dʒ/',example:'jump'},
+  {letter:'K k',sound:'/k/',example:'kick'},
+  {letter:'L l',sound:'/l/',example:'love'},
+  {letter:'M m',sound:'/m/',example:'map'},
+  {letter:'N n',sound:'/n/',example:'nice'},
+  {letter:'P p',sound:'/p/',example:'pen'},
+  {letter:'Q q',sound:'/kw/',example:'queen'},
+  {letter:'R r',sound:'/r/',example:'red'},
+  {letter:'S s',sound:'/s/ or /z/',example:'sun / his'},
+  {letter:'T t',sound:'/t/',example:'top'},
+  {letter:'V v',sound:'/v/',example:'very'},
+  {letter:'W w',sound:'/w/',example:'water'},
+  {letter:'X x',sound:'/ks/ or /gz/',example:'fox / exam'},
+  {letter:'Y y',sound:'/j/',example:'yes'},
+  {letter:'Z z',sound:'/z/',example:'zoo'},
+];
+
+const shortVowels = [
+  {sym:'/æ/',word:'cat',jp:'エとアの中間',hint:'口を横に広げながら顎を下げる'},
+  {sym:'/ɛ/',word:'bed',jp:'日本語の「エ」に近い',hint:'口を少し横に引く'},
+  {sym:'/ɪ/',word:'sit',jp:'短い力の抜けた「イ」',hint:'口の力を抜いて短く'},
+  {sym:'/ɑ/',word:'hot',jp:'口を縦に開けた「ア」',hint:'あくびのときの口の形'},
+  {sym:'/ʌ/',word:'cup',jp:'短い「ア」（口半開き）',hint:'「ア」より口を小さく'},
+];
+
+const longVowels = [
+  {sym:'/iː/',word:'see',jp:'長い「イー」',hint:'口を横に引いて伸ばす'},
+  {sym:'/eɪ/',word:'day',jp:'「エイ」と移る',hint:'「エ」から「イ」へ'},
+  {sym:'/aɪ/',word:'my',jp:'「アイ」と移る',hint:'「ア」から「イ」へ'},
+  {sym:'/oʊ/',word:'go',jp:'「オウ」と移る',hint:'「オ」から「ウ」へ'},
+  {sym:'/uː/',word:'food',jp:'長い「ウー」',hint:'唇を丸めて前に出す'},
+];
+
+const consonantSounds = [
+  {sym:'/p/',word:'pen',jp:'無声・破裂音',hint:'唇をパッと離す（ピィ）'},
+  {sym:'/b/',word:'ball',jp:'有声・破裂音',hint:'唇をパッと離す（ビィ）'},
+  {sym:'/t/',word:'top',jp:'無声・破裂音',hint:'舌先を歯茎から離す'},
+  {sym:'/d/',word:'dog',jp:'有声・破裂音',hint:'舌先を歯茎から離す'},
+  {sym:'/k/',word:'cat',jp:'無声・破裂音',hint:'喉の奥でカッと弾く'},
+  {sym:'/g/',word:'go',jp:'有声・破裂音',hint:'喉の奥でガッと弾く'},
+  {sym:'/f/',word:'fish',jp:'無声・摩擦音',hint:'上歯を下唇に当ててフーッ'},
+  {sym:'/v/',word:'very',jp:'有声・摩擦音',hint:'上歯を下唇に当ててヴーッ'},
+  {sym:'/θ/',word:'think',jp:'無声TH',hint:'舌を歯に挟んでスーッ'},
+  {sym:'/ð/',word:'this',jp:'有声TH',hint:'舌を歯に挟んでズーッ'},
+  {sym:'/s/',word:'sun',jp:'無声・摩擦音',hint:'歯の間からスーッ'},
+  {sym:'/z/',word:'zoo',jp:'有声・摩擦音',hint:'歯の間からズーッ'},
+  {sym:'/ʃ/',word:'she',jp:'「シュー」無声',hint:'シューッと空気を出す'},
+  {sym:'/ʒ/',word:'vision',jp:'「ジュー」有声',hint:'ジュワーッと震わせる'},
+  {sym:'/tʃ/',word:'chair',jp:'「チ」の音',hint:'tとシュを合わせた音'},
+  {sym:'/dʒ/',word:'jump',jp:'「ジ」の音',hint:'dとジュを合わせた音'},
+  {sym:'/h/',word:'hat',jp:'「ハ」の音',hint:'喉から息を出すだけ'},
+];
+
+const nasalSounds = [
+  {sym:'/m/',word:'map',jp:'両唇を閉じた鼻音',hint:'口を閉じて「ンムー」'},
+  {sym:'/n/',word:'nice',jp:'舌先を歯茎につけた鼻音',hint:'舌先を上につけて「ンヌー」'},
+  {sym:'/ŋ/',word:'sing',jp:'軟口蓋鼻音（ng）',hint:'喉の奥で「ング」'},
+];
+
+const approxSounds = [
+  {sym:'/l/',word:'love',jp:'側面接近音',hint:'舌先を歯茎につけたまま'},
+  {sym:'/r/',word:'red',jp:'後部接近音',hint:'舌を反らせて唇を丸める'},
+  {sym:'/w/',word:'water',jp:'両唇接近音',hint:'唇を丸めて「ウ」から'},
+  {sym:'/j/',word:'yes',jp:'口蓋接近音',hint:'「イ」から素早く次の音へ'},
+];
+
+const diphthongs = [
+  {sym:'/aɪ/',word:'my',jp:'"ア"から"イ"へ滑らかに',hint:'口を大きく開けてから細める',words:['my','time','like','night','high','sky']},
+  {sym:'/aʊ/',word:'now',jp:'"ア"から"ウ"へ滑らかに',hint:'口を大きく開けて唇を丸める',words:['now','house','out','down','cloud','how']},
+  {sym:'/eɪ/',word:'day',jp:'"エ"から"イ"へ滑らかに',hint:'口を横に引いて上げる',words:['day','make','rain','eight','pay','say']},
+  {sym:'/oʊ/',word:'go',jp:'"オ"から"ウ"へ滑らかに',hint:'唇を少し丸めながら移動',words:['go','home','know','road','show','coat']},
+  {sym:'/ɔɪ/',word:'boy',jp:'"オ"から"イ"へ滑らかに',hint:'口を丸めてから横に引く',words:['boy','coin','oil','voice','joy','toy']},
+];
+
+const rlPairs = [
+  {w1:'rice',w2:'lice',ipa1:'/raɪs/',ipa2:'/laɪs/',jp1:'米',jp2:'シラミ'},
+  {w1:'right',w2:'light',ipa1:'/raɪt/',ipa2:'/laɪt/',jp1:'正しい',jp2:'光'},
+  {w1:'rock',w2:'lock',ipa1:'/rɑk/',ipa2:'/lɑk/',jp1:'岩',jp2:'鍵'},
+  {w1:'road',w2:'load',ipa1:'/roʊd/',ipa2:'/loʊd/',jp1:'道路',jp2:'荷物'},
+  {w1:'red',w2:'led',ipa1:'/rɛd/',ipa2:'/lɛd/',jp1:'赤',jp2:'導いた'},
+];
+
+const thPairs = [
+  {w1:'think',w2:'sink',ipa1:'/θɪŋk/',ipa2:'/sɪŋk/',jp1:'考える',jp2:'シンク'},
+  {w1:'three',w2:'free',ipa1:'/θriː/',ipa2:'/friː/',jp1:'3',jp2:'自由な'},
+  {w1:'this',w2:'dis-',ipa1:'/ðɪs/',ipa2:'（接頭辞）',jp1:'これ',jp2:'（参考）'},
+  {w1:'they',w2:'day',ipa1:'/ðeɪ/',ipa2:'/deɪ/',jp1:'彼ら',jp2:'日'},
+];
+
+const allMinimalPairs = [
+  {label:'短母音 /æ/ vs /ɛ/',pairs:[{w1:'bad',w2:'bed'},{w1:'man',w2:'men'},{w1:'sad',w2:'said'}]},
+  {label:'短母音 /ɪ/ vs /iː/',pairs:[{w1:'sit',w2:'seat'},{w1:'ship',w2:'sheep'},{w1:'bit',w2:'beat'}]},
+  {label:'短母音 /ɑ/ vs /ʌ/',pairs:[{w1:'hot',w2:'hut'},{w1:'not',w2:'nut'},{w1:'cot',w2:'cut'}]},
+  {label:'/p/ vs /b/',pairs:[{w1:'pen',w2:'ben'},{w1:'pig',w2:'big'},{w1:'pack',w2:'back'}]},
+  {label:'/s/ vs /z/',pairs:[{w1:'sip',w2:'zip'},{w1:'seal',w2:'zeal'},{w1:'rice',w2:'rise'}]},
+  {label:'/f/ vs /v/',pairs:[{w1:'fan',w2:'van'},{w1:'few',w2:'view'},{w1:'fine',w2:'vine'}]},
+];
+
+const commonWords = [
+  {w:'hello',ipa:'/həˈloʊ/',jp:'こんにちは'},
+  {w:'thank you',ipa:'/ˈθæŋk juː/',jp:'ありがとう'},
+  {w:'please',ipa:'/pliːz/',jp:'お願いします'},
+  {w:'sorry',ipa:'/ˈsɑri/',jp:'すみません'},
+  {w:'water',ipa:'/ˈwɑɾər/',jp:'水'},
+  {w:'English',ipa:'/ˈɪŋɡlɪʃ/',jp:'英語'},
+  {w:'beautiful',ipa:'/ˈbjuːɾɪfəl/',jp:'美しい'},
+  {w:'understand',ipa:'/ˌʌndərˈstænd/',jp:'理解する'},
+  {w:'important',ipa:'/ɪmˈpɔːrtənt/',jp:'重要な'},
+  {w:'question',ipa:'/ˈkwɛstʃən/',jp:'質問'},
+  {w:'answer',ipa:'/ˈænsər/',jp:'答え'},
+  {w:'practice',ipa:'/ˈpræktɪs/',jp:'練習'},
+];
+
+const dailyWords = [
+  {w:'school',ipa:'/skuːl/',jp:'学校'},{w:'house',ipa:'/haʊs/',jp:'家'},
+  {w:'store',ipa:'/stɔːr/',jp:'店'},{w:'street',ipa:'/striːt/',jp:'通り'},
+  {w:'office',ipa:'/ˈɑfɪs/',jp:'オフィス'},{w:'hospital',ipa:'/ˈhɑspɪtəl/',jp:'病院'},
+  {w:'station',ipa:'/ˈsteɪʃən/',jp:'駅'},{w:'library',ipa:'/ˈlaɪbrɛri/',jp:'図書館'},
+];
+
+const foodWords = [
+  {w:'apple',ipa:'/ˈæpəl/',jp:'りんご'},{w:'bread',ipa:'/brɛd/',jp:'パン'},
+  {w:'chicken',ipa:'/ˈtʃɪkɪn/',jp:'鶏肉'},{w:'orange',ipa:'/ˈɔːrɪndʒ/',jp:'オレンジ'},
+  {w:'vegetable',ipa:'/ˈvɛdʒtəbəl/',jp:'野菜'},{w:'chocolate',ipa:'/ˈtʃɑklɪt/',jp:'チョコ'},
+  {w:'coffee',ipa:'/ˈkɑfi/',jp:'コーヒー'},{w:'burger',ipa:'/ˈbɜːrɡər/',jp:'バーガー'},
+];
+
+const adjWords = [
+  {w:'happy',ipa:'/ˈhæpi/',jp:'幸せ'},{w:'angry',ipa:'/ˈæŋɡri/',jp:'怒った'},
+  {w:'tired',ipa:'/ˈtaɪərd/',jp:'疲れた'},{w:'excited',ipa:'/ɪkˈsaɪɾɪd/',jp:'興奮した'},
+  {w:'nervous',ipa:'/ˈnɜːrvəs/',jp:'緊張した'},{w:'wonderful',ipa:'/ˈwʌndərfəl/',jp:'素晴らしい'},
+  {w:'terrible',ipa:'/ˈtɛrɪbəl/',jp:'ひどい'},{w:'surprised',ipa:'/sərˈpraɪzd/',jp:'驚いた'},
+];
+
+const speedPracticeWords = [
+  {w:'pronunciation',ipa:'/prəˌnʌnsiˈeɪʃən/',jp:'発音'},
+  {w:'comfortable',ipa:'/ˈkʌmftərbəl/',jp:'快適な'},
+  {w:'particularly',ipa:'/pərˈtɪkjələrli/',jp:'特に'},
+  {w:'international',ipa:'/ˌɪntərˈnæʃənəl/',jp:'国際的な'},
+  {w:'communication',ipa:'/kəˌmjuːnɪˈkeɪʃən/',jp:'コミュニケーション'},
+  {w:'refrigerator',ipa:'/rɪˈfrɪdʒəreɪtər/',jp:'冷蔵庫'},
+  {w:'congratulations',ipa:'/kənˌɡrætʃəˈleɪʃənz/',jp:'おめでとう'},
+];
+
+// ===================== 状態 =====================
+let currentSpeed = 0.8;
+
+// ===================== 音声再生 =====================
+function speak(text, speed) {
+  const spd = speed !== undefined ? speed : currentSpeed;
+  window.speechSynthesis.cancel();
+  const utter = new SpeechSynthesisUtterance(text);
+  utter.lang = 'en-US';
+  utter.rate = spd;
+  window.speechSynthesis.speak(utter);
+}
+
+function setSpeed(s) {
+  currentSpeed = s;
+  document.querySelectorAll('.speed-btn').forEach(b => {
+    b.classList.toggle('active', parseFloat(b.textContent.replace('×','')) === s);
+  });
+}
+
+// ===================== UIビルダー =====================
+function buildAlphaGrid(data, targetId) {
+  const container = document.getElementById(targetId);
+  if (!container) return;
+  container.innerHTML = data.map(d => `
+    <div class="alpha-card" onclick="speak('${d.letter.replace(' ','').toLowerCase().split('')[0]}')">
+      <div class="alpha-letter">${d.letter}</div>
+      <div class="alpha-sound">${d.sound}</div>
+      <div class="alpha-example">${d.example}</div>
+    </div>
+  `).join('');
+}
+
+function buildSoundGrid(data, targetId) {
+  const container = document.getElementById(targetId);
+  if (!container) return;
+  container.innerHTML = data.map(d => `
+    <div class="sound-card" onclick="speak('${d.word}', ${currentSpeed})">
+      <div class="sound-symbol">${d.sym}</div>
+      <div class="sound-word">${d.word}</div>
+      <div class="sound-jp">${d.jp}</div>
+      <div class="sound-hint">${d.hint}</div>
+    </div>
+  `).join('');
+}
+
+function buildWordList(words, targetId) {
+  const container = document.getElementById(targetId);
+  if (!container) return;
+  container.innerHTML = `<div class="word-list">${words.map(w =>
+    `<span class="word-chip" onclick="speak('${w}')">${w}</span>`
+  ).join('')}</div>`;
+}
+
+function buildPairs(pairs, targetId) {
+  const container = document.getElementById(targetId);
+  if (!container) return;
+  container.innerHTML = pairs.map(p => `
+    <div class="minimal-pair">
+      <div class="mp-word">
+        <div class="en">${p.w1}</div>
+        <div class="ipa">${p.ipa1}</div>
+        <div class="jp">${p.jp1 || ''}</div>
+      </div>
+      <button class="mp-btn" onclick="speak('${p.w1}')">▶ 聞く</button>
+      <span class="mp-vs">vs</span>
+      <button class="mp-btn green" onclick="speak('${p.w2}')">▶ 聞く</button>
+      <div class="mp-word">
+        <div class="en">${p.w2}</div>
+        <div class="ipa">${p.ipa2}</div>
+        <div class="jp">${p.jp2 || ''}</div>
+      </div>
+    </div>
+  `).join('');
+}
+
+function buildDiphthongDetails(data, targetId) {
+  const container = document.getElementById(targetId);
+  if (!container) return;
+  container.innerHTML = data.map(d => `
+    <div class="step-box">
+      <div class="step-header"><span class="step-num">${d.sym}</span>${d.sym} — 例: ${d.word} 「${d.jp}」</div>
+      <div class="step-body">
+        <div class="mouth-guide">
+          <h4>👄 発音のコツ</h4>
+          <ul><li>${d.hint}</li></ul>
+        </div>
+        <div class="word-list" style="margin-top:10px">
+          ${d.words.map(w => `<span class="word-chip" onclick="speak('${w}')">${w}</span>`).join('')}
+        </div>
+      </div>
+    </div>
+  `).join('');
+}
+
+function buildCommonWords(words, targetId) {
+  const container = document.getElementById(targetId);
+  if (!container) return;
+  container.innerHTML = `
+    <table class="compare-table" style="margin-top:8px">
+      <thead><tr><th>単語</th><th>発音記号</th><th>意味</th><th>聞く</th></tr></thead>
+      <tbody>
+        ${words.map(w => `
+          <tr>
+            <td class="word-en">${w.w}</td>
+            <td class="ipa">${w.ipa}</td>
+            <td class="word-jp">${w.jp}</td>
+            <td><button class="play-btn" style="padding:5px 12px;font-size:.78rem" onclick="speak('${w.w}')">▶</button></td>
+          </tr>
+        `).join('')}
+      </tbody>
+    </table>
+  `;
+}
+
+function buildAllMinimalPairs(data, targetId) {
+  const container = document.getElementById(targetId);
+  if (!container) return;
+  container.innerHTML = data.map(group => `
+    <div style="margin-bottom:18px">
+      <div style="font-size:.88rem;font-weight:700;color:#1d4ed8;margin-bottom:10px;border-left:3px solid #2563eb;padding-left:10px">${group.label}</div>
+      ${group.pairs.map(p => `
+        <div class="minimal-pair" style="padding:10px 14px;">
+          <div class="mp-word"><div class="en">${p.w1}</div></div>
+          <button class="mp-btn" onclick="speak('${p.w1}')">▶</button>
+          <span class="mp-vs">vs</span>
+          <button class="mp-btn green" onclick="speak('${p.w2}')">▶</button>
+          <div class="mp-word"><div class="en">${p.w2}</div></div>
+        </div>
+      `).join('')}
+    </div>
+  `).join('');
+}
+
+function buildSpeedWords(words, targetId) {
+  const container = document.getElementById(targetId);
+  if (!container) return;
+  container.innerHTML = words.map(w => `
+    <div class="step-box" style="margin-bottom:10px">
+      <div class="step-body" style="display:flex;align-items:center;gap:16px;flex-wrap:wrap;padding:12px 16px">
+        <span style="font-size:1.1rem;font-weight:700;min-width:200px">${w.w}</span>
+        <span class="ipa" style="color:#2563eb;font-family:'Courier New',monospace;font-size:.9rem">${w.ipa}</span>
+        <span style="color:#64748b;font-size:.83rem">${w.jp}</span>
+        <div style="display:flex;gap:8px;margin-left:auto">
+          <button class="play-btn" style="padding:5px 10px;font-size:.78rem" onclick="speak('${w.w}',0.5)">×0.5</button>
+          <button class="play-btn green" style="padding:5px 10px;font-size:.78rem" onclick="speak('${w.w}',0.8)">×0.8</button>
+          <button class="play-btn amber" style="padding:5px 10px;font-size:.78rem" onclick="speak('${w.w}',1.0)">×1.0</button>
+        </div>
+      </div>
+    </div>
+  `).join('');
+}
+
+// ===================== 初期化 =====================
+function init() {
+  buildAlphaGrid(vowelAlpha, 'vowel-alpha-grid');
+  buildAlphaGrid(consonantAlpha, 'consonant-alpha-grid');
+  buildSoundGrid(shortVowels, 'short-vowels-grid');
+  buildSoundGrid(longVowels, 'long-vowels-grid');
+  buildSoundGrid(consonantSounds, 'consonant-sound-grid');
+  buildSoundGrid(nasalSounds, 'nasal-grid');
+  buildSoundGrid(approxSounds, 'approx-grid');
+  buildSoundGrid(diphthongs.map(d => ({sym:d.sym,word:d.word,jp:d.jp,hint:d.hint})), 'diphthong-grid');
+  buildDiphthongDetails(diphthongs, 'diphthong-details');
+
+  buildWordList(['cat','hat','man','bad','sad','van','fan','map','back','lamp'], 'ae-words');
+  buildWordList(['bed','red','set','men','best','help','dress','bread','friend','ever'], 'e-words');
+  buildWordList(['sit','big','him','fish','give','rich','thick','miss','skill','fill'], 'i-words');
+  buildWordList(['hot','dog','top','box','got','odd','stop','rock','clock','drop'], 'a-words');
+  buildWordList(['cup','run','fun','bus','sun','luck','much','jump','truck','done'], 'u-words');
+
+  buildPairs(rlPairs, 'rl-pairs');
+  buildPairs(thPairs, 'th-pairs');
+  buildAllMinimalPairs(allMinimalPairs, 'all-minimal-pairs');
+  buildCommonWords(commonWords, 'common-words');
+  buildCommonWords(dailyWords, 'daily-words');
+  buildCommonWords(foodWords, 'food-words');
+  buildCommonWords(adjWords, 'adj-words');
+  buildSpeedWords(speedPracticeWords, 'speed-practice-words');
+}
+
+// ===================== タブ切り替え =====================
+document.querySelectorAll('.nav-tab').forEach(tab => {
+  tab.addEventListener('click', () => {
+    document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+    tab.classList.add('active');
+    document.getElementById(tab.dataset.sec).classList.add('active');
+  });
+});
+
+init();
+</script>
+</body>
+</html>
