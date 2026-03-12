@@ -1,0 +1,1763 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>英文法 否定文・疑問文 問題集 50問</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Noto Sans JP',sans-serif;background:#f0f4f8;color:#1e293b;min-height:100vh}
+header{background:linear-gradient(135deg,#1e3a5f,#2563eb);color:#fff;padding:24px;text-align:center}
+header h1{font-size:1.9rem;font-weight:700;letter-spacing:.05em}
+header p{font-size:.95rem;color:#bfdbfe;margin-top:6px}
+
+.nav-tabs{display:flex;overflow-x:auto;background:#fff;border-bottom:3px solid #e2e8f0;scrollbar-width:none}
+.nav-tabs::-webkit-scrollbar{display:none}
+.nav-tab{flex:1;min-width:130px;padding:14px 8px;text-align:center;cursor:pointer;font-size:.8rem;font-weight:600;border:none;background:none;transition:all .2s;border-bottom:4px solid transparent;color:#64748b;white-space:nowrap}
+.nav-tab:hover{background:#f8fafc}
+.nav-tab.active{color:#fff;border-bottom-color:transparent}
+.nav-tab[data-sec="intro"].active{background:#6366f1}
+.nav-tab[data-sec="be-neg"].active{background:#2563eb}
+.nav-tab[data-sec="be-q"].active{background:#0891b2}
+.nav-tab[data-sec="gen-neg"].active{background:#059669}
+.nav-tab[data-sec="gen-q"].active{background:#d97706}
+.nav-tab[data-sec="review"].active{background:#dc2626}
+
+.section{display:none;padding:24px;max-width:980px;margin:0 auto}
+.section.active{display:block}
+
+.card{background:#fff;border-radius:14px;padding:24px;margin-bottom:22px;box-shadow:0 2px 8px rgba(0,0,0,.07)}
+.card-title{font-size:1.15rem;font-weight:700;margin-bottom:18px;display:flex;align-items:center;gap:10px}
+.tag{font-size:.7rem;padding:3px 10px;border-radius:20px;color:#fff;font-weight:700}
+.tag-blue{background:#2563eb}
+.tag-teal{background:#0891b2}
+.tag-green{background:#059669}
+.tag-amber{background:#d97706}
+.tag-red{background:#dc2626}
+.tag-purple{background:#7c3aed}
+.tag-indigo{background:#6366f1}
+
+/* 解説ボックス */
+.concept-box{background:#eff6ff;border-left:5px solid #2563eb;border-radius:0 10px 10px 0;padding:14px 18px;margin-bottom:16px}
+.concept-box h3{font-size:.95rem;font-weight:700;color:#1d4ed8;margin-bottom:6px}
+.concept-box p{font-size:.88rem;color:#374151;line-height:1.7}
+.concept-box.green{background:#f0fdf4;border-color:#059669}
+.concept-box.green h3{color:#065f46}
+.concept-box.amber{background:#fffbeb;border-color:#d97706}
+.concept-box.amber h3{color:#92400e}
+.concept-box.red{background:#fef2f2;border-color:#dc2626}
+.concept-box.red h3{color:#991b1b}
+
+/* 公式ボックス */
+.formula-box{background:#1e293b;border-radius:12px;padding:16px 20px;margin:14px 0;color:#f8fafc;font-family:'Courier New',monospace;font-size:.92rem;line-height:1.8}
+.formula-box .label{font-family:'Noto Sans JP',sans-serif;font-size:.75rem;color:#94a3b8;font-weight:700;margin-bottom:6px;display:block}
+.formula-box .formula{color:#7dd3fc;font-weight:700}
+.formula-box .example{color:#86efac;margin-top:4px}
+.formula-box .trans{font-family:'Noto Sans JP',sans-serif;color:#fde68a;font-size:.83rem;margin-top:2px}
+
+/* 比較テーブル */
+.compare-table{width:100%;border-collapse:collapse;font-size:.87rem;margin-top:10px}
+.compare-table th{background:#1e3a5f;color:#fff;padding:10px 14px;text-align:left}
+.compare-table td{padding:10px 14px;border-bottom:1px solid #e2e8f0}
+.compare-table tr:nth-child(even) td{background:#f8fafc}
+.compare-table .en{font-weight:600;color:#1e293b}
+.compare-table .jp{color:#7c3aed;font-size:.82rem}
+.compare-table .key{color:#dc2626;font-weight:700}
+
+/* ヒント */
+.tip{background:#fef3c7;border-left:4px solid #f59e0b;border-radius:0 8px 8px 0;padding:10px 14px;margin:12px 0;font-size:.84rem;color:#78350f;line-height:1.6}
+.tip strong{color:#92400e}
+.warning{background:#fef2f2;border-left:4px solid #ef4444;border-radius:0 8px 8px 0;padding:10px 14px;margin:12px 0;font-size:.84rem;color:#7f1d1d;line-height:1.6}
+.success-box{background:#f0fdf4;border-left:4px solid #22c55e;border-radius:0 8px 8px 0;padding:10px 14px;margin:12px 0;font-size:.84rem;color:#14532d;line-height:1.6}
+
+/* 問題カード */
+.quiz-card{background:#fff;border:2px solid #e2e8f0;border-radius:14px;padding:20px;margin-bottom:16px;transition:all .2s}
+.quiz-card:hover{border-color:#93c5fd}
+.quiz-num{display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;border-radius:50%;color:#fff;font-weight:700;font-size:.85rem;margin-right:10px;flex-shrink:0}
+.num-blue{background:#2563eb}
+.num-teal{background:#0891b2}
+.num-green{background:#059669}
+.num-amber{background:#d97706}
+.num-red{background:#dc2626}
+.quiz-header{display:flex;align-items:flex-start;margin-bottom:12px}
+.quiz-q{font-size:.95rem;font-weight:600;color:#1e293b;flex:1;line-height:1.6}
+.quiz-en{font-size:1.1rem;font-weight:700;color:#1d4ed8;margin:8px 0 4px;font-style:italic}
+.quiz-jp{font-size:.85rem;color:#64748b;margin-bottom:12px}
+.quiz-instruction{font-size:.82rem;color:#64748b;background:#f8fafc;border-radius:6px;padding:6px 10px;display:inline-block;margin-bottom:12px}
+
+/* 答え表示ボタン */
+.show-btn{background:linear-gradient(135deg,#2563eb,#3b82f6);color:#fff;border:none;border-radius:8px;padding:8px 18px;cursor:pointer;font-size:.85rem;font-weight:600;transition:all .2s;display:inline-flex;align-items:center;gap:6px}
+.show-btn:hover{opacity:.9;transform:scale(1.02)}
+.show-btn.green{background:linear-gradient(135deg,#059669,#10b981)}
+.show-btn.amber{background:linear-gradient(135deg,#d97706,#f59e0b)}
+.show-btn.red{background:linear-gradient(135deg,#dc2626,#ef4444)}
+.show-btn.teal{background:linear-gradient(135deg,#0891b2,#06b6d4)}
+
+/* 答えパネル */
+.answer-panel{display:none;margin-top:14px;animation:fadeIn .25s ease}
+.answer-panel.show{display:block}
+@keyframes fadeIn{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:translateY(0)}}
+.answer-box{background:#f0fdf4;border:2px solid #22c55e;border-radius:10px;padding:14px 18px;margin-bottom:10px}
+.answer-label{font-size:.75rem;font-weight:700;color:#059669;margin-bottom:6px;display:flex;align-items:center;gap:6px}
+.answer-en{font-size:1.05rem;font-weight:700;color:#065f46}
+.answer-jp{font-size:.85rem;color:#166534;margin-top:4px}
+.answer-key{display:inline;background:#dcfce7;color:#166534;border-radius:4px;padding:2px 6px;font-weight:700}
+.explanation{background:#f8fafc;border-radius:8px;padding:12px 14px;margin-top:10px}
+.explanation h4{font-size:.85rem;font-weight:700;color:#1e3a5f;margin-bottom:8px;display:flex;align-items:center;gap:6px}
+.explanation p{font-size:.83rem;color:#374151;line-height:1.7}
+.explanation .point{background:#eff6ff;border-radius:6px;padding:8px 12px;margin-top:8px;font-size:.83rem;color:#1d4ed8;font-weight:600}
+
+/* 進捗バー */
+.progress-bar{background:#e2e8f0;border-radius:20px;height:8px;margin:12px 0}
+.progress-fill{background:linear-gradient(90deg,#2563eb,#7c3aed);border-radius:20px;height:100%;transition:width .3s}
+.progress-text{font-size:.8rem;color:#64748b;text-align:right;margin-top:4px}
+
+/* セクションヘッダ */
+.section-header{background:linear-gradient(135deg,#1e3a5f,#2563eb);color:#fff;border-radius:12px;padding:18px 22px;margin-bottom:20px}
+.section-header h2{font-size:1.2rem;font-weight:700}
+.section-header p{font-size:.85rem;color:#bfdbfe;margin-top:4px}
+.section-header.green{background:linear-gradient(135deg,#065f46,#059669)}
+.section-header.green p{color:#a7f3d0}
+.section-header.amber{background:linear-gradient(135deg,#78350f,#d97706)}
+.section-header.amber p{color:#fde68a}
+.section-header.red{background:linear-gradient(135deg,#7f1d1d,#dc2626)}
+.section-header.red p{color:#fecaca}
+.section-header.teal{background:linear-gradient(135deg,#164e63,#0891b2)}
+.section-header.teal p{color:#a5f3fc}
+
+/* スコアバッジ */
+.score-badge{display:inline-flex;align-items:center;gap:6px;background:#fff;border-radius:20px;padding:6px 14px;font-size:.82rem;font-weight:700;color:#1e3a5f;box-shadow:0 1px 4px rgba(0,0,0,.1);margin-top:10px}
+
+/* 全問チェックボタン */
+.check-all-btn{background:#6366f1;color:#fff;border:none;border-radius:8px;padding:10px 22px;cursor:pointer;font-size:.88rem;font-weight:700;display:block;margin:0 auto 20px;transition:all .2s}
+.check-all-btn:hover{background:#4f46e5}
+
+@media(max-width:600px){
+  header h1{font-size:1.4rem}
+  .quiz-en{font-size:1rem}
+  .formula-box{font-size:.82rem}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <h1>📝 否定文・疑問文 完全マスター</h1>
+  <p>be動詞 &amp; 一般動詞 — 否定形・疑問形 50問 + 詳しい解説</p>
+</header>
+
+<!-- タブナビゲーション -->
+<div class="nav-tabs">
+  <button class="nav-tab active" data-sec="intro">📖 解説<br>まとめ</button>
+  <button class="nav-tab" data-sec="be-neg">🔵 be動詞<br>否定文(12問)</button>
+  <button class="nav-tab" data-sec="be-q">🟦 be動詞<br>疑問文(13問)</button>
+  <button class="nav-tab" data-sec="gen-neg">🟢 一般動詞<br>否定文(12問)</button>
+  <button class="nav-tab" data-sec="gen-q">🟠 一般動詞<br>疑問文(13問)</button>
+  <button class="nav-tab" data-sec="review">🔴 総合<br>まとめ</button>
+</div>
+
+<!-- ========== INTRO ========== -->
+<div class="section active" id="intro">
+  <div class="card">
+    <div class="card-title">📘 be動詞とは？ <span class="tag tag-indigo">基礎</span></div>
+    <div class="concept-box">
+      <h3>be動詞の役割</h3>
+      <p>be動詞は「〜です」「〜にいます/あります」を表す動詞です。<br>
+      主語によって形が変わります：<strong>am / is / are</strong> の3種類があります。</p>
+    </div>
+    <table class="compare-table">
+      <tr><th>主語</th><th>be動詞</th><th>例文</th></tr>
+      <tr><td>I</td><td class="key">am</td><td class="en">I <span class="key">am</span> a student. <span class="jp">（私は学生です）</span></td></tr>
+      <tr><td>He / She / It / 単数名詞</td><td class="key">is</td><td class="en">She <span class="key">is</span> happy. <span class="jp">（彼女は幸せです）</span></td></tr>
+      <tr><td>You / We / They / 複数名詞</td><td class="key">are</td><td class="en">They <span class="key">are</span> teachers. <span class="jp">（彼らは先生です）</span></td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <div class="card-title">❌ be動詞の否定文 <span class="tag tag-blue">否定形</span></div>
+    <div class="formula-box">
+      <span class="label">【公式】be動詞の否定文</span>
+      <div class="formula">主語 + be動詞 + <span style="color:#f87171">not</span> + 〜</div>
+      <div class="example">She is <span style="color:#f87171">not</span> a doctor.</div>
+      <div class="trans">→ 彼女は医者ではありません。</div>
+    </div>
+    <div class="tip"><strong>ポイント：</strong>be動詞の直後に <strong>not</strong> を置くだけ！<br>
+    短縮形もよく使われます：is not → <strong>isn't</strong>、are not → <strong>aren't</strong>、am not（短縮形なし）</div>
+    <table class="compare-table">
+      <tr><th>肯定文</th><th>否定文</th><th>短縮形</th></tr>
+      <tr><td class="en">I am busy.</td><td class="en">I am <span class="key">not</span> busy.</td><td class="en">—（am notの短縮形なし）</td></tr>
+      <tr><td class="en">She is tall.</td><td class="en">She is <span class="key">not</span> tall.</td><td class="en">She <span class="key">isn't</span> tall.</td></tr>
+      <tr><td class="en">They are kind.</td><td class="en">They are <span class="key">not</span> kind.</td><td class="en">They <span class="key">aren't</span> kind.</td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <div class="card-title">❓ be動詞の疑問文 <span class="tag tag-teal">疑問形</span></div>
+    <div class="formula-box">
+      <span class="label">【公式】be動詞の疑問文</span>
+      <div class="formula"><span style="color:#f87171">Be動詞</span> + 主語 + 〜 ?</div>
+      <div class="example"><span style="color:#f87171">Is</span> she a doctor?</div>
+      <div class="trans">→ 彼女は医者ですか？</div>
+      <div class="example" style="margin-top:10px"><span style="color:#fde68a">Yes, she is. / No, she isn't.</span></div>
+      <div class="trans">→ はい、そうです。/ いいえ、違います。</div>
+    </div>
+    <div class="tip"><strong>ポイント：</strong>be動詞を文頭に移動させるだけ！語順が入れ替わります。<br>
+    文の最後には <strong>?（クエスチョンマーク）</strong> を忘れずに。</div>
+    <table class="compare-table">
+      <tr><th>肯定文</th><th>疑問文</th></tr>
+      <tr><td class="en">I am busy.</td><td class="en"><span class="key">Am</span> I busy?</td></tr>
+      <tr><td class="en">She is tall.</td><td class="en"><span class="key">Is</span> she tall?</td></tr>
+      <tr><td class="en">They are kind.</td><td class="en"><span class="key">Are</span> they kind?</td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <div class="card-title">📗 一般動詞とは？ <span class="tag tag-green">基礎</span></div>
+    <div class="concept-box green">
+      <h3>一般動詞の役割</h3>
+      <p>be動詞以外のすべての動詞が「一般動詞」です。<br>
+      <strong>play（遊ぶ）、study（勉強する）、like（好き）、eat（食べる）、go（行く）</strong>など<br>
+      動作や状態を具体的に表します。</p>
+    </div>
+    <div class="warning"><strong>注意：</strong>主語が三人称単数（He / She / It / 単数名詞）で現在形のとき、動詞の語尾に <strong>-s / -es</strong> をつけます！<br>
+    play → plays、study → studies、go → goes、have → has</div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">❌ 一般動詞の否定文 <span class="tag tag-green">否定形</span></div>
+    <div class="formula-box">
+      <span class="label">【公式】一般動詞の否定文</span>
+      <div class="formula">主語 + <span style="color:#f87171">do not（don't）</span> + 動詞の原形 + 〜</div>
+      <div class="example">I <span style="color:#f87171">don't</span> play soccer.</div>
+      <div class="trans">→ 私はサッカーをしません。</div>
+      <div style="height:8px"></div>
+      <div class="formula">主語(三単現) + <span style="color:#f87171">does not（doesn't）</span> + 動詞の原形 + 〜</div>
+      <div class="example">She <span style="color:#f87171">doesn't</span> play soccer.</div>
+      <div class="trans">→ 彼女はサッカーをしません。</div>
+    </div>
+    <div class="tip"><strong>重要：</strong>does not / doesn't を使うとき、動詞は<strong>必ず原形</strong>に戻します！<br>
+    ❌ She doesn't <s>plays</s>  ✅ She doesn't <strong>play</strong></div>
+    <table class="compare-table">
+      <tr><th>主語</th><th>否定の助動詞</th><th>例</th></tr>
+      <tr><td>I / You / We / They / 複数</td><td class="key">do not / don't</td><td class="en">I <span class="key">don't</span> like coffee.</td></tr>
+      <tr><td>He / She / It / 単数名詞</td><td class="key">does not / doesn't</td><td class="en">He <span class="key">doesn't</span> like coffee.</td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <div class="card-title">❓ 一般動詞の疑問文 <span class="tag tag-amber">疑問形</span></div>
+    <div class="formula-box">
+      <span class="label">【公式】一般動詞の疑問文</span>
+      <div class="formula"><span style="color:#f87171">Do</span> + 主語 + 動詞の原形 + 〜 ?</div>
+      <div class="example"><span style="color:#f87171">Do</span> you play soccer?</div>
+      <div class="trans">→ あなたはサッカーをしますか？</div>
+      <div class="example" style="margin-top:8px"><span style="color:#fde68a">Yes, I do. / No, I don't.</span></div>
+      <div style="height:8px"></div>
+      <div class="formula"><span style="color:#f87171">Does</span> + 主語 + 動詞の原形 + 〜 ?</div>
+      <div class="example"><span style="color:#f87171">Does</span> she play soccer?</div>
+      <div class="trans">→ 彼女はサッカーをしますか？</div>
+      <div class="example" style="margin-top:8px"><span style="color:#fde68a">Yes, she does. / No, she doesn't.</span></div>
+    </div>
+    <div class="tip"><strong>ポイント：</strong>Do / Does を文頭に置き、動詞は原形にします。<br>
+    Does を使う主語（He/She/It/単数）のとき、動詞の -s/-es は<strong>消えます</strong>！</div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">📊 4パターン まとめ対照表 <span class="tag tag-purple">総まとめ</span></div>
+    <table class="compare-table">
+      <tr><th>種類</th><th>肯定文</th><th>否定文</th><th>疑問文</th></tr>
+      <tr>
+        <td><strong>be動詞<br>（I）</strong></td>
+        <td class="en">I <span class="key">am</span> a student.</td>
+        <td class="en">I am <span class="key">not</span> a student.</td>
+        <td class="en"><span class="key">Am</span> I a student?</td>
+      </tr>
+      <tr>
+        <td><strong>be動詞<br>（He/She）</strong></td>
+        <td class="en">She <span class="key">is</span> kind.</td>
+        <td class="en">She <span class="key">isn't</span> kind.</td>
+        <td class="en"><span class="key">Is</span> she kind?</td>
+      </tr>
+      <tr>
+        <td><strong>be動詞<br>（They）</strong></td>
+        <td class="en">They <span class="key">are</span> busy.</td>
+        <td class="en">They <span class="key">aren't</span> busy.</td>
+        <td class="en"><span class="key">Are</span> they busy?</td>
+      </tr>
+      <tr>
+        <td><strong>一般動詞<br>（I/You）</strong></td>
+        <td class="en">I <span class="key">play</span> tennis.</td>
+        <td class="en">I <span class="key">don't play</span> tennis.</td>
+        <td class="en"><span class="key">Do</span> you play tennis?</td>
+      </tr>
+      <tr>
+        <td><strong>一般動詞<br>（He/She）</strong></td>
+        <td class="en">She <span class="key">plays</span> tennis.</td>
+        <td class="en">She <span class="key">doesn't play</span> tennis.</td>
+        <td class="en"><span class="key">Does</span> she play tennis?</td>
+      </tr>
+    </table>
+    <div class="success-box">解説を確認したら、上のタブから各セクションの問題を解いてみましょう！</div>
+  </div>
+</div>
+
+<!-- ========== BE動詞 否定文 ========== -->
+<div class="section" id="be-neg">
+  <div class="section-header">
+    <h2>🔵 be動詞の否定文 — 12問</h2>
+    <p>次の肯定文を否定文に書き換えましょう。be動詞の直後に not を置きます。</p>
+    <div class="score-badge">⭐ 難易度: ★☆☆ 初級</div>
+  </div>
+
+  <div class="concept-box" style="margin-bottom:20px">
+    <h3>公式：主語 + be動詞 + not + 〜</h3>
+    <p>She is happy. → She is <strong>not</strong> happy. / She <strong>isn't</strong> happy.</p>
+  </div>
+
+  <button class="check-all-btn" onclick="toggleAll('be-neg')">📋 全問の答えを表示 / 非表示</button>
+
+  <!-- Q1 -->
+  <div class="quiz-card">
+    <div class="quiz-header">
+      <span class="quiz-num num-blue">1</span>
+      <div>
+        <div class="quiz-q">次の文を否定文にしなさい。</div>
+        <div class="quiz-en">She is a student.</div>
+        <div class="quiz-jp">彼女は学生です。</div>
+      </div>
+    </div>
+    <button class="show-btn" onclick="toggleAnswer(this)">💡 答えを見る</button>
+    <div class="answer-panel">
+      <div class="answer-box">
+        <div class="answer-label">✅ 正解</div>
+        <div class="answer-en">She is <span class="answer-key">not</span> a student. / She <span class="answer-key">isn't</span> a student.</div>
+        <div class="answer-jp">彼女は学生ではありません。</div>
+      </div>
+      <div class="explanation">
+        <h4>📝 解説</h4>
+        <p><strong>is</strong> の直後に <strong>not</strong> を置きます。<br>
+        is + not = <strong>isn't</strong> と短縮することもできます。</p>
+        <div class="point">She <u>is</u> a student. → She <u>is not</u> a student.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Q2 -->
+  <div class="quiz-card">
+    <div class="quiz-header">
+      <span class="quiz-num num-blue">2</span>
+      <div>
+        <div class="quiz-q">次の文を否定文にしなさい。</div>
+        <div class="quiz-en">They are happy.</div>
+        <div class="quiz-jp">彼らは幸せです。</div>
+      </div>
+    </div>
+    <button class="show-btn" onclick="toggleAnswer(this)">💡 答えを見る</button>
+    <div class="answer-panel">
+      <div class="answer-box">
+        <div class="answer-label">✅ 正解</div>
+        <div class="answer-en">They are <span class="answer-key">not</span> happy. / They <span class="answer-key">aren't</span> happy.</div>
+        <div class="answer-jp">彼らは幸せではありません。</div>
+      </div>
+      <div class="explanation">
+        <h4>📝 解説</h4>
+        <p>主語が <strong>They（複数）</strong> なので be動詞は <strong>are</strong>。<br>
+        are + not = <strong>aren't</strong>（短縮形）も正解です。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Q3 -->
+  <div class="quiz-card">
+    <div class="quiz-header">
+      <span class="quiz-num num-blue">3</span>
+      <div>
+        <div class="quiz-q">次の文を否定文にしなさい。</div>
+        <div class="quiz-en">I am tired.</div>
+        <div class="quiz-jp">私は疲れています。</div>
+      </div>
+    </div>
+    <button class="show-btn" onclick="toggleAnswer(this)">💡 答えを見る</button>
+    <div class="answer-panel">
+      <div class="answer-box">
+        <div class="answer-label">✅ 正解</div>
+        <div class="answer-en">I am <span class="answer-key">not</span> tired.</div>
+        <div class="answer-jp">私は疲れていません。</div>
+      </div>
+      <div class="explanation">
+        <h4>📝 解説</h4>
+        <p>主語が <strong>I</strong> のとき be動詞は <strong>am</strong>。<br>
+        <strong>am not の短縮形はありません</strong>。"I amn't" とは言わないので注意！</p>
+        <div class="point">I am not ✅ （短縮形なし）/ I'm not ✅（I am → I'm）</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Q4 -->
+  <div class="quiz-card">
+    <div class="quiz-header">
+      <span class="quiz-num num-blue">4</span>
+      <div>
+        <div class="quiz-q">次の文を否定文にしなさい。</div>
+        <div class="quiz-en">He is from Japan.</div>
+        <div class="quiz-jp">彼は日本出身です。</div>
+      </div>
+    </div>
+    <button class="show-btn" onclick="toggleAnswer(this)">💡 答えを見る</button>
+    <div class="answer-panel">
+      <div class="answer-box">
+        <div class="answer-label">✅ 正解</div>
+        <div class="answer-en">He is <span class="answer-key">not</span> from Japan. / He <span class="answer-key">isn't</span> from Japan.</div>
+        <div class="answer-jp">彼は日本出身ではありません。</div>
+      </div>
+      <div class="explanation">
+        <h4>📝 解説</h4>
+        <p>He（三人称単数）→ be動詞は <strong>is</strong>。is not または isn't を使います。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Q5 -->
+  <div class="quiz-card">
+    <div class="quiz-header">
+      <span class="quiz-num num-blue">5</span>
+      <div>
+        <div class="quiz-q">次の文を否定文にしなさい。</div>
+        <div class="quiz-en">We are teachers.</div>
+        <div class="quiz-jp">私たちは先生です。</div>
+      </div>
+    </div>
+    <button class="show-btn" onclick="toggleAnswer(this)">💡 答えを見る</button>
+    <div class="answer-panel">
+      <div class="answer-box">
+        <div class="answer-label">✅ 正解</div>
+        <div class="answer-en">We are <span class="answer-key">not</span> teachers. / We <span class="answer-key">aren't</span> teachers.</div>
+        <div class="answer-jp">私たちは先生ではありません。</div>
+      </div>
+      <div class="explanation">
+        <h4>📝 解説</h4>
+        <p>We（複数）→ be動詞は <strong>are</strong>。are not または aren't。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Q6 -->
+  <div class="quiz-card">
+    <div class="quiz-header">
+      <span class="quiz-num num-blue">6</span>
+      <div>
+        <div class="quiz-q">次の文を否定文にしなさい。</div>
+        <div class="quiz-en">It is cold today.</div>
+        <div class="quiz-jp">今日は寒いです。</div>
+      </div>
+    </div>
+    <button class="show-btn" onclick="toggleAnswer(this)">💡 答えを見る</button>
+    <div class="answer-panel">
+      <div class="answer-box">
+        <div class="answer-label">✅ 正解</div>
+        <div class="answer-en">It is <span class="answer-key">not</span> cold today. / It <span class="answer-key">isn't</span> cold today.</div>
+        <div class="answer-jp">今日は寒くありません。</div>
+      </div>
+      <div class="explanation">
+        <h4>📝 解説</h4>
+        <p>天気・時刻・日付の主語には <strong>It</strong> を使います。It → be動詞は <strong>is</strong>。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Q7 -->
+  <div class="quiz-card">
+    <div class="quiz-header">
+      <span class="quiz-num num-blue">7</span>
+      <div>
+        <div class="quiz-q">次の文を否定文にしなさい。</div>
+        <div class="quiz-en">Tom and Mary are friends.</div>
+        <div class="quiz-jp">トムとメアリーは友達です。</div>
+      </div>
+    </div>
+    <button class="show-btn" onclick="toggleAnswer(this)">💡 答えを見る</button>
+    <div class="answer-panel">
+      <div class="answer-box">
+        <div class="answer-label">✅ 正解</div>
+        <div class="answer-en">Tom and Mary are <span class="answer-key">not</span> friends. / Tom and Mary <span class="answer-key">aren't</span> friends.</div>
+        <div class="answer-jp">トムとメアリーは友達ではありません。</div>
+      </div>
+      <div class="explanation">
+        <h4>📝 解説</h4>
+        <p>「A and B」は複数扱い → be動詞は <strong>are</strong>。<br>
+        複数名詞同士をつないだ主語は必ず are を使います。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Q8 -->
+  <div class="quiz-card">
+    <div class="quiz-header">
+      <span class="quiz-num num-blue">8</span>
+      <div>
+        <div class="quiz-q">次の文を否定文にしなさい。</div>
+        <div class="quiz-en">My sister is a nurse.</div>
+        <div class="quiz-jp">私の姉は看護師です。</div>
+      </div>
+    </div>
+    <button class="show-btn" onclick="toggleAnswer(this)">💡 答えを見る</button>
+    <div class="answer-panel">
+      <div class="answer-box">
+        <div class="answer-label">✅ 正解</div>
+        <div class="answer-en">My sister is <span class="answer-key">not</span> a nurse. / My sister <span class="answer-key">isn't</span> a nurse.</div>
+        <div class="answer-jp">私の姉は看護師ではありません。</div>
+      </div>
+      <div class="explanation">
+        <h4>📝 解説</h4>
+        <p>「My sister」= 三人称単数 → be動詞は <strong>is</strong>。<br>
+        「誰かの〇〇」という表現でも、主語が単数なら is を使います。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Q9 -->
+  <div class="quiz-card">
+    <div class="quiz-header">
+      <span class="quiz-num num-blue">9</span>
+      <div>
+        <div class="quiz-q">誤りを直して否定文を完成させなさい。</div>
+        <div class="quiz-en">The books are not on the table. ← これは正しい？<br>The book are not on the table. ← 誤りを発見しよう</div>
+        <div class="quiz-jp">その本はテーブルの上にありません。（bookは1冊）</div>
+      </div>
+    </div>
+    <button class="show-btn" onclick="toggleAnswer(this)">💡 答えを見る</button>
+    <div class="answer-panel">
+      <div class="answer-box">
+        <div class="answer-label">✅ 正解</div>
+        <div class="answer-en">The book <span class="answer-key">is</span> not on the table.</div>
+        <div class="answer-jp">その本（1冊）はテーブルの上にありません。</div>
+      </div>
+      <div class="explanation">
+        <h4>📝 解説</h4>
+        <p>「The book（1冊）」は単数 → be動詞は <strong>is</strong>。<br>
+        「The books（複数）」なら are になります。名詞の単複を確認しましょう。</p>
+        <div class="point">単数名詞 → is / 複数名詞 → are</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Q10 -->
+  <div class="quiz-card">
+    <div class="quiz-header">
+      <span class="quiz-num num-blue">10</span>
+      <div>
+        <div class="quiz-q">[ ] 内の語を並べ替えて否定文を完成させなさい。</div>
+        <div class="quiz-en">[ not / is / he / at home ]</div>
+        <div class="quiz-jp">彼は家にいません。</div>
+      </div>
+    </div>
+    <button class="show-btn" onclick="toggleAnswer(this)">💡 答えを見る</button>
+    <div class="answer-panel">
+      <div class="answer-box">
+        <div class="answer-label">✅ 正解</div>
+        <div class="answer-en">He <span class="answer-key">is not</span> at home.</div>
+        <div class="answer-jp">彼は家にいません。</div>
+      </div>
+      <div class="explanation">
+        <h4>📝 解説</h4>
+        <p>語順：主語(He) → be動詞(is) → not → 残り(at home)<br>
+        be動詞否定の基本語順を覚えましょう。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Q11 -->
+  <div class="quiz-card">
+    <div class="quiz-header">
+      <span class="quiz-num num-blue">11</span>
+      <div>
+        <div class="quiz-q">日本語を英語にしなさい。</div>
+        <div class="quiz-jp">あなたたちは忙しくありません。（you = 複数）</div>
+      </div>
+    </div>
+    <button class="show-btn" onclick="toggleAnswer(this)">💡 答えを見る</button>
+    <div class="answer-panel">
+      <div class="answer-box">
+        <div class="answer-label">✅ 正解</div>
+        <div class="answer-en">You <span class="answer-key">are not</span> busy. / You <span class="answer-key">aren't</span> busy.</div>
+        <div class="answer-jp">あなたたちは忙しくありません。</div>
+      </div>
+      <div class="explanation">
+        <h4>📝 解説</h4>
+        <p>You（単数・複数どちらも）→ be動詞は <strong>are</strong>。<br>
+        are not（aren't）を使います。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Q12 -->
+  <div class="quiz-card">
+    <div class="quiz-header">
+      <span class="quiz-num num-blue">12</span>
+      <div>
+        <div class="quiz-q">日本語を英語にしなさい。</div>
+        <div class="quiz-jp">その犬は大きくありません。（dog = 単数）</div>
+      </div>
+    </div>
+    <button class="show-btn" onclick="toggleAnswer(this)">💡 答えを見る</button>
+    <div class="answer-panel">
+      <div class="answer-box">
+        <div class="answer-label">✅ 正解</div>
+        <div class="answer-en">The dog <span class="answer-key">is not</span> big. / The dog <span class="answer-key">isn't</span> big.</div>
+        <div class="answer-jp">その犬は大きくありません。</div>
+      </div>
+      <div class="explanation">
+        <h4>📝 解説</h4>
+        <p>「The dog」= 三人称単数 → is not / isn't を使います。<br>
+        形容詞（big, small, cute etc.）も be動詞 + not で否定できます。</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ========== BE動詞 疑問文 ========== -->
+<div class="section" id="be-q">
+  <div class="section-header teal">
+    <h2>🟦 be動詞の疑問文 — 13問</h2>
+    <p>肯定文を疑問文に書き換えましょう。be動詞を文頭に移動させます。</p>
+    <div class="score-badge">⭐ 難易度: ★☆☆ 初級</div>
+  </div>
+
+  <div class="concept-box" style="margin-bottom:20px">
+    <h3>公式：Be動詞 + 主語 + 〜 ?</h3>
+    <p>She is happy. → <strong>Is</strong> she happy? 　答え方：Yes, she is. / No, she isn't.</p>
+  </div>
+
+  <button class="check-all-btn" onclick="toggleAll('be-q')" style="background:#0891b2">📋 全問の答えを表示 / 非表示</button>
+
+  <!-- Q13 -->
+  <div class="quiz-card">
+    <div class="quiz-header">
+      <span class="quiz-num num-teal">13</span>
+      <div>
+        <div class="quiz-q">次の文を疑問文にしなさい。</div>
+        <div class="quiz-en">She is a student.</div>
+        <div class="quiz-jp">彼女は学生です。</div>
+      </div>
+    </div>
+    <button class="show-btn teal" onclick="toggleAnswer(this)">💡 答えを見る</button>
+    <div class="answer-panel">
+      <div class="answer-box">
+        <div class="answer-label">✅ 正解</div>
+        <div class="answer-en"><span class="answer-key">Is</span> she a student?</div>
+        <div class="answer-jp">彼女は学生ですか？</div>
+      </div>
+      <div class="explanation">
+        <h4>📝 解説</h4>
+        <p>be動詞 <strong>is</strong> を文頭に移動させます。<br>
+        答え方：Yes, she <strong>is</strong>. / No, she <strong>isn't</strong>.</p>
+        <div class="point">She is → Is she ? （be動詞を前に出す）</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Q14 -->
+  <div class="quiz-card">
+    <div class="quiz-header">
+      <span class="quiz-num num-teal">14</span>
+      <div>
+        <div class="quiz-q">次の文を疑問文にしなさい。</div>
+        <div class="quiz-en">They are happy.</div>
+        <div class="quiz-jp">彼らは幸せです。</div>
+      </div>
+    </div>
+    <button class="show-btn teal" onclick="toggleAnswer(this)">💡 答えを見る</button>
+    <div class="answer-panel">
+      <div class="answer-box">
+        <div class="answer-label">✅ 正解</div>
+        <div class="answer-en"><span class="answer-key">Are</span> they happy?</div>
+        <div class="answer-jp">彼らは幸せですか？</div>
+      </div>
+      <div class="explanation">
+        <h4>📝 解説</h4>
+        <p>are を文頭に。答え：Yes, they <strong>are</strong>. / No, they <strong>aren't</strong>.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Q15 -->
+  <div class="quiz-card">
+    <div class="quiz-header">
+      <span class="quiz-num num-teal">15</span>
+      <div>
+        <div class="quiz-q">次の文を疑問文にしなさい。</div>
+        <div class="quiz-en">He is from Japan.</div>
+        <div class="quiz-jp">彼は日本出身です。</div>
+      </div>
+    </div>
+    <button class="show-btn teal" onclick="toggleAnswer(this)">💡 答えを見る</button>
+    <div class="answer-panel">
+      <div class="answer-box">
+        <div class="answer-label">✅ 正解</div>
+        <div class="answer-en"><span class="answer-key">Is</span> he from Japan?</div>
+        <div class="answer-jp">彼は日本出身ですか？</div>
+      </div>
+      <div class="explanation">
+        <h4>📝 解説</h4>
+        <p>He → is を文頭へ。答え：Yes, he <strong>is</strong>. / No, he <strong>isn't</strong>.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Q16 -->
+  <div class="quiz-card">
+    <div class="quiz-header">
+      <span class="quiz-num num-teal">16</span>
+      <div>
+        <div class="quiz-q">次の文を疑問文にしなさい。</div>
+        <div class="quiz-en">You are busy.</div>
+        <div class="quiz-jp">あなたは忙しいです。</div>
+      </div>
+    </div>
+    <button class="show-btn teal" onclick="toggleAnswer(this)">💡 答えを見る</button>
+    <div class="answer-panel">
+      <div class="answer-box">
+        <div class="answer-label">✅ 正解</div>
+        <div class="answer-en"><span class="answer-key">Are</span> you busy?</div>
+        <div class="answer-jp">あなたは忙しいですか？</div>
+      </div>
+      <div class="explanation">
+        <h4>📝 解説</h4>
+        <p>You → are を文頭へ。<br>
+        答え：Yes, I <strong>am</strong>. / No, I <strong>am not</strong>（I'm not）. ← 答えるとき主語が I に変わることに注意！</p>
+        <div class="point">Are you 〜? → Yes, <u>I am</u>. / No, <u>I'm not</u>.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Q17 -->
+  <div class="quiz-card">
+    <div class="quiz-header">
+      <span class="quiz-num num-teal">17</span>
+      <div>
+        <div class="quiz-q">次の文を疑問文にしなさい。</div>
+        <div class="quiz-en">Tom is at home.</div>
+        <div class="quiz-jp">トムは家にいます。</div>
+      </div>
+    </div>
+    <button class="show-btn teal" onclick="toggleAnswer(this)">💡 答えを見る</button>
+    <div class="answer-panel">
+      <div class="answer-box">
+        <div class="answer-label">✅ 正解</div>
+        <div class="answer-en"><span class="answer-key">Is</span> Tom at home?</div>
+        <div class="answer-jp">トムは家にいますか？</div>
+      </div>
+      <div class="explanation">
+        <h4>📝 解説</h4>
+        <p>固有名詞（Tom）も三人称単数 → is を文頭に移動。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Q18 -->
+  <div class="quiz-card">
+    <div class="quiz-header">
+      <span class="quiz-num num-teal">18</span>
+      <div>
+        <div class="quiz-q">次の文を疑問文にしなさい。</div>
+        <div class="quiz-en">The cats are cute.</div>
+        <div class="quiz-jp">その猫たちはかわいいです。</div>
+      </div>
+    </div>
+    <button class="show-btn teal" onclick="toggleAnswer(this)">💡 答えを見る</button>
+    <div class="answer-panel">
+      <div class="answer-box">
+        <div class="answer-label">✅ 正解</div>
+        <div class="answer-en"><span class="answer-key">Are</span> the cats cute?</div>
+        <div class="answer-jp">その猫たちはかわいいですか？</div>
+      </div>
+      <div class="explanation">
+        <h4>📝 解説</h4>
+        <p>cats（複数）→ are を文頭に。<br>
+        答え：Yes, they <strong>are</strong>. / No, they <strong>aren't</strong>.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Q19 -->
+  <div class="quiz-card">
+    <div class="quiz-header">
+      <span class="quiz-num num-teal">19</span>
+      <div>
+        <div class="quiz-q">次の文を疑問文にしなさい。</div>
+        <div class="quiz-en">Your father is a doctor.</div>
+        <div class="quiz-jp">あなたのお父さんは医師です。</div>
+      </div>
+    </div>
+    <button class="show-btn teal" onclick="toggleAnswer(this)">💡 答えを見る</button>
+    <div class="answer-panel">
+      <div class="answer-box">
+        <div class="answer-label">✅ 正解</div>
+        <div class="answer-en"><span class="answer-key">Is</span> your father a doctor?</div>
+        <div class="answer-jp">あなたのお父さんは医師ですか？</div>
+      </div>
+      <div class="explanation">
+        <h4>📝 解説</h4>
+        <p>「your father」= 三人称単数 → is を文頭へ。<br>
+        「your」はそのままにします。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Q20 -->
+  <div class="quiz-card">
+    <div class="quiz-header">
+      <span class="quiz-num num-teal">20</span>
+      <div>
+        <div class="quiz-q">次の文を疑問文にしなさい。</div>
+        <div class="quiz-en">Lisa is singing.</div>
+        <div class="quiz-jp">リサは歌っています。</div>
+      </div>
+    </div>
+    <button class="show-btn teal" onclick="toggleAnswer(this)">💡 答えを見る</button>
+    <div class="answer-panel">
+      <div class="answer-box">
+        <div class="answer-label">✅ 正解</div>
+        <div class="answer-en"><span class="answer-key">Is</span> Lisa singing?</div>
+        <div class="answer-jp">リサは歌っていますか？</div>
+      </div>
+      <div class="explanation">
+        <h4>📝 解説</h4>
+        <p>進行形（is + 〜ing）でも同じ。be動詞 is を文頭に移動させます。<br>
+        答え：Yes, she <strong>is</strong>. / No, she <strong>isn't</strong>.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Q21 -->
+  <div class="quiz-card">
+    <div class="quiz-header">
+      <span class="quiz-num num-teal">21</span>
+      <div>
+        <div class="quiz-q">日本語を英語にしなさい。</div>
+        <div class="quiz-jp">あなたは眠いですか？</div>
+      </div>
+    </div>
+    <button class="show-btn teal" onclick="toggleAnswer(this)">💡 答えを見る</button>
+    <div class="answer-panel">
+      <div class="answer-box">
+        <div class="answer-label">✅ 正解</div>
+        <div class="answer-en"><span class="answer-key">Are</span> you sleepy?</div>
+        <div class="answer-jp">あなたは眠いですか？</div>
+      </div>
+      <div class="explanation">
+        <h4>📝 解説</h4>
+        <p>「あなた（you）」に対して are を使います。Are you 〜? が基本疑問文の形。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Q22 -->
+  <div class="quiz-card">
+    <div class="quiz-header">
+      <span class="quiz-num num-teal">22</span>
+      <div>
+        <div class="quiz-q">[ ] 内の語を使って疑問文を作りなさい。</div>
+        <div class="quiz-en">[ your brother / a baseball player ]</div>
+        <div class="quiz-jp">あなたのお兄さんは野球選手ですか？</div>
+      </div>
+    </div>
+    <button class="show-btn teal" onclick="toggleAnswer(this)">💡 答えを見る</button>
+    <div class="answer-panel">
+      <div class="answer-box">
+        <div class="answer-label">✅ 正解</div>
+        <div class="answer-en"><span class="answer-key">Is</span> your brother a baseball player?</div>
+        <div class="answer-jp">あなたのお兄さんは野球選手ですか？</div>
+      </div>
+      <div class="explanation">
+        <h4>📝 解説</h4>
+        <p>「your brother」= 三人称単数 → Is を文頭に。<br>
+        職業を尋ねるときも be動詞疑問文を使います。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Q23 -->
+  <div class="quiz-card">
+    <div class="quiz-header">
+      <span class="quiz-num num-teal">23</span>
+      <div>
+        <div class="quiz-q">次の疑問文に答えなさい（肯定）。</div>
+        <div class="quiz-en">Are Ken and Mike good friends?</div>
+        <div class="quiz-jp">ケンとマイクは仲の良い友達ですか？（→ はい）</div>
+      </div>
+    </div>
+    <button class="show-btn teal" onclick="toggleAnswer(this)">💡 答えを見る</button>
+    <div class="answer-panel">
+      <div class="answer-box">
+        <div class="answer-label">✅ 正解</div>
+        <div class="answer-en">Yes, they <span class="answer-key">are</span>.</div>
+        <div class="answer-jp">はい、そうです。</div>
+      </div>
+      <div class="explanation">
+        <h4>📝 解説</h4>
+        <p>「Ken and Mike」を短く言い換えると <strong>they</strong>。<br>
+        Are 〜? に対する肯定の答えは Yes, they are. です。</p>
+        <div class="point">Are Ken and Mike 〜? → Yes, <u>they</u> are.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Q24 -->
+  <div class="quiz-card">
+    <div class="quiz-header">
+      <span class="quiz-num num-teal">24</span>
+      <div>
+        <div class="quiz-q">次の疑問文に答えなさい（否定）。</div>
+        <div class="quiz-en">Is it rainy today?</div>
+        <div class="quiz-jp">今日は雨ですか？（→ いいえ）</div>
+      </div>
+    </div>
+    <button class="show-btn teal" onclick="toggleAnswer(this)">💡 答えを見る</button>
+    <div class="answer-panel">
+      <div class="answer-box">
+        <div class="answer-label">✅ 正解</div>
+        <div class="answer-en">No, it <span class="answer-key">isn't</span>. / No, it is not.</div>
+        <div class="answer-jp">いいえ、違います。</div>
+      </div>
+      <div class="explanation">
+        <h4>📝 解説</h4>
+        <p>Is it 〜? に対する否定の答えは No, it isn't. / No, it is not. です。<br>
+        天気などの it もそのまま使います。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Q25 -->
+  <div class="quiz-card">
+    <div class="quiz-header">
+      <span class="quiz-num num-teal">25</span>
+      <div>
+        <div class="quiz-q">誤りを直しなさい。</div>
+        <div class="quiz-en">Is you a student?</div>
+        <div class="quiz-jp">（→ あなたは学生ですか？）</div>
+      </div>
+    </div>
+    <button class="show-btn teal" onclick="toggleAnswer(this)">💡 答えを見る</button>
+    <div class="answer-panel">
+      <div class="answer-box">
+        <div class="answer-label">✅ 正解</div>
+        <div class="answer-en"><span class="answer-key">Are</span> you a student?</div>
+        <div class="answer-jp">あなたは学生ですか？</div>
+      </div>
+      <div class="explanation">
+        <h4>📝 解説</h4>
+        <p>You に対する be動詞は <strong>are</strong>。Is you は誤りです。<br>
+        必ず主語と be動詞の一致を確認しましょう。</p>
+        <div class="point">❌ Is you / ✅ Are you</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ========== 一般動詞 否定文 ========== -->
+<div class="section" id="gen-neg">
+  <div class="section-header green">
+    <h2>🟢 一般動詞の否定文 — 12問</h2>
+    <p>do not / does not を使って否定文を作りましょう。</p>
+    <div class="score-badge">⭐ 難易度: ★★☆ 中級</div>
+  </div>
+
+  <div class="concept-box green" style="margin-bottom:20px">
+    <h3>公式：主語 + do/does + not + 動詞の原形</h3>
+    <p>I play → I <strong>don't</strong> play / She plays → She <strong>doesn't play</strong>（原形！）</p>
+  </div>
+
+  <button class="check-all-btn" onclick="toggleAll('gen-neg')" style="background:#059669">📋 全問の答えを表示 / 非表示</button>
+
+  <!-- Q26 -->
+  <div class="quiz-card">
+    <div class="quiz-header">
+      <span class="quiz-num num-green">26</span>
+      <div>
+        <div class="quiz-q">次の文を否定文にしなさい。</div>
+        <div class="quiz-en">I play soccer.</div>
+        <div class="quiz-jp">私はサッカーをします。</div>
+      </div>
+    </div>
+    <button class="show-btn green" onclick="toggleAnswer(this)">💡 答えを見る</button>
+    <div class="answer-panel">
+      <div class="answer-box">
+        <div class="answer-label">✅ 正解</div>
+        <div class="answer-en">I <span class="answer-key">do not</span> play soccer. / I <span class="answer-key">don't</span> play soccer.</div>
+        <div class="answer-jp">私はサッカーをしません。</div>
+      </div>
+      <div class="explanation">
+        <h4>📝 解説</h4>
+        <p>一般動詞の否定文は <strong>do not（don't）+ 動詞の原形</strong> を使います。<br>
+        I / You / We / They のときは <strong>do not / don't</strong> を使います。</p>
+        <div class="point">I play → I <u>don't</u> play</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Q27 -->
+  <div class="quiz-card">
+    <div class="quiz-header">
+      <span class="quiz-num num-green">27</span>
+      <div>
+        <div class="quiz-q">次の文を否定文にしなさい。</div>
+        <div class="quiz-en">She plays soccer.</div>
+        <div class="quiz-jp">彼女はサッカーをします。</div>
+      </div>
+    </div>
+    <button class="show-btn green" onclick="toggleAnswer(this)">💡 答えを見る</button>
+    <div class="answer-panel">
+      <div class="answer-box">
+        <div class="answer-label">✅ 正解</div>
+        <div class="answer-en">She <span class="answer-key">does not</span> play soccer. / She <span class="answer-key">doesn't</span> play soccer.</div>
+        <div class="answer-jp">彼女はサッカーをしません。</div>
+      </div>
+      <div class="explanation">
+        <h4>📝 解説</h4>
+        <p>主語が <strong>She（三人称単数）</strong> → <strong>does not / doesn't</strong> を使います。<br>
+        動詞は <strong>plays → play（原形）</strong> に戻します！</p>
+        <div class="point">❌ She doesn't <s>plays</s> / ✅ She doesn't <u>play</u></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Q28 -->
+  <div class="quiz-card">
+    <div class="quiz-header">
+      <span class="quiz-num num-green">28</span>
+      <div>
+        <div class="quiz-q">次の文を否定文にしなさい。</div>
+        <div class="quiz-en">They like cats.</div>
+        <div class="quiz-jp">彼らは猫が好きです。</div>
+      </div>
+    </div>
+    <button class="show-btn green" onclick="toggleAnswer(this)">💡 答えを見る</button>
+    <div class="answer-panel">
+      <div class="answer-box">
+        <div class="answer-label">✅ 正解</div>
+        <div class="answer-en">They <span class="answer-key">do not</span> like cats. / They <span class="answer-key">don't</span> like cats.</div>
+        <div class="answer-jp">彼らは猫が好きではありません。</div>
+      </div>
+      <div class="explanation">
+        <h4>📝 解説</h4>
+        <p>They（複数）→ do not / don't を使います。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Q29 -->
+  <div class="quiz-card">
+    <div class="quiz-header">
+      <span class="quiz-num num-green">29</span>
+      <div>
+        <div class="quiz-q">次の文を否定文にしなさい。</div>
+        <div class="quiz-en">He reads books every day.</div>
+        <div class="quiz-jp">彼は毎日本を読みます。</div>
+      </div>
+    </div>
+    <button class="show-btn green" onclick="toggleAnswer(this)">💡 答えを見る</button>
+    <div class="answer-panel">
+      <div class="answer-box">
+        <div class="answer-label">✅ 正解</div>
+        <div class="answer-en">He <span class="answer-key">does not</span> read books every day. / He <span class="answer-key">doesn't</span> read books every day.</div>
+        <div class="answer-jp">彼は毎日本を読みません。</div>
+      </div>
+      <div class="explanation">
+        <h4>📝 解説</h4>
+        <p>He（三単現）→ does not / doesn't。<br>
+        reads → <strong>read（原形）</strong> に戻します。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Q30 -->
+  <div class="quiz-card">
+    <div class="quiz-header">
+      <span class="quiz-num num-green">30</span>
+      <div>
+        <div class="quiz-q">次の文を否定文にしなさい。</div>
+        <div class="quiz-en">She eats breakfast.</div>
+        <div class="quiz-jp">彼女は朝食を食べます。</div>
+      </div>
+    </div>
+    <button class="show-btn green" onclick="toggleAnswer(this)">💡 答えを見る</button>
+    <div class="answer-panel">
+      <div class="answer-box">
+        <div class="answer-label">✅ 正解</div>
+        <div class="answer-en">She <span class="answer-key">doesn't</span> eat breakfast.</div>
+        <div class="answer-jp">彼女は朝食を食べません。</div>
+      </div>
+      <div class="explanation">
+        <h4>📝 解説</h4>
+        <p>eats → <strong>eat（原形）</strong> へ。doesn't のあとは必ず原形。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Q31 -->
+  <div class="quiz-card">
+    <div class="quiz-header">
+      <span class="quiz-num num-green">31</span>
+      <div>
+        <div class="quiz-q">次の文を否定文にしなさい。</div>
+        <div class="quiz-en">My brother watches TV.</div>
+        <div class="quiz-jp">私の弟はテレビを見ます。</div>
+      </div>
+    </div>
+    <button class="show-btn green" onclick="toggleAnswer(this)">💡 答えを見る</button>
+    <div class="answer-panel">
+      <div class="answer-box">
+        <div class="answer-label">✅ 正解</div>
+        <div class="answer-en">My brother <span class="answer-key">doesn't</span> watch TV.</div>
+        <div class="answer-jp">私の弟はテレビを見ません。</div>
+      </div>
+      <div class="explanation">
+        <h4>📝 解説</h4>
+        <p>「My brother」= 三人称単数 → doesn't。watches → <strong>watch</strong>（原形）。<br>
+        -es がついた動詞も原形に戻します。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Q32 -->
+  <div class="quiz-card">
+    <div class="quiz-header">
+      <span class="quiz-num num-green">32</span>
+      <div>
+        <div class="quiz-q">次の文を否定文にしなさい。</div>
+        <div class="quiz-en">Tom speaks French.</div>
+        <div class="quiz-jp">トムはフランス語を話します。</div>
+      </div>
+    </div>
+    <button class="show-btn green" onclick="toggleAnswer(this)">💡 答えを見る</button>
+    <div class="answer-panel">
+      <div class="answer-box">
+        <div class="answer-label">✅ 正解</div>
+        <div class="answer-en">Tom <span class="answer-key">doesn't</span> speak French.</div>
+        <div class="answer-jp">トムはフランス語を話しません。</div>
+      </div>
+      <div class="explanation">
+        <h4>📝 解説</h4>
+        <p>固有名詞 Tom = 三人称単数 → doesn't + speak（原形）。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Q33 -->
+  <div class="quiz-card">
+    <div class="quiz-header">
+      <span class="quiz-num num-green">33</span>
+      <div>
+        <div class="quiz-q">次の文を否定文にしなさい。</div>
+        <div class="quiz-en">She has a car.</div>
+        <div class="quiz-jp">彼女は車を持っています。</div>
+      </div>
+    </div>
+    <button class="show-btn green" onclick="toggleAnswer(this)">💡 答えを見る</button>
+    <div class="answer-panel">
+      <div class="answer-box">
+        <div class="answer-label">✅ 正解</div>
+        <div class="answer-en">She <span class="answer-key">doesn't</span> have a car.</div>
+        <div class="answer-jp">彼女は車を持っていません。</div>
+      </div>
+      <div class="explanation">
+        <h4>📝 解説</h4>
+        <p><strong>has の原形は have</strong> です！特別な変化をする動詞に注意。<br>
+        has → have（原形）に戻します。</p>
+        <div class="point">❌ doesn't <s>has</s> / ✅ doesn't <u>have</u></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Q34 -->
+  <div class="quiz-card">
+    <div class="quiz-header">
+      <span class="quiz-num num-green">34</span>
+      <div>
+        <div class="quiz-q">誤りを直しなさい。</div>
+        <div class="quiz-en">She doesn't likes music.</div>
+        <div class="quiz-jp">彼女は音楽が好きではありません。</div>
+      </div>
+    </div>
+    <button class="show-btn green" onclick="toggleAnswer(this)">💡 答えを見る</button>
+    <div class="answer-panel">
+      <div class="answer-box">
+        <div class="answer-label">✅ 正解</div>
+        <div class="answer-en">She doesn't <span class="answer-key">like</span> music.</div>
+        <div class="answer-jp">彼女は音楽が好きではありません。</div>
+      </div>
+      <div class="explanation">
+        <h4>📝 解説</h4>
+        <p>doesn't の後ろは必ず<strong>動詞の原形</strong>。<br>
+        likes → <strong>like</strong> に直します。これは最もよくある間違いです！</p>
+        <div class="point">❌ doesn't <s>likes</s> / ✅ doesn't <u>like</u></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Q35 -->
+  <div class="quiz-card">
+    <div class="quiz-header">
+      <span class="quiz-num num-green">35</span>
+      <div>
+        <div class="quiz-q">日本語を英語にしなさい。</div>
+        <div class="quiz-jp">私たちは東京に住んでいません。</div>
+      </div>
+    </div>
+    <button class="show-btn green" onclick="toggleAnswer(this)">💡 答えを見る</button>
+    <div class="answer-panel">
+      <div class="answer-box">
+        <div class="answer-label">✅ 正解</div>
+        <div class="answer-en">We <span class="answer-key">don't</span> live in Tokyo.</div>
+        <div class="answer-jp">私たちは東京に住んでいません。</div>
+      </div>
+      <div class="explanation">
+        <h4>📝 解説</h4>
+        <p>We（複数）→ don't + live（原形）。<br>
+        「〜に住む」は live in 〜 で表します。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Q36 -->
+  <div class="quiz-card">
+    <div class="quiz-header">
+      <span class="quiz-num num-green">36</span>
+      <div>
+        <div class="quiz-q">日本語を英語にしなさい。</div>
+        <div class="quiz-jp">私の母は夕食を作りません。</div>
+      </div>
+    </div>
+    <button class="show-btn green" onclick="toggleAnswer(this)">💡 答えを見る</button>
+    <div class="answer-panel">
+      <div class="answer-box">
+        <div class="answer-label">✅ 正解</div>
+        <div class="answer-en">My mother <span class="answer-key">doesn't</span> cook dinner.</div>
+        <div class="answer-jp">私の母は夕食を作りません。</div>
+      </div>
+      <div class="explanation">
+        <h4>📝 解説</h4>
+        <p>「My mother」= 三人称単数 → doesn't + cook（原形）。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Q37 -->
+  <div class="quiz-card">
+    <div class="quiz-header">
+      <span class="quiz-num num-green">37</span>
+      <div>
+        <div class="quiz-q">日本語を英語にしなさい。</div>
+        <div class="quiz-jp">彼はバスで学校に行きません。</div>
+      </div>
+    </div>
+    <button class="show-btn green" onclick="toggleAnswer(this)">💡 答えを見る</button>
+    <div class="answer-panel">
+      <div class="answer-box">
+        <div class="answer-label">✅ 正解</div>
+        <div class="answer-en">He <span class="answer-key">doesn't</span> go to school by bus.</div>
+        <div class="answer-jp">彼はバスで学校に行きません。</div>
+      </div>
+      <div class="explanation">
+        <h4>📝 解説</h4>
+        <p>He → doesn't + go（原形）。goes → go になります。<br>
+        「バスで」= <strong>by bus</strong>（by + 交通手段）。</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ========== 一般動詞 疑問文 ========== -->
+<div class="section" id="gen-q">
+  <div class="section-header amber">
+    <h2>🟠 一般動詞の疑問文 — 13問</h2>
+    <p>Do / Does を文頭に置いて疑問文を作りましょう。動詞は原形に。</p>
+    <div class="score-badge">⭐ 難易度: ★★☆ 中級</div>
+  </div>
+
+  <div class="concept-box amber" style="margin-bottom:20px">
+    <h3>公式：Do/Does + 主語 + 動詞の原形 + 〜 ?</h3>
+    <p>You play → <strong>Do</strong> you play? / She plays → <strong>Does</strong> she <strong>play</strong>?</p>
+  </div>
+
+  <button class="check-all-btn" onclick="toggleAll('gen-q')" style="background:#d97706">📋 全問の答えを表示 / 非表示</button>
+
+  <!-- Q38 -->
+  <div class="quiz-card">
+    <div class="quiz-header">
+      <span class="quiz-num num-amber">38</span>
+      <div>
+        <div class="quiz-q">次の文を疑問文にしなさい。</div>
+        <div class="quiz-en">You play soccer.</div>
+        <div class="quiz-jp">あなたはサッカーをします。</div>
+      </div>
+    </div>
+    <button class="show-btn amber" onclick="toggleAnswer(this)">💡 答えを見る</button>
+    <div class="answer-panel">
+      <div class="answer-box">
+        <div class="answer-label">✅ 正解</div>
+        <div class="answer-en"><span class="answer-key">Do</span> you play soccer?</div>
+        <div class="answer-jp">あなたはサッカーをしますか？</div>
+      </div>
+      <div class="explanation">
+        <h4>📝 解説</h4>
+        <p>You → <strong>Do</strong> を文頭に置きます。動詞 play はそのまま（原形）。<br>
+        答え：Yes, I <strong>do</strong>. / No, I <strong>don't</strong>.</p>
+        <div class="point">You play → Do you play? （Doを前に出す）</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Q39 -->
+  <div class="quiz-card">
+    <div class="quiz-header">
+      <span class="quiz-num num-amber">39</span>
+      <div>
+        <div class="quiz-q">次の文を疑問文にしなさい。</div>
+        <div class="quiz-en">She plays soccer.</div>
+        <div class="quiz-jp">彼女はサッカーをします。</div>
+      </div>
+    </div>
+    <button class="show-btn amber" onclick="toggleAnswer(this)">💡 答えを見る</button>
+    <div class="answer-panel">
+      <div class="answer-box">
+        <div class="answer-label">✅ 正解</div>
+        <div class="answer-en"><span class="answer-key">Does</span> she play soccer?</div>
+        <div class="answer-jp">彼女はサッカーをしますか？</div>
+      </div>
+      <div class="explanation">
+        <h4>📝 解説</h4>
+        <p>She（三単現）→ <strong>Does</strong> を文頭に。plays → <strong>play（原形）</strong>。<br>
+        答え：Yes, she <strong>does</strong>. / No, she <strong>doesn't</strong>.</p>
+        <div class="point">❌ Does she <s>plays</s> / ✅ Does she <u>play</u></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Q40 -->
+  <div class="quiz-card">
+    <div class="quiz-header">
+      <span class="quiz-num num-amber">40</span>
+      <div>
+        <div class="quiz-q">次の文を疑問文にしなさい。</div>
+        <div class="quiz-en">They like cats.</div>
+        <div class="quiz-jp">彼らは猫が好きです。</div>
+      </div>
+    </div>
+    <button class="show-btn amber" onclick="toggleAnswer(this)">💡 答えを見る</button>
+    <div class="answer-panel">
+      <div class="answer-box">
+        <div class="answer-label">✅ 正解</div>
+        <div class="answer-en"><span class="answer-key">Do</span> they like cats?</div>
+        <div class="answer-jp">彼らは猫が好きですか？</div>
+      </div>
+      <div class="explanation">
+        <h4>📝 解説</h4>
+        <p>They（複数）→ Do。答え：Yes, they <strong>do</strong>. / No, they <strong>don't</strong>.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Q41 -->
+  <div class="quiz-card">
+    <div class="quiz-header">
+      <span class="quiz-num num-amber">41</span>
+      <div>
+        <div class="quiz-q">次の文を疑問文にしなさい。</div>
+        <div class="quiz-en">He reads books every day.</div>
+        <div class="quiz-jp">彼は毎日本を読みます。</div>
+      </div>
+    </div>
+    <button class="show-btn amber" onclick="toggleAnswer(this)">💡 答えを見る</button>
+    <div class="answer-panel">
+      <div class="answer-box">
+        <div class="answer-label">✅ 正解</div>
+        <div class="answer-en"><span class="answer-key">Does</span> he read books every day?</div>
+        <div class="answer-jp">彼は毎日本を読みますか？</div>
+      </div>
+      <div class="explanation">
+        <h4>📝 解説</h4>
+        <p>He → Does。reads → <strong>read（原形）</strong>。<br>
+        答え：Yes, he <strong>does</strong>. / No, he <strong>doesn't</strong>.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Q42 -->
+  <div class="quiz-card">
+    <div class="quiz-header">
+      <span class="quiz-num num-amber">42</span>
+      <div>
+        <div class="quiz-q">次の文を疑問文にしなさい。</div>
+        <div class="quiz-en">Tom speaks French.</div>
+        <div class="quiz-jp">トムはフランス語を話します。</div>
+      </div>
+    </div>
+    <button class="show-btn amber" onclick="toggleAnswer(this)">💡 答えを見る</button>
+    <div class="answer-panel">
+      <div class="answer-box">
+        <div class="answer-label">✅ 正解</div>
+        <div class="answer-en"><span class="answer-key">Does</span> Tom speak French?</div>
+        <div class="answer-jp">トムはフランス語を話しますか？</div>
+      </div>
+      <div class="explanation">
+        <h4>📝 解説</h4>
+        <p>固有名詞 Tom = 三単現 → Does。speaks → <strong>speak（原形）</strong>。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Q43 -->
+  <div class="quiz-card">
+    <div class="quiz-header">
+      <span class="quiz-num num-amber">43</span>
+      <div>
+        <div class="quiz-q">次の文を疑問文にしなさい。</div>
+        <div class="quiz-en">She has a car.</div>
+        <div class="quiz-jp">彼女は車を持っています。</div>
+      </div>
+    </div>
+    <button class="show-btn amber" onclick="toggleAnswer(this)">💡 答えを見る</button>
+    <div class="answer-panel">
+      <div class="answer-box">
+        <div class="answer-label">✅ 正解</div>
+        <div class="answer-en"><span class="answer-key">Does</span> she have a car?</div>
+        <div class="answer-jp">彼女は車を持っていますか？</div>
+      </div>
+      <div class="explanation">
+        <h4>📝 解説</h4>
+        <p>has → <strong>have（原形）</strong> に戻します。<br>
+        答え：Yes, she <strong>does</strong>. / No, she <strong>doesn't</strong>.</p>
+        <div class="point">❌ Does she <s>has</s> / ✅ Does she <u>have</u></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Q44 -->
+  <div class="quiz-card">
+    <div class="quiz-header">
+      <span class="quiz-num num-amber">44</span>
+      <div>
+        <div class="quiz-q">次の文を疑問文にしなさい。</div>
+        <div class="quiz-en">Your mother cooks dinner.</div>
+        <div class="quiz-jp">あなたのお母さんは夕食を作ります。</div>
+      </div>
+    </div>
+    <button class="show-btn amber" onclick="toggleAnswer(this)">💡 答えを見る</button>
+    <div class="answer-panel">
+      <div class="answer-box">
+        <div class="answer-label">✅ 正解</div>
+        <div class="answer-en"><span class="answer-key">Does</span> your mother cook dinner?</div>
+        <div class="answer-jp">あなたのお母さんは夕食を作りますか？</div>
+      </div>
+      <div class="explanation">
+        <h4>📝 解説</h4>
+        <p>「your mother」= 三単現 → Does。cooks → <strong>cook（原形）</strong>。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Q45 -->
+  <div class="quiz-card">
+    <div class="quiz-header">
+      <span class="quiz-num num-amber">45</span>
+      <div>
+        <div class="quiz-q">疑問文に答えなさい（肯定）。</div>
+        <div class="quiz-en">Does she study math?</div>
+        <div class="quiz-jp">彼女は数学を勉強しますか？（→ はい）</div>
+      </div>
+    </div>
+    <button class="show-btn amber" onclick="toggleAnswer(this)">💡 答えを見る</button>
+    <div class="answer-panel">
+      <div class="answer-box">
+        <div class="answer-label">✅ 正解</div>
+        <div class="answer-en">Yes, she <span class="answer-key">does</span>.</div>
+        <div class="answer-jp">はい、勉強します。</div>
+      </div>
+      <div class="explanation">
+        <h4>📝 解説</h4>
+        <p>Does 〜? の肯定の答えは <strong>Yes, 主語 does.</strong><br>
+        does の後ろに動詞は置きません。</p>
+        <div class="point">Does she 〜? → Yes, she <u>does</u>.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Q46 -->
+  <div class="quiz-card">
+    <div class="quiz-header">
+      <span class="quiz-num num-amber">46</span>
+      <div>
+        <div class="quiz-q">疑問文に答えなさい（否定）。</div>
+        <div class="quiz-en">Do your friends play tennis?</div>
+        <div class="quiz-jp">あなたの友達はテニスをしますか？（→ いいえ）</div>
+      </div>
+    </div>
+    <button class="show-btn amber" onclick="toggleAnswer(this)">💡 答えを見る</button>
+    <div class="answer-panel">
+      <div class="answer-box">
+        <div class="answer-label">✅ 正解</div>
+        <div class="answer-en">No, they <span class="answer-key">don't</span>.</div>
+        <div class="answer-jp">いいえ、しません。</div>
+      </div>
+      <div class="explanation">
+        <h4>📝 解説</h4>
+        <p>「your friends」= 複数 → they に置き換えて答えます。<br>
+        Do 〜? の否定：No, they <strong>don't</strong>.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Q47 -->
+  <div class="quiz-card">
+    <div class="quiz-header">
+      <span class="quiz-num num-amber">47</span>
+      <div>
+        <div class="quiz-q">誤りを直しなさい。</div>
+        <div class="quiz-en">Does he goes to school?</div>
+        <div class="quiz-jp">彼は学校に行きますか？</div>
+      </div>
+    </div>
+    <button class="show-btn amber" onclick="toggleAnswer(this)">💡 答えを見る</button>
+    <div class="answer-panel">
+      <div class="answer-box">
+        <div class="answer-label">✅ 正解</div>
+        <div class="answer-en">Does he <span class="answer-key">go</span> to school?</div>
+        <div class="answer-jp">彼は学校に行きますか？</div>
+      </div>
+      <div class="explanation">
+        <h4>📝 解説</h4>
+        <p>Does のあとは<strong>動詞の原形</strong>。goes → <strong>go</strong>。<br>
+        これも非常によくある間違いです。</p>
+        <div class="point">❌ Does he <s>goes</s> / ✅ Does he <u>go</u></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Q48 -->
+  <div class="quiz-card">
+    <div class="quiz-header">
+      <span class="quiz-num num-amber">48</span>
+      <div>
+        <div class="quiz-q">日本語を英語にしなさい。</div>
+        <div class="quiz-jp">あなたは英語を勉強しますか？</div>
+      </div>
+    </div>
+    <button class="show-btn amber" onclick="toggleAnswer(this)">💡 答えを見る</button>
+    <div class="answer-panel">
+      <div class="answer-box">
+        <div class="answer-label">✅ 正解</div>
+        <div class="answer-en"><span class="answer-key">Do</span> you study English?</div>
+        <div class="answer-jp">あなたは英語を勉強しますか？</div>
+      </div>
+      <div class="explanation">
+        <h4>📝 解説</h4>
+        <p>you → Do。study はそのまま（原形）。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Q49 -->
+  <div class="quiz-card">
+    <div class="quiz-header">
+      <span class="quiz-num num-amber">49</span>
+      <div>
+        <div class="quiz-q">日本語を英語にしなさい。</div>
+        <div class="quiz-jp">あなたのお兄さんはギターを弾きますか？</div>
+      </div>
+    </div>
+    <button class="show-btn amber" onclick="toggleAnswer(this)">💡 答えを見る</button>
+    <div class="answer-panel">
+      <div class="answer-box">
+        <div class="answer-label">✅ 正解</div>
+        <div class="answer-en"><span class="answer-key">Does</span> your brother play the guitar?</div>
+        <div class="answer-jp">あなたのお兄さんはギターを弾きますか？</div>
+      </div>
+      <div class="explanation">
+        <h4>📝 解説</h4>
+        <p>「your brother」= 三単現 → Does。play the guitar（楽器には the をつける）。</p>
+        <div class="point">楽器を弾く：play <u>the</u> guitar / play <u>the</u> piano</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Q50 -->
+  <div class="quiz-card">
+    <div class="quiz-header">
+      <span class="quiz-num num-amber">50</span>
+      <div>
+        <div class="quiz-q">日本語を英語にしなさい。</div>
+        <div class="quiz-jp">彼女たちは放課後テニスをしますか？</div>
+      </div>
+    </div>
+    <button class="show-btn amber" onclick="toggleAnswer(this)">💡 答えを見る</button>
+    <div class="answer-panel">
+      <div class="answer-box">
+        <div class="answer-label">✅ 正解</div>
+        <div class="answer-en"><span class="answer-key">Do</span> they play tennis after school?</div>
+        <div class="answer-jp">彼女たちは放課後テニスをしますか？</div>
+      </div>
+      <div class="explanation">
+        <h4>📝 解説</h4>
+        <p>「彼女たち」= they（複数）→ Do。「放課後」= <strong>after school</strong>（after + 名詞）。</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ========== 総合まとめ ========== -->
+<div class="section" id="review">
+  <div class="section-header red">
+    <h2>🔴 総合まとめ — よくある間違いと重要ポイント</h2>
+    <p>50問を通じて学んだ重要事項を確認しましょう。</p>
+  </div>
+
+  <div class="card">
+    <div class="card-title">⚠️ よくある間違い TOP 5 <span class="tag tag-red">要注意</span></div>
+    <table class="compare-table">
+      <tr><th>#</th><th>間違い例</th><th>正しい形</th><th>理由</th></tr>
+      <tr>
+        <td>1</td>
+        <td class="en" style="color:#dc2626">She doesn't <s>likes</s> music.</td>
+        <td class="en">She doesn't <strong>like</strong> music.</td>
+        <td>doesn't の後は動詞の原形</td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td class="en" style="color:#dc2626">Does he <s>goes</s>?</td>
+        <td class="en">Does he <strong>go</strong>?</td>
+        <td>Does の後は動詞の原形</td>
+      </tr>
+      <tr>
+        <td>3</td>
+        <td class="en" style="color:#dc2626">She doesn't <s>has</s> a car.</td>
+        <td class="en">She doesn't <strong>have</strong> a car.</td>
+        <td>has の原形は have</td>
+      </tr>
+      <tr>
+        <td>4</td>
+        <td class="en" style="color:#dc2626"><s>Is</s> you a student?</td>
+        <td class="en"><strong>Are</strong> you a student?</td>
+        <td>you → be動詞は are</td>
+      </tr>
+      <tr>
+        <td>5</td>
+        <td class="en" style="color:#dc2626">I <s>amn't</s> tired.</td>
+        <td class="en">I am <strong>not</strong> tired. / I'm not tired.</td>
+        <td>am not に短縮形はない</td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <div class="card-title">📌 be動詞と一般動詞 — 否定・疑問の違い <span class="tag tag-purple">比較</span></div>
+    <table class="compare-table">
+      <tr><th>種類</th><th>否定文の作り方</th><th>疑問文の作り方</th></tr>
+      <tr>
+        <td><strong>be動詞</strong></td>
+        <td>be動詞の後ろに <strong>not</strong> を置く<br><span class="jp">（do/does は使わない！）</span></td>
+        <td>be動詞を文頭に移動</td>
+      </tr>
+      <tr>
+        <td><strong>一般動詞<br>（I/You/We/They）</strong></td>
+        <td><strong>do not / don't</strong> + 動詞原形</td>
+        <td><strong>Do</strong> + 主語 + 動詞原形</td>
+      </tr>
+      <tr>
+        <td><strong>一般動詞<br>（He/She/It/単数）</strong></td>
+        <td><strong>does not / doesn't</strong> + 動詞原形</td>
+        <td><strong>Does</strong> + 主語 + 動詞原形</td>
+      </tr>
+    </table>
+    <div class="warning"><strong>混同注意：</strong>be動詞の文には do/does を使いません！<br>
+    ❌ She <s>doesn't is</s> a teacher. / ✅ She <strong>is not</strong> a teacher.</div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">🎯 三人称単数現在（三単現）の -s/-es <span class="tag tag-amber">重要</span></div>
+    <div class="concept-box amber">
+      <h3>三単現とは？</h3>
+      <p>主語が <strong>He / She / It / 単数名詞</strong> で、時制が <strong>現在形</strong> のとき、<br>
+      一般動詞の語尾に <strong>-s または -es</strong> をつけます。</p>
+    </div>
+    <table class="compare-table">
+      <tr><th>動詞</th><th>三単現形</th><th>ルール</th></tr>
+      <tr><td class="en">play</td><td class="en key">plays</td><td>語尾に -s をつける（基本）</td></tr>
+      <tr><td class="en">watch</td><td class="en key">watches</td><td>ch, sh, s, x, o で終わる → -es</td></tr>
+      <tr><td class="en">study</td><td class="en key">studies</td><td>子音 + y → y を i に変えて -es</td></tr>
+      <tr><td class="en">go</td><td class="en key">goes</td><td>語尾が o → -es</td></tr>
+      <tr><td class="en">have</td><td class="en key">has</td><td>不規則変化（特別に覚える！）</td></tr>
+    </table>
+    <div class="tip"><strong>否定・疑問文では：</strong>does not / does を使ったとき、動詞は<strong>必ず原形</strong>（-s/-es なし）に戻します。</div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">💬 答え方のまとめ <span class="tag tag-teal">会話</span></div>
+    <table class="compare-table">
+      <tr><th>疑問文</th><th>肯定の答え</th><th>否定の答え</th></tr>
+      <tr><td class="en">Am I late?</td><td class="en">Yes, you <strong>are</strong>.</td><td class="en">No, you <strong>aren't</strong>.</td></tr>
+      <tr><td class="en">Are you busy?</td><td class="en">Yes, I <strong>am</strong>.</td><td class="en">No, I <strong>am not</strong>.</td></tr>
+      <tr><td class="en">Is she kind?</td><td class="en">Yes, she <strong>is</strong>.</td><td class="en">No, she <strong>isn't</strong>.</td></tr>
+      <tr><td class="en">Are they students?</td><td class="en">Yes, they <strong>are</strong>.</td><td class="en">No, they <strong>aren't</strong>.</td></tr>
+      <tr><td class="en">Do you like cats?</td><td class="en">Yes, I <strong>do</strong>.</td><td class="en">No, I <strong>don't</strong>.</td></tr>
+      <tr><td class="en">Does he play golf?</td><td class="en">Yes, he <strong>does</strong>.</td><td class="en">No, he <strong>doesn't</strong>.</td></tr>
+      <tr><td class="en">Do they study?</td><td class="en">Yes, they <strong>do</strong>.</td><td class="en">No, they <strong>don't</strong>.</td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <div class="card-title">🏆 達成チェックリスト <span class="tag tag-indigo">確認</span></div>
+    <div class="success-box">
+      <strong>以下がすべてできれば完璧です！</strong><br><br>
+      ☑ be動詞（am/is/are）の否定文が作れる<br>
+      ☑ be動詞の疑問文が作れる（文頭に移動）<br>
+      ☑ be動詞疑問文への答え方（Yes/No + be動詞）がわかる<br>
+      ☑ 一般動詞の否定文（do/does + not + 原形）が作れる<br>
+      ☑ 一般動詞の疑問文（Do/Does + 主語 + 原形）が作れる<br>
+      ☑ 一般動詞疑問文への答え方（Yes/No + do/does）がわかる<br>
+      ☑ 三単現で does を使うとき動詞を原形に戻せる<br>
+      ☑ has の原形が have であることを知っている
+    </div>
+  </div>
+</div>
+
+<script>
+// タブ切り替え
+document.querySelectorAll('.nav-tab').forEach(tab => {
+  tab.addEventListener('click', () => {
+    document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+    tab.classList.add('active');
+    document.getElementById(tab.dataset.sec).classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+});
+
+// 答え表示/非表示
+function toggleAnswer(btn) {
+  const panel = btn.nextElementSibling;
+  const isShowing = panel.classList.contains('show');
+  panel.classList.toggle('show');
+  btn.textContent = isShowing ? '💡 答えを見る' : '🙈 答えを隠す';
+}
+
+// 全問一括表示/非表示
+function toggleAll(sectionId) {
+  const section = document.getElementById(sectionId);
+  const panels = section.querySelectorAll('.answer-panel');
+  const btns = section.querySelectorAll('.show-btn');
+  const anyHidden = Array.from(panels).some(p => !p.classList.contains('show'));
+  panels.forEach(p => {
+    if (anyHidden) p.classList.add('show');
+    else p.classList.remove('show');
+  });
+  btns.forEach(b => {
+    if (b.classList.contains('check-all-btn')) return;
+    b.textContent = anyHidden ? '🙈 答えを隠す' : '💡 答えを見る';
+  });
+}
+</script>
+</body>
+</html>
