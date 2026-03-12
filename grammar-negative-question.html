@@ -23,6 +23,7 @@ header p{font-size:.95rem;color:#bfdbfe;margin-top:6px}
 .nav-tab[data-sec="gen-neg"].active{background:#059669}
 .nav-tab[data-sec="gen-q"].active{background:#d97706}
 .nav-tab[data-sec="review"].active{background:#dc2626}
+.nav-tab[data-sec="shuffle"].active{background:#7c3aed}
 
 .section{display:none;padding:24px;max-width:980px;margin:0 auto}
 .section.active{display:block}
@@ -133,10 +134,75 @@ header p{font-size:.95rem;color:#bfdbfe;margin-top:6px}
 .check-all-btn{background:#6366f1;color:#fff;border:none;border-radius:8px;padding:10px 22px;cursor:pointer;font-size:.88rem;font-weight:700;display:block;margin:0 auto 20px;transition:all .2s}
 .check-all-btn:hover{background:#4f46e5}
 
+/* シャッフルモード */
+.shuffle-header{background:linear-gradient(135deg,#4c1d95,#7c3aed);color:#fff;border-radius:14px;padding:20px 24px;margin-bottom:20px;display:flex;flex-direction:column;gap:12px}
+.shuffle-header h2{font-size:1.2rem;font-weight:700}
+.shuffle-header p{font-size:.85rem;color:#ddd6fe}
+.shuffle-controls{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.shuffle-btn{background:#fff;color:#7c3aed;border:none;border-radius:8px;padding:9px 18px;cursor:pointer;font-size:.88rem;font-weight:700;transition:all .2s}
+.shuffle-btn:hover{background:#ede9fe}
+.shuffle-btn.primary{background:linear-gradient(135deg,#7c3aed,#a78bfa);color:#fff}
+.shuffle-btn.primary:hover{opacity:.9}
+.shuffle-progress{background:rgba(255,255,255,.2);border-radius:20px;height:8px;margin-top:6px;overflow:hidden}
+.shuffle-progress-fill{background:#fff;border-radius:20px;height:100%;transition:width .4s}
+.shuffle-status{font-size:.82rem;color:#ddd6fe;margin-top:4px;display:flex;justify-content:space-between}
+
+/* フラッシュカード */
+.flashcard-wrap{perspective:800px;margin-bottom:20px;cursor:pointer}
+.flashcard{position:relative;width:100%;min-height:200px;transform-style:preserve-3d;transition:transform .55s cubic-bezier(.4,0,.2,1)}
+.flashcard.flipped{transform:rotateY(180deg)}
+.card-face{position:absolute;width:100%;min-height:200px;backface-visibility:hidden;-webkit-backface-visibility:hidden;border-radius:16px;padding:28px 24px;display:flex;flex-direction:column;justify-content:center}
+.card-front{background:#fff;box-shadow:0 4px 16px rgba(0,0,0,.1);border:2px solid #e2e8f0}
+.card-back{background:linear-gradient(135deg,#f0fdf4,#dcfce7);box-shadow:0 4px 16px rgba(0,0,0,.1);border:2px solid #22c55e;transform:rotateY(180deg)}
+.card-category{font-size:.72rem;font-weight:700;padding:3px 10px;border-radius:20px;display:inline-block;margin-bottom:12px;align-self:flex-start}
+.cat-be-neg{background:#dbeafe;color:#1e40af}
+.cat-be-q{background:#cffafe;color:#155e75}
+.cat-gen-neg{background:#dcfce7;color:#166534}
+.cat-gen-q{background:#fef9c3;color:#854d0e}
+.card-question{font-size:1.05rem;font-weight:600;color:#1e293b;line-height:1.6;margin-bottom:8px}
+.card-en{font-size:1.15rem;font-weight:700;color:#2563eb;font-style:italic;margin-bottom:6px}
+.card-jp{font-size:.85rem;color:#64748b}
+.card-hint{font-size:.78rem;color:#94a3b8;margin-top:10px;font-style:italic}
+.card-answer-label{font-size:.75rem;font-weight:700;color:#059669;margin-bottom:8px;display:flex;align-items:center;gap:5px}
+.card-answer-en{font-size:1.1rem;font-weight:700;color:#065f46;margin-bottom:6px;line-height:1.5}
+.card-answer-key{background:#bbf7d0;color:#065f46;border-radius:4px;padding:1px 6px;font-weight:800}
+.card-answer-jp{font-size:.85rem;color:#166534;margin-bottom:10px}
+.card-explanation{background:rgba(255,255,255,.7);border-radius:8px;padding:10px 12px;font-size:.82rem;color:#374151;line-height:1.6}
+.card-tap-hint{text-align:center;font-size:.78rem;color:#94a3b8;margin-top:10px}
+
+/* 判定ボタン */
+.judge-btns{display:flex;gap:12px;margin-bottom:20px}
+.judge-btn{flex:1;padding:12px;border:none;border-radius:10px;font-size:.95rem;font-weight:700;cursor:pointer;transition:all .2s;display:flex;align-items:center;justify-content:center;gap:6px}
+.judge-btn.correct{background:#dcfce7;color:#166534;border:2px solid #22c55e}
+.judge-btn.correct:hover{background:#22c55e;color:#fff}
+.judge-btn.wrong{background:#fee2e2;color:#991b1b;border:2px solid #ef4444}
+.judge-btn.wrong:hover{background:#ef4444;color:#fff}
+.judge-btn:disabled{opacity:.4;cursor:not-allowed}
+
+/* 結果画面 */
+.result-screen{display:none;text-align:center;padding:32px 16px}
+.result-screen.show{display:block;animation:fadeIn .3s}
+.result-emoji{font-size:4rem;margin-bottom:12px}
+.result-score{font-size:2.4rem;font-weight:700;color:#7c3aed;margin-bottom:6px}
+.result-label{font-size:1rem;color:#64748b;margin-bottom:20px}
+.result-bar-wrap{background:#e2e8f0;border-radius:20px;height:14px;margin:0 auto 20px;max-width:320px;overflow:hidden}
+.result-bar{background:linear-gradient(90deg,#7c3aed,#a78bfa);height:100%;border-radius:20px;transition:width 1s ease}
+.result-stats{display:flex;justify-content:center;gap:20px;flex-wrap:wrap;margin-bottom:24px}
+.result-stat{text-align:center;background:#f8fafc;border-radius:12px;padding:12px 20px}
+.result-stat .num{font-size:1.5rem;font-weight:700;color:#1e293b}
+.result-stat .lbl{font-size:.75rem;color:#64748b;margin-top:2px}
+.result-wrong-list{text-align:left;max-width:600px;margin:0 auto 20px}
+.result-wrong-list h3{font-size:.9rem;font-weight:700;color:#991b1b;margin-bottom:10px;text-align:center}
+.wrong-item{background:#fff;border:1px solid #fecaca;border-radius:8px;padding:10px 14px;margin-bottom:8px}
+.wrong-item .wi-q{font-size:.83rem;color:#374151;margin-bottom:4px}
+.wrong-item .wi-a{font-size:.85rem;font-weight:600;color:#065f46}
+
 @media(max-width:600px){
   header h1{font-size:1.4rem}
   .quiz-en{font-size:1rem}
   .formula-box{font-size:.82rem}
+  .judge-btns{gap:8px}
+  .card-face{padding:20px 16px}
 }
 </style>
 </head>
@@ -155,6 +221,7 @@ header p{font-size:.95rem;color:#bfdbfe;margin-top:6px}
   <button class="nav-tab" data-sec="gen-neg">🟢 一般動詞<br>否定文(12問)</button>
   <button class="nav-tab" data-sec="gen-q">🟠 一般動詞<br>疑問文(13問)</button>
   <button class="nav-tab" data-sec="review">🔴 総合<br>まとめ</button>
+  <button class="nav-tab" data-sec="shuffle">🔀 シャッフル<br>チャレンジ</button>
 </div>
 
 <!-- ========== INTRO ========== -->
@@ -1723,6 +1790,70 @@ header p{font-size:.95rem;color:#bfdbfe;margin-top:6px}
   </div>
 </div>
 
+<!-- ========== シャッフルチャレンジ ========== -->
+<div class="section" id="shuffle">
+  <div class="shuffle-header">
+    <div>
+      <h2>🔀 シャッフルチャレンジ</h2>
+      <p>全50問をランダム順に出題。カードをタップして答えを確認し、○×で自己採点！</p>
+    </div>
+    <div class="shuffle-controls">
+      <button class="shuffle-btn primary" onclick="startShuffle('all')">🎲 全50問スタート</button>
+      <button class="shuffle-btn" onclick="startShuffle('be-neg')">🔵 be否定</button>
+      <button class="shuffle-btn" onclick="startShuffle('be-q')">🟦 be疑問</button>
+      <button class="shuffle-btn" onclick="startShuffle('gen-neg')">🟢 一般否定</button>
+      <button class="shuffle-btn" onclick="startShuffle('gen-q')">🟠 一般疑問</button>
+    </div>
+    <div>
+      <div class="shuffle-progress"><div class="shuffle-progress-fill" id="sfProgress" style="width:0%"></div></div>
+      <div class="shuffle-status"><span id="sfStatusLeft">問題を選んでスタート！</span><span id="sfStatusRight"></span></div>
+    </div>
+  </div>
+
+  <!-- フラッシュカード表示エリア -->
+  <div id="sfCardArea" style="display:none">
+    <div class="flashcard-wrap" onclick="flipCard()">
+      <div class="flashcard" id="sfCard">
+        <div class="card-face card-front" id="sfFront">
+          <span class="card-category" id="sfCategory"></span>
+          <div class="card-question" id="sfQuestion"></div>
+          <div class="card-en" id="sfEn"></div>
+          <div class="card-jp" id="sfJp"></div>
+          <div class="card-hint" id="sfHint"></div>
+          <div class="card-tap-hint">👆 タップして答えを見る</div>
+        </div>
+        <div class="card-face card-back" id="sfBack">
+          <div class="card-answer-label">✅ 正解</div>
+          <div class="card-answer-en" id="sfAnswerEn"></div>
+          <div class="card-answer-jp" id="sfAnswerJp"></div>
+          <div class="card-explanation" id="sfExplanation"></div>
+          <div class="card-tap-hint" style="color:#059669">👆 タップで問題に戻る</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="judge-btns" id="sfJudge">
+      <button class="judge-btn correct" onclick="judge(true)">⭕ 正解！</button>
+      <button class="judge-btn wrong" onclick="judge(false)">❌ 不正解</button>
+    </div>
+  </div>
+
+  <!-- 結果画面 -->
+  <div class="result-screen card" id="sfResult">
+    <div class="result-emoji" id="sfEmoji"></div>
+    <div class="result-score" id="sfScore"></div>
+    <div class="result-label" id="sfScoreLabel"></div>
+    <div class="result-bar-wrap"><div class="result-bar" id="sfResultBar" style="width:0%"></div></div>
+    <div class="result-stats">
+      <div class="result-stat"><div class="num" id="sfTotal"></div><div class="lbl">出題数</div></div>
+      <div class="result-stat" style="color:#059669"><div class="num" id="sfCorrect" style="color:#059669"></div><div class="lbl">正解</div></div>
+      <div class="result-stat" style="color:#dc2626"><div class="num" id="sfWrong" style="color:#dc2626"></div><div class="lbl">不正解</div></div>
+    </div>
+    <div class="result-wrong-list" id="sfWrongList"></div>
+    <button class="shuffle-btn primary" onclick="startShuffle(lastMode)" style="margin:0 auto;display:block;padding:12px 28px;font-size:.95rem">🔄 もう一度チャレンジ</button>
+  </div>
+</div>
+
 <script>
 // タブ切り替え
 document.querySelectorAll('.nav-tab').forEach(tab => {
@@ -1757,6 +1888,172 @@ function toggleAll(sectionId) {
     if (b.classList.contains('check-all-btn')) return;
     b.textContent = anyHidden ? '🙈 答えを隠す' : '💡 答えを見る';
   });
+}
+
+// ====== シャッフルチャレンジ ======
+const ALL_QUESTIONS = [
+  // be動詞 否定文
+  {cat:'be-neg',catLabel:'be動詞・否定文',q:'次の文を否定文にしなさい。',en:'She is a student.',jp:'彼女は学生です。',hint:'is の直後に not',ans:'She is not a student. / She isn\'t a student.',ansJp:'彼女は学生ではありません。',key:'not / isn\'t',exp:'is の直後に not を置きます。is not = isn\'t（短縮形）も正解。'},
+  {cat:'be-neg',catLabel:'be動詞・否定文',q:'次の文を否定文にしなさい。',en:'They are happy.',jp:'彼らは幸せです。',hint:'複数→ are not',ans:'They are not happy. / They aren\'t happy.',ansJp:'彼らは幸せではありません。',key:'are not / aren\'t',exp:'They（複数）→ are。are not = aren\'t。'},
+  {cat:'be-neg',catLabel:'be動詞・否定文',q:'次の文を否定文にしなさい。',en:'I am tired.',jp:'私は疲れています。',hint:'am not に短縮形はない',ans:'I am not tired. / I\'m not tired.',ansJp:'私は疲れていません。',key:'am not',exp:'am not に短縮形はありません。I\'m not（I am → I\'m）は可能。'},
+  {cat:'be-neg',catLabel:'be動詞・否定文',q:'次の文を否定文にしなさい。',en:'He is from Japan.',jp:'彼は日本出身です。',hint:'He → is not',ans:'He is not from Japan. / He isn\'t from Japan.',ansJp:'彼は日本出身ではありません。',key:'is not / isn\'t',exp:'He（三人称単数）→ is not / isn\'t。'},
+  {cat:'be-neg',catLabel:'be動詞・否定文',q:'次の文を否定文にしなさい。',en:'We are teachers.',jp:'私たちは先生です。',hint:'We → are not',ans:'We are not teachers. / We aren\'t teachers.',ansJp:'私たちは先生ではありません。',key:'are not / aren\'t',exp:'We（複数）→ are not / aren\'t。'},
+  {cat:'be-neg',catLabel:'be動詞・否定文',q:'次の文を否定文にしなさい。',en:'It is cold today.',jp:'今日は寒いです。',hint:'天気のIt → is not',ans:'It is not cold today. / It isn\'t cold today.',ansJp:'今日は寒くありません。',key:'is not / isn\'t',exp:'天気・時刻の主語 It → is not / isn\'t。'},
+  {cat:'be-neg',catLabel:'be動詞・否定文',q:'次の文を否定文にしなさい。',en:'Tom and Mary are friends.',jp:'トムとメアリーは友達です。',hint:'A and B → are not',ans:'Tom and Mary are not friends. / Tom and Mary aren\'t friends.',ansJp:'トムとメアリーは友達ではありません。',key:'are not / aren\'t',exp:'「A and B」は複数扱い → are not。'},
+  {cat:'be-neg',catLabel:'be動詞・否定文',q:'次の文を否定文にしなさい。',en:'My sister is a nurse.',jp:'私の姉は看護師です。',hint:'単数名詞 → is not',ans:'My sister is not a nurse. / My sister isn\'t a nurse.',ansJp:'私の姉は看護師ではありません。',key:'is not / isn\'t',exp:'「My sister」= 三人称単数 → is not / isn\'t。'},
+  {cat:'be-neg',catLabel:'be動詞・否定文',q:'「The book（1冊）をテーブルの上にない」を正しく否定文にしなさい。',en:'The book ___ on the table.',jp:'（be動詞を正しく選ぼう）',hint:'単数 book → is not',ans:'The book is not on the table.',ansJp:'その本はテーブルの上にありません。',key:'is not',exp:'「The book（単数）」→ is not。「books（複数）」なら are not。'},
+  {cat:'be-neg',catLabel:'be動詞・否定文',q:'並べ替えて否定文を完成させなさい。',en:'[ not / is / he / at home ]',jp:'彼は家にいません。',hint:'主語 → be動詞 → not の順',ans:'He is not at home.',ansJp:'彼は家にいません。',key:'is not',exp:'語順：He（主語）→ is（be動詞）→ not → at home。'},
+  {cat:'be-neg',catLabel:'be動詞・否定文',q:'日本語を英語にしなさい。',en:'',jp:'あなたたちは忙しくありません。',hint:'you → are not',ans:'You are not busy. / You aren\'t busy.',ansJp:'あなたたちは忙しくありません。',key:'are not / aren\'t',exp:'You（複数）→ are not / aren\'t。'},
+  {cat:'be-neg',catLabel:'be動詞・否定文',q:'日本語を英語にしなさい。',en:'',jp:'その犬は大きくありません。',hint:'dog（単数）→ is not',ans:'The dog is not big. / The dog isn\'t big.',ansJp:'その犬は大きくありません。',key:'is not / isn\'t',exp:'「The dog」= 三人称単数 → is not / isn\'t。'},
+  // be動詞 疑問文
+  {cat:'be-q',catLabel:'be動詞・疑問文',q:'次の文を疑問文にしなさい。',en:'She is a student.',jp:'彼女は学生です。',hint:'is を文頭に',ans:'Is she a student?',ansJp:'彼女は学生ですか？',key:'Is she',exp:'is を文頭に移動。答え：Yes, she is. / No, she isn\'t.'},
+  {cat:'be-q',catLabel:'be動詞・疑問文',q:'次の文を疑問文にしなさい。',en:'They are happy.',jp:'彼らは幸せです。',hint:'are を文頭に',ans:'Are they happy?',ansJp:'彼らは幸せですか？',key:'Are they',exp:'are を文頭に。Yes, they are. / No, they aren\'t.'},
+  {cat:'be-q',catLabel:'be動詞・疑問文',q:'次の文を疑問文にしなさい。',en:'He is from Japan.',jp:'彼は日本出身です。',hint:'is を文頭に',ans:'Is he from Japan?',ansJp:'彼は日本出身ですか？',key:'Is he',exp:'is を文頭に。Yes, he is. / No, he isn\'t.'},
+  {cat:'be-q',catLabel:'be動詞・疑問文',q:'次の文を疑問文にしなさい。',en:'You are busy.',jp:'あなたは忙しいです。',hint:'are を文頭に。答えるとき主語はIに変わる',ans:'Are you busy?',ansJp:'あなたは忙しいですか？',key:'Are you',exp:'are を文頭に。答え：Yes, I am. / No, I\'m not.（主語が I に変わる！）'},
+  {cat:'be-q',catLabel:'be動詞・疑問文',q:'次の文を疑問文にしなさい。',en:'Tom is at home.',jp:'トムは家にいます。',hint:'固有名詞も三単現 → Is',ans:'Is Tom at home?',ansJp:'トムは家にいますか？',key:'Is Tom',exp:'固有名詞（Tom）も三人称単数 → Is を文頭に。'},
+  {cat:'be-q',catLabel:'be動詞・疑問文',q:'次の文を疑問文にしなさい。',en:'The cats are cute.',jp:'その猫たちはかわいいです。',hint:'複数 → Are',ans:'Are the cats cute?',ansJp:'その猫たちはかわいいですか？',key:'Are the cats',exp:'cats（複数）→ Are を文頭に。Yes, they are. / No, they aren\'t.'},
+  {cat:'be-q',catLabel:'be動詞・疑問文',q:'次の文を疑問文にしなさい。',en:'Your father is a doctor.',jp:'あなたのお父さんは医師です。',hint:'your father（単数）→ Is',ans:'Is your father a doctor?',ansJp:'あなたのお父さんは医師ですか？',key:'Is your father',exp:'「your father」= 三人称単数 → Is を文頭に。'},
+  {cat:'be-q',catLabel:'be動詞・疑問文',q:'次の文を疑問文にしなさい。（進行形）',en:'Lisa is singing.',jp:'リサは歌っています。',hint:'is + -ing でも be動詞を文頭に',ans:'Is Lisa singing?',ansJp:'リサは歌っていますか？',key:'Is Lisa',exp:'進行形でも同じ。is を文頭に。Yes, she is. / No, she isn\'t.'},
+  {cat:'be-q',catLabel:'be動詞・疑問文',q:'日本語を英語にしなさい。',en:'',jp:'あなたは眠いですか？',hint:'you → Are',ans:'Are you sleepy?',ansJp:'あなたは眠いですか？',key:'Are you',exp:'you → Are you 〜?'},
+  {cat:'be-q',catLabel:'be動詞・疑問文',q:'疑問文を作りなさい。 [ your brother / a baseball player ]',en:'',jp:'あなたのお兄さんは野球選手ですか？',hint:'your brother（単数）→ Is',ans:'Is your brother a baseball player?',ansJp:'あなたのお兄さんは野球選手ですか？',key:'Is your brother',exp:'「your brother」= 三人称単数 → Is。'},
+  {cat:'be-q',catLabel:'be動詞・疑問文',q:'疑問文に答えなさい（肯定）。',en:'Are Ken and Mike good friends?',jp:'→ はい',hint:'Ken and Mike → they',ans:'Yes, they are.',ansJp:'はい、そうです。',key:'they are',exp:'「Ken and Mike」= 複数 → they。Are 〜? → Yes, they are.'},
+  {cat:'be-q',catLabel:'be動詞・疑問文',q:'疑問文に答えなさい（否定）。',en:'Is it rainy today?',jp:'→ いいえ',hint:'Is it → No, it isn\'t.',ans:'No, it isn\'t. / No, it is not.',ansJp:'いいえ、違います。',key:'it isn\'t',exp:'Is it 〜? の否定 → No, it isn\'t.'},
+  {cat:'be-q',catLabel:'be動詞・疑問文',q:'誤りを直しなさい。',en:'Is you a student?',jp:'（あなたは学生ですか？）',hint:'you → are',ans:'Are you a student?',ansJp:'あなたは学生ですか？',key:'Are you',exp:'You に対する be動詞は are。Is you は誤り。'},
+  // 一般動詞 否定文
+  {cat:'gen-neg',catLabel:'一般動詞・否定文',q:'次の文を否定文にしなさい。',en:'I play soccer.',jp:'私はサッカーをします。',hint:'I → do not',ans:'I do not play soccer. / I don\'t play soccer.',ansJp:'私はサッカーをしません。',key:'don\'t',exp:'I / You / We / They → do not / don\'t + 動詞原形。'},
+  {cat:'gen-neg',catLabel:'一般動詞・否定文',q:'次の文を否定文にしなさい。',en:'She plays soccer.',jp:'彼女はサッカーをします。',hint:'三単現 → does not + 原形',ans:'She does not play soccer. / She doesn\'t play soccer.',ansJp:'彼女はサッカーをしません。',key:'doesn\'t play',exp:'She（三単現）→ does not / doesn\'t + play（原形）。plays → play に戻す！'},
+  {cat:'gen-neg',catLabel:'一般動詞・否定文',q:'次の文を否定文にしなさい。',en:'They like cats.',jp:'彼らは猫が好きです。',hint:'They → do not',ans:'They do not like cats. / They don\'t like cats.',ansJp:'彼らは猫が好きではありません。',key:'don\'t like',exp:'They（複数）→ do not / don\'t。'},
+  {cat:'gen-neg',catLabel:'一般動詞・否定文',q:'次の文を否定文にしなさい。',en:'He reads books every day.',jp:'彼は毎日本を読みます。',hint:'He → does not + 原形',ans:'He does not read books every day. / He doesn\'t read books every day.',ansJp:'彼は毎日本を読みません。',key:'doesn\'t read',exp:'He → does not / doesn\'t + read（原形）。reads → read。'},
+  {cat:'gen-neg',catLabel:'一般動詞・否定文',q:'次の文を否定文にしなさい。',en:'She eats breakfast.',jp:'彼女は朝食を食べます。',hint:'She → doesn\'t + 原形',ans:'She doesn\'t eat breakfast.',ansJp:'彼女は朝食を食べません。',key:'doesn\'t eat',exp:'eats → eat（原形）に。doesn\'t のあとは必ず原形。'},
+  {cat:'gen-neg',catLabel:'一般動詞・否定文',q:'次の文を否定文にしなさい。',en:'My brother watches TV.',jp:'私の弟はテレビを見ます。',hint:'-es の動詞も原形に',ans:'My brother doesn\'t watch TV.',ansJp:'私の弟はテレビを見ません。',key:'doesn\'t watch',exp:'「My brother」= 三単現 → doesn\'t + watch（原形）。watches → watch。'},
+  {cat:'gen-neg',catLabel:'一般動詞・否定文',q:'次の文を否定文にしなさい。',en:'Tom speaks French.',jp:'トムはフランス語を話します。',hint:'固有名詞 Tom → doesn\'t',ans:'Tom doesn\'t speak French.',ansJp:'トムはフランス語を話しません。',key:'doesn\'t speak',exp:'固有名詞 Tom = 三単現 → doesn\'t + speak（原形）。'},
+  {cat:'gen-neg',catLabel:'一般動詞・否定文',q:'次の文を否定文にしなさい。',en:'She has a car.',jp:'彼女は車を持っています。',hint:'has の原形は have',ans:'She doesn\'t have a car.',ansJp:'彼女は車を持っていません。',key:'doesn\'t have',exp:'has の原形は have！doesn\'t has は❌、doesn\'t have が✅。'},
+  {cat:'gen-neg',catLabel:'一般動詞・否定文',q:'誤りを直しなさい。',en:'She doesn\'t likes music.',jp:'彼女は音楽が好きではありません。',hint:'doesn\'t の後は原形',ans:'She doesn\'t like music.',ansJp:'彼女は音楽が好きではありません。',key:'like（原形）',exp:'doesn\'t の後は必ず動詞の原形。likes → like。最もよくある間違い！'},
+  {cat:'gen-neg',catLabel:'一般動詞・否定文',q:'日本語を英語にしなさい。',en:'',jp:'私たちは東京に住んでいません。',hint:'We → don\'t',ans:'We don\'t live in Tokyo.',ansJp:'私たちは東京に住んでいません。',key:'don\'t live',exp:'We（複数）→ don\'t + live（原形）。「住む」= live in。'},
+  {cat:'gen-neg',catLabel:'一般動詞・否定文',q:'日本語を英語にしなさい。',en:'',jp:'私の母は夕食を作りません。',hint:'My mother（単数）→ doesn\'t',ans:'My mother doesn\'t cook dinner.',ansJp:'私の母は夕食を作りません。',key:'doesn\'t cook',exp:'「My mother」= 三単現 → doesn\'t + cook（原形）。'},
+  {cat:'gen-neg',catLabel:'一般動詞・否定文',q:'日本語を英語にしなさい。',en:'',jp:'彼はバスで学校に行きません。',hint:'He → doesn\'t + go（原形）',ans:'He doesn\'t go to school by bus.',ansJp:'彼はバスで学校に行きません。',key:'doesn\'t go',exp:'goes → go（原形）。「バスで」= by bus。'},
+  // 一般動詞 疑問文
+  {cat:'gen-q',catLabel:'一般動詞・疑問文',q:'次の文を疑問文にしなさい。',en:'You play soccer.',jp:'あなたはサッカーをします。',hint:'You → Do',ans:'Do you play soccer?',ansJp:'あなたはサッカーをしますか？',key:'Do you',exp:'you → Do を文頭に。Yes, I do. / No, I don\'t.'},
+  {cat:'gen-q',catLabel:'一般動詞・疑問文',q:'次の文を疑問文にしなさい。',en:'She plays soccer.',jp:'彼女はサッカーをします。',hint:'三単現 → Does + 原形',ans:'Does she play soccer?',ansJp:'彼女はサッカーをしますか？',key:'Does she play',exp:'She → Does。plays → play（原形）。Yes, she does. / No, she doesn\'t.'},
+  {cat:'gen-q',catLabel:'一般動詞・疑問文',q:'次の文を疑問文にしなさい。',en:'They like cats.',jp:'彼らは猫が好きです。',hint:'They → Do',ans:'Do they like cats?',ansJp:'彼らは猫が好きですか？',key:'Do they',exp:'They → Do。Yes, they do. / No, they don\'t.'},
+  {cat:'gen-q',catLabel:'一般動詞・疑問文',q:'次の文を疑問文にしなさい。',en:'He reads books every day.',jp:'彼は毎日本を読みます。',hint:'He → Does + 原形',ans:'Does he read books every day?',ansJp:'彼は毎日本を読みますか？',key:'Does he read',exp:'He → Does + read（原形）。Yes, he does. / No, he doesn\'t.'},
+  {cat:'gen-q',catLabel:'一般動詞・疑問文',q:'次の文を疑問文にしなさい。',en:'Tom speaks French.',jp:'トムはフランス語を話します。',hint:'Tom（三単現）→ Does',ans:'Does Tom speak French?',ansJp:'トムはフランス語を話しますか？',key:'Does Tom speak',exp:'Tom = 三単現 → Does + speak（原形）。'},
+  {cat:'gen-q',catLabel:'一般動詞・疑問文',q:'次の文を疑問文にしなさい。',en:'She has a car.',jp:'彼女は車を持っています。',hint:'has の原形は have',ans:'Does she have a car?',ansJp:'彼女は車を持っていますか？',key:'Does she have',exp:'has → have（原形）。Does she have 〜? が正解。'},
+  {cat:'gen-q',catLabel:'一般動詞・疑問文',q:'次の文を疑問文にしなさい。',en:'Your mother cooks dinner.',jp:'あなたのお母さんは夕食を作ります。',hint:'your mother（三単現）→ Does',ans:'Does your mother cook dinner?',ansJp:'あなたのお母さんは夕食を作りますか？',key:'Does your mother cook',exp:'「your mother」= 三単現 → Does + cook（原形）。'},
+  {cat:'gen-q',catLabel:'一般動詞・疑問文',q:'疑問文に答えなさい（肯定）。',en:'Does she study math?',jp:'→ はい',hint:'Does 〜? → Yes, 主語 does.',ans:'Yes, she does.',ansJp:'はい、勉強します。',key:'she does',exp:'Does 〜? の肯定 → Yes, 主語 does.（動詞は不要）'},
+  {cat:'gen-q',catLabel:'一般動詞・疑問文',q:'疑問文に答えなさい（否定）。',en:'Do your friends play tennis?',jp:'→ いいえ',hint:'your friends → they / Do → don\'t',ans:'No, they don\'t.',ansJp:'いいえ、しません。',key:'they don\'t',exp:'「your friends」= 複数 → they。No, they don\'t.'},
+  {cat:'gen-q',catLabel:'一般動詞・疑問文',q:'誤りを直しなさい。',en:'Does he goes to school?',jp:'彼は学校に行きますか？',hint:'Does の後は原形',ans:'Does he go to school?',ansJp:'彼は学校に行きますか？',key:'go（原形）',exp:'Does のあとは動詞の原形。goes → go。'},
+  {cat:'gen-q',catLabel:'一般動詞・疑問文',q:'日本語を英語にしなさい。',en:'',jp:'あなたは英語を勉強しますか？',hint:'you → Do',ans:'Do you study English?',ansJp:'あなたは英語を勉強しますか？',key:'Do you study',exp:'you → Do + study（原形）。'},
+  {cat:'gen-q',catLabel:'一般動詞・疑問文',q:'日本語を英語にしなさい。',en:'',jp:'あなたのお兄さんはギターを弾きますか？',hint:'your brother（三単現）→ Does / 楽器には the',ans:'Does your brother play the guitar?',ansJp:'あなたのお兄さんはギターを弾きますか？',key:'Does your brother play',exp:'「your brother」= 三単現 → Does。play the guitar（楽器には the）。'},
+  {cat:'gen-q',catLabel:'一般動詞・疑問文',q:'日本語を英語にしなさい。',en:'',jp:'彼女たちは放課後テニスをしますか？',hint:'彼女たち → they / Do',ans:'Do they play tennis after school?',ansJp:'彼女たちは放課後テニスをしますか？',key:'Do they play',exp:'「彼女たち」= they（複数）→ Do。「放課後」= after school。'},
+];
+
+const CAT_COLORS = {
+  'be-neg':'cat-be-neg','be-q':'cat-be-q','gen-neg':'cat-gen-neg','gen-q':'cat-gen-q'
+};
+
+let sfQueue = [], sfIndex = 0, sfCorrectCount = 0, sfWrongItems = [], lastMode = 'all', sfFlipped = false;
+
+function startShuffle(mode) {
+  lastMode = mode;
+  sfFlipped = false;
+  sfCorrectCount = 0;
+  sfWrongItems = [];
+
+  let pool = mode === 'all' ? [...ALL_QUESTIONS] : ALL_QUESTIONS.filter(q => q.cat === mode);
+  // Fisher-Yates shuffle
+  for (let i = pool.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [pool[i], pool[j]] = [pool[j], pool[i]];
+  }
+  sfQueue = pool;
+  sfIndex = 0;
+
+  document.getElementById('sfResult').classList.remove('show');
+  document.getElementById('sfCardArea').style.display = 'block';
+  showCard();
+}
+
+function showCard() {
+  if (sfIndex >= sfQueue.length) { showResult(); return; }
+  const q = sfQueue[sfIndex];
+  sfFlipped = false;
+  const card = document.getElementById('sfCard');
+  card.classList.remove('flipped');
+
+  // front
+  const catEl = document.getElementById('sfCategory');
+  catEl.textContent = q.catLabel;
+  catEl.className = 'card-category ' + (CAT_COLORS[q.cat] || '');
+  document.getElementById('sfQuestion').textContent = q.q;
+  document.getElementById('sfEn').textContent = q.en;
+  document.getElementById('sfEn').style.display = q.en ? 'block' : 'none';
+  document.getElementById('sfJp').textContent = q.jp;
+  document.getElementById('sfHint').textContent = q.hint ? '💡 ヒント: ' + q.hint : '';
+
+  // back
+  document.getElementById('sfAnswerEn').innerHTML = q.ans.replace(q.key, `<span class="card-answer-key">${q.key}</span>`);
+  document.getElementById('sfAnswerJp').textContent = q.ansJp;
+  document.getElementById('sfExplanation').innerHTML = '<strong>📝 解説：</strong>' + q.exp;
+
+  // judge buttons
+  document.getElementById('sfJudge').querySelectorAll('.judge-btn').forEach(b => b.disabled = true);
+
+  // progress
+  const pct = (sfIndex / sfQueue.length) * 100;
+  document.getElementById('sfProgress').style.width = pct + '%';
+  document.getElementById('sfStatusLeft').textContent = `${sfIndex + 1} / ${sfQueue.length} 問`;
+  document.getElementById('sfStatusRight').textContent = `✅ ${sfCorrectCount}  ❌ ${sfWrongItems.length}`;
+}
+
+function flipCard() {
+  const card = document.getElementById('sfCard');
+  sfFlipped = !sfFlipped;
+  card.classList.toggle('flipped', sfFlipped);
+  if (sfFlipped) {
+    document.getElementById('sfJudge').querySelectorAll('.judge-btn').forEach(b => b.disabled = false);
+  }
+}
+
+function judge(correct) {
+  const q = sfQueue[sfIndex];
+  if (correct) {
+    sfCorrectCount++;
+  } else {
+    sfWrongItems.push(q);
+  }
+  sfIndex++;
+  setTimeout(showCard, 200);
+}
+
+function showResult() {
+  document.getElementById('sfCardArea').style.display = 'none';
+  const result = document.getElementById('sfResult');
+  result.classList.add('show');
+  const total = sfQueue.length;
+  const pct = Math.round((sfCorrectCount / total) * 100);
+
+  let emoji = pct >= 90 ? '🏆' : pct >= 70 ? '⭐' : pct >= 50 ? '💪' : '📚';
+  let label = pct >= 90 ? '素晴らしい！完璧に近い！' : pct >= 70 ? 'よくできました！' : pct >= 50 ? 'もう少し！復習しよう' : 'もっと練習が必要です';
+
+  document.getElementById('sfEmoji').textContent = emoji;
+  document.getElementById('sfScore').textContent = pct + '%';
+  document.getElementById('sfScoreLabel').textContent = label;
+  document.getElementById('sfTotal').textContent = total;
+  document.getElementById('sfCorrect').textContent = sfCorrectCount;
+  document.getElementById('sfWrong').textContent = sfWrongItems.length;
+  document.getElementById('sfProgress').style.width = '100%';
+
+  setTimeout(() => { document.getElementById('sfResultBar').style.width = pct + '%'; }, 100);
+
+  const wrongList = document.getElementById('sfWrongList');
+  if (sfWrongItems.length > 0) {
+    wrongList.innerHTML = '<h3>❌ 間違えた問題</h3>' + sfWrongItems.map(q =>
+      `<div class="wrong-item"><div class="wi-q">${q.catLabel} — ${q.q}${q.en ? ' <em>' + q.en + '</em>' : ''}${q.jp ? ' ' + q.jp : ''}</div><div class="wi-a">✅ ${q.ans}</div></div>`
+    ).join('');
+  } else {
+    wrongList.innerHTML = '<div class="success-box" style="text-align:center">🎉 全問正解！完璧です！</div>';
+  }
 }
 </script>
 </body>
