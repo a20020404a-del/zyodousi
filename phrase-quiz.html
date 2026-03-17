@@ -28,10 +28,25 @@ header p{font-size:.9rem;color:#94a3b8;margin-top:4px}
 .nav-tab[data-sec="s3"].active{background:#8b5cf6}
 .nav-tab[data-sec="s4"].active{background:#f59e0b}
 .nav-tab[data-sec="review"].active{background:#ef4444}
+.nav-tab[data-sec="shuffle"].active{background:#6366f1}
+
+/* Shuffle mode */
+.shuffle-header{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;margin-bottom:20px;background:#fff;border-radius:12px;padding:16px 20px;box-shadow:0 1px 3px rgba(0,0,0,.08)}
+.shuffle-meta{display:flex;flex-direction:column;gap:4px}
+.shuffle-count-label{font-size:1rem;font-weight:700;color:#6366f1}
+.shuffle-progress-label{font-size:.85rem;color:#64748b}
+.shuffle-all-btn{padding:10px 22px;border-radius:8px;border:none;background:#6366f1;color:#fff;cursor:pointer;font-size:.9rem;font-weight:700;transition:all .2s;letter-spacing:.03em}
+.shuffle-all-btn:hover{background:#4f46e5}
+.shuffle-item{background:#fff;border-radius:12px;padding:20px;margin-bottom:14px;box-shadow:0 1px 3px rgba(0,0,0,.08);border-left:4px solid #6366f1}
+.shuffle-item.si-correct{border-left-color:#10b981}
+.shuffle-item.si-wrong{border-left-color:#ef4444}
+.shuffle-phrase-tag{font-size:.72rem;color:#6366f1;font-weight:700;margin-bottom:5px;letter-spacing:.04em}
+.shuffle-q-num{font-size:.72rem;color:#94a3b8;margin-bottom:6px}
+.shuffle-jp{font-size:1rem;font-weight:600;margin-bottom:12px;line-height:1.6;color:#1e293b}
 
 .wrong-badge{display:inline-block;background:#ef4444;color:#fff;border-radius:50%;width:18px;height:18px;font-size:.7rem;text-align:center;line-height:18px;margin-left:4px;font-weight:700;vertical-align:middle}
 
-.topic-section{display:none;padding:24px;max-width:960px;margin:0 auto}
+.topic-section{display:none;padding:24px;max-width:1400px;margin:0 auto}
 .topic-section.active{display:block}
 
 .card{background:#fff;border-radius:12px;padding:24px;margin-bottom:20px;box-shadow:0 1px 3px rgba(0,0,0,.08)}
@@ -47,9 +62,17 @@ header p{font-size:.9rem;color:#94a3b8;margin-top:4px}
 .phrase-header.s3{border-left-color:#8b5cf6}
 .phrase-header.s4{border-left-color:#f59e0b}
 
-.quiz-question{background:#f8fafc;border-radius:10px;padding:16px;margin-bottom:12px}
+.quiz-question{background:#f8fafc;border-radius:10px;margin-bottom:12px;overflow:hidden}
 .quiz-question p{font-size:.95rem;margin-bottom:10px;font-weight:500;line-height:1.6}
 .q-num{font-size:.75rem;color:#94a3b8;font-weight:600;margin-bottom:4px}
+
+/* 左右2カラム分割 */
+.q-split{display:grid;grid-template-columns:1fr 1fr;gap:0;align-items:stretch}
+.q-left{padding:16px;border-right:2px solid #e2e8f0}
+.q-right{padding:16px 16px 16px 20px;background:#f8fafc;display:flex;flex-direction:column;justify-content:center;min-height:90px}
+.q-right-hint{flex:1;display:flex;align-items:center;justify-content:center;color:#cbd5e1;font-size:.8rem;gap:6px;padding:16px 0;text-align:center;line-height:1.6}
+.q-left .fill-input{width:100%;max-width:none}
+.q-left .trans-input{width:100%;max-width:none}
 
 .quiz-choices{display:flex;flex-wrap:wrap;gap:8px}
 .choice-btn{padding:8px 16px;border-radius:8px;border:2px solid #e2e8f0;background:#fff;cursor:pointer;font-size:.85rem;font-weight:500;transition:all .2s}
@@ -94,12 +117,28 @@ header p{font-size:.9rem;color:#94a3b8;margin-top:4px}
 .review-bonus{border-left-color:#8b5cf6}
 .trans-input{width:100%;max-width:440px}
 
+/* Grammar explanation box */
+.grammar-explain{margin-top:0}
+.q-right .quiz-feedback{margin-top:0;margin-bottom:8px}
+.grammar-box{padding:14px 16px;background:linear-gradient(135deg,#eff6ff,#f0fdf4);border-radius:10px;border:1px solid #bfdbfe;border-left:4px solid #3b82f6}
+.grammar-header{display:flex;align-items:center;gap:8px;margin-bottom:10px;flex-wrap:wrap}
+.grammar-type-badge{display:inline-block;background:#1d4ed8;color:#fff;font-size:.68rem;font-weight:700;padding:3px 10px;border-radius:12px;letter-spacing:.05em;white-space:nowrap}
+.grammar-type-name{font-size:.88rem;font-weight:700;color:#1e40af}
+.grammar-phrase{font-size:.88rem;font-weight:700;color:#0f172a;padding:6px 10px;background:#dbeafe;border-radius:6px;margin-bottom:8px;line-height:1.5}
+.grammar-detail-text{font-size:.85rem;color:#1e3a5f;line-height:1.75;border-top:1px solid #bfdbfe;padding-top:8px;margin-top:6px}
+
+@media(max-width:900px){
+.q-split{grid-template-columns:1fr}
+.q-left{border-right:none;border-bottom:2px solid #e2e8f0}
+.q-right{border-radius:0 0 10px 10px}
+.q-right-hint{padding:10px 0}
+}
 @media(max-width:600px){
 .nav-tab{font-size:.7rem;padding:12px 6px;min-width:80px}
 header h1{font-size:1.3rem}
 .topic-section{padding:12px}
 .card{padding:16px}
-.fill-input{width:180px}
+.fill-input{width:100%}
 }
 </style>
 </head>
@@ -120,12 +159,14 @@ header h1{font-size:1.3rem}
   <button class="nav-tab" data-sec="s2" onclick="showSec('s2',this)">疑問文</button>
   <button class="nav-tab" data-sec="s3" onclick="showSec('s3',this)">応用フレーズ②</button>
   <button class="nav-tab" data-sec="s4" onclick="showSec('s4',this)">丁寧な表現</button>
+  <button class="nav-tab" data-sec="shuffle" onclick="showSec('shuffle',this)">🔀 シャッフルモード</button>
 </div>
 
 <div id="section-s1" class="topic-section active"></div>
 <div id="section-s2" class="topic-section"></div>
 <div id="section-s3" class="topic-section"></div>
 <div id="section-s4" class="topic-section"></div>
+<div id="section-shuffle" class="topic-section"></div>
 <!-- 苦手問題リスト：常に表示される復習枠 -->
 <div class="review-wrap">
   <div class="review-inner">
@@ -766,26 +807,24 @@ function renderReviewItem(secId, pIdx, qIdx, key, isBonus) {
     <div class="quiz-question" id="qq-${rk}">`;
 
   if (q.type === 'mc') {
-    inner += `<div class="q-num">選択式</div><p>${q.q}</p><div class="quiz-choices">`;
+    inner += `<div class="q-split"><div class="q-left"><div class="q-num">選択式</div><p>${q.q}</p><div class="quiz-choices">`;
     q.choices.forEach((c, cIdx) => {
       inner += `<button class="choice-btn" onclick="riMC('${rk}','${key}',${cIdx},${q.ans},'${secId}',${pIdx},${qIdx})">${c}</button>`;
     });
-    inner += `</div><div class="quiz-feedback" id="fb-${rk}"></div>`;
+    inner += `</div></div><div class="q-right"><div class="q-right-hint" id="hint-${rk}">📝 回答すると<br>解説が表示されます</div><div class="quiz-feedback" id="fb-${rk}"></div><div class="grammar-explain" id="ge-${rk}"></div></div></div>`;
   } else if (q.type === 'fill') {
-    inner += `<div class="q-num">穴埋め式（フレーズを入力）</div><p>${q.q}</p>
+    inner += `<div class="q-split"><div class="q-left"><div class="q-num">穴埋め式（フレーズを入力）</div><p>${q.q}</p>
       <div class="fill-wrap">
         <input class="fill-input" id="fi-${rk}" type="text" placeholder="英語フレーズを入力..." onkeydown="if(event.key==='Enter')riFill('${rk}','${key}','${escapeAns(q.ans)}','${secId}',${pIdx},${qIdx})">
         <button class="check-btn" onclick="riFill('${rk}','${key}','${escapeAns(q.ans)}','${secId}',${pIdx},${qIdx})">確認</button>
-      </div>
-      <div class="quiz-feedback" id="fb-${rk}"></div>`;
+      </div></div><div class="q-right"><div class="q-right-hint" id="hint-${rk}">📝 回答すると<br>解説が表示されます</div><div class="quiz-feedback" id="fb-${rk}"></div><div class="grammar-explain" id="ge-${rk}"></div></div></div>`;
   } else if (q.type === 'trans') {
-    inner += `<div class="q-num">日→英 翻訳</div>
+    inner += `<div class="q-split"><div class="q-left"><div class="q-num">日→英 翻訳</div>
       <p>🇯🇵 「${q.jp}」を英語で書いてみよう</p>
       <div class="fill-wrap">
         <input class="fill-input trans-input" id="fi-${rk}" type="text" placeholder="英語で答えてください..." onkeydown="if(event.key==='Enter')riTrans('${rk}','${key}','${escapeAns(q.en)}','${secId}',${pIdx},${qIdx})">
         <button class="check-btn" onclick="riTrans('${rk}','${key}','${escapeAns(q.en)}','${secId}',${pIdx},${qIdx})">確認</button>
-      </div>
-      <div class="quiz-feedback" id="fb-${rk}"></div>`;
+      </div></div><div class="q-right"><div class="q-right-hint" id="hint-${rk}">📝 回答すると<br>解説が表示されます</div><div class="quiz-feedback" id="fb-${rk}"></div><div class="grammar-explain" id="ge-${rk}"></div></div></div>`;
   }
 
   inner += `</div><div class="ri-status" style="margin-top:6px;font-size:.85rem;color:#065f46;font-weight:600"></div>`;
@@ -810,6 +849,7 @@ function riTrans(rk, origKey, correctEn, secId, pIdx, qIdx) {
     fb.className = 'quiz-feedback show ng';
     fb.textContent = `❌ 不正解。正解: ${correctEn}`;
   }
+  showGrammarBox('ge-' + rk, secId, pIdx);
 }
 
 function shuffleReview() {
@@ -834,6 +874,8 @@ function shuffleReview() {
     });
     const status = item.querySelector('.ri-status');
     if (status) status.textContent = '';
+    item.querySelectorAll('.grammar-explain').forEach(ge => { ge.innerHTML = ''; });
+    item.querySelectorAll('.q-right-hint').forEach(h => { h.style.display = ''; });
   });
 }
 
@@ -855,6 +897,7 @@ function riMC(rk, origKey, chosen, correct, secId, pIdx, qIdx) {
     fb.className = 'quiz-feedback show ng';
     fb.textContent = '❌ 不正解。正解: ' + q.choices[correct] + '　' + (q.ok || '');
   }
+  showGrammarBox('ge-' + rk, secId, pIdx);
 }
 
 function riFill(rk, origKey, correctAns, secId, pIdx, qIdx) {
@@ -869,13 +912,14 @@ function riFill(rk, origKey, correctAns, secId, pIdx, qIdx) {
   if (isCorrect) {
     input.classList.add('correct');
     fb.className = 'quiz-feedback show ok';
-    fb.textContent = '✅ 正解！';
+    fb.textContent = '✅ 正解！　正解例: ' + correctAns;
     removeWrong(origKey);
   } else {
     input.classList.add('wrong');
     fb.className = 'quiz-feedback show ng';
     fb.textContent = `❌ 不正解。正解: ${correctAns}`;
   }
+  showGrammarBox('ge-' + rk, secId, pIdx);
 }
 
 // ===================== BUILD UI =====================
@@ -898,36 +942,48 @@ function buildSection(secId) {
       const qNum = `Q${pIdx * 3 + qIdx + 1}`;
 
       if (q.type === 'mc') {
-        html += `<div class="quiz-question" id="qq-${qKey}">
+        html += `<div class="quiz-question" id="qq-${qKey}"><div class="q-split">
+          <div class="q-left">
           <div class="q-num">${qNum} ｜ 選択式</div>
           <p>${q.q}</p>
           <div class="quiz-choices">`;
         q.choices.forEach((c, cIdx) => {
           html += `<button class="choice-btn" onclick="answerMC('${qKey}',${cIdx},${q.ans},'${secId}')">${c}</button>`;
         });
-        html += `</div>
+        html += `</div></div>
+          <div class="q-right">
+          <div class="q-right-hint" id="hint-${qKey}">📝 回答すると<br>解説が表示されます</div>
           <div class="quiz-feedback" id="fb-${qKey}"></div>
-        </div>`;
+          <div class="grammar-explain" id="ge-${qKey}"></div>
+          </div></div></div>`;
       } else if (q.type === 'fill') {
-        html += `<div class="quiz-question" id="qq-${qKey}">
+        html += `<div class="quiz-question" id="qq-${qKey}"><div class="q-split">
+          <div class="q-left">
           <div class="q-num">${qNum} ｜ 穴埋め式（フレーズを入力）</div>
           <p>${q.q}</p>
           <div class="fill-wrap">
             <input class="fill-input" id="fi-${qKey}" type="text" placeholder="英語フレーズを入力..." onkeydown="if(event.key==='Enter')checkFill('${qKey}','${escapeAns(q.ans)}','${secId}')">
             <button class="check-btn" onclick="checkFill('${qKey}','${escapeAns(q.ans)}','${secId}')">確認</button>
-          </div>
+          </div></div>
+          <div class="q-right">
+          <div class="q-right-hint" id="hint-${qKey}">📝 回答すると<br>解説が表示されます</div>
           <div class="quiz-feedback" id="fb-${qKey}"></div>
-        </div>`;
+          <div class="grammar-explain" id="ge-${qKey}"></div>
+          </div></div></div>`;
       } else if (q.type === 'trans') {
-        html += `<div class="quiz-question" id="qq-${qKey}">
+        html += `<div class="quiz-question" id="qq-${qKey}"><div class="q-split">
+          <div class="q-left">
           <div class="q-num">${qNum} ｜ 日→英 翻訳</div>
           <p>🇯🇵 「${q.jp}」を英語で書いてみよう</p>
           <div class="fill-wrap">
             <input class="fill-input trans-input" id="fi-${qKey}" type="text" placeholder="英語で答えてください..." onkeydown="if(event.key==='Enter')checkTrans('${qKey}','${secId}')">
             <button class="check-btn" onclick="checkTrans('${qKey}','${secId}')">確認</button>
-          </div>
+          </div></div>
+          <div class="q-right">
+          <div class="q-right-hint" id="hint-${qKey}">📝 回答すると<br>解説が表示されます</div>
           <div class="quiz-feedback" id="fb-${qKey}"></div>
-        </div>`;
+          <div class="grammar-explain" id="ge-${qKey}"></div>
+          </div></div></div>`;
       }
     });
 
@@ -964,6 +1020,49 @@ function checkTrans(qKey, secId) {
     addScore(false, secId);
     addWrong(secId, pIdx, qIdx);
   }
+  showGrammarBox('ge-' + qKey, secId, pIdx);
+}
+
+// ===================== GRAMMAR HELPERS =====================
+function getGrammarType(okText) {
+  if (!okText) return 'フレーズ表現';
+  if (okText.includes('仮定法')) return '仮定法';
+  if (okText.includes('動名詞')) return '動名詞型（〜ing）';
+  if (okText.includes('過去分詞') && (okText.includes('have') || okText.includes('完了'))) return '現在完了形';
+  if (okText.includes('過去分詞')) return '過去分詞';
+  if (okText.includes('過去の習慣')) return '過去の習慣（used to）';
+  if (okText.includes('後悔') || okText.includes('反省')) return '後悔・反省表現（should have）';
+  if (okText.includes('不定詞') || okText.includes('動詞の原形')) return '不定詞型（to ＋ 動詞の原形）';
+  if (okText.includes('カジュアル')) return 'カジュアル表現';
+  if (okText.includes('丁寧')) return '丁寧表現（フォーマル）';
+  if (okText.includes('助動詞')) return '助動詞を使う表現';
+  if (okText.includes('間接疑問')) return '間接疑問文';
+  if (okText.includes('命令文')) return '命令文';
+  if (okText.includes('形容詞')) return '形容詞を使う表現';
+  if (okText.includes('名詞')) return '名詞を使う表現';
+  if (okText.includes('前置詞')) return '前置詞を使う表現';
+  if (okText.includes('否定')) return '否定表現';
+  return 'フレーズ表現';
+}
+
+function showGrammarBox(geId, secId, pIdx) {
+  const el = document.getElementById(geId);
+  if (!el) return;
+  const phrase = quizData[secId].phrases[pIdx];
+  const mcOk = phrase.qs[0].ok || '';
+  const grammarType = getGrammarType(mcOk);
+  el.innerHTML = `<div class="grammar-box">
+    <div class="grammar-header">
+      <span class="grammar-type-badge">📚 文法の型</span>
+      <span class="grammar-type-name">${grammarType}</span>
+    </div>
+    <div class="grammar-phrase">🔑 ${phrase.phrase} &nbsp;<span style="color:#64748b;font-size:.8rem;font-weight:400">（${phrase.jp}）</span></div>
+    <div class="grammar-detail-text">💡 ${mcOk}</div>
+  </div>`;
+  // ヒントプレースホルダーを非表示
+  const hintId = geId.replace('ge-', 'hint-');
+  const hint = document.getElementById(hintId);
+  if (hint) hint.style.display = 'none';
 }
 
 // ===================== ANSWER HANDLERS =====================
@@ -993,6 +1092,7 @@ function answerMC(qKey, chosen, correct, secId) {
     addScore(false, secId);
     addWrong(secId, pIdx, qIdx);
   }
+  showGrammarBox('ge-' + qKey, secId, pIdx);
 }
 
 function checkFill(qKey, correctAns, secId) {
@@ -1015,7 +1115,7 @@ function checkFill(qKey, correctAns, secId) {
   if (isCorrect) {
     input.classList.add('correct');
     fb.className = 'quiz-feedback show ok';
-    fb.textContent = '✅ 正解！';
+    fb.textContent = '✅ 正解！　正解例: ' + correctAns;
     addScore(true, secId);
   } else {
     input.classList.add('wrong');
@@ -1024,6 +1124,7 @@ function checkFill(qKey, correctAns, secId) {
     addScore(false, secId);
     addWrong(secId, pIdx, qIdx);
   }
+  showGrammarBox('ge-' + qKey, secId, pIdx);
 }
 
 function showTrans(qKey) {
@@ -1067,7 +1168,145 @@ function showSec(secId, btn) {
   document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
   document.getElementById('section-' + secId).classList.add('active');
   btn.classList.add('active');
-  buildSection(secId);
+  if (secId === 'shuffle') {
+    const c = document.getElementById('section-shuffle');
+    if (!c.dataset.built) { buildShuffleSection(); c.dataset.built = '1'; }
+  } else {
+    buildSection(secId);
+  }
+}
+
+// ===================== SHUFFLE MODE =====================
+let shuffleQuestions = [];
+let shuffleAnswered = {};
+let shuffleCorrect = 0;
+
+function getAllShuffleQuestions() {
+  const all = [];
+  Object.keys(quizData).forEach(secId => {
+    const sec = quizData[secId];
+    sec.phrases.forEach((phrase, pIdx) => {
+      phrase.qs.forEach((q, qIdx) => {
+        let jp, en;
+        if (q.type === 'trans') {
+          jp = q.jp;
+          en = q.en;
+        } else if (q.type === 'fill') {
+          const m = q.q.match(/「([^」]+)」/);
+          jp = m ? m[1] : phrase.jp;
+          en = q.ok;
+        } else if (q.type === 'mc') {
+          const m = q.q.match(/「([^」]+)」/);
+          jp = m ? m[1] : phrase.jp;
+          const arrowIdx = q.q.indexOf('→');
+          if (arrowIdx >= 0) {
+            en = q.q.slice(arrowIdx + 2).trim().replace('_____', q.choices[q.ans]).trim();
+          } else {
+            en = q.choices[q.ans];
+          }
+        }
+        all.push({
+          jp, en,
+          phrase: phrase.phrase,
+          phraseJp: phrase.jp,
+          secId, pIdx, qIdx,
+          origType: q.type,
+          key: 'sh_' + secId + '_' + pIdx + '_' + qIdx
+        });
+      });
+    });
+  });
+  return all;
+}
+
+function buildShuffleSection() {
+  shuffleQuestions = getAllShuffleQuestions();
+  shuffleQuestions.sort(() => Math.random() - 0.5);
+  shuffleAnswered = {};
+  shuffleCorrect = 0;
+  const total = shuffleQuestions.length;
+  const container = document.getElementById('section-shuffle');
+
+  let html = `<div class="shuffle-header">
+    <div class="shuffle-meta">
+      <span class="shuffle-count-label">🔀 シャッフルモード — 全${total}問（日本語→英語）</span>
+      <span class="shuffle-progress-label" id="sh-progress">0 / ${total} 回答済み &nbsp;|&nbsp; 正解 0</span>
+    </div>
+    <button class="shuffle-all-btn" onclick="reshuffleAll()">🔀 シャッフルしてやり直す</button>
+  </div>`;
+
+  shuffleQuestions.forEach((sq, idx) => {
+    html += `<div class="shuffle-item" id="si-${sq.key}">
+      <div class="shuffle-phrase-tag">📌 ${sq.phrase} — ${sq.phraseJp}</div>
+      <div class="q-split">
+        <div class="q-left">
+          <div class="shuffle-q-num">Q${idx + 1} ｜ 日→英 翻訳</div>
+          <p class="shuffle-jp">🇯🇵 「${sq.jp}」を英語で書いてみよう</p>
+          <div class="fill-wrap">
+            <input class="fill-input trans-input" id="sfi-${sq.key}" type="text" placeholder="英語で答えてください..." onkeydown="if(event.key==='Enter')checkShuffleAnswer('${sq.key}')">
+            <button class="check-btn" onclick="checkShuffleAnswer('${sq.key}')">確認</button>
+          </div>
+        </div>
+        <div class="q-right">
+          <div class="q-right-hint" id="sh-hint-${sq.key}">📝 回答すると<br>正解・解説が表示されます</div>
+          <div class="quiz-feedback" id="sfb-${sq.key}"></div>
+          <div id="sh-ans-${sq.key}"></div>
+        </div>
+      </div>
+    </div>`;
+  });
+
+  container.innerHTML = html;
+}
+
+function checkShuffleAnswer(key) {
+  if (shuffleAnswered[key]) return;
+  const sq = shuffleQuestions.find(q => q.key === key);
+  if (!sq) return;
+  const input = document.getElementById('sfi-' + key);
+  const fb = document.getElementById('sfb-' + key);
+  const hint = document.getElementById('sh-hint-' + key);
+  const ansBox = document.getElementById('sh-ans-' + key);
+  if (!input || input.disabled) return;
+  const normalize = s => s.toLowerCase().replace(/[.,!?'"']/g, '').replace(/\s+/g, ' ').trim();
+  const isCorrect = normalize(input.value) === normalize(sq.en);
+  shuffleAnswered[key] = true;
+  input.disabled = true;
+  if (hint) hint.style.display = 'none';
+  const item = document.getElementById('si-' + key);
+  if (isCorrect) {
+    input.classList.add('correct');
+    fb.className = 'quiz-feedback show ok';
+    fb.textContent = '✅ 正解！';
+    shuffleCorrect++;
+    if (item) item.classList.add('si-correct');
+  } else {
+    input.classList.add('wrong');
+    fb.className = 'quiz-feedback show ng';
+    fb.textContent = '❌ 不正解';
+    if (item) item.classList.add('si-wrong');
+  }
+  if (ansBox) {
+    ansBox.innerHTML = `<div class="grammar-box" style="margin-top:8px">
+      <div class="grammar-header">
+        <span class="grammar-type-badge" style="background:#6366f1">🇬🇧 正解</span>
+        <span class="grammar-type-name">${sq.phrase}</span>
+      </div>
+      <div class="grammar-phrase">${sq.en}</div>
+      <div class="grammar-detail-text">💡 ${sq.phraseJp}</div>
+    </div>`;
+  }
+  const total = shuffleQuestions.length;
+  const done = Object.keys(shuffleAnswered).length;
+  const prog = document.getElementById('sh-progress');
+  if (prog) prog.textContent = `${done} / ${total} 回答済み　|　正解 ${shuffleCorrect}`;
+}
+
+function reshuffleAll() {
+  const c = document.getElementById('section-shuffle');
+  c.dataset.built = '';
+  buildShuffleSection();
+  c.dataset.built = '1';
 }
 
 // Build first section on load
