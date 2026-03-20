@@ -808,8 +808,11 @@ function renderReviewItem(secId, pIdx, qIdx, key, isBonus) {
 
   if (q.type === 'mc') {
     inner += `<div class="q-split"><div class="q-left"><div class="q-num">選択式</div><p>${q.q}</p><div class="quiz-choices">`;
-    q.choices.forEach((c, cIdx) => {
-      inner += `<button class="choice-btn" onclick="riMC('${rk}','${key}',${cIdx},${q.ans},'${secId}',${pIdx},${qIdx})">${c}</button>`;
+    const riCorrectText = q.choices[q.ans];
+    const riShuffled = [...q.choices].sort(() => Math.random() - 0.5);
+    const riNewAns = riShuffled.indexOf(riCorrectText);
+    riShuffled.forEach((c, cIdx) => {
+      inner += `<button class="choice-btn" onclick="riMC('${rk}','${key}',${cIdx},${riNewAns},'${secId}',${pIdx},${qIdx})">${c}</button>`;
     });
     inner += `</div></div><div class="q-right"><div class="q-right-hint" id="hint-${rk}">📝 回答すると<br>解説が表示されます</div><div class="quiz-feedback" id="fb-${rk}"></div><div class="grammar-explain" id="ge-${rk}"></div></div></div>`;
   } else if (q.type === 'fill') {
@@ -895,7 +898,7 @@ function riMC(rk, origKey, chosen, correct, secId, pIdx, qIdx) {
     removeWrong(origKey);
   } else {
     fb.className = 'quiz-feedback show ng';
-    fb.textContent = '❌ 不正解。正解: ' + q.choices[correct] + '　' + (q.ok || '');
+    fb.textContent = '❌ 不正解。正解: ' + btns[correct].textContent + '　' + (q.ok || '');
   }
   showGrammarBox('ge-' + rk, secId, pIdx);
 }
@@ -947,8 +950,11 @@ function buildSection(secId) {
           <div class="q-num">${qNum} ｜ 選択式</div>
           <p>${q.q}</p>
           <div class="quiz-choices">`;
-        q.choices.forEach((c, cIdx) => {
-          html += `<button class="choice-btn" onclick="answerMC('${qKey}',${cIdx},${q.ans},'${secId}')">${c}</button>`;
+        const correctText = q.choices[q.ans];
+        const shuffled = [...q.choices].sort(() => Math.random() - 0.5);
+        const newAns = shuffled.indexOf(correctText);
+        shuffled.forEach((c, cIdx) => {
+          html += `<button class="choice-btn" onclick="answerMC('${qKey}',${cIdx},${newAns},'${secId}')">${c}</button>`;
         });
         html += `</div></div>
           <div class="q-right">
@@ -1088,7 +1094,7 @@ function answerMC(qKey, chosen, correct, secId) {
     addScore(true, secId);
   } else {
     fb.className = 'quiz-feedback show ng';
-    fb.textContent = '❌ 不正解。正解: ' + q.choices[correct] + '　' + (q.ok || '');
+    fb.textContent = '❌ 不正解。正解: ' + btns[correct].textContent + '　' + (q.ok || '');
     addScore(false, secId);
     addWrong(secId, pIdx, qIdx);
   }
