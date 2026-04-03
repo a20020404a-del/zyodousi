@@ -1,0 +1,1074 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>関係代名詞・関係副詞 問題集</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Noto Sans JP',sans-serif;background:#f0f4f8;color:#1e293b;min-height:100vh}
+header{background:linear-gradient(135deg,#1e293b,#334155);color:#fff;padding:20px 24px;text-align:center}
+header h1{font-size:1.8rem;font-weight:700;letter-spacing:.05em}
+header p{font-size:.9rem;color:#94a3b8;margin-top:4px}
+
+.progress-bar-wrap{background:#1e293b;padding:8px 24px;display:flex;align-items:center;gap:12px}
+.progress-bar-wrap span{color:#94a3b8;font-size:.8rem;white-space:nowrap}
+.progress-bar{flex:1;height:8px;background:#334155;border-radius:4px;overflow:hidden}
+.progress-fill{height:100%;background:linear-gradient(90deg,#3b82f6,#10b981);border-radius:4px;transition:width .5s}
+.progress-label{color:#cbd5e1;font-size:.8rem;white-space:nowrap}
+
+.nav-tabs{display:flex;overflow-x:auto;background:#fff;border-bottom:3px solid #e2e8f0;scrollbar-width:none}
+.nav-tabs::-webkit-scrollbar{display:none}
+.nav-tab{flex:1;min-width:110px;padding:14px 8px;text-align:center;cursor:pointer;font-size:.78rem;font-weight:600;border:none;background:none;transition:all .2s;border-bottom:4px solid transparent;color:#64748b;white-space:nowrap}
+.nav-tab:hover{background:#f8fafc}
+.nav-tab.active{color:#fff;border-bottom-color:transparent}
+.nav-tab[data-sec="s1"].active{background:#3b82f6}
+.nav-tab[data-sec="s2"].active{background:#10b981}
+.nav-tab[data-sec="s3"].active{background:#8b5cf6}
+.nav-tab[data-sec="s4"].active{background:#f59e0b}
+.nav-tab[data-sec="s5"].active{background:#ef4444}
+.nav-tab[data-sec="shuffle"].active{background:#6366f1}
+
+.shuffle-header{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;margin-bottom:20px;background:#fff;border-radius:12px;padding:16px 20px;box-shadow:0 1px 3px rgba(0,0,0,.08)}
+.shuffle-meta{display:flex;flex-direction:column;gap:4px}
+.shuffle-count-label{font-size:1rem;font-weight:700;color:#6366f1}
+.shuffle-progress-label{font-size:.85rem;color:#64748b}
+.shuffle-all-btn{padding:10px 22px;border-radius:8px;border:none;background:#6366f1;color:#fff;cursor:pointer;font-size:.9rem;font-weight:700;transition:all .2s;letter-spacing:.03em}
+.shuffle-all-btn:hover{background:#4f46e5}
+.shuffle-item{background:#fff;border-radius:12px;padding:20px;margin-bottom:14px;box-shadow:0 1px 3px rgba(0,0,0,.08);border-left:4px solid #6366f1}
+.shuffle-item.si-correct{border-left-color:#10b981}
+.shuffle-item.si-wrong{border-left-color:#ef4444}
+.shuffle-phrase-tag{font-size:.72rem;color:#6366f1;font-weight:700;margin-bottom:5px;letter-spacing:.04em}
+.shuffle-q-num{font-size:.72rem;color:#94a3b8;margin-bottom:6px}
+.shuffle-jp{font-size:1rem;font-weight:600;margin-bottom:12px;line-height:1.6;color:#1e293b}
+.wrong-badge{display:inline-block;background:#ef4444;color:#fff;border-radius:50%;width:18px;height:18px;font-size:.7rem;text-align:center;line-height:18px;margin-left:4px;font-weight:700;vertical-align:middle}
+
+.topic-section{display:none;padding:24px;max-width:1400px;margin:0 auto}
+.topic-section.active{display:block}
+
+.card{background:#fff;border-radius:12px;padding:24px;margin-bottom:20px;box-shadow:0 1px 3px rgba(0,0,0,.08)}
+.card-title{font-size:1.1rem;font-weight:700;margin-bottom:16px;display:flex;align-items:center;gap:8px}
+.badge{font-size:.7rem;padding:3px 8px;border-radius:20px;color:#fff;font-weight:600}
+.badge-s1{background:#3b82f6}
+.badge-s2{background:#10b981}
+.badge-s3{background:#8b5cf6}
+.badge-s4{background:#f59e0b}
+.badge-s5{background:#ef4444}
+
+.phrase-header{background:#f8fafc;border-left:4px solid #3b82f6;border-radius:0 8px 8px 0;padding:10px 16px;margin-bottom:16px;font-weight:700;color:#1e293b;font-size:1rem}
+.phrase-header.s2{border-left-color:#10b981}
+.phrase-header.s3{border-left-color:#8b5cf6}
+.phrase-header.s4{border-left-color:#f59e0b}
+.phrase-header.s5{border-left-color:#ef4444}
+
+/* 発音バッジ */
+.pron-badge{display:inline-block;background:#f1f5f9;border:1px solid #cbd5e1;color:#475569;font-size:.72rem;padding:2px 10px;border-radius:20px;margin-left:8px;font-weight:500;letter-spacing:.03em}
+
+.quiz-question{background:#f8fafc;border-radius:10px;margin-bottom:12px;overflow:hidden}
+.quiz-question p{font-size:.95rem;margin-bottom:10px;font-weight:500;line-height:1.6}
+.q-num{font-size:.75rem;color:#94a3b8;font-weight:600;margin-bottom:4px}
+
+.q-split{display:grid;grid-template-columns:1fr 1fr;gap:0;align-items:stretch}
+.q-left{padding:16px;border-right:2px solid #e2e8f0}
+.q-right{padding:16px 16px 16px 20px;background:#f8fafc;display:flex;flex-direction:column;justify-content:center;min-height:90px}
+.q-right-hint{flex:1;display:flex;align-items:center;justify-content:center;color:#cbd5e1;font-size:.8rem;gap:6px;padding:16px 0;text-align:center;line-height:1.6}
+.q-left .fill-input{width:100%;max-width:none}
+.q-left .trans-input{width:100%;max-width:none}
+
+.quiz-choices{display:flex;flex-wrap:wrap;gap:8px}
+.choice-btn{padding:8px 16px;border-radius:8px;border:2px solid #e2e8f0;background:#fff;cursor:pointer;font-size:.85rem;font-weight:500;transition:all .2s}
+.choice-btn:hover:not(:disabled){border-color:#94a3b8}
+.choice-btn.correct{background:#dcfce7;border-color:#10b981;color:#065f46}
+.choice-btn.wrong{background:#fee2e2;border-color:#ef4444;color:#991b1b}
+.choice-btn:disabled{cursor:not-allowed}
+
+.quiz-feedback{font-size:.85rem;margin-top:8px;padding:6px 10px;border-radius:6px;display:none}
+.quiz-feedback.show{display:block}
+.quiz-feedback.ok{background:#dcfce7;color:#065f46}
+.quiz-feedback.ng{background:#fee2e2;color:#991b1b}
+
+.fill-wrap{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-bottom:8px}
+.fill-input{padding:8px 12px;border:2px solid #e2e8f0;border-radius:8px;font-size:.9rem;font-family:'Noto Sans JP',sans-serif;width:240px;transition:border-color .2s}
+.fill-input:focus{outline:none;border-color:#3b82f6}
+.fill-input.correct{border-color:#10b981;background:#f0fdf4}
+.fill-input.wrong{border-color:#ef4444;background:#fef2f2}
+.check-btn{padding:8px 16px;border-radius:8px;border:none;background:#3b82f6;color:#fff;cursor:pointer;font-size:.85rem;font-weight:600;transition:all .2s}
+.check-btn:hover{background:#2563eb}
+
+.trans-show-btn{padding:8px 16px;border-radius:8px;border:2px solid #e2e8f0;background:#fff;cursor:pointer;font-size:.85rem;font-weight:500;transition:all .2s}
+.trans-show-btn:hover{background:#f1f5f9}
+.trans-answer{display:none;margin-top:10px;padding:10px 14px;background:#dcfce7;border-radius:8px;color:#065f46;font-weight:500}
+.trans-answer.show{display:block}
+
+.score-display{text-align:center;padding:12px;background:#f0f9ff;border-radius:10px;margin-bottom:16px;font-size:.9rem;color:#1e40af;font-weight:600}
+
+.review-wrap{background:#fff7f7;border-top:4px solid #ef4444;padding:32px 24px;margin-top:8px}
+.review-inner{max-width:960px;margin:0 auto}
+.review-title-bar{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;margin-bottom:20px}
+.review-title-left{display:flex;align-items:center;gap:10px}
+.review-heading{font-size:1.2rem;font-weight:700;color:#1e293b}
+.review-count-badge{background:#ef4444;color:#fff;border-radius:12px;padding:2px 12px;font-size:.8rem;font-weight:700}
+.shuffle-btn{padding:10px 20px;border-radius:8px;border:none;background:#ef4444;color:#fff;cursor:pointer;font-size:.85rem;font-weight:600;transition:all .2s}
+.shuffle-btn:hover{background:#dc2626}
+.review-placeholder{text-align:center;padding:36px;background:#fff;border-radius:12px;border:2px dashed #fca5a5;color:#94a3b8}
+.review-placeholder p{font-size:.95rem;margin-bottom:4px}
+.review-item{background:#fff;border-radius:12px;padding:20px;margin-bottom:16px;box-shadow:0 1px 4px rgba(239,68,68,.12);border-left:4px solid #ef4444;transition:opacity .5s}
+.review-item.cleared{opacity:.35;pointer-events:none;border-left-color:#10b981}
+.trans-input{width:100%;max-width:440px}
+
+.grammar-explain{margin-top:0}
+.q-right .quiz-feedback{margin-top:0;margin-bottom:8px}
+.grammar-box{padding:14px 16px;background:linear-gradient(135deg,#eff6ff,#f0fdf4);border-radius:10px;border:1px solid #bfdbfe;border-left:4px solid #3b82f6}
+.grammar-header{display:flex;align-items:center;gap:8px;margin-bottom:10px;flex-wrap:wrap}
+.grammar-type-badge{display:inline-block;background:#1d4ed8;color:#fff;font-size:.68rem;font-weight:700;padding:3px 10px;border-radius:12px;letter-spacing:.05em;white-space:nowrap}
+.grammar-type-name{font-size:.88rem;font-weight:700;color:#1e40af}
+.grammar-phrase{font-size:.88rem;font-weight:700;color:#0f172a;padding:6px 10px;background:#dbeafe;border-radius:6px;margin-bottom:8px;line-height:1.5}
+.grammar-detail-text{font-size:.85rem;color:#1e3a5f;line-height:1.75;border-top:1px solid #bfdbfe;padding-top:8px;margin-top:6px}
+.grammar-pron{font-size:.82rem;color:#1e40af;background:#dbeafe;padding:4px 10px;border-radius:6px;margin-bottom:8px;display:inline-block;font-weight:600}
+
+/* Section color variants */
+.grammar-box.s2{background:linear-gradient(135deg,#f0fdf4,#ecfdf5);border-color:#86efac;border-left-color:#10b981}
+.grammar-box.s2 .grammar-type-badge{background:#065f46}
+.grammar-box.s2 .grammar-type-name{color:#065f46}
+.grammar-box.s2 .grammar-phrase{background:#dcfce7}
+.grammar-box.s2 .grammar-detail-text{color:#14532d;border-top-color:#86efac}
+.grammar-box.s2 .grammar-pron{background:#dcfce7;color:#065f46}
+
+.grammar-box.s3{background:linear-gradient(135deg,#faf5ff,#f5f3ff);border-color:#c4b5fd;border-left-color:#8b5cf6}
+.grammar-box.s3 .grammar-type-badge{background:#5b21b6}
+.grammar-box.s3 .grammar-type-name{color:#5b21b6}
+.grammar-box.s3 .grammar-phrase{background:#ede9fe}
+.grammar-box.s3 .grammar-detail-text{color:#3b0764;border-top-color:#c4b5fd}
+.grammar-box.s3 .grammar-pron{background:#ede9fe;color:#5b21b6}
+
+.grammar-box.s4{background:linear-gradient(135deg,#fffbeb,#fef3c7);border-color:#fcd34d;border-left-color:#f59e0b}
+.grammar-box.s4 .grammar-type-badge{background:#92400e}
+.grammar-box.s4 .grammar-type-name{color:#92400e}
+.grammar-box.s4 .grammar-phrase{background:#fef3c7}
+.grammar-box.s4 .grammar-detail-text{color:#451a03;border-top-color:#fcd34d}
+.grammar-box.s4 .grammar-pron{background:#fef3c7;color:#92400e}
+
+.grammar-box.s5{background:linear-gradient(135deg,#fff1f2,#fef2f2);border-color:#fca5a5;border-left-color:#ef4444}
+.grammar-box.s5 .grammar-type-badge{background:#991b1b}
+.grammar-box.s5 .grammar-type-name{color:#991b1b}
+.grammar-box.s5 .grammar-phrase{background:#fee2e2}
+.grammar-box.s5 .grammar-detail-text{color:#450a0a;border-top-color:#fca5a5}
+.grammar-box.s5 .grammar-pron{background:#fee2e2;color:#991b1b}
+
+.intro-box{background:#fff;border-radius:12px;padding:20px 24px;margin-bottom:20px;box-shadow:0 1px 3px rgba(0,0,0,.08);border-left:6px solid #3b82f6}
+.intro-box.s2{border-left-color:#10b981}
+.intro-box.s3{border-left-color:#8b5cf6}
+.intro-box.s4{border-left-color:#f59e0b}
+.intro-box.s5{border-left-color:#ef4444}
+.intro-title{font-size:1.1rem;font-weight:700;margin-bottom:12px;color:#1e293b}
+.intro-table{width:100%;border-collapse:collapse;font-size:.85rem;margin-top:10px}
+.intro-table th{background:#f1f5f9;padding:8px 12px;text-align:left;font-weight:700;border:1px solid #e2e8f0;color:#334155}
+.intro-table td{padding:8px 12px;border:1px solid #e2e8f0;color:#475569}
+.intro-table tr:nth-child(even) td{background:#f8fafc}
+
+@media(max-width:900px){
+.q-split{grid-template-columns:1fr}
+.q-left{border-right:none;border-bottom:2px solid #e2e8f0}
+.q-right{border-radius:0 0 10px 10px}
+.q-right-hint{padding:10px 0}
+}
+@media(max-width:600px){
+.nav-tab{font-size:.68rem;padding:12px 4px;min-width:70px}
+header h1{font-size:1.3rem}
+.topic-section{padding:12px}
+.card{padding:16px}
+.fill-input{width:100%}
+}
+</style>
+</head>
+<body>
+<header>
+  <h1>関係代名詞・関係副詞 問題集</h1>
+  <p>初心者向け 実践問題集 — 52問 × 発音ガイド付き詳細解説</p>
+</header>
+
+<div class="progress-bar-wrap">
+  <span>進捗:</span>
+  <div class="progress-bar"><div class="progress-fill" id="progressFill" style="width:0%"></div></div>
+  <span class="progress-label" id="progressLabel">0 / 0 正解</span>
+</div>
+
+<div class="nav-tabs">
+  <button class="nav-tab active" data-sec="s1" onclick="showSec('s1',this)">関係代名詞<br>who/whom</button>
+  <button class="nav-tab" data-sec="s2" onclick="showSec('s2',this)">関係代名詞<br>which/that</button>
+  <button class="nav-tab" data-sec="s3" onclick="showSec('s3',this)">関係代名詞<br>whose</button>
+  <button class="nav-tab" data-sec="s4" onclick="showSec('s4',this)">関係副詞<br>where/when</button>
+  <button class="nav-tab" data-sec="s5" onclick="showSec('s5',this)">関係副詞<br>why/how + 応用</button>
+  <button class="nav-tab" data-sec="shuffle" onclick="showSec('shuffle',this)">🔀 シャッフル</button>
+</div>
+
+<div id="section-s1" class="topic-section active"></div>
+<div id="section-s2" class="topic-section"></div>
+<div id="section-s3" class="topic-section"></div>
+<div id="section-s4" class="topic-section"></div>
+<div id="section-s5" class="topic-section"></div>
+<div id="section-shuffle" class="topic-section"></div>
+
+<div class="review-wrap">
+  <div class="review-inner">
+    <div class="review-title-bar">
+      <div class="review-title-left">
+        <span style="font-size:1.4rem">🔴</span>
+        <h2 class="review-heading">苦手問題リスト</h2>
+        <span class="review-count-badge" id="review-count-badge" style="display:none">0問</span>
+      </div>
+      <button class="shuffle-btn" id="shuffle-btn" onclick="shuffleReview()" style="display:none">🔀 シャッフルしてやり直す</button>
+    </div>
+    <div id="review-list">
+      <div class="review-placeholder" id="review-placeholder">
+        <p>✏️ 不正解になった問題がここに自動追加されます</p>
+        <p>繰り返し練習して苦手を克服しましょう！</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+// ===================== QUIZ DATA =====================
+const quizData = {
+  s1: {
+    title: '関係代名詞 who / whom',
+    badge: 'badge-s1',
+    phraseClass: '',
+    intro: {
+      title: '関係代名詞 who / whom とは？',
+      rows: [
+        ['who', 'フー /huː/', '人・主語', 'the man <b>who</b> lives here'],
+        ['whom', 'フーム /huːm/', '人・目的語（やや丁寧）', 'the woman <b>whom</b> I met'],
+        ['who（口語）', 'フー /huː/', '人・目的語（日常会話）', 'the woman <b>who</b> I met'],
+      ]
+    },
+    phrases: [
+      {
+        phrase: 'who（主格・人が主語）',
+        pron: 'フー /huː/',
+        jp: '〜する人（関係詞節の中で主語の役割）',
+        gtype: '関係代名詞',
+        gbox: '',
+        gdesc: '先行詞（修飾される名詞）が「人」で、関係詞節の中で<b>主語</b>になる場合は <b>who</b> を使います。<br>例: the teacher <b>who</b> teaches English（英語を教える先生）<br>⬛ 構造: 先行詞(人) + who + 動詞〜',
+        qs: [
+          { type:'mc', q:'「英語を教えている先生」→ the teacher ___ teaches English', choices:['who','which','whom','whose'], ans:0, ok:'✅ 先行詞 teacher は「人」、関係詞節の中で主語（teaches の主語）→ <b>who</b>' },
+          { type:'fill', q:'「昨日泣いた少女は私の妹です」→ The girl ___ cried yesterday is my sister.', ans:'who', ok:'✅ 先行詞 girl は「人」、cried の主語 → who' },
+          { type:'trans', jp:'ここに住んでいる男性は医者です', en:'The man who lives here is a doctor.' }
+        ]
+      },
+      {
+        phrase: 'who（主格）応用',
+        pron: 'フー /huː/',
+        jp: '〜した人（さまざまな文型で練習）',
+        gtype: '関係代名詞',
+        gbox: '',
+        gdesc: 'who の後には <b>動詞</b> が続きます（主語の役割のため）。先行詞が複数でも who はそのまま使います。<br>例: students <b>who</b> study hard（一生懸命勉強する生徒たち）',
+        qs: [
+          { type:'mc', q:'「試験に合格した生徒たちは喜んだ」→ The students ___ passed the exam were happy.', choices:['who','which','where','whose'], ans:0, ok:'✅ 先行詞 students は「人（複数）」、関係詞節で主語 → <b>who</b>' },
+          { type:'fill', q:'「毎日運動する人は健康です」→ People ___ exercise every day are healthy.', ans:'who', ok:'✅ People（人）が先行詞、exercise の主語 → who' },
+          { type:'trans', jp:'彼を助けてくれた警察官にお礼を言いました', en:'I thanked the police officer who helped him.' }
+        ]
+      },
+      {
+        phrase: 'whom（目的格・人が目的語）',
+        pron: 'フーム /huːm/',
+        jp: '〜する人（関係詞節の中で目的語の役割）',
+        gtype: '関係代名詞',
+        gbox: '',
+        gdesc: '先行詞が「人」で、関係詞節の中で<b>目的語</b>になる場合は <b>whom</b>（やや丁寧）または <b>who</b>（日常会話）を使います。<br>例: the woman <b>whom</b> I met（私が会った女性）<br>⬛ 構造: 先行詞(人) + whom + 主語 + 動詞〜',
+        qs: [
+          { type:'mc', q:'「私が昨日会った女性は親切でした」→ The woman ___ I met yesterday was kind.', choices:['whom','which','where','when'], ans:0, ok:'✅ 先行詞 woman は「人」、I met の目的語（〜を） → <b>whom</b>（会話では who も可）' },
+          { type:'fill', q:'「彼が最も信頼する友人はトムです」→ The friend ___ he trusts most is Tom.', ans:'whom', ok:'✅ friend（人）が先行詞、trusts の目的語 → whom（口語では who も可）' },
+          { type:'trans', jp:'私が尊敬している先生は田中先生です', en:'The teacher whom I respect is Mr. Tanaka.' }
+        ]
+      },
+      {
+        phrase: 'who vs which — 人か物か',
+        pron: 'フー /huː/ ｜ ウィッチ /wɪtʃ/',
+        jp: '先行詞が「人」なら who、「物・動物」なら which',
+        gtype: '関係代名詞',
+        gbox: '',
+        gdesc: '<b>who</b> → 先行詞が「人」<br><b>which</b> → 先行詞が「物・動物」<br>※「動物」は which または that どちらも使えます。<br>例: a dog <b>which</b> / <b>that</b> barks all night（夜中吠える犬）',
+        qs: [
+          { type:'mc', q:'「夜中ずっと吠える犬を飼っています」→ I have a dog ___ barks all night.', choices:['that / which','who','whom','whose'], ans:0, ok:'✅ 先行詞 dog は「動物（物扱い）」→ <b>which</b> または <b>that</b>（which / that のどちらも正解）' },
+          { type:'mc', q:'「赤いドレスを着ている女性は私の姉です」→ The woman ___ is wearing a red dress is my sister.', choices:['who','which','where','when'], ans:0, ok:'✅ 先行詞 woman は「人」→ <b>who</b>' }
+        ]
+      }
+    ]
+  },
+
+  s2: {
+    title: '関係代名詞 which / that',
+    badge: 'badge-s2',
+    phraseClass: 's2',
+    intro: {
+      title: '関係代名詞 which / that とは？',
+      rows: [
+        ['which', 'ウィッチ /wɪtʃ/', '物・動物', 'the book <b>which</b> I read'],
+        ['that', 'ザット /ðæt/', '人・物両方（制限用法のみ）', 'the best movie <b>that</b> I\'ve seen'],
+        ['that必須', '—', 'all/only/first/最上級の後', 'everything <b>that</b> he said'],
+      ]
+    },
+    phrases: [
+      {
+        phrase: 'which（物・主格）',
+        pron: 'ウィッチ /wɪtʃ/',
+        jp: '〜である物（関係詞節で主語の役割）',
+        gtype: '関係代名詞',
+        gbox: 's2',
+        gdesc: '先行詞が「物・動物」で、関係詞節の中で<b>主語</b>になる場合は <b>which</b> を使います。<br>例: the book <b>which</b> is on the table（テーブルの上にある本）<br>⬛ 構造: 先行詞(物) + which + 動詞〜',
+        qs: [
+          { type:'mc', q:'「テーブルの上にある本は私のです」→ The book ___ is on the table is mine.', choices:['which','who','where','when'], ans:0, ok:'✅ 先行詞 book は「物」、is の主語 → <b>which</b>（または that）' },
+          { type:'fill', q:'「彼が買った車は高かった」→ The car ___ he bought was expensive.', ans:'which', ok:'✅ car（物）が先行詞、bought の目的語 → which（または that）' },
+          { type:'trans', jp:'私が昨夜見た映画はとても面白かった', en:'The movie which I watched last night was very interesting.' }
+        ]
+      },
+      {
+        phrase: 'that（人・物両方に使える）',
+        pron: 'ザット /ðæt/',
+        jp: '人にも物にも使える（制限用法のみ）',
+        gtype: '関係代名詞',
+        gbox: 's2',
+        gdesc: '<b>that</b> は先行詞が「人」でも「物」でも使えます。ただし<b>コンマ付きの非制限用法（, that）では使えません</b>。<br>例: the man <b>that</b> I saw / the book <b>that</b> I read<br>⬛ that が必須の場合: all, every, the only, 最上級, first/last の後',
+        qs: [
+          { type:'mc', q:'「彼が言ったことはすべて本当でした」→ Everything ___ he said was true.', choices:['that','which','who','when'], ans:0, ok:'✅ everything の後は <b>that</b> が必須（which は使えない）。everything, all, anything の後は that を使います。' },
+          { type:'fill', q:'「彼女は私がこれまで会った中で最も親切な人です」→ She is the kindest person ___ I have ever met.', ans:'that', ok:'✅ 最上級（kindest）の後は <b>that</b> が自然（who / whom も可）' },
+          { type:'trans', jp:'私が初めて読んだ英語の本はとても難しかった', en:'The first English book that I read was very difficult.' }
+        ]
+      },
+      {
+        phrase: 'that必須ルール（only / all / 最上級）',
+        pron: 'ザット /ðæt/',
+        jp: 'only・all・最上級・first/last の後は that',
+        gtype: '関係代名詞',
+        gbox: 's2',
+        gdesc: '<b>that が必須になる先行詞</b>:<br>① the only / the very / the same の後<br>② all / every / everything / anything / nothing の後<br>③ 最上級（the best / the tallest…）の後<br>④ first / last の後<br>これらの後は which・who ではなく <b>that</b> を使います。',
+        qs: [
+          { type:'mc', q:'「私が必要な唯一のことは休息です」→ The only thing ___ I need is rest.', choices:['that','which','who','what'], ans:0, ok:'✅ the only の後は <b>that</b> が必須です。which は不自然。' },
+          { type:'fill', q:'「彼がこれまで見た中で最高の映画は何ですか？」→ What\'s the best movie ___ he\'s ever seen?', ans:'that', ok:'✅ the best（最上級）の後は <b>that</b> が自然です。' },
+          { type:'trans', jp:'これが彼に残された最後のチャンスです', en:'This is the last chance that he has.' }
+        ]
+      },
+      {
+        phrase: '非制限用法（, which）— コンマ付き',
+        pron: 'ウィッチ /wɪtʃ/',
+        jp: '補足情報を付け加える（コンマ + which）',
+        gtype: '関係代名詞',
+        gbox: 's2',
+        gdesc: '<b>コンマ＋which</b> は「〜であるが、それは〜」と補足情報を加えます。この用法では <b>that は使えません</b>。<br>例: I bought a car, <b>which</b> was very cheap.（車を買いましたが、それはとても安かったです）<br>⬛ , which は前の文全体を受けることもあります。',
+        qs: [
+          { type:'mc', q:'「彼は東京出身で、そこは日本の首都です」→ He is from Tokyo, ___ is the capital of Japan.', choices:['which','that','who','where'], ans:0, ok:'✅ コンマ付き（非制限用法）では <b>which</b> を使います。that は不可。' },
+          { type:'trans', jp:'彼女はピアノを弾きましたが、それはとても上手でした', en:'She played the piano, which was very impressive.' }
+        ]
+      }
+    ]
+  },
+
+  s3: {
+    title: '関係代名詞 whose',
+    badge: 'badge-s3',
+    phraseClass: 's3',
+    intro: {
+      title: '関係代名詞 whose とは？',
+      rows: [
+        ['whose', 'フーズ /huːz/', '人・物の所有格', 'the man <b>whose</b> car is red'],
+        ['〜の', '—', '先行詞が人でも物でも使える', 'the house <b>whose</b> roof is broken'],
+      ]
+    },
+    phrases: [
+      {
+        phrase: 'whose（人の所有格）',
+        pron: 'フーズ /huːz/',
+        jp: '〜の〜（先行詞が「人」で所有関係を示す）',
+        gtype: '関係代名詞',
+        gbox: 's3',
+        gdesc: '<b>whose</b> は「〜の」という所有格の関係代名詞です。先行詞が「人」の場合に使います。<br>例: a girl <b>whose</b> father is famous（父が有名な少女）<br>⬛ 構造: 先行詞(人) + whose + 名詞 + 動詞〜<br>⬛ whose = his/her/their の役割をする',
+        qs: [
+          { type:'mc', q:'「ノートを忘れた生徒は教室に残りました」→ The student ___ notebook was forgotten stayed in class.', choices:['whose','who','which','that'], ans:0, ok:'✅ 先行詞 student は「人」、ノートは student の持ち物 → <b>whose</b>（whose = his/her）' },
+          { type:'fill', q:'「妻が医者の男性に会いました」→ I met a man ___ wife is a doctor.', ans:'whose', ok:'✅ 先行詞 man は「人」、妻(wife)は man の持ち物 → whose（= his）' },
+          { type:'trans', jp:'夫が有名な俳優の女性はスミスさんです', en:"The woman whose husband is a famous actor is Ms. Smith." }
+        ]
+      },
+      {
+        phrase: 'whose（物の所有格）',
+        pron: 'フーズ /huːz/',
+        jp: '〜の〜（先行詞が「物」でも使える）',
+        gtype: '関係代名詞',
+        gbox: 's3',
+        gdesc: '<b>whose</b> は先行詞が「物」のときにも使えます。<br>例: a house <b>whose</b> windows are broken（窓が壊れている家）<br>= a house, the windows of which are broken（やや堅い表現）<br>⬛ 建物・自然・組織など「物」の所有関係に使います。',
+        qs: [
+          { type:'mc', q:'「窓が壊れている家は古いです」→ The house ___ windows are broken is old.', choices:['whose','which','that','where'], ans:0, ok:'✅ 先行詞 house は「物」でも <b>whose</b> が使えます。whose = the house\'s の役割。' },
+          { type:'fill', q:'「製品が世界中で売られている会社で働いています」→ I work for a company ___ products are sold worldwide.', ans:'whose', ok:'✅ 先行詞 company は「物（組織）」、whose = the company\'s → whose' },
+          { type:'trans', jp:'屋根が緑色の建物は図書館です', en:'The building whose roof is green is the library.' }
+        ]
+      },
+      {
+        phrase: 'whose 応用練習',
+        pron: 'フーズ /huːz/',
+        jp: 'whose を使った様々な文',
+        gtype: '関係代名詞',
+        gbox: 's3',
+        gdesc: '<b>whose の確認ポイント:</b><br>① whose の後には<b>必ず名詞</b>が来る<br>② 先行詞は人でも物でも OK<br>③ whose = his / her / its / their の意味<br>例: the author <b>whose</b> novels I love（私が好きな小説を書いた作家）',
+        qs: [
+          { type:'mc', q:'「私が好きな小説を書いた作家はムラカミです」→ The author ___ novels I love is Murakami.', choices:['whose','who','which','that'], ans:0, ok:'✅ novels は author の作品 → <b>whose</b> novels（whose = the author\'s）' },
+          { type:'fill', q:'「名前を知らない人が私に手紙を送ってきました」→ A person ___ name I don\'t know sent me a letter.', ans:'whose', ok:'✅ name は person の名前（所有関係）→ whose' },
+          { type:'trans', jp:'足が速い選手がマラソンで優勝した', en:'The athlete whose legs are fast won the marathon.' }
+        ]
+      }
+    ]
+  },
+
+  s4: {
+    title: '関係副詞 where / when',
+    badge: 'badge-s4',
+    phraseClass: 's4',
+    intro: {
+      title: '関係副詞 where / when とは？',
+      rows: [
+        ['where', 'ウェア /wɛr/', '場所を表す先行詞の後', 'the city <b>where</b> I was born'],
+        ['when', 'ウェン /wɛn/', '時を表す先行詞の後', 'the day <b>when</b> we met'],
+        ['関係副詞 = 前置詞 + which', '—', '書き換え可能', 'the place <b>where</b> = the place <b>in which</b>'],
+      ]
+    },
+    phrases: [
+      {
+        phrase: 'where（場所の関係副詞）',
+        pron: 'ウェア /wɛr/',
+        jp: '〜する場所（場所を表す先行詞の後で使う）',
+        gtype: '関係副詞',
+        gbox: 's4',
+        gdesc: '<b>where</b> は場所を表す先行詞（place, city, country, school, house など）の後で使います。<br>例: the school <b>where</b> I studied（私が勉強した学校）<br>⬛ where = in which / at which などに書き換え可能<br>⬛ 関係副詞なので where の後は<b>完全な文</b>（主語＋動詞）が続く',
+        qs: [
+          { type:'mc', q:'「私が生まれた都市は東京です」→ The city ___ I was born is Tokyo.', choices:['where','which','who','when'], ans:0, ok:'✅ 先行詞 city は「場所」→ <b>where</b>（= in which）。where の後は I was born という完全な文。' },
+          { type:'fill', q:'「私たちが初めて会ったカフェに行きましょう」→ Let\'s go to the café ___ we first met.', ans:'where', ok:'✅ 先行詞 café は「場所」→ where。we first met は完全な文。' },
+          { type:'trans', jp:'彼が働いているオフィスはとても広い', en:'The office where he works is very spacious.' }
+        ]
+      },
+      {
+        phrase: 'where 応用（建物・国・地域）',
+        pron: 'ウェア /wɛr/',
+        jp: '学校・国・地域など場所全般に使える',
+        gtype: '関係副詞',
+        gbox: 's4',
+        gdesc: '<b>where</b> は「場所」を表す名詞全般に使えます。<br>例: the country <b>where</b> I grew up（私が育った国）<br>例: the hospital <b>where</b> I was born（私が生まれた病院）<br>⬛ 書き換え: the city where I live = the city <b>in which</b> I live',
+        qs: [
+          { type:'mc', q:'「彼女が育った村はとても静かです」→ The village ___ she grew up is very quiet.', choices:['where','which','who','whose'], ans:0, ok:'✅ 先行詞 village は「場所」→ <b>where</b>' },
+          { type:'fill', q:'「彼が入院している病院を知っています」→ I know the hospital ___ he is staying.', ans:'where', ok:'✅ hospital（場所）+ where（= at which）' },
+          { type:'trans', jp:'私が通った小学校はもうありません', en:'The elementary school where I went no longer exists.' }
+        ]
+      },
+      {
+        phrase: 'when（時の関係副詞）',
+        pron: 'ウェン /wɛn/',
+        jp: '〜する時（時を表す先行詞の後で使う）',
+        gtype: '関係副詞',
+        gbox: 's4',
+        gdesc: '<b>when</b> は時を表す先行詞（day, time, year, moment, season, night など）の後で使います。<br>例: the day <b>when</b> we graduated（私たちが卒業した日）<br>⬛ when = on which / in which などに書き換え可能<br>⬛ when の後は<b>完全な文</b>が続く',
+        qs: [
+          { type:'mc', q:'「私たちが卒業した日を覚えています」→ I remember the day ___ we graduated.', choices:['when','where','which','who'], ans:0, ok:'✅ 先行詞 day は「時」→ <b>when</b>（= on which）' },
+          { type:'fill', q:'「電話のなかった時代がありました」→ There was a time ___ there were no phones.', ans:'when', ok:'✅ 先行詞 time は「時」→ when' },
+          { type:'trans', jp:'夏は私が最も幸せを感じる季節です', en:'Summer is the season when I feel happiest.' }
+        ]
+      },
+      {
+        phrase: 'when 応用（year/moment/night）',
+        pron: 'ウェン /wɛn/',
+        jp: '年・瞬間・夜など「時」全般に使える',
+        gtype: '関係副詞',
+        gbox: 's4',
+        gdesc: '<b>when</b> は day, year, moment, night, age などの時を表す名詞の後に使います。<br>例: the year <b>when</b> I was born（私が生まれた年）<br>例: the moment <b>when</b> everything changed（すべてが変わった瞬間）',
+        qs: [
+          { type:'mc', q:'「すべてが変わった瞬間を忘れません」→ I\'ll never forget the moment ___ everything changed.', choices:['when','where','which','who'], ans:0, ok:'✅ 先行詞 moment は「時（瞬間）」→ <b>when</b>' },
+          { type:'fill', q:'「彼らが優勝した年に何があったか知っていますか？」→ Do you know what happened in the year ___ they won the championship?', ans:'when', ok:'✅ year（時）+ when' },
+          { type:'trans', jp:'彼女に初めて会った夜のことを覚えています', en:'I remember the night when I first met her.' }
+        ]
+      }
+    ]
+  },
+
+  s5: {
+    title: '関係副詞 why / how ＋ 関係代名詞 what',
+    badge: 'badge-s5',
+    phraseClass: 's5',
+    intro: {
+      title: '関係副詞 why / how ＋ 関係代名詞 what',
+      rows: [
+        ['why', 'ワイ /waɪ/', 'reason の後のみ', 'the reason <b>why</b> I\'m late'],
+        ['how', 'ハウ /haʊ/', '方法・様子（先行詞なしで使う）', '<b>how</b> she learned Japanese'],
+        ['what', 'ワット /wɒt/', '先行詞を含む（= the thing which）', '<b>what</b> he said surprised me'],
+      ]
+    },
+    phrases: [
+      {
+        phrase: 'why（理由の関係副詞）',
+        pron: 'ワイ /waɪ/',
+        jp: '〜する理由（reason の後で使う）',
+        gtype: '関係副詞',
+        gbox: 's5',
+        gdesc: '<b>why</b> は理由を表す先行詞 <b>reason</b> の後にのみ使います。<br>例: the reason <b>why</b> I was late（私が遅刻した理由）<br>⬛ the reason why = the reason that = the reason（省略可）<br>⬛ why の後は完全な文が続く',
+        qs: [
+          { type:'mc', q:'「あなたが遅刻した理由を教えてください」→ Tell me the reason ___ you are late.', choices:['why','where','when','who'], ans:0, ok:'✅ 先行詞 reason の後は <b>why</b>。the reason why = the reason that とも言えます。' },
+          { type:'fill', q:'「彼女が泣いた理由を知りません」→ I don\'t know the reason ___ she cried.', ans:'why', ok:'✅ reason + why。I don\'t know why she cried. とも言えます。' },
+          { type:'trans', jp:'それが私が日本語を勉強している理由です', en:'That is the reason why I am studying Japanese.' }
+        ]
+      },
+      {
+        phrase: 'how（方法の関係副詞・先行詞なし）',
+        pron: 'ハウ /haʊ/',
+        jp: '〜する方法（the way how とは言わない！）',
+        gtype: '関係副詞',
+        gbox: 's5',
+        gdesc: '<b>how</b> は「〜する方法・様子」を表しますが、<b>the way how とは言いません</b>。<br>① <b>how</b>（先行詞 the way を省略）<br>② <b>the way（that）</b>（how を省略）<br>どちらか一方だけ使います！<br>例: Tell me <b>how</b> you did it. / Tell me <b>the way</b> you did it.',
+        qs: [
+          { type:'mc', q:'「彼がそれをどうやったか知りません」→ I don\'t know ___ he did it so fast.', choices:['how','why','where','when'], ans:0, ok:'✅ <b>how</b> は「方法・様子」。the way how は不可。I don\'t know how = I don\'t know the way（that）' },
+          { type:'fill', q:'「問題をどう解いたか教えてください」→ Tell me ___ you solved the problem.', ans:'how', ok:'✅ how = the way (that)。Tell me the way you solved it. とも言えます。' },
+          { type:'trans', jp:'彼女が日本語を学んだ方法を見てみましょう', en:"Let's see how she learned Japanese." }
+        ]
+      },
+      {
+        phrase: 'what（関係代名詞 what = the thing which）',
+        pron: 'ワット /wɒt/',
+        jp: '〜すること・もの（先行詞を含む関係代名詞）',
+        gtype: '関係代名詞',
+        gbox: 's5',
+        gdesc: '<b>what</b> は「先行詞 + 関係代名詞」の役割を兼ねます。<br>what = <b>the thing which / the things that</b><br>例: <b>What</b> he said surprised me.<br>= <b>The thing that</b> he said surprised me.（彼が言ったことが私を驚かせた）<br>⬛ what の前には先行詞がありません！',
+        qs: [
+          { type:'mc', q:'「彼が言ったことが私を驚かせました」→ ___ he said surprised me.', choices:['What','That','Which','Who'], ans:0, ok:'✅ <b>What</b> = the thing that。先行詞なしで名詞節を作ります。What he said = 彼が言ったこと（主語の役割）' },
+          { type:'fill', q:'「私が必要なのはもっと練習することです」→ ___ I need is more practice.', ans:'What', ok:'✅ What I need = the thing that I need（私が必要なもの）。文の主語になっています。' },
+          { type:'trans', jp:'彼女が見せてくれたものはとても美しかった', en:'What she showed me was very beautiful.' }
+        ]
+      },
+      {
+        phrase: 'what 応用（名詞節）',
+        pron: 'ワット /wɒt/',
+        jp: '目的語・補語としての what 節',
+        gtype: '関係代名詞',
+        gbox: 's5',
+        gdesc: '<b>what 節</b> は文の<b>主語・目的語・補語</b>になれます。<br>① 主語: <b>What</b> he did was wrong.（主語）<br>② 目的語: I believe <b>what</b> you said.（目的語）<br>③ 補語: This is <b>what</b> I wanted.（補語）<br>※ that と what の違い: This is <b>what</b> I want（欲しいもの） vs I think <b>that</b> it\'s true（〜だと思う）',
+        qs: [
+          { type:'mc', q:'「あなたが言ったことを信じます」→ I believe ___ you told me.', choices:['what','that','which','who'], ans:0, ok:'✅ believe の目的語 → <b>what</b> you told me（= the thing that you told me）' },
+          { type:'fill', q:'「これが私が欲しかったものです」→ This is ___ I wanted.', ans:'what', ok:'✅ 補語の位置に what 節。what = the thing that' },
+          { type:'trans', jp:'欲しいものを教えてください', en:'Tell me what you want.' }
+        ]
+      },
+      {
+        phrase: '複合関係詞（whatever / wherever / whenever）',
+        pron: 'ワットエバー / ウェアエバー / ウェネバー',
+        jp: '〜でも・〜しても（どんな〜でも）',
+        gtype: '複合関係詞',
+        gbox: 's5',
+        gdesc: '<b>-ever</b> をつけると「どんな〜でも」という意味になります。<br>• <b>whatever</b> = anything that（何でも〜）<br>• <b>wherever</b> = anywhere that（どこでも〜）<br>• <b>whenever</b> = any time that（いつでも〜）<br>• <b>whoever</b> = anyone who（誰でも〜）<br>例: Take <b>whatever</b> you need.（必要なものは何でも持っていって）',
+        qs: [
+          { type:'mc', q:'「好きな場所に座ってください」→ Please sit ___ you like.', choices:['wherever','whenever','whatever','whoever'], ans:0, ok:'✅ <b>wherever</b> = anywhere that（どこにでも）。場所を表すので wherever。' },
+          { type:'fill', q:'「必要なものは何でも持っていってください」→ Take ___ you need.', ans:'whatever', ok:'✅ <b>whatever</b> = anything that（何でも）。whatever you need = anything that you need' },
+          { type:'trans', jp:'いつでも好きな時に来てください', en:'Come whenever you like.' }
+        ]
+      }
+    ]
+  }
+};
+
+// ===================== STATE =====================
+let totalQ = 0, correctQ = 0;
+const wrongSet = new Set();
+const answeredMap = {};
+
+function countTotal() {
+  totalQ = 0;
+  Object.values(quizData).forEach(sec => {
+    if (!sec.phrases) return;
+    sec.phrases.forEach(p => { totalQ += p.qs.length; });
+  });
+}
+
+function updateProgress() {
+  const pct = totalQ ? Math.round(correctQ / totalQ * 100) : 0;
+  document.getElementById('progressFill').style.width = pct + '%';
+  document.getElementById('progressLabel').textContent = correctQ + ' / ' + totalQ + ' 正解';
+}
+
+function markCorrect(key) {
+  if (answeredMap[key] === 'correct') return;
+  if (answeredMap[key] !== 'correct') {
+    if (answeredMap[key] !== 'wrong') correctQ++;
+    answeredMap[key] = 'correct';
+  }
+  updateProgress();
+  removeFromWrong(key);
+}
+
+function markWrong(key) {
+  if (answeredMap[key] === 'correct') return;
+  answeredMap[key] = 'wrong';
+  addToWrong(key);
+  updateProgress();
+}
+
+// ===================== RENDER =====================
+function renderAll() {
+  countTotal();
+  ['s1','s2','s3','s4','s5'].forEach(sid => {
+    const sec = quizData[sid];
+    const el = document.getElementById('section-' + sid);
+    let html = '';
+
+    // Intro table
+    if (sec.intro) {
+      html += `<div class="intro-box ${sec.phraseClass}">
+        <div class="intro-title">📘 ${sec.intro.title}</div>
+        <table class="intro-table">
+          <tr><th>関係詞</th><th>発音</th><th>使う場面</th><th>例</th></tr>
+          ${sec.intro.rows.map(r => `<tr><td><b>${r[0]}</b></td><td>${r[1]}</td><td>${r[2]}</td><td>${r[3]}</td></tr>`).join('')}
+        </table>
+      </div>`;
+    }
+
+    let qNum = 0;
+    sec.phrases.forEach((phrase, pi) => {
+      const phraseKey = sid + '_p' + pi;
+      let qs = '';
+      phrase.qs.forEach((q, qi) => {
+        const key = phraseKey + '_q' + qi;
+        qNum++;
+        qs += renderQ(q, key, qNum, phrase, sid);
+      });
+
+      const scoreId = 'score_' + phraseKey;
+      const correctCount = phrase.qs.filter((_, qi) => answeredMap[phraseKey + '_q' + qi] === 'correct').length;
+
+      html += `<div class="card">
+        <div class="card-title">
+          <span class="badge ${sec.badge}">${sec.title}</span>
+          ${phrase.phrase}
+          <span class="pron-badge">🔊 ${phrase.pron}</span>
+        </div>
+        <div class="phrase-header ${sec.phraseClass}">${phrase.jp}</div>
+        <div class="score-display" id="${scoreId}">正解: ${correctCount} / ${phrase.qs.length}</div>
+        ${qs}
+      </div>`;
+    });
+
+    el.innerHTML = html;
+  });
+  renderShuffle();
+  updateProgress();
+}
+
+function renderQ(q, key, num, phrase, sid) {
+  const gclass = phrase.gbox || '';
+  const ghtml = phrase.gdesc ? `
+    <div class="grammar-box ${gclass}">
+      <div class="grammar-header">
+        <span class="grammar-type-badge">${phrase.gtype}</span>
+        <span class="grammar-type-name">${phrase.phrase}</span>
+      </div>
+      <div class="grammar-pron">🔊 発音: ${phrase.pron}</div>
+      <div class="grammar-phrase">${phrase.jp}</div>
+      <div class="grammar-detail-text">${phrase.gdesc}</div>
+    </div>` : `<div class="q-right-hint">👈 答えを選んでください</div>`;
+
+  if (q.type === 'mc') {
+    const choices = q.choices.map((c, i) =>
+      `<button class="choice-btn" onclick="checkMC('${key}',${i},this,event)">${c}</button>`
+    ).join('');
+    return `<div class="quiz-question" id="qq_${key}">
+      <div class="q-split">
+        <div class="q-left">
+          <div class="q-num">Q${num}｜選択問題</div>
+          <p>${q.q}</p>
+          <div class="quiz-choices">${choices}</div>
+          <div class="quiz-feedback" id="fb_${key}"></div>
+        </div>
+        <div class="q-right grammar-explain">${ghtml}</div>
+      </div>
+    </div>`;
+  }
+  if (q.type === 'fill') {
+    return `<div class="quiz-question" id="qq_${key}">
+      <div class="q-split">
+        <div class="q-left">
+          <div class="q-num">Q${num}｜穴埋め問題</div>
+          <p>${q.q}</p>
+          <div class="fill-wrap">
+            <input class="fill-input" id="inp_${key}" placeholder="英語で入力…" onkeydown="if(event.key==='Enter')checkFill('${key}')">
+            <button class="check-btn" onclick="checkFill('${key}')">確認</button>
+          </div>
+          <div class="quiz-feedback" id="fb_${key}"></div>
+        </div>
+        <div class="q-right grammar-explain">${ghtml}</div>
+      </div>
+    </div>`;
+  }
+  if (q.type === 'trans') {
+    return `<div class="quiz-question" id="qq_${key}">
+      <div class="q-split">
+        <div class="q-left">
+          <div class="q-num">Q${num}｜英訳問題</div>
+          <p>次の日本語を英語にしてみましょう：</p>
+          <p style="font-weight:700;color:#1e40af;font-size:1rem">「${q.jp}」</p>
+          <button class="trans-show-btn" onclick="showTrans('${key}',this)">答えを見る</button>
+          <div class="trans-answer" id="ta_${key}">
+            ✅ ${q.en}
+          </div>
+        </div>
+        <div class="q-right grammar-explain">${ghtml}</div>
+      </div>
+    </div>`;
+  }
+  return '';
+}
+
+function checkMC(key, idx, btn, e) {
+  const btns = btn.closest('.quiz-choices').querySelectorAll('.choice-btn');
+  btns.forEach(b => b.disabled = true);
+  const fb = document.getElementById('fb_' + key);
+  const qData = findQ(key);
+  if (!qData) return;
+  if (idx === qData.ans) {
+    btn.classList.add('correct');
+    fb.className = 'quiz-feedback show ok';
+    fb.innerHTML = '✅ ' + qData.ok;
+    markCorrect(key);
+    updateScoreDisplay(key);
+  } else {
+    btn.classList.add('wrong');
+    btns[qData.ans].classList.add('correct');
+    fb.className = 'quiz-feedback show ng';
+    fb.innerHTML = '❌ 正解は「' + qData.choices[qData.ans] + '」<br>' + qData.ok;
+    markWrong(key);
+    updateScoreDisplay(key);
+    scheduleReviewAdd(key);
+  }
+}
+
+function checkFill(key) {
+  const inp = document.getElementById('inp_' + key);
+  const fb = document.getElementById('fb_' + key);
+  const qData = findQ(key);
+  if (!qData || !inp) return;
+  const userVal = inp.value.trim().toLowerCase().replace(/[.,!?]/g,'');
+  const correctVal = qData.ans.trim().toLowerCase().replace(/[.,!?]/g,'');
+  const alts = (qData.alts || []).map(a => a.trim().toLowerCase().replace(/[.,!?]/g,''));
+  const isOk = userVal === correctVal || alts.includes(userVal);
+  inp.disabled = true;
+  if (isOk) {
+    inp.classList.add('correct');
+    fb.className = 'quiz-feedback show ok';
+    fb.innerHTML = '✅ ' + qData.ok;
+    markCorrect(key);
+    updateScoreDisplay(key);
+  } else {
+    inp.classList.add('wrong');
+    fb.className = 'quiz-feedback show ng';
+    fb.innerHTML = '❌ 正解: <b>' + qData.ans + '</b> &nbsp; ' + qData.ok;
+    markWrong(key);
+    updateScoreDisplay(key);
+    scheduleReviewAdd(key);
+  }
+}
+
+function showTrans(key, btn) {
+  document.getElementById('ta_' + key).classList.add('show');
+  btn.style.display = 'none';
+  markCorrect(key);
+  updateScoreDisplay(key);
+}
+
+function updateScoreDisplay(key) {
+  const parts = key.split('_');
+  const sid = parts[0];
+  const pi = parseInt(parts[1].replace('p',''));
+  const phraseKey = sid + '_p' + pi;
+  const sec = quizData[sid];
+  const phrase = sec.phrases[pi];
+  const correct = phrase.qs.filter((_,qi) => answeredMap[phraseKey + '_q' + qi] === 'correct').length;
+  const el = document.getElementById('score_' + phraseKey);
+  if (el) el.textContent = '正解: ' + correct + ' / ' + phrase.qs.length;
+}
+
+function findQ(key) {
+  const parts = key.split('_');
+  const sid = parts[0];
+  const pi = parseInt(parts[1].replace('p',''));
+  const qi = parseInt(parts[2].replace('q',''));
+  return quizData[sid]?.phrases[pi]?.qs[qi];
+}
+
+function findPhrase(key) {
+  const parts = key.split('_');
+  const sid = parts[0];
+  const pi = parseInt(parts[1].replace('p',''));
+  return quizData[sid]?.phrases[pi];
+}
+
+// ===================== NAV =====================
+function showSec(sid, tab) {
+  document.querySelectorAll('.topic-section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+  document.getElementById('section-' + sid).classList.add('active');
+  tab.classList.add('active');
+  if (sid === 'shuffle') renderShuffle();
+}
+
+// ===================== SHUFFLE MODE =====================
+let shuffleOrder = [];
+function renderShuffle() {
+  const allQs = [];
+  ['s1','s2','s3','s4','s5'].forEach(sid => {
+    const sec = quizData[sid];
+    sec.phrases.forEach((phrase, pi) => {
+      phrase.qs.forEach((q, qi) => {
+        allQs.push({ key: sid+'_p'+pi+'_q'+qi, q, phrase, sid });
+      });
+    });
+  });
+  if (shuffleOrder.length === 0) {
+    shuffleOrder = allQs.map((_,i)=>i).sort(()=>Math.random()-.5);
+  }
+  const done = shuffleOrder.filter(i => answeredMap[allQs[i].key] === 'correct').length;
+  let html = `<div class="shuffle-header">
+    <div class="shuffle-meta">
+      <div class="shuffle-count-label">🔀 シャッフルモード — 全${allQs.length}問</div>
+      <div class="shuffle-progress-label">正解済み: ${done} / ${allQs.length}</div>
+    </div>
+    <button class="shuffle-all-btn" onclick="resetShuffle()">🔄 シャッフルしなおす</button>
+  </div>`;
+  shuffleOrder.forEach((idx,n) => {
+    const { key, q, phrase, sid } = allQs[idx];
+    const sec = quizData[sid];
+    const skey = 'sh_' + key;
+    const isDone = answeredMap[key] === 'correct';
+    html += `<div class="shuffle-item ${isDone?'si-correct':''}" id="si_${skey}">
+      <div class="shuffle-phrase-tag">${sec.title} — ${phrase.phrase}</div>
+      <div class="shuffle-q-num">Q${n+1}/${allQs.length}</div>`;
+    if (q.type === 'mc') {
+      const choices = q.choices.map((c,i) =>
+        `<button class="choice-btn${isDone&&i===q.ans?' correct':''}" ${isDone?'disabled':''} onclick="checkShuffleMC('${key}','${skey}',${i},this)">${c}</button>`
+      ).join('');
+      html += `<div class="shuffle-jp">${q.q}</div><div class="quiz-choices">${choices}</div>
+        <div class="quiz-feedback ${isDone?'show ok':''}" id="sfb_${skey}">${isDone?'✅ '+q.ok:''}</div>`;
+    } else if (q.type === 'fill') {
+      html += `<div class="shuffle-jp">${q.q}</div>
+        <div class="fill-wrap">
+          <input class="fill-input" id="sinp_${skey}" ${isDone?'disabled':''} placeholder="英語で入力…" onkeydown="if(event.key==='Enter')checkShuffleFill('${key}','${skey}')">
+          <button class="check-btn" ${isDone?'disabled':''} onclick="checkShuffleFill('${key}','${skey}')">確認</button>
+        </div>
+        <div class="quiz-feedback ${isDone?'show ok':''}" id="sfb_${skey}">${isDone?'✅ '+q.ok:''}</div>`;
+    } else {
+      html += `<div class="shuffle-jp">英訳: 「${q.jp}」</div>
+        <button class="trans-show-btn" ${isDone?'style="display:none"':''} onclick="showShuffleTrans('${key}','${skey}',this)">答えを見る</button>
+        <div class="trans-answer ${isDone?'show':''}" id="sta_${skey}">✅ ${q.en}</div>`;
+    }
+    html += `</div>`;
+  });
+  document.getElementById('section-shuffle').innerHTML = html;
+}
+
+function checkShuffleMC(origKey, skey, idx, btn) {
+  const btns = btn.closest('.quiz-choices').querySelectorAll('.choice-btn');
+  btns.forEach(b => b.disabled = true);
+  const fb = document.getElementById('sfb_' + skey);
+  const qData = findQ(origKey);
+  if (!qData) return;
+  if (idx === qData.ans) {
+    btn.classList.add('correct');
+    fb.className = 'quiz-feedback show ok';
+    fb.innerHTML = '✅ ' + qData.ok;
+    markCorrect(origKey);
+    document.getElementById('si_' + skey).classList.add('si-correct');
+  } else {
+    btn.classList.add('wrong');
+    btns[qData.ans].classList.add('correct');
+    fb.className = 'quiz-feedback show ng';
+    fb.innerHTML = '❌ 正解は「' + qData.choices[qData.ans] + '」<br>' + qData.ok;
+    markWrong(origKey);
+    document.getElementById('si_' + skey).classList.add('si-wrong');
+  }
+  updateScoreDisplay(origKey);
+  updateShuffleProgress();
+}
+
+function checkShuffleFill(origKey, skey) {
+  const inp = document.getElementById('sinp_' + skey);
+  const fb = document.getElementById('sfb_' + skey);
+  const qData = findQ(origKey);
+  if (!qData || !inp) return;
+  const userVal = inp.value.trim().toLowerCase().replace(/[.,!?]/g,'');
+  const correctVal = qData.ans.trim().toLowerCase().replace(/[.,!?]/g,'');
+  const alts = (qData.alts||[]).map(a=>a.trim().toLowerCase().replace(/[.,!?]/g,''));
+  const isOk = userVal === correctVal || alts.includes(userVal);
+  inp.disabled = true;
+  if (isOk) {
+    inp.classList.add('correct');
+    fb.className = 'quiz-feedback show ok';
+    fb.innerHTML = '✅ ' + qData.ok;
+    markCorrect(origKey);
+    document.getElementById('si_' + skey).classList.add('si-correct');
+  } else {
+    inp.classList.add('wrong');
+    fb.className = 'quiz-feedback show ng';
+    fb.innerHTML = '❌ 正解: <b>' + qData.ans + '</b> &nbsp; ' + qData.ok;
+    markWrong(origKey);
+    document.getElementById('si_' + skey).classList.add('si-wrong');
+  }
+  updateScoreDisplay(origKey);
+  updateShuffleProgress();
+}
+
+function showShuffleTrans(origKey, skey, btn) {
+  document.getElementById('sta_' + skey).classList.add('show');
+  btn.style.display = 'none';
+  markCorrect(origKey);
+  document.getElementById('si_' + skey).classList.add('si-correct');
+  updateScoreDisplay(origKey);
+  updateShuffleProgress();
+}
+
+function updateShuffleProgress() {
+  const header = document.querySelector('.shuffle-progress-label');
+  if (!header) return;
+  const allQs = getAllQs();
+  const done = allQs.filter(({key}) => answeredMap[key] === 'correct').length;
+  header.textContent = '正解済み: ' + done + ' / ' + allQs.length;
+}
+
+function getAllQs() {
+  const allQs = [];
+  ['s1','s2','s3','s4','s5'].forEach(sid => {
+    quizData[sid].phrases.forEach((phrase,pi) => {
+      phrase.qs.forEach((q,qi) => {
+        allQs.push({ key: sid+'_p'+pi+'_q'+qi, q, phrase, sid });
+      });
+    });
+  });
+  return allQs;
+}
+
+function resetShuffle() {
+  shuffleOrder = [];
+  renderShuffle();
+}
+
+// ===================== REVIEW =====================
+const reviewItems = {};
+
+function scheduleReviewAdd(key) {
+  setTimeout(() => addToWrong(key), 100);
+}
+
+function addToWrong(key) {
+  wrongSet.add(key);
+  updateReviewBadge();
+  if (reviewItems[key]) return;
+  const q = findQ(key);
+  const phrase = findPhrase(key);
+  if (!q || !phrase) return;
+  const div = document.createElement('div');
+  div.className = 'review-item';
+  div.id = 'ri_' + key;
+  const rkey = 'rev_' + key;
+  let inner = `<div class="shuffle-phrase-tag">${phrase.phrase}</div>`;
+  if (q.type === 'mc') {
+    const choices = q.choices.map((c,i) =>
+      `<button class="choice-btn" onclick="checkRevMC('${key}','${rkey}',${i},this)">${c}</button>`
+    ).join('');
+    inner += `<div class="shuffle-jp">${q.q}</div><div class="quiz-choices">${choices}</div>
+      <div class="quiz-feedback" id="rfb_${rkey}"></div>`;
+  } else if (q.type === 'fill') {
+    inner += `<div class="shuffle-jp">${q.q}</div>
+      <div class="fill-wrap">
+        <input class="fill-input trans-input" id="rinp_${rkey}" placeholder="英語で入力…" onkeydown="if(event.key==='Enter')checkRevFill('${key}','${rkey}')">
+        <button class="check-btn" onclick="checkRevFill('${key}','${rkey}')">確認</button>
+      </div>
+      <div class="quiz-feedback" id="rfb_${rkey}"></div>`;
+  } else {
+    inner += `<div class="shuffle-jp">英訳: 「${q.jp}」</div>
+      <button class="trans-show-btn" onclick="showRevTrans('${key}','${rkey}',this)">答えを見る</button>
+      <div class="trans-answer" id="rta_${rkey}">✅ ${q.en}</div>`;
+  }
+  div.innerHTML = inner;
+  document.getElementById('review-placeholder').style.display = 'none';
+  document.getElementById('review-list').appendChild(div);
+  reviewItems[key] = true;
+}
+
+function removeFromWrong(key) {
+  wrongSet.delete(key);
+  updateReviewBadge();
+  const el = document.getElementById('ri_' + key);
+  if (el) el.classList.add('cleared');
+}
+
+function updateReviewBadge() {
+  const cnt = wrongSet.size;
+  const badge = document.getElementById('review-count-badge');
+  const btn = document.getElementById('shuffle-btn');
+  badge.textContent = cnt + '問';
+  badge.style.display = cnt ? 'inline-block' : 'none';
+  btn.style.display = cnt ? 'inline-block' : 'none';
+}
+
+function checkRevMC(origKey, rkey, idx, btn) {
+  const btns = btn.closest('.quiz-choices').querySelectorAll('.choice-btn');
+  btns.forEach(b => b.disabled = true);
+  const fb = document.getElementById('rfb_' + rkey);
+  const qData = findQ(origKey);
+  if (!qData) return;
+  if (idx === qData.ans) {
+    btn.classList.add('correct');
+    fb.className = 'quiz-feedback show ok';
+    fb.innerHTML = '✅ ' + qData.ok;
+    markCorrect(origKey);
+    document.getElementById('ri_' + origKey)?.classList.add('cleared');
+  } else {
+    btn.classList.add('wrong');
+    btns[qData.ans].classList.add('correct');
+    fb.className = 'quiz-feedback show ng';
+    fb.innerHTML = '❌ 正解は「' + qData.choices[qData.ans] + '」<br>' + qData.ok;
+  }
+}
+
+function checkRevFill(origKey, rkey) {
+  const inp = document.getElementById('rinp_' + rkey);
+  const fb = document.getElementById('rfb_' + rkey);
+  const qData = findQ(origKey);
+  if (!qData || !inp) return;
+  const userVal = inp.value.trim().toLowerCase().replace(/[.,!?]/g,'');
+  const correctVal = qData.ans.trim().toLowerCase().replace(/[.,!?]/g,'');
+  const alts = (qData.alts||[]).map(a=>a.trim().toLowerCase().replace(/[.,!?]/g,''));
+  const isOk = userVal === correctVal || alts.includes(userVal);
+  inp.disabled = true;
+  if (isOk) {
+    inp.classList.add('correct');
+    fb.className = 'quiz-feedback show ok';
+    fb.innerHTML = '✅ ' + qData.ok;
+    markCorrect(origKey);
+    document.getElementById('ri_' + origKey)?.classList.add('cleared');
+  } else {
+    inp.classList.add('wrong');
+    fb.className = 'quiz-feedback show ng';
+    fb.innerHTML = '❌ 正解: <b>' + qData.ans + '</b> &nbsp; ' + qData.ok;
+  }
+}
+
+function showRevTrans(origKey, rkey, btn) {
+  document.getElementById('rta_' + rkey).classList.add('show');
+  btn.style.display = 'none';
+  markCorrect(origKey);
+  document.getElementById('ri_' + origKey)?.classList.add('cleared');
+}
+
+function shuffleReview() {
+  const list = document.getElementById('review-list');
+  const items = Array.from(list.querySelectorAll('.review-item:not(.cleared)'));
+  items.sort(() => Math.random() - .5);
+  items.forEach(item => list.appendChild(item));
+}
+
+// ===================== INIT =====================
+renderAll();
+</script>
+</body>
+</html>
