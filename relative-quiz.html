@@ -153,7 +153,7 @@ header p{color:rgba(255,255,255,.88);font-size:.9rem;font-weight:500}
   <div class="header-inner">
     <span class="header-emoji">🌟</span>
     <h1>関係詞チャレンジ！</h1>
-    <p>日本語 → 英語 翻訳クイズ &nbsp;|&nbsp; 全 25 問</p>
+    <p>日本語 → 英語 翻訳クイズ &nbsp;|&nbsp; 全 30 問</p>
     <div class="stars-row" id="totalStars">☆☆☆☆☆</div>
   </div>
 </header>
@@ -245,6 +245,12 @@ const DATA = [
         en: 'The person <mark>who</mark> helped me yesterday is Tom.',
         pron: 'フー /huː/',
         note: '💡 先行詞 person（人）→ who。helped の<b>主語</b>が who です。<br>「昨日〜してくれた」= who … yesterday（過去形）'
+      },
+      {
+        jp: '窓の近くに座っている男の子は私のクラスメートです',
+        en: 'The boy <mark>who</mark> is sitting near the window is my classmate.',
+        pron: 'フー /huː/',
+        note: '💡 先行詞 boy（人）→ who。is sitting の<b>主語</b>が who です。<br>「窓の近くに」= near the window &nbsp; 「座っている」= is sitting'
       }
     ]
   },
@@ -298,6 +304,12 @@ const DATA = [
         en: 'I read the letter <mark>that</mark> she wrote.',
         pron: 'ザット /ðæt/',
         note: '💡 先行詞 letter（物）→ that（または which）。wrote の<b>目的語</b>が that。<br>構造: I read + the letter + <b>that she wrote</b>.'
+      },
+      {
+        jp: '冷蔵庫の中にあるケーキは私のものです',
+        en: 'The cake <mark>which</mark> is in the fridge is mine.',
+        pron: 'ウィッチ /wɪtʃ/',
+        note: '💡 先行詞 cake（物）→ which（または that）。is の<b>主語</b>が which です。<br>「冷蔵庫の中に」= in the fridge &nbsp; 「私のもの」= mine'
       }
     ]
   },
@@ -347,6 +359,12 @@ const DATA = [
         en: 'I have a dog <mark>whose</mark> legs are very fast.',
         pron: 'フーズ /huːz/',
         note: '💡 先行詞 dog（動物）→ whose。legs は dog の<b>体の一部（所有関係）</b>（= its legs）。<br>「〜を飼っています」= I have a …'
+      },
+      {
+        jp: '髪が長い女の子が私の親友です',
+        en: 'The girl <mark>whose</mark> hair is long is my best friend.',
+        pron: 'フーズ /huːz/',
+        note: '💡 先行詞 girl（人）→ whose。hair は girl の<b>体の一部（所有関係）</b>（= her hair）。<br>「親友」= best friend &nbsp; 「〜が長い」= whose … is long'
       }
     ]
   },
@@ -400,6 +418,12 @@ const DATA = [
         en: 'The café <mark>where</mark> we first met is still there.',
         pron: 'ウェア /wɛr/',
         note: '💡 先行詞 café（場所）→ where。we first met は完全な文。<br>「まだあります」= is still there &nbsp; 「初めて会った」= first met'
+      },
+      {
+        jp: '彼らが試合に勝った日は忘れられません',
+        en: 'I will never forget the day <mark>when</mark> they won the game.',
+        pron: 'ウェン /wɛn/',
+        note: '💡 先行詞 day（時）→ when。they won the game は完全な文。<br>「忘れられません」= will never forget &nbsp; 「試合に勝った」= won the game'
       }
     ]
   },
@@ -454,6 +478,12 @@ const DATA = [
         en: 'Please choose <mark>whatever</mark> you like.',
         pron: 'ワットエバー /wɒtˈɛvər/',
         note: '💡 whatever = anything that（何でも〜）。<br>whatever you like = <b>anything that</b> you like（あなたが好きなものは何でも）<br>-ever をつけると「どんな〜でも」の意味になります！'
+      },
+      {
+        jp: '彼女が笑っている理由がわかりません',
+        en: 'I don\'t know the reason <mark>why</mark> she is laughing.',
+        pron: 'ワイ /waɪ/',
+        note: '💡 先行詞 reason の後は <b>why</b>。why の後は完全な文（she is laughing）が続きます。<br>= I don\'t know <b>why</b> she is laughing.（省略形も OK）'
       }
     ]
   }
@@ -473,7 +503,7 @@ function updateProgress() {
   const total = DATA.reduce((s, sec) => s + sec.qs.length, 0);
   const pct = Math.round(done / total * 100);
   document.getElementById('progFill').style.width = pct + '%';
-  document.getElementById('progLabel').textContent = done + ' / ' + total;
+  document.getElementById('progLabel').textContent = done + ' / ' + total; // auto-calculated
   const filledStars = Math.floor(done / total * 5);
   document.getElementById('totalStars').textContent = '★'.repeat(filledStars) + '☆'.repeat(5 - filledStars);
 }
