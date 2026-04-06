@@ -98,6 +98,14 @@ header p{color:rgba(255,255,255,.88);font-size:.9rem;font-weight:500}
 .btn-retry{padding:8px 20px;border-radius:20px;border:2px solid #e2e8f0;background:#fff;font-family:'Noto Sans JP',sans-serif;font-size:.85rem;font-weight:700;cursor:pointer;color:#64748b;transition:all .2s}
 .btn-retry:hover{background:#f8fafc}
 
+/* Speak button */
+.q-en-wrap{display:flex;align-items:flex-start;gap:10px;flex-wrap:wrap}
+.speak-btn{flex-shrink:0;border:none;background:#e0f2fe;color:#0284c7;border-radius:20px;padding:7px 14px;font-size:.82rem;font-weight:700;cursor:pointer;transition:all .2s;display:inline-flex;align-items:center;gap:4px}
+.speak-btn:hover{background:#bae6fd;transform:scale(1.05)}
+.speak-btn:active{transform:scale(.96)}
+.speak-btn.speaking{background:#0284c7;color:#fff;animation:pulse 0.6s ease infinite alternate}
+@keyframes pulse{from{opacity:1}to{opacity:.65}}
+
 /* Completed banner */
 .sec-complete{display:none;text-align:center;background:linear-gradient(135deg,#ecfdf5,#d1fae5);border:2px solid #a7f3d0;border-radius:20px;padding:28px;margin-top:8px}
 .sec-complete.show{display:block;animation:popIn .5s cubic-bezier(.4,0,.2,1)}
@@ -167,7 +175,7 @@ header p{color:rgba(255,255,255,.88);font-size:.9rem;font-weight:500}
   <div class="header-inner">
     <span class="header-emoji">🌟</span>
     <h1>関係詞チャレンジ！</h1>
-    <p>日本語 → 英語 翻訳クイズ &nbsp;|&nbsp; 全 42 問</p>
+    <p>日本語 → 英語 翻訳クイズ &nbsp;|&nbsp; 全 70 問</p>
     <div class="stars-row" id="totalStars">☆☆☆☆☆</div>
   </div>
 </header>
@@ -273,6 +281,30 @@ const DATA = [
         en: 'The boy <mark>who</mark> is sitting near the window is my classmate.',
         pron: 'フー /huː/',
         note: '💡 先行詞 boy（人）→ who。is sitting の<b>主語</b>が who です。<br>「窓の近くに」= near the window &nbsp; 「座っている」= is sitting'
+      },
+      {
+        jp: '子供たちに人気のある先生は田中先生です',
+        en: 'The teacher <mark>who</mark> is popular with children is Mr. Tanaka.',
+        pron: 'フー /huː/',
+        note: '💡 先行詞 teacher（人）→ who。is popular の<b>主語</b>が who。<br>「〜に人気がある」= be popular with …'
+      },
+      {
+        jp: '隣に住んでいる男性は医者です',
+        en: 'The man <mark>who</mark> lives next door is a doctor.',
+        pron: 'フー /huː/',
+        note: '💡 先行詞 man（人）→ who。lives の<b>主語</b>が who。<br>「隣に住んでいる」= who lives next door'
+      },
+      {
+        jp: '空港で働いている女性を知っています',
+        en: 'I know a woman <mark>who</mark> works at the airport.',
+        pron: 'フー /huː/',
+        note: '💡 先行詞 woman（人）→ who。works の<b>主語</b>が who。<br>「空港で働く」= work at the airport'
+      },
+      {
+        jp: '昨日公園で遊んでいた子供たちは私の生徒です',
+        en: 'The children <mark>who</mark> were playing in the park yesterday are my students.',
+        pron: 'フー /huː/',
+        note: '💡 先行詞 children（人・複数）→ who。were playing の<b>主語</b>が who。<br>「遊んでいた」= were playing（過去進行形）'
       }
     ]
   },
@@ -332,6 +364,30 @@ const DATA = [
         en: 'The cake <mark>which</mark> is in the fridge is mine.',
         pron: 'ウィッチ /wɪtʃ/',
         note: '💡 先行詞 cake（物）→ which（または that）。is の<b>主語</b>が which です。<br>「冷蔵庫の中に」= in the fridge &nbsp; 「私のもの」= mine'
+      },
+      {
+        jp: '窓の外に見える山はとてもきれいです',
+        en: 'The mountain <mark>which</mark> can be seen from the window is very beautiful.',
+        pron: 'ウィッチ /wɪtʃ/',
+        note: '💡 先行詞 mountain（物）→ which。can be seen の<b>主語</b>が which。<br>「窓から見える」= can be seen from the window（受動態）'
+      },
+      {
+        jp: '彼女が弾いた曲はとても有名です',
+        en: 'The song <mark>that</mark> she played is very famous.',
+        pron: 'ザット /ðæt/',
+        note: '💡 先行詞 song（物）→ that（または which）。played の<b>目的語</b>が that。<br>「〜が有名だ」= be famous'
+      },
+      {
+        jp: '昨日届いた荷物はとても重かったです',
+        en: 'The package <mark>that</mark> arrived yesterday was very heavy.',
+        pron: 'ザット /ðæt/',
+        note: '💡 先行詞 package（物）→ that。arrived の<b>主語</b>が that。<br>「昨日届いた」= that arrived yesterday（過去形）'
+      },
+      {
+        jp: '床に落ちているものを拾ってください',
+        en: 'Please pick up the thing <mark>that</mark> fell on the floor.',
+        pron: 'ザット /ðæt/',
+        note: '💡 先行詞 thing（物）→ that。fell の<b>主語</b>が that。<br>「〜を拾う」= pick up … &nbsp; 「床に」= on the floor'
       }
     ]
   },
@@ -387,6 +443,30 @@ const DATA = [
         en: 'The girl <mark>whose</mark> hair is long is my best friend.',
         pron: 'フーズ /huːz/',
         note: '💡 先行詞 girl（人）→ whose。hair は girl の<b>体の一部（所有関係）</b>（= her hair）。<br>「親友」= best friend &nbsp; 「〜が長い」= whose … is long'
+      },
+      {
+        jp: '声がきれいな歌手が好きです',
+        en: 'I like the singer <mark>whose</mark> voice is beautiful.',
+        pron: 'フーズ /huːz/',
+        note: '💡 先行詞 singer（人）→ whose。voice は singer の<b>特徴（所有関係）</b>（= their voice）。<br>「声がきれいな」= whose voice is beautiful'
+      },
+      {
+        jp: '屋根が壊れている家は危ないです',
+        en: 'The house <mark>whose</mark> roof is broken is dangerous.',
+        pron: 'フーズ /huːz/',
+        note: '💡 先行詞 house（物）→ whose。roof は house の<b>一部（所有関係）</b>（= its roof）。<br>「壊れている」= is broken &nbsp; 「危ない」= dangerous'
+      },
+      {
+        jp: 'お父さんが有名な科学者の少年がいます',
+        en: 'There is a boy <mark>whose</mark> father is a famous scientist.',
+        pron: 'フーズ /huːz/',
+        note: '💡 先行詞 boy（人）→ whose。father は boy の<b>家族（所有関係）</b>（= his father）。<br>「〜がいます」= There is …'
+      },
+      {
+        jp: '色が白い車は私のです',
+        en: 'The car <mark>whose</mark> color is white is mine.',
+        pron: 'フーズ /huːz/',
+        note: '💡 先行詞 car（物）→ whose。color は car の<b>特徴（所有関係）</b>（= its color）。<br>「〜の色が白い」= whose color is white'
       }
     ]
   },
@@ -446,6 +526,30 @@ const DATA = [
         en: 'I will never forget the day <mark>when</mark> they won the game.',
         pron: 'ウェン /wɛn/',
         note: '💡 先行詞 day（時）→ when。they won the game は完全な文。<br>「忘れられません」= will never forget &nbsp; 「試合に勝った」= won the game'
+      },
+      {
+        jp: '彼女が働いている病院は大きいです',
+        en: 'The hospital <mark>where</mark> she works is large.',
+        pron: 'ウェア /wɛr/',
+        note: '💡 先行詞 hospital（場所）→ where。she works は完全な文。<br>「〜が働いている病院」= the hospital where she works'
+      },
+      {
+        jp: '子供の頃に住んでいた町に帰りたいです',
+        en: 'I want to go back to the town <mark>where</mark> I lived as a child.',
+        pron: 'ウェア /wɛr/',
+        note: '💡 先行詞 town（場所）→ where。I lived as a child は完全な文。<br>「〜に帰りたい」= want to go back to … &nbsp; 「子供の頃」= as a child'
+      },
+      {
+        jp: '雪が降り始めた日のことを覚えています',
+        en: 'I remember the day <mark>when</mark> it started snowing.',
+        pron: 'ウェン /wɛn/',
+        note: '💡 先行詞 day（時）→ when。it started snowing は完全な文。<br>「雪が降り始めた」= it started snowing'
+      },
+      {
+        jp: '桜が満開になる季節が一番好きです',
+        en: 'I like the season <mark>when</mark> the cherry blossoms are in full bloom the best.',
+        pron: 'ウェン /wɛn/',
+        note: '💡 先行詞 season（時）→ when。the cherry blossoms are … は完全な文。<br>「桜が満開になる」= the cherry blossoms are in full bloom'
       }
     ]
   },
@@ -499,6 +603,30 @@ const DATA = [
         en: 'The reason <mark>why</mark> I am studying Japanese is for my future.',
         pron: 'ワイ /waɪ/',
         note: '💡 The reason why I am studying … is … の構造。<br>「将来のため」= for my future &nbsp; 現在進行形（am studying）に注目！'
+      },
+      {
+        jp: '彼が急いでいる理由がわかりません',
+        en: 'I don\'t know the reason <mark>why</mark> he is in a hurry.',
+        pron: 'ワイ /waɪ/',
+        note: '💡 reason + why。I don\'t know why he is in a hurry.（省略形も OK）<br>「急いでいる」= be in a hurry'
+      },
+      {
+        jp: '彼女が突然泣き出した理由を教えてください',
+        en: 'Please tell me the reason <mark>why</mark> she suddenly started crying.',
+        pron: 'ワイ /waɪ/',
+        note: '💡 reason + why。why の後は完全な文（she suddenly started crying）。<br>「突然〜し始めた」= suddenly started …ing'
+      },
+      {
+        jp: '試合に負けた理由を考えました',
+        en: 'I thought about the reason <mark>why</mark> we lost the game.',
+        pron: 'ワイ /waɪ/',
+        note: '💡 reason + why で「〜した理由」。thought about = 「〜について考えた」（過去形）。<br>「試合に負ける」= lose the game'
+      },
+      {
+        jp: '彼が転職した理由は給料のためです',
+        en: 'The reason <mark>why</mark> he changed jobs is for the salary.',
+        pron: 'ワイ /waɪ/',
+        note: '💡 The reason why … is … の構造。<br>「転職する」= change jobs &nbsp; 「給料のため」= for the salary'
       }
     ]
   },
@@ -556,6 +684,30 @@ const DATA = [
         en: 'I want to learn <mark>how</mark> to play the guitar.',
         pron: 'ハウ /haʊ/',
         note: '💡 learn how to + 動詞原形 = 「〜する方法を学ぶ」。<br>how to play the guitar = ギターの弾き方'
+      },
+      {
+        jp: '彼がそんなに上手にピアノを弾く方法を知りたいです',
+        en: 'I want to know <mark>how</mark> he plays the piano so well.',
+        pron: 'ハウ /haʊ/',
+        note: '💡 know how … = 「〜する方法を知る」。how の後は完全な文（he plays …）。<br>「そんなに上手に」= so well'
+      },
+      {
+        jp: '先生が漢字を覚える方法を教えてくれました',
+        en: 'The teacher taught me <mark>how</mark> to memorize kanji.',
+        pron: 'ハウ /haʊ/',
+        note: '💡 teach … how to + 動詞 = 「〜する方法を教える」。<br>「漢字を覚える」= memorize kanji'
+      },
+      {
+        jp: 'これが彼女が毎日健康を保つ方法です',
+        en: 'This is <mark>how</mark> she stays healthy every day.',
+        pron: 'ハウ /haʊ/',
+        note: '💡 This is how … = 「これが〜する方法です」。<br>「健康を保つ」= stay healthy &nbsp; 「毎日」= every day'
+      },
+      {
+        jp: '料理の作り方を動画で学びました',
+        en: 'I learned <mark>how</mark> to cook the dish from a video.',
+        pron: 'ハウ /haʊ/',
+        note: '💡 learn how to + 動詞 = 「〜の仕方を学ぶ」。<br>「動画で」= from a video &nbsp; 「料理を作る」= cook the dish'
       }
     ]
   },
@@ -613,6 +765,30 @@ const DATA = [
         en: 'I was surprised at <mark>what</mark> he said.',
         pron: 'ワット /wɒt/',
         note: '💡 at what he said = <b>彼が言ったことに</b>（前置詞 at の目的語）。<br>what he said = the thing that he said'
+      },
+      {
+        jp: '彼がしたことは間違っていました',
+        en: '<mark>What</mark> he did was wrong.',
+        pron: 'ワット /wɒt/',
+        note: '💡 What he did = <b>彼がしたこと</b>（主語の役割）。<br>= The thing that he did was wrong.'
+      },
+      {
+        jp: '彼女が一番大切にしているものは家族です',
+        en: '<mark>What</mark> she values most is her family.',
+        pron: 'ワット /wɒt/',
+        note: '💡 What she values most = <b>彼女が一番大切にしているもの</b>（主語）。<br>「大切にする」= value &nbsp; 「一番」= most'
+      },
+      {
+        jp: 'あなたが考えていることを正直に話してください',
+        en: 'Please tell me honestly <mark>what</mark> you are thinking.',
+        pron: 'ワット /wɒt/',
+        note: '💡 tell me what … = 「〜していることを話してください」（目的語の役割）。<br>「正直に」= honestly &nbsp; what you are thinking = あなたが考えていること'
+      },
+      {
+        jp: '彼が夢見ていたことがついに実現しました',
+        en: '<mark>What</mark> he had been dreaming of finally came true.',
+        pron: 'ワット /wɒt/',
+        note: '💡 What he had been dreaming of = <b>彼がずっと夢見ていたこと</b>（主語）。<br>「ついに実現した」= finally came true &nbsp; 過去完了進行形（had been dreaming）に注目！'
       }
     ]
   }
@@ -678,7 +854,10 @@ function renderCard(q, key, qi, done, secId) {
     </button>
     <div class="q-answer${done ? ' show' : ''}" id="ans-${key}">
       <div class="q-pron">🔊 ${q.pron}</div>
-      <div class="q-en">${q.en}</div>
+      <div class="q-en-wrap">
+        <div class="q-en">${q.en}</div>
+        <button class="speak-btn" id="spk-${key}" onclick="speak('${q.en.replace(/<[^>]*>/g,'').replace(/'/g,"\\'").trim()}','${key}')">🔊 聞く</button>
+      </div>
       <div class="q-note">${q.note}</div>
       <div class="q-actions">
         <button class="btn-ok${done ? ' disabled' : ''}" onclick="markOk('${key}','${secId}',${qi})" ${done ? 'disabled' : ''}>✅ わかった！</button>
@@ -698,6 +877,21 @@ function toggleAnswer(key, secId, qi) {
     ans.classList.add('show');
     btn.innerHTML = '👆 答えを隠す';
   }
+}
+
+// ========== TTS ==========
+function speak(text, key) {
+  if (!window.speechSynthesis) return;
+  const btn = document.getElementById('spk-' + key);
+  window.speechSynthesis.cancel();
+  const utter = new SpeechSynthesisUtterance(text);
+  utter.lang = 'en-US';
+  utter.rate = 0.82;
+  utter.pitch = 1;
+  if (btn) btn.classList.add('speaking');
+  utter.onend = () => { if (btn) btn.classList.remove('speaking'); };
+  utter.onerror = () => { if (btn) btn.classList.remove('speaking'); };
+  window.speechSynthesis.speak(utter);
 }
 
 function hideAnswer(key) {
