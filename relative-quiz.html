@@ -13,6 +13,8 @@
   --s3:#8b5cf6;--s3l:#f5f3ff;--s3m:#ddd6fe;
   --s4:#f59e0b;--s4l:#fffbeb;--s4m:#fde68a;
   --s5:#ef4444;--s5l:#fff1f2;--s5m:#fecaca;
+  --s6:#0891b2;--s6l:#ecfeff;--s6m:#a5f3fc;
+  --s7:#ec4899;--s7l:#fdf2f8;--s7m:#f9a8d4;
 }
 body{font-family:'Noto Sans JP',sans-serif;background:#fef9f0;color:#1e293b;min-height:100vh}
 
@@ -51,6 +53,8 @@ header p{color:rgba(255,255,255,.88);font-size:.9rem;font-weight:500}
 .nav-tab[data-s="s3"].active{background:var(--s3)}
 .nav-tab[data-s="s4"].active{background:var(--s4)}
 .nav-tab[data-s="s5"].active{background:var(--s5)}
+.nav-tab[data-s="s6"].active{background:var(--s6)}
+.nav-tab[data-s="s7"].active{background:var(--s7)}
 
 /* ========== SECTIONS ========== */
 .section{display:none;padding:20px 16px 40px;max-width:860px;margin:0 auto}
@@ -136,6 +140,16 @@ header p{color:rgba(255,255,255,.88);font-size:.9rem;font-weight:500}
 .s5 .q-show-btn{background:linear-gradient(135deg,#ef4444,#dc2626)}
 .s5 .q-answer{background:var(--s5l);border:1.5px solid var(--s5m)}
 
+.s6 .sec-banner{background:linear-gradient(135deg,#cffafe,#a5f3fc);color:#164e63}
+.s6 .q-num-badge{background:var(--s6)}
+.s6 .q-show-btn{background:linear-gradient(135deg,#0891b2,#0e7490)}
+.s6 .q-answer{background:var(--s6l);border:1.5px solid var(--s6m)}
+
+.s7 .sec-banner{background:linear-gradient(135deg,#fce7f3,#fbcfe8);color:#831843}
+.s7 .q-num-badge{background:var(--s7)}
+.s7 .q-show-btn{background:linear-gradient(135deg,#ec4899,#db2777)}
+.s7 .q-answer{background:var(--s7l);border:1.5px solid var(--s7m)}
+
 /* ========== RESPONSIVE ========== */
 @media(max-width:600px){
   header h1{font-size:1.5rem}
@@ -153,7 +167,7 @@ header p{color:rgba(255,255,255,.88);font-size:.9rem;font-weight:500}
   <div class="header-inner">
     <span class="header-emoji">🌟</span>
     <h1>関係詞チャレンジ！</h1>
-    <p>日本語 → 英語 翻訳クイズ &nbsp;|&nbsp; 全 30 問</p>
+    <p>日本語 → 英語 翻訳クイズ &nbsp;|&nbsp; 全 42 問</p>
     <div class="stars-row" id="totalStars">☆☆☆☆☆</div>
   </div>
 </header>
@@ -179,7 +193,13 @@ header p{color:rgba(255,255,255,.88);font-size:.9rem;font-weight:500}
       <span class="tab-icon">📍</span>where / when
     </button>
     <button class="nav-tab" data-s="s5" onclick="showSec('s5',this)">
-      <span class="tab-icon">💡</span>why / how / what
+      <span class="tab-icon">❓</span>why
+    </button>
+    <button class="nav-tab" data-s="s6" onclick="showSec('s6',this)">
+      <span class="tab-icon">💡</span>how
+    </button>
+    <button class="nav-tab" data-s="s7" onclick="showSec('s7',this)">
+      <span class="tab-icon">✨</span>what
     </button>
   </div>
 </div>
@@ -189,6 +209,8 @@ header p{color:rgba(255,255,255,.88);font-size:.9rem;font-weight:500}
 <div id="sec-s3" class="section s3"></div>
 <div id="sec-s4" class="section s4"></div>
 <div id="sec-s5" class="section s5"></div>
+<div id="sec-s6" class="section s6"></div>
+<div id="sec-s7" class="section s7"></div>
 
 <div class="confetti-wrap" id="confettiWrap"></div>
 
@@ -429,61 +451,168 @@ const DATA = [
   },
   {
     id: 's5',
-    title: 'why / how / what',
-    subtitle: '理由・方法・こと を表そう！',
-    tag: '関係副詞・関係代名詞',
-    tip: 'reason の後 → <b>why</b> | 方法 → <b>how</b> | こと・もの → <b>what</b>！<br>🔊 ワイ <i>/waɪ/</i> ｜ ハウ <i>/haʊ/</i> ｜ ワット <i>/wɒt/</i>',
+    title: 'why',
+    subtitle: '「理由」を説明しよう！',
+    tag: '関係副詞',
+    tip: '<b>reason</b> の後に使う → <b>why</b>！<br>🔊 発音: ワイ <i>/waɪ/</i><br>the reason <b>why</b> + 完全な文',
     illo: `<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-      <ellipse cx="50" cy="42" rx="28" ry="32" fill="#fbbf24"/>
-      <ellipse cx="50" cy="42" rx="22" ry="26" fill="#fef3c7"/>
-      <text x="50" y="36" text-anchor="middle" font-size="22" font-family="Arial" font-weight="900" fill="#f59e0b">?</text>
-      <text x="34" y="52" text-anchor="middle" font-size="11" font-family="Arial" font-weight="700" fill="#d97706">why</text>
-      <text x="50" y="56" text-anchor="middle" font-size="11" font-family="Arial" font-weight="700" fill="#d97706">how</text>
-      <text x="66" y="52" text-anchor="middle" font-size="11" font-family="Arial" font-weight="700" fill="#d97706">what</text>
-      <rect x="44" y="74" width="12" height="8" rx="3" fill="#fbbf24"/>
-      <rect x="40" y="80" width="20" height="6" rx="3" fill="#f59e0b"/>
-      <line x1="50" y1="10" x2="50" y2="2" stroke="#fbbf24" stroke-width="3" stroke-linecap="round"/>
-      <line x1="72" y1="18" x2="78" y2="12" stroke="#fbbf24" stroke-width="3" stroke-linecap="round"/>
-      <line x1="28" y1="18" x2="22" y2="12" stroke="#fbbf24" stroke-width="3" stroke-linecap="round"/>
-      <line x1="80" y1="42" x2="88" y2="42" stroke="#fbbf24" stroke-width="3" stroke-linecap="round"/>
-      <line x1="20" y1="42" x2="12" y2="42" stroke="#fbbf24" stroke-width="3" stroke-linecap="round"/>
+      <circle cx="50" cy="45" r="32" fill="#ef4444"/>
+      <circle cx="50" cy="45" r="25" fill="#fee2e2"/>
+      <text x="50" y="55" text-anchor="middle" font-size="32" font-family="Arial" font-weight="900" fill="#ef4444">?</text>
+      <rect x="44" y="78" width="12" height="9" rx="3" fill="#ef4444"/>
+      <rect x="40" y="85" width="20" height="7" rx="3" fill="#dc2626"/>
+      <text x="50" y="18" text-anchor="middle" font-size="11" font-weight="900" fill="#fff" font-family="Arial">WHY</text>
     </svg>`,
     qs: [
       {
         jp: '彼女が遅れた理由を教えてください',
         en: 'Please tell me the reason <mark>why</mark> she was late.',
         pron: 'ワイ /waɪ/',
-        note: '💡 先行詞 reason の後は <b>why</b>！why の後は完全な文（she was late）が続きます。<br>= Please tell me why she was late.（省略形も OK）'
-      },
-      {
-        jp: 'これが私の母がカレーを作る方法です',
-        en: 'This is <mark>how</mark> my mother makes curry.',
-        pron: 'ハウ /haʊ/',
-        note: '💡 how = 「〜する方法」。<b>the way how とは言いません！</b><br>This is <b>how</b>（方法） / This is <b>the way</b> my mother makes curry.（どちらかだけ）'
-      },
-      {
-        jp: 'あなたが言ったことは正しいです',
-        en: '<mark>What</mark> you said is correct.',
-        pron: 'ワット /wɒt/',
-        note: '💡 what = 「〜すること・もの」（先行詞を含む）。<br>What you said = <b>the thing that</b> you said（あなたが言ったこと）<br>What 節が文全体の<b>主語</b>になっています。'
-      },
-      {
-        jp: '彼が日本語を学んだ方法に驚きました',
-        en: 'I was surprised at <mark>how</mark> he learned Japanese.',
-        pron: 'ハウ /haʊ/',
-        note: '💡 how = 「〜する方法・様子」。at how … = 「〜のやり方に」。<br>「驚いた」= was surprised at &nbsp; 「学んだ」= learned（過去形）'
-      },
-      {
-        jp: '好きなものを何でも選んでください',
-        en: 'Please choose <mark>whatever</mark> you like.',
-        pron: 'ワットエバー /wɒtˈɛvər/',
-        note: '💡 whatever = anything that（何でも〜）。<br>whatever you like = <b>anything that</b> you like（あなたが好きなものは何でも）<br>-ever をつけると「どんな〜でも」の意味になります！'
+        note: '💡 先行詞 reason の後は <b>why</b>！why の後は完全な文（she was late）が続きます。<br>= Please tell me <b>why</b> she was late.（省略形も OK）'
       },
       {
         jp: '彼女が笑っている理由がわかりません',
         en: 'I don\'t know the reason <mark>why</mark> she is laughing.',
         pron: 'ワイ /waɪ/',
         note: '💡 先行詞 reason の後は <b>why</b>。why の後は完全な文（she is laughing）が続きます。<br>= I don\'t know <b>why</b> she is laughing.（省略形も OK）'
+      },
+      {
+        jp: '彼が学校を休んだ理由を知っていますか',
+        en: 'Do you know the reason <mark>why</mark> he was absent from school?',
+        pron: 'ワイ /waɪ/',
+        note: '💡 reason + why。why の後は完全な文（he was absent）が続きます。<br>「学校を休む」= be absent from school'
+      },
+      {
+        jp: '彼女が怒っている理由がわかりません',
+        en: 'I don\'t know the reason <mark>why</mark> she is angry.',
+        pron: 'ワイ /waɪ/',
+        note: '💡 reason + why で「〜する理由」。<br>= I don\'t know <b>why</b> she is angry.（why だけでも OK）'
+      },
+      {
+        jp: '私が毎朝早く起きる理由は健康のためです',
+        en: 'The reason <mark>why</mark> I get up early every morning is for my health.',
+        pron: 'ワイ /waɪ/',
+        note: '💡 The reason why … is で「〜する理由は…です」。<br>「毎朝」= every morning &nbsp; 「早く起きる」= get up early'
+      },
+      {
+        jp: '私が日本語を勉強している理由は将来のためです',
+        en: 'The reason <mark>why</mark> I am studying Japanese is for my future.',
+        pron: 'ワイ /waɪ/',
+        note: '💡 The reason why I am studying … is … の構造。<br>「将来のため」= for my future &nbsp; 現在進行形（am studying）に注目！'
+      }
+    ]
+  },
+  {
+    id: 's6',
+    title: 'how',
+    subtitle: '「方法・やり方」を説明しよう！',
+    tag: '関係副詞',
+    tip: '方法・様子を表すとき → <b>how</b>！<br>🔊 発音: ハウ <i>/haʊ/</i><br>⚠️ <b>the way how</b> とは言わない！',
+    illo: `<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="50" cy="45" r="30" fill="#0891b2"/>
+      <circle cx="50" cy="45" r="23" fill="#cffafe"/>
+      <text x="50" y="54" text-anchor="middle" font-size="20" font-family="Arial" font-weight="900" fill="#0891b2">HOW</text>
+      <path d="M30 72 Q50 88 70 72" stroke="#0891b2" stroke-width="4" fill="none" stroke-linecap="round"/>
+      <polygon points="70,72 78,68 74,78" fill="#0891b2"/>
+      <circle cx="30" cy="20" r="6" fill="#0891b2"/>
+      <circle cx="50" cy="14" r="6" fill="#0e7490"/>
+      <circle cx="70" cy="20" r="6" fill="#0891b2"/>
+      <line x1="36" y1="20" x2="44" y2="16" stroke="#0891b2" stroke-width="2.5"/>
+      <line x1="56" y1="16" x2="64" y2="20" stroke="#0891b2" stroke-width="2.5"/>
+    </svg>`,
+    qs: [
+      {
+        jp: 'これが私の母がカレーを作る方法です',
+        en: 'This is <mark>how</mark> my mother makes curry.',
+        pron: 'ハウ /haʊ/',
+        note: '💡 how = 「〜する方法」。<b>the way how とは言いません！</b><br>This is <b>how</b> … / This is <b>the way</b> … どちらか一方だけ使います。'
+      },
+      {
+        jp: '彼が日本語を学んだ方法に驚きました',
+        en: 'I was surprised at <mark>how</mark> he learned Japanese.',
+        pron: 'ハウ /haʊ/',
+        note: '💡 how = 「〜する方法・様子」。at how … = 「〜のやり方に」。<br>「驚いた」= was surprised at'
+      },
+      {
+        jp: '彼女がそんなに速く走れる方法を教えてください',
+        en: 'Please tell me <mark>how</mark> she can run so fast.',
+        pron: 'ハウ /haʊ/',
+        note: '💡 tell me how … で「〜する方法を教えてください」。<br>「そんなに速く」= so fast &nbsp; how の後は完全な文。'
+      },
+      {
+        jp: 'これが私がケーキを焼く方法です',
+        en: 'This is <mark>how</mark> I bake a cake.',
+        pron: 'ハウ /haʊ/',
+        note: '💡 This is how … = 「これが〜する方法です」。<br>= This is <b>the way</b> I bake a cake.（書き換え可能）'
+      },
+      {
+        jp: '先生が問題を解く方法を教えてくれました',
+        en: 'The teacher taught me <mark>how</mark> to solve the problem.',
+        pron: 'ハウ /haʊ/',
+        note: '💡 how to + 動詞原形 = 「〜する方法」（不定詞パターン）。<br>「問題を解く」= solve the problem &nbsp; 「教えてくれた」= taught me'
+      },
+      {
+        jp: '彼がギターを弾く方法を学びたいです',
+        en: 'I want to learn <mark>how</mark> to play the guitar.',
+        pron: 'ハウ /haʊ/',
+        note: '💡 learn how to + 動詞原形 = 「〜する方法を学ぶ」。<br>how to play the guitar = ギターの弾き方'
+      }
+    ]
+  },
+  {
+    id: 's7',
+    title: 'what',
+    subtitle: '「こと・もの」を表そう！',
+    tag: '関係代名詞',
+    tip: 'what = <b>the thing that</b>（先行詞を含む）<br>🔊 発音: ワット <i>/wɒt/</i><br>what の前に先行詞はいらない！',
+    illo: `<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="50" cy="45" r="30" fill="#ec4899"/>
+      <circle cx="50" cy="45" r="23" fill="#fce7f3"/>
+      <text x="50" y="40" text-anchor="middle" font-size="11" font-family="Arial" font-weight="900" fill="#ec4899">the thing</text>
+      <text x="50" y="54" text-anchor="middle" font-size="11" font-family="Arial" font-weight="900" fill="#9d174d">= what</text>
+      <path d="M26 62 Q50 76 74 62" stroke="#ec4899" stroke-width="3" fill="none" stroke-linecap="round"/>
+      <circle cx="28" cy="18" r="5" fill="#f9a8d4"/>
+      <circle cx="50" cy="12" r="5" fill="#ec4899"/>
+      <circle cx="72" cy="18" r="5" fill="#f9a8d4"/>
+      <line x1="33" y1="19" x2="45" y2="14" stroke="#f9a8d4" stroke-width="2"/>
+      <line x1="55" y1="14" x2="67" y2="19" stroke="#f9a8d4" stroke-width="2"/>
+    </svg>`,
+    qs: [
+      {
+        jp: 'あなたが言ったことは正しいです',
+        en: '<mark>What</mark> you said is correct.',
+        pron: 'ワット /wɒt/',
+        note: '💡 What = the thing that。What you said = <b>あなたが言ったこと</b>。<br>What 節が文全体の<b>主語</b>になっています。'
+      },
+      {
+        jp: '彼が欲しいものを知っていますか',
+        en: 'Do you know <mark>what</mark> he wants?',
+        pron: 'ワット /wɒt/',
+        note: '💡 know what … = 「〜が欲しいものを知っている」。<br>what he wants = <b>彼が欲しいもの</b>（目的語の役割）'
+      },
+      {
+        jp: '好きなものを何でも選んでください',
+        en: 'Please choose <mark>whatever</mark> you like.',
+        pron: 'ワットエバー /wɒtˈɛvər/',
+        note: '💡 whatever = anything that（何でも〜）。<br>whatever you like = <b>あなたが好きなものは何でも</b><br>-ever をつけると「どんな〜でも」の意味！'
+      },
+      {
+        jp: '彼女が料理したものはとてもおいしかった',
+        en: '<mark>What</mark> she cooked was very delicious.',
+        pron: 'ワット /wɒt/',
+        note: '💡 What she cooked = <b>彼女が料理したもの</b>（主語の役割）。<br>= The thing that she cooked was very delicious.'
+      },
+      {
+        jp: '私が一番必要なのは休息です',
+        en: '<mark>What</mark> I need most is rest.',
+        pron: 'ワット /wɒt/',
+        note: '💡 What I need most = <b>私が一番必要なもの</b>（主語の役割）。<br>「一番」= most &nbsp; 「休息」= rest'
+      },
+      {
+        jp: '彼が言ったことに驚きました',
+        en: 'I was surprised at <mark>what</mark> he said.',
+        pron: 'ワット /wɒt/',
+        note: '💡 at what he said = <b>彼が言ったことに</b>（前置詞 at の目的語）。<br>what he said = the thing that he said'
       }
     ]
   }
