@@ -1,0 +1,1347 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🌟 英語文法マスター！初心者向けクイズ</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&family=Fredoka+One&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --s1:#3b82f6;--s1l:#eff6ff;--s1m:#bfdbfe;
+  --s2:#10b981;--s2l:#f0fdf4;--s2m:#a7f3d0;
+  --s3:#8b5cf6;--s3l:#f5f3ff;--s3m:#ddd6fe;
+  --s4:#f59e0b;--s4l:#fffbeb;--s4m:#fde68a;
+  --s5:#ef4444;--s5l:#fff1f2;--s5m:#fecaca;
+  --s6:#0891b2;--s6l:#ecfeff;--s6m:#a5f3fc;
+}
+body{font-family:'Noto Sans JP',sans-serif;background:#fef9f0;color:#1e293b;min-height:100vh}
+
+header{
+  background:linear-gradient(135deg,#667eea 0%,#764ba2 40%,#f093fb 100%);
+  padding:28px 20px 36px;text-align:center;position:relative;overflow:hidden
+}
+header::before{
+  content:'';position:absolute;inset:0;
+  background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.06'%3E%3Ccircle cx='30' cy='30' r='20'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}
+.header-inner{position:relative;z-index:1}
+.header-emoji{font-size:2.8rem;display:block;animation:bounce 2s infinite}
+header h1{font-family:'Fredoka One',sans-serif;font-size:2rem;color:#fff;letter-spacing:.08em;text-shadow:0 2px 8px rgba(0,0,0,.2);margin:.2em 0 .15em}
+header p{color:rgba(255,255,255,.88);font-size:.9rem;font-weight:500}
+.stars-row{margin-top:10px;font-size:1.2rem;letter-spacing:4px}
+@keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+
+.total-prog{background:#fff;padding:14px 24px;display:flex;align-items:center;gap:14px;border-bottom:3px solid #e2e8f0;box-shadow:0 2px 8px rgba(0,0,0,.05)}
+.prog-bar{flex:1;height:12px;background:#e2e8f0;border-radius:20px;overflow:hidden}
+.prog-fill{height:100%;border-radius:20px;background:linear-gradient(90deg,#667eea,#f093fb);transition:width .6s cubic-bezier(.4,0,.2,1)}
+.prog-label{font-size:.85rem;font-weight:700;color:#6366f1;white-space:nowrap}
+
+.nav-wrap{background:#fff;overflow-x:auto;scrollbar-width:none;border-bottom:3px solid #e2e8f0}
+.nav-wrap::-webkit-scrollbar{display:none}
+.nav-tabs{display:flex;min-width:max-content;padding:0 8px}
+.nav-tab{display:flex;flex-direction:column;align-items:center;gap:4px;padding:10px 14px;border:none;background:none;cursor:pointer;font-family:'Noto Sans JP',sans-serif;font-size:.72rem;font-weight:700;color:#94a3b8;transition:all .25s;border-bottom:4px solid transparent;white-space:nowrap;min-width:85px}
+.nav-tab .tab-icon{font-size:1.4rem;transition:transform .25s}
+.nav-tab:hover .tab-icon{transform:scale(1.15)}
+.nav-tab.active{color:#fff;border-radius:12px 12px 0 0;border-bottom-color:transparent}
+.nav-tab[data-s="s1"].active{background:var(--s1)}
+.nav-tab[data-s="s2"].active{background:var(--s2)}
+.nav-tab[data-s="s3"].active{background:var(--s3)}
+.nav-tab[data-s="s4"].active{background:var(--s4)}
+.nav-tab[data-s="s5"].active{background:var(--s5)}
+.nav-tab[data-s="s6"].active{background:var(--s6)}
+
+.section{display:none;padding:20px 16px 40px;max-width:860px;margin:0 auto}
+.section.active{display:block}
+
+.sec-banner{border-radius:20px;padding:24px 28px;margin-bottom:24px;display:flex;align-items:center;gap:20px;box-shadow:0 4px 20px rgba(0,0,0,.08)}
+.banner-illo{flex-shrink:0;font-size:4rem;width:80px;text-align:center}
+.banner-tag{font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;opacity:.7;margin-bottom:4px}
+.banner-title{font-family:'Fredoka One',sans-serif;font-size:1.6rem;letter-spacing:.04em;margin-bottom:6px}
+.banner-tip{font-size:.85rem;line-height:1.65;font-weight:500;background:rgba(255,255,255,.55);border-radius:10px;padding:8px 12px;display:inline-block}
+
+.point-box{background:#fff;border-radius:16px;padding:18px 22px;margin-bottom:22px;box-shadow:0 2px 10px rgba(0,0,0,.06)}
+.point-box h3{font-size:.9rem;font-weight:700;margin-bottom:10px;display:flex;align-items:center;gap:6px}
+.point-table{width:100%;border-collapse:collapse;font-size:.85rem}
+.point-table th{background:#f1f5f9;padding:8px 12px;text-align:left;font-weight:700;border-radius:6px}
+.point-table td{padding:8px 12px;border-bottom:1px solid #f1f5f9}
+.point-table tr:last-child td{border-bottom:none}
+.formula{background:#fef3c7;border-left:4px solid #f59e0b;border-radius:0 8px 8px 0;padding:10px 14px;font-family:monospace;font-size:.9rem;margin:8px 0;font-weight:700}
+.example{background:#f0fdf4;border-left:4px solid #10b981;border-radius:0 8px 8px 0;padding:8px 14px;font-size:.85rem;margin:4px 0;color:#065f46}
+
+.sec-stars{display:flex;gap:6px;margin-bottom:20px;justify-content:center}
+.sec-star{font-size:1.8rem;transition:transform .3s;filter:grayscale(1) opacity(.3)}
+.sec-star.lit{filter:none;animation:starPop .4s cubic-bezier(.4,0,.2,1)}
+@keyframes starPop{0%{transform:scale(0.5)}60%{transform:scale(1.3)}100%{transform:scale(1)}}
+
+.q-card{background:#fff;border-radius:20px;padding:24px 28px;margin-bottom:16px;box-shadow:0 2px 12px rgba(0,0,0,.07);position:relative;overflow:hidden;transition:transform .2s,box-shadow .2s}
+.q-card:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(0,0,0,.1)}
+.q-num{font-size:.7rem;font-weight:700;color:#94a3b8;letter-spacing:.06em;margin-bottom:6px}
+.q-text{font-size:1rem;font-weight:700;line-height:1.6;margin-bottom:14px;color:#1e293b}
+.q-text .blank{display:inline-block;border-bottom:2px solid #94a3b8;min-width:80px;text-align:center;color:#94a3b8;font-style:italic}
+.q-jp{font-size:.82rem;color:#64748b;background:#f8fafc;border-radius:8px;padding:6px 12px;margin-bottom:14px;display:inline-block}
+
+.choices{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.choice-btn{padding:12px 16px;border:2px solid #e2e8f0;border-radius:12px;background:#fff;cursor:pointer;font-family:'Noto Sans JP',sans-serif;font-size:.9rem;font-weight:600;color:#374151;transition:all .2s;text-align:left}
+.choice-btn:hover:not(:disabled){border-color:#818cf8;background:#eef2ff;transform:translateX(3px)}
+.choice-btn.correct{border-color:#10b981;background:#d1fae5;color:#065f46}
+.choice-btn.wrong{border-color:#ef4444;background:#fee2e2;color:#991b1b}
+.choice-btn:disabled{cursor:default}
+
+.feedback{margin-top:14px;padding:12px 16px;border-radius:12px;font-size:.88rem;font-weight:600;line-height:1.6;display:none}
+.feedback.show{display:block}
+.feedback.ok{background:#d1fae5;color:#065f46;border-left:4px solid #10b981}
+.feedback.ng{background:#fee2e2;color:#991b1b;border-left:4px solid #ef4444}
+
+.sec-result{background:#fff;border-radius:20px;padding:28px;margin-top:24px;text-align:center;box-shadow:0 4px 20px rgba(0,0,0,.08);display:none}
+.sec-result.show{display:block}
+.result-score{font-family:'Fredoka One',sans-serif;font-size:3rem;margin:10px 0}
+.result-msg{font-size:.95rem;font-weight:600;color:#475569;margin-bottom:16px}
+.retry-btn{padding:12px 32px;border:none;border-radius:50px;font-family:'Noto Sans JP',sans-serif;font-size:.95rem;font-weight:700;cursor:pointer;background:linear-gradient(135deg,#667eea,#764ba2);color:#fff;transition:transform .2s,box-shadow .2s;box-shadow:0 4px 14px rgba(102,126,234,.4)}
+.retry-btn:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(102,126,234,.5)}
+
+/* Section colors */
+[data-s="s1"] .sec-banner{background:var(--s1l);color:#1e3a8a}
+[data-s="s2"] .sec-banner{background:var(--s2l);color:#064e3b}
+[data-s="s3"] .sec-banner{background:var(--s3l);color:#3b0764}
+[data-s="s4"] .sec-banner{background:var(--s4l);color:#78350f}
+[data-s="s5"] .sec-banner{background:var(--s5l);color:#7f1d1d}
+[data-s="s6"] .sec-banner{background:var(--s6l);color:#083344}
+
+.badge{display:inline-flex;align-items:center;gap:4px;padding:4px 10px;border-radius:20px;font-size:.72rem;font-weight:700;margin-bottom:8px}
+[data-s="s1"] .badge{background:var(--s1m);color:#1d4ed8}
+[data-s="s2"] .badge{background:var(--s2m);color:#047857}
+[data-s="s3"] .badge{background:var(--s3m);color:#6d28d9}
+[data-s="s4"] .badge{background:var(--s4m);color:#b45309}
+[data-s="s5"] .badge{background:var(--s5m);color:#b91c1c}
+[data-s="s6"] .badge{background:var(--s6m);color:#0e7490}
+
+@media(max-width:540px){
+  .choices{grid-template-columns:1fr}
+  .sec-banner{flex-direction:column;text-align:center}
+  header h1{font-size:1.5rem}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <span class="header-emoji">📚</span>
+    <h1>英語文法マスター！</h1>
+    <p>初心者向け・6つの文法をまとめて学ぼう</p>
+    <div class="stars-row">⭐⭐⭐⭐⭐</div>
+  </div>
+</header>
+
+<div class="total-prog">
+  <div class="prog-bar"><div class="prog-fill" id="totalFill" style="width:0%"></div></div>
+  <div class="prog-label" id="totalLabel">0 / 60問</div>
+</div>
+
+<div class="nav-wrap">
+  <div class="nav-tabs">
+    <button class="nav-tab active" data-s="s1" onclick="showSection('s1',this)">
+      <span class="tab-icon">🚫</span>否定形
+    </button>
+    <button class="nav-tab" data-s="s2" onclick="showSection('s2',this)">
+      <span class="tab-icon">❓</span>疑問形
+    </button>
+    <button class="nav-tab" data-s="s3" onclick="showSection('s3',this)">
+      <span class="tab-icon">🌱</span>現在形
+    </button>
+    <button class="nav-tab" data-s="s4" onclick="showSection('s4',this)">
+      <span class="tab-icon">🏃</span>現在進行形
+    </button>
+    <button class="nav-tab" data-s="s5" onclick="showSection('s5',this)">
+      <span class="tab-icon">⏳</span>過去進行形
+    </button>
+    <button class="nav-tab" data-s="s6" onclick="showSection('s6',this)">
+      <span class="tab-icon">✅</span>過去完了形
+    </button>
+  </div>
+</div>
+
+<!-- ===== SECTION 1: 否定形 ===== -->
+<div class="section active" id="s1" data-s="s1">
+  <div class="sec-banner">
+    <div class="banner-illo">🚫</div>
+    <div class="banner-text">
+      <div class="banner-tag">Section 1</div>
+      <div class="banner-title">否定形</div>
+      <div class="banner-tip">「〜しない」「〜ではない」を表す文！</div>
+    </div>
+  </div>
+
+  <div class="point-box">
+    <h3>📌 ポイント整理</h3>
+    <div class="formula">be動詞の否定：主語 + am/is/are + not + 〜</div>
+    <div class="example">✅ I am not a student. （私は学生ではありません）</div>
+    <div class="example">✅ She is not happy. （彼女は幸せではありません）</div>
+    <div class="formula">一般動詞の否定：主語 + do not (don't) / does not (doesn't) + 動詞の原形</div>
+    <div class="example">✅ I don't like coffee. （私はコーヒーが好きではありません）</div>
+    <div class="example">✅ He doesn't play tennis. （彼はテニスをしません）</div>
+    <div class="formula">過去形の否定：主語 + did not (didn't) + 動詞の原形</div>
+    <div class="example">✅ She didn't go to school. （彼女は学校に行きませんでした）</div>
+  </div>
+
+  <div class="sec-stars" id="stars-s1">
+    <span class="sec-star">⭐</span><span class="sec-star">⭐</span><span class="sec-star">⭐</span>
+    <span class="sec-star">⭐</span><span class="sec-star">⭐</span><span class="sec-star">⭐</span>
+    <span class="sec-star">⭐</span><span class="sec-star">⭐</span><span class="sec-star">⭐</span><span class="sec-star">⭐</span>
+  </div>
+
+  <div class="q-card" data-sec="s1" data-ans="1">
+    <div class="q-num">Q1</div>
+    <div class="q-jp">私は医者ではありません。</div>
+    <div class="q-text">I <span class="blank">___</span> a doctor.</div>
+    <div class="choices">
+      <button class="choice-btn" onclick="answer(this,'s1',1,0)">A. am</button>
+      <button class="choice-btn" onclick="answer(this,'s1',1,1)">B. am not</button>
+      <button class="choice-btn" onclick="answer(this,'s1',1,0)">C. don't</button>
+      <button class="choice-btn" onclick="answer(this,'s1',1,0)">D. isn't</button>
+    </div>
+    <div class="feedback" id="fb-s1-1"></div>
+  </div>
+
+  <div class="q-card" data-sec="s1" data-ans="2">
+    <div class="q-num">Q2</div>
+    <div class="q-jp">彼らは友達ではありません。</div>
+    <div class="q-text">They <span class="blank">___</span> friends.</div>
+    <div class="choices">
+      <button class="choice-btn" onclick="answer(this,'s1',2,0)">A. is not</button>
+      <button class="choice-btn" onclick="answer(this,'s1',2,0)">B. am not</button>
+      <button class="choice-btn" onclick="answer(this,'s1',2,1)">C. are not</button>
+      <button class="choice-btn" onclick="answer(this,'s1',2,0)">D. don't</button>
+    </div>
+    <div class="feedback" id="fb-s1-2"></div>
+  </div>
+
+  <div class="q-card" data-sec="s1" data-ans="1">
+    <div class="q-num">Q3</div>
+    <div class="q-jp">私はピアノを弾きません。</div>
+    <div class="q-text">I <span class="blank">___</span> play the piano.</div>
+    <div class="choices">
+      <button class="choice-btn" onclick="answer(this,'s1',3,1)">A. don't</button>
+      <button class="choice-btn" onclick="answer(this,'s1',3,0)">B. doesn't</button>
+      <button class="choice-btn" onclick="answer(this,'s1',3,0)">C. am not</button>
+      <button class="choice-btn" onclick="answer(this,'s1',3,0)">D. didn't</button>
+    </div>
+    <div class="feedback" id="fb-s1-3"></div>
+  </div>
+
+  <div class="q-card" data-sec="s1" data-ans="2">
+    <div class="q-num">Q4</div>
+    <div class="q-jp">彼女は肉を食べません。</div>
+    <div class="q-text">She <span class="blank">___</span> eat meat.</div>
+    <div class="choices">
+      <button class="choice-btn" onclick="answer(this,'s1',4,0)">A. don't</button>
+      <button class="choice-btn" onclick="answer(this,'s1',4,1)">B. doesn't</button>
+      <button class="choice-btn" onclick="answer(this,'s1',4,0)">C. isn't</button>
+      <button class="choice-btn" onclick="answer(this,'s1',4,0)">D. aren't</button>
+    </div>
+    <div class="feedback" id="fb-s1-4"></div>
+  </div>
+
+  <div class="q-card" data-sec="s1" data-ans="3">
+    <div class="q-num">Q5</div>
+    <div class="q-jp">昨日、雨は降りませんでした。</div>
+    <div class="q-text">It <span class="blank">___</span> rain yesterday.</div>
+    <div class="choices">
+      <button class="choice-btn" onclick="answer(this,'s1',5,0)">A. don't</button>
+      <button class="choice-btn" onclick="answer(this,'s1',5,0)">B. doesn't</button>
+      <button class="choice-btn" onclick="answer(this,'s1',5,1)">C. didn't</button>
+      <button class="choice-btn" onclick="answer(this,'s1',5,0)">D. wasn't</button>
+    </div>
+    <div class="feedback" id="fb-s1-5"></div>
+  </div>
+
+  <div class="q-card" data-sec="s1" data-ans="4">
+    <div class="q-num">Q6</div>
+    <div class="q-jp">その映画は面白くありませんでした。</div>
+    <div class="q-text">The movie <span class="blank">___</span> interesting.</div>
+    <div class="choices">
+      <button class="choice-btn" onclick="answer(this,'s1',6,0)">A. doesn't</button>
+      <button class="choice-btn" onclick="answer(this,'s1',6,0)">B. isn't</button>
+      <button class="choice-btn" onclick="answer(this,'s1',6,0)">C. didn't</button>
+      <button class="choice-btn" onclick="answer(this,'s1',6,1)">D. wasn't</button>
+    </div>
+    <div class="feedback" id="fb-s1-6"></div>
+  </div>
+
+  <div class="q-card" data-sec="s1" data-ans="2">
+    <div class="q-num">Q7</div>
+    <div class="q-jp">トムは車を持っていません。</div>
+    <div class="q-text">Tom <span class="blank">___</span> have a car.</div>
+    <div class="choices">
+      <button class="choice-btn" onclick="answer(this,'s1',7,0)">A. don't</button>
+      <button class="choice-btn" onclick="answer(this,'s1',7,1)">B. doesn't</button>
+      <button class="choice-btn" onclick="answer(this,'s1',7,0)">C. isn't</button>
+      <button class="choice-btn" onclick="answer(this,'s1',7,0)">D. wasn't</button>
+    </div>
+    <div class="feedback" id="fb-s1-7"></div>
+  </div>
+
+  <div class="q-card" data-sec="s1" data-ans="1">
+    <div class="q-num">Q8</div>
+    <div class="q-jp">私たちは疲れていません。</div>
+    <div class="q-text">We <span class="blank">___</span> tired.</div>
+    <div class="choices">
+      <button class="choice-btn" onclick="answer(this,'s1',8,1)">A. are not</button>
+      <button class="choice-btn" onclick="answer(this,'s1',8,0)">B. is not</button>
+      <button class="choice-btn" onclick="answer(this,'s1',8,0)">C. don't</button>
+      <button class="choice-btn" onclick="answer(this,'s1',8,0)">D. weren't</button>
+    </div>
+    <div class="feedback" id="fb-s1-8"></div>
+  </div>
+
+  <div class="q-card" data-sec="s1" data-ans="3">
+    <div class="q-num">Q9</div>
+    <div class="q-jp">私は昨日、彼に会いませんでした。</div>
+    <div class="q-text">I <span class="blank">___</span> see him yesterday.</div>
+    <div class="choices">
+      <button class="choice-btn" onclick="answer(this,'s1',9,0)">A. don't</button>
+      <button class="choice-btn" onclick="answer(this,'s1',9,0)">B. doesn't</button>
+      <button class="choice-btn" onclick="answer(this,'s1',9,1)">C. didn't</button>
+      <button class="choice-btn" onclick="answer(this,'s1',9,0)">D. wasn't</button>
+    </div>
+    <div class="feedback" id="fb-s1-9"></div>
+  </div>
+
+  <div class="q-card" data-sec="s1" data-ans="2">
+    <div class="q-num">Q10</div>
+    <div class="q-jp">彼は英語が得意ではありません。</div>
+    <div class="q-text">He <span class="blank">___</span> good at English.</div>
+    <div class="choices">
+      <button class="choice-btn" onclick="answer(this,'s1',10,0)">A. don't</button>
+      <button class="choice-btn" onclick="answer(this,'s1',10,1)">B. isn't</button>
+      <button class="choice-btn" onclick="answer(this,'s1',10,0)">C. doesn't</button>
+      <button class="choice-btn" onclick="answer(this,'s1',10,0)">D. weren't</button>
+    </div>
+    <div class="feedback" id="fb-s1-10"></div>
+  </div>
+
+  <div class="sec-result" id="result-s1">
+    <div class="result-score" id="score-s1"></div>
+    <div class="result-msg" id="msg-s1"></div>
+    <button class="retry-btn" onclick="retrySection('s1')">もう一度挑戦！</button>
+  </div>
+</div>
+
+<!-- ===== SECTION 2: 疑問形 ===== -->
+<div class="section" id="s2" data-s="s2">
+  <div class="sec-banner">
+    <div class="banner-illo">❓</div>
+    <div class="banner-text">
+      <div class="banner-tag">Section 2</div>
+      <div class="banner-title">疑問形</div>
+      <div class="banner-tip">「〜しますか？」「〜ですか？」を表す文！</div>
+    </div>
+  </div>
+
+  <div class="point-box">
+    <h3>📌 ポイント整理</h3>
+    <div class="formula">be動詞の疑問：Am/Is/Are + 主語 + 〜？</div>
+    <div class="example">✅ Are you a teacher? （あなたは先生ですか？）</div>
+    <div class="example">✅ Is she from Japan? （彼女は日本出身ですか？）</div>
+    <div class="formula">一般動詞の疑問：Do/Does + 主語 + 動詞の原形 + 〜？</div>
+    <div class="example">✅ Do you like music? （音楽は好きですか？）</div>
+    <div class="example">✅ Does he play soccer? （彼はサッカーをしますか？）</div>
+    <div class="formula">過去形の疑問：Did + 主語 + 動詞の原形 + 〜？</div>
+    <div class="example">✅ Did you go to the party? （パーティーに行きましたか？）</div>
+  </div>
+
+  <div class="sec-stars" id="stars-s2">
+    <span class="sec-star">⭐</span><span class="sec-star">⭐</span><span class="sec-star">⭐</span>
+    <span class="sec-star">⭐</span><span class="sec-star">⭐</span><span class="sec-star">⭐</span>
+    <span class="sec-star">⭐</span><span class="sec-star">⭐</span><span class="sec-star">⭐</span><span class="sec-star">⭐</span>
+  </div>
+
+  <div class="q-card" data-sec="s2">
+    <div class="q-num">Q1</div>
+    <div class="q-jp">あなたは学生ですか？</div>
+    <div class="q-text"><span class="blank">___</span> you a student?</div>
+    <div class="choices">
+      <button class="choice-btn" onclick="answer(this,'s2',1,1)">A. Are</button>
+      <button class="choice-btn" onclick="answer(this,'s2',1,0)">B. Is</button>
+      <button class="choice-btn" onclick="answer(this,'s2',1,0)">C. Do</button>
+      <button class="choice-btn" onclick="answer(this,'s2',1,0)">D. Does</button>
+    </div>
+    <div class="feedback" id="fb-s2-1"></div>
+  </div>
+
+  <div class="q-card" data-sec="s2">
+    <div class="q-num">Q2</div>
+    <div class="q-jp">彼女は音楽が好きですか？</div>
+    <div class="q-text"><span class="blank">___</span> she like music?</div>
+    <div class="choices">
+      <button class="choice-btn" onclick="answer(this,'s2',2,0)">A. Do</button>
+      <button class="choice-btn" onclick="answer(this,'s2',2,1)">B. Does</button>
+      <button class="choice-btn" onclick="answer(this,'s2',2,0)">C. Is</button>
+      <button class="choice-btn" onclick="answer(this,'s2',2,0)">D. Did</button>
+    </div>
+    <div class="feedback" id="fb-s2-2"></div>
+  </div>
+
+  <div class="q-card" data-sec="s2">
+    <div class="q-num">Q3</div>
+    <div class="q-jp">彼はパーティーに来ましたか？</div>
+    <div class="q-text"><span class="blank">___</span> he come to the party?</div>
+    <div class="choices">
+      <button class="choice-btn" onclick="answer(this,'s2',3,0)">A. Does</button>
+      <button class="choice-btn" onclick="answer(this,'s2',3,0)">B. Is</button>
+      <button class="choice-btn" onclick="answer(this,'s2',3,1)">C. Did</button>
+      <button class="choice-btn" onclick="answer(this,'s2',3,0)">D. Do</button>
+    </div>
+    <div class="feedback" id="fb-s2-3"></div>
+  </div>
+
+  <div class="q-card" data-sec="s2">
+    <div class="q-num">Q4</div>
+    <div class="q-jp">あなたたちは忙しいですか？</div>
+    <div class="q-text"><span class="blank">___</span> you busy?</div>
+    <div class="choices">
+      <button class="choice-btn" onclick="answer(this,'s2',4,1)">A. Are</button>
+      <button class="choice-btn" onclick="answer(this,'s2',4,0)">B. Do</button>
+      <button class="choice-btn" onclick="answer(this,'s2',4,0)">C. Is</button>
+      <button class="choice-btn" onclick="answer(this,'s2',4,0)">D. Did</button>
+    </div>
+    <div class="feedback" id="fb-s2-4"></div>
+  </div>
+
+  <div class="q-card" data-sec="s2">
+    <div class="q-num">Q5</div>
+    <div class="q-jp">犬と猫、どちらが好きですか？（あなたは）</div>
+    <div class="q-text"><span class="blank">___</span> you prefer dogs or cats?</div>
+    <div class="choices">
+      <button class="choice-btn" onclick="answer(this,'s2',5,1)">A. Do</button>
+      <button class="choice-btn" onclick="answer(this,'s2',5,0)">B. Does</button>
+      <button class="choice-btn" onclick="answer(this,'s2',5,0)">C. Are</button>
+      <button class="choice-btn" onclick="answer(this,'s2',5,0)">D. Did</button>
+    </div>
+    <div class="feedback" id="fb-s2-5"></div>
+  </div>
+
+  <div class="q-card" data-sec="s2">
+    <div class="q-num">Q6</div>
+    <div class="q-jp">あなたのお母さんはどこに住んでいますか？</div>
+    <div class="q-text">Where <span class="blank">___</span> your mother live?</div>
+    <div class="choices">
+      <button class="choice-btn" onclick="answer(this,'s2',6,0)">A. do</button>
+      <button class="choice-btn" onclick="answer(this,'s2',6,1)">B. does</button>
+      <button class="choice-btn" onclick="answer(this,'s2',6,0)">C. is</button>
+      <button class="choice-btn" onclick="answer(this,'s2',6,0)">D. did</button>
+    </div>
+    <div class="feedback" id="fb-s2-6"></div>
+  </div>
+
+  <div class="q-card" data-sec="s2">
+    <div class="q-num">Q7</div>
+    <div class="q-jp">あなたは昨日何時に起きましたか？</div>
+    <div class="q-text">What time <span class="blank">___</span> you wake up yesterday?</div>
+    <div class="choices">
+      <button class="choice-btn" onclick="answer(this,'s2',7,0)">A. do</button>
+      <button class="choice-btn" onclick="answer(this,'s2',7,0)">B. does</button>
+      <button class="choice-btn" onclick="answer(this,'s2',7,1)">C. did</button>
+      <button class="choice-btn" onclick="answer(this,'s2',7,0)">D. are</button>
+    </div>
+    <div class="feedback" id="fb-s2-7"></div>
+  </div>
+
+  <div class="q-card" data-sec="s2">
+    <div class="q-num">Q8</div>
+    <div class="q-jp">その店は今日、開いていますか？</div>
+    <div class="q-text"><span class="blank">___</span> the store open today?</div>
+    <div class="choices">
+      <button class="choice-btn" onclick="answer(this,'s2',8,0)">A. Do</button>
+      <button class="choice-btn" onclick="answer(this,'s2',8,0)">B. Does</button>
+      <button class="choice-btn" onclick="answer(this,'s2',8,1)">C. Is</button>
+      <button class="choice-btn" onclick="answer(this,'s2',8,0)">D. Did</button>
+    </div>
+    <div class="feedback" id="fb-s2-8"></div>
+  </div>
+
+  <div class="q-card" data-sec="s2">
+    <div class="q-num">Q9</div>
+    <div class="q-jp">あなたはどんなスポーツをしますか？</div>
+    <div class="q-text">What sports <span class="blank">___</span> you play?</div>
+    <div class="choices">
+      <button class="choice-btn" onclick="answer(this,'s2',9,1)">A. do</button>
+      <button class="choice-btn" onclick="answer(this,'s2',9,0)">B. does</button>
+      <button class="choice-btn" onclick="answer(this,'s2',9,0)">C. are</button>
+      <button class="choice-btn" onclick="answer(this,'s2',9,0)">D. is</button>
+    </div>
+    <div class="feedback" id="fb-s2-9"></div>
+  </div>
+
+  <div class="q-card" data-sec="s2">
+    <div class="q-num">Q10</div>
+    <div class="q-jp">あなたはこの映画を見ましたか？</div>
+    <div class="q-text"><span class="blank">___</span> you watch this movie?</div>
+    <div class="choices">
+      <button class="choice-btn" onclick="answer(this,'s2',10,0)">A. Do</button>
+      <button class="choice-btn" onclick="answer(this,'s2',10,0)">B. Does</button>
+      <button class="choice-btn" onclick="answer(this,'s2',10,1)">C. Did</button>
+      <button class="choice-btn" onclick="answer(this,'s2',10,0)">D. Are</button>
+    </div>
+    <div class="feedback" id="fb-s2-10"></div>
+  </div>
+
+  <div class="sec-result" id="result-s2">
+    <div class="result-score" id="score-s2"></div>
+    <div class="result-msg" id="msg-s2"></div>
+    <button class="retry-btn" onclick="retrySection('s2')">もう一度挑戦！</button>
+  </div>
+</div>
+
+<!-- ===== SECTION 3: 現在形 ===== -->
+<div class="section" id="s3" data-s="s3">
+  <div class="sec-banner">
+    <div class="banner-illo">🌱</div>
+    <div class="banner-text">
+      <div class="banner-tag">Section 3</div>
+      <div class="banner-title">現在形</div>
+      <div class="banner-tip">習慣・事実・状態を表す基本の形！</div>
+    </div>
+  </div>
+
+  <div class="point-box">
+    <h3>📌 ポイント整理</h3>
+    <div class="formula">肯定文：主語 + 動詞（三単現は-s/-es）</div>
+    <div class="example">✅ I study English every day. （毎日英語を勉強します）</div>
+    <div class="example">✅ She studies English every day. （彼女は毎日英語を勉強します）</div>
+    <table class="point-table" style="margin-top:10px">
+      <tr><th>主語</th><th>be動詞</th><th>一般動詞の変化</th></tr>
+      <tr><td>I</td><td>am</td><td>そのまま（play）</td></tr>
+      <tr><td>You / We / They</td><td>are</td><td>そのまま（play）</td></tr>
+      <tr><td>He / She / It</td><td>is</td><td>-s/-es/-ies（plays）</td></tr>
+    </table>
+  </div>
+
+  <div class="sec-stars" id="stars-s3">
+    <span class="sec-star">⭐</span><span class="sec-star">⭐</span><span class="sec-star">⭐</span>
+    <span class="sec-star">⭐</span><span class="sec-star">⭐</span><span class="sec-star">⭐</span>
+    <span class="sec-star">⭐</span><span class="sec-star">⭐</span><span class="sec-star">⭐</span><span class="sec-star">⭐</span>
+  </div>
+
+  <div class="q-card" data-sec="s3">
+    <div class="q-num">Q1</div>
+    <div class="q-jp">私は毎朝コーヒーを飲みます。</div>
+    <div class="q-text">I <span class="blank">___</span> coffee every morning.</div>
+    <div class="choices">
+      <button class="choice-btn" onclick="answer(this,'s3',1,1)">A. drink</button>
+      <button class="choice-btn" onclick="answer(this,'s3',1,0)">B. drinks</button>
+      <button class="choice-btn" onclick="answer(this,'s3',1,0)">C. drank</button>
+      <button class="choice-btn" onclick="answer(this,'s3',1,0)">D. drinking</button>
+    </div>
+    <div class="feedback" id="fb-s3-1"></div>
+  </div>
+
+  <div class="q-card" data-sec="s3">
+    <div class="q-num">Q2</div>
+    <div class="q-jp">彼女は公園でよく走ります。</div>
+    <div class="q-text">She often <span class="blank">___</span> in the park.</div>
+    <div class="choices">
+      <button class="choice-btn" onclick="answer(this,'s3',2,0)">A. run</button>
+      <button class="choice-btn" onclick="answer(this,'s3',2,1)">B. runs</button>
+      <button class="choice-btn" onclick="answer(this,'s3',2,0)">C. ran</button>
+      <button class="choice-btn" onclick="answer(this,'s3',2,0)">D. running</button>
+    </div>
+    <div class="feedback" id="fb-s3-2"></div>
+  </div>
+
+  <div class="q-card" data-sec="s3">
+    <div class="q-num">Q3</div>
+    <div class="q-jp">太陽は東から昇ります。（事実）</div>
+    <div class="q-text">The sun <span class="blank">___</span> in the east.</div>
+    <div class="choices">
+      <button class="choice-btn" onclick="answer(this,'s3',3,0)">A. rise</button>
+      <button class="choice-btn" onclick="answer(this,'s3',3,1)">B. rises</button>
+      <button class="choice-btn" onclick="answer(this,'s3',3,0)">C. rose</button>
+      <button class="choice-btn" onclick="answer(this,'s3',3,0)">D. rising</button>
+    </div>
+    <div class="feedback" id="fb-s3-3"></div>
+  </div>
+
+  <div class="q-card" data-sec="s3">
+    <div class="q-num">Q4</div>
+    <div class="q-jp">彼らは野球が好きです。</div>
+    <div class="q-text">They <span class="blank">___</span> baseball.</div>
+    <div class="choices">
+      <button class="choice-btn" onclick="answer(this,'s3',4,1)">A. like</button>
+      <button class="choice-btn" onclick="answer(this,'s3',4,0)">B. likes</button>
+      <button class="choice-btn" onclick="answer(this,'s3',4,0)">C. liked</button>
+      <button class="choice-btn" onclick="answer(this,'s3',4,0)">D. liking</button>
+    </div>
+    <div class="feedback" id="fb-s3-4"></div>
+  </div>
+
+  <div class="q-card" data-sec="s3">
+    <div class="q-num">Q5</div>
+    <div class="q-jp">ケンは毎週日曜日に教会へ行きます。</div>
+    <div class="q-text">Ken <span class="blank">___</span> to church every Sunday.</div>
+    <div class="choices">
+      <button class="choice-btn" onclick="answer(this,'s3',5,0)">A. go</button>
+      <button class="choice-btn" onclick="answer(this,'s3',5,1)">B. goes</button>
+      <button class="choice-btn" onclick="answer(this,'s3',5,0)">C. went</button>
+      <button class="choice-btn" onclick="answer(this,'s3',5,0)">D. going</button>
+    </div>
+    <div class="feedback" id="fb-s3-5"></div>
+  </div>
+
+  <div class="q-card" data-sec="s3">
+    <div class="q-num">Q6</div>
+    <div class="q-jp">私の父は銀行で働いています。（習慣）</div>
+    <div class="q-text">My father <span class="blank">___</span> at a bank.</div>
+    <div class="choices">
+      <button class="choice-btn" onclick="answer(this,'s3',6,0)">A. work</button>
+      <button class="choice-btn" onclick="answer(this,'s3',6,1)">B. works</button>
+      <button class="choice-btn" onclick="answer(this,'s3',6,0)">C. worked</button>
+      <button class="choice-btn" onclick="answer(this,'s3',6,0)">D. working</button>
+    </div>
+    <div class="feedback" id="fb-s3-6"></div>
+  </div>
+
+  <div class="q-card" data-sec="s3">
+    <div class="q-num">Q7</div>
+    <div class="q-jp">水は100度で沸騰します。（事実）</div>
+    <div class="q-text">Water <span class="blank">___</span> at 100 degrees.</div>
+    <div class="choices">
+      <button class="choice-btn" onclick="answer(this,'s3',7,0)">A. boil</button>
+      <button class="choice-btn" onclick="answer(this,'s3',7,1)">B. boils</button>
+      <button class="choice-btn" onclick="answer(this,'s3',7,0)">C. boiled</button>
+      <button class="choice-btn" onclick="answer(this,'s3',7,0)">D. boiling</button>
+    </div>
+    <div class="feedback" id="fb-s3-7"></div>
+  </div>
+
+  <div class="q-card" data-sec="s3">
+    <div class="q-num">Q8</div>
+    <div class="q-jp">私の姉は英語と日本語を話せます。</div>
+    <div class="q-text">My sister <span class="blank">___</span> English and Japanese.</div>
+    <div class="choices">
+      <button class="choice-btn" onclick="answer(this,'s3',8,0)">A. speak</button>
+      <button class="choice-btn" onclick="answer(this,'s3',8,1)">B. speaks</button>
+      <button class="choice-btn" onclick="answer(this,'s3',8,0)">C. spoke</button>
+      <button class="choice-btn" onclick="answer(this,'s3',8,0)">D. speaking</button>
+    </div>
+    <div class="feedback" id="fb-s3-8"></div>
+  </div>
+
+  <div class="q-card" data-sec="s3">
+    <div class="q-num">Q9</div>
+    <div class="q-jp">あなたたちは毎晩テレビを見ますか？（平叙文）</div>
+    <div class="q-text">You <span class="blank">___</span> TV every night.</div>
+    <div class="choices">
+      <button class="choice-btn" onclick="answer(this,'s3',9,1)">A. watch</button>
+      <button class="choice-btn" onclick="answer(this,'s3',9,0)">B. watches</button>
+      <button class="choice-btn" onclick="answer(this,'s3',9,0)">C. watched</button>
+      <button class="choice-btn" onclick="answer(this,'s3',9,0)">D. watching</button>
+    </div>
+    <div class="feedback" id="fb-s3-9"></div>
+  </div>
+
+  <div class="q-card" data-sec="s3">
+    <div class="q-num">Q10</div>
+    <div class="q-jp">その犬はとても大きいです。</div>
+    <div class="q-text">The dog <span class="blank">___</span> very big.</div>
+    <div class="choices">
+      <button class="choice-btn" onclick="answer(this,'s3',10,0)">A. am</button>
+      <button class="choice-btn" onclick="answer(this,'s3',10,1)">B. is</button>
+      <button class="choice-btn" onclick="answer(this,'s3',10,0)">C. are</button>
+      <button class="choice-btn" onclick="answer(this,'s3',10,0)">D. be</button>
+    </div>
+    <div class="feedback" id="fb-s3-10"></div>
+  </div>
+
+  <div class="sec-result" id="result-s3">
+    <div class="result-score" id="score-s3"></div>
+    <div class="result-msg" id="msg-s3"></div>
+    <button class="retry-btn" onclick="retrySection('s3')">もう一度挑戦！</button>
+  </div>
+</div>
+
+<!-- ===== SECTION 4: 現在進行形 ===== -->
+<div class="section" id="s4" data-s="s4">
+  <div class="sec-banner">
+    <div class="banner-illo">🏃</div>
+    <div class="banner-text">
+      <div class="banner-tag">Section 4</div>
+      <div class="banner-title">現在進行形</div>
+      <div class="banner-tip">「今まさに〜している」ことを表す形！</div>
+    </div>
+  </div>
+
+  <div class="point-box">
+    <h3>📌 ポイント整理</h3>
+    <div class="formula">主語 + am/is/are + 動詞のing形</div>
+    <div class="example">✅ I am eating lunch now. （私は今、昼食を食べています）</div>
+    <div class="example">✅ She is watching TV. （彼女はテレビを見ています）</div>
+    <div class="example">✅ They are playing soccer. （彼らはサッカーをしています）</div>
+    <table class="point-table" style="margin-top:10px">
+      <tr><th>ing形の作り方</th><th>例</th></tr>
+      <tr><td>そのまま+ing</td><td>play → playing</td></tr>
+      <tr><td>eを取って+ing</td><td>make → making</td></tr>
+      <tr><td>子音を重ねて+ing</td><td>run → running</td></tr>
+    </table>
+  </div>
+
+  <div class="sec-stars" id="stars-s4">
+    <span class="sec-star">⭐</span><span class="sec-star">⭐</span><span class="sec-star">⭐</span>
+    <span class="sec-star">⭐</span><span class="sec-star">⭐</span><span class="sec-star">⭐</span>
+    <span class="sec-star">⭐</span><span class="sec-star">⭐</span><span class="sec-star">⭐</span><span class="sec-star">⭐</span>
+  </div>
+
+  <div class="q-card" data-sec="s4">
+    <div class="q-num">Q1</div>
+    <div class="q-jp">私は今、本を読んでいます。</div>
+    <div class="q-text">I am <span class="blank">___</span> a book now.</div>
+    <div class="choices">
+      <button class="choice-btn" onclick="answer(this,'s4',1,0)">A. read</button>
+      <button class="choice-btn" onclick="answer(this,'s4',1,1)">B. reading</button>
+      <button class="choice-btn" onclick="answer(this,'s4',1,0)">C. reads</button>
+      <button class="choice-btn" onclick="answer(this,'s4',1,0)">D. readed</button>
+    </div>
+    <div class="feedback" id="fb-s4-1"></div>
+  </div>
+
+  <div class="q-card" data-sec="s4">
+    <div class="q-num">Q2</div>
+    <div class="q-jp">彼女は今、歌を歌っています。</div>
+    <div class="q-text">She <span class="blank">___</span> a song now.</div>
+    <div class="choices">
+      <button class="choice-btn" onclick="answer(this,'s4',2,0)">A. sing</button>
+      <button class="choice-btn" onclick="answer(this,'s4',2,0)">B. sings</button>
+      <button class="choice-btn" onclick="answer(this,'s4',2,1)">C. is singing</button>
+      <button class="choice-btn" onclick="answer(this,'s4',2,0)">D. are singing</button>
+    </div>
+    <div class="feedback" id="fb-s4-2"></div>
+  </div>
+
+  <div class="q-card" data-sec="s4">
+    <div class="q-num">Q3</div>
+    <div class="q-jp">子供たちは公園で遊んでいます。</div>
+    <div class="q-text">The children <span class="blank">___</span> in the park.</div>
+    <div class="choices">
+      <button class="choice-btn" onclick="answer(this,'s4',3,0)">A. is playing</button>
+      <button class="choice-btn" onclick="answer(this,'s4',3,1)">B. are playing</button>
+      <button class="choice-btn" onclick="answer(this,'s4',3,0)">C. play</button>
+      <button class="choice-btn" onclick="answer(this,'s4',3,0)">D. plays</button>
+    </div>
+    <div class="feedback" id="fb-s4-3"></div>
+  </div>
+
+  <div class="q-card" data-sec="s4">
+    <div class="q-num">Q4</div>
+    <div class="q-jp">あなたは今何をしていますか？</div>
+    <div class="q-text">What are you <span class="blank">___</span> now?</div>
+    <div class="choices">
+      <button class="choice-btn" onclick="answer(this,'s4',4,0)">A. do</button>
+      <button class="choice-btn" onclick="answer(this,'s4',4,0)">B. does</button>
+      <button class="choice-btn" onclick="answer(this,'s4',4,1)">C. doing</button>
+      <button class="choice-btn" onclick="answer(this,'s4',4,0)">D. done</button>
+    </div>
+    <div class="feedback" id="fb-s4-4"></div>
+  </div>
+
+  <div class="q-card" data-sec="s4">
+    <div class="q-num">Q5</div>
+    <div class="q-jp">彼は今、夕食を作っています。</div>
+    <div class="q-text">He is <span class="blank">___</span> dinner now.</div>
+    <div class="choices">
+      <button class="choice-btn" onclick="answer(this,'s4',5,0)">A. make</button>
+      <button class="choice-btn" onclick="answer(this,'s4',5,1)">B. making</button>
+      <button class="choice-btn" onclick="answer(this,'s4',5,0)">C. makes</button>
+      <button class="choice-btn" onclick="answer(this,'s4',5,0)">D. made</button>
+    </div>
+    <div class="feedback" id="fb-s4-5"></div>
+  </div>
+
+  <div class="q-card" data-sec="s4">
+    <div class="q-num">Q6</div>
+    <div class="q-jp">私たちは英語を勉強しています。</div>
+    <div class="q-text">We <span class="blank">___</span> English.</div>
+    <div class="choices">
+      <button class="choice-btn" onclick="answer(this,'s4',6,0)">A. is studying</button>
+      <button class="choice-btn" onclick="answer(this,'s4',6,1)">B. are studying</button>
+      <button class="choice-btn" onclick="answer(this,'s4',6,0)">C. study</button>
+      <button class="choice-btn" onclick="answer(this,'s4',6,0)">D. studies</button>
+    </div>
+    <div class="feedback" id="fb-s4-6"></div>
+  </div>
+
+  <div class="q-card" data-sec="s4">
+    <div class="q-num">Q7</div>
+    <div class="q-jp">犬が庭を走っています。</div>
+    <div class="q-text">The dog <span class="blank">___</span> in the yard.</div>
+    <div class="choices">
+      <button class="choice-btn" onclick="answer(this,'s4',7,0)">A. are running</button>
+      <button class="choice-btn" onclick="answer(this,'s4',7,1)">B. is running</button>
+      <button class="choice-btn" onclick="answer(this,'s4',7,0)">C. run</button>
+      <button class="choice-btn" onclick="answer(this,'s4',7,0)">D. runs</button>
+    </div>
+    <div class="feedback" id="fb-s4-7"></div>
+  </div>
+
+  <div class="q-card" data-sec="s4">
+    <div class="q-num">Q8</div>
+    <div class="q-jp">彼女は今、電話で話しています。</div>
+    <div class="q-text">She is <span class="blank">___</span> on the phone.</div>
+    <div class="choices">
+      <button class="choice-btn" onclick="answer(this,'s4',8,0)">A. talk</button>
+      <button class="choice-btn" onclick="answer(this,'s4',8,1)">B. talking</button>
+      <button class="choice-btn" onclick="answer(this,'s4',8,0)">C. talks</button>
+      <button class="choice-btn" onclick="answer(this,'s4',8,0)">D. talked</button>
+    </div>
+    <div class="feedback" id="fb-s4-8"></div>
+  </div>
+
+  <div class="q-card" data-sec="s4">
+    <div class="q-num">Q9</div>
+    <div class="q-jp">今、外は雨が降っています。</div>
+    <div class="q-text">It <span class="blank">___</span> outside now.</div>
+    <div class="choices">
+      <button class="choice-btn" onclick="answer(this,'s4',9,0)">A. are raining</button>
+      <button class="choice-btn" onclick="answer(this,'s4',9,1)">B. is raining</button>
+      <button class="choice-btn" onclick="answer(this,'s4',9,0)">C. rain</button>
+      <button class="choice-btn" onclick="answer(this,'s4',9,0)">D. rains</button>
+    </div>
+    <div class="feedback" id="fb-s4-9"></div>
+  </div>
+
+  <div class="q-card" data-sec="s4">
+    <div class="q-num">Q10</div>
+    <div class="q-jp">彼らは今、音楽を聴いています。</div>
+    <div class="q-text">They <span class="blank">___</span> to music now.</div>
+    <div class="choices">
+      <button class="choice-btn" onclick="answer(this,'s4',10,0)">A. is listening</button>
+      <button class="choice-btn" onclick="answer(this,'s4',10,1)">B. are listening</button>
+      <button class="choice-btn" onclick="answer(this,'s4',10,0)">C. listen</button>
+      <button class="choice-btn" onclick="answer(this,'s4',10,0)">D. listens</button>
+    </div>
+    <div class="feedback" id="fb-s4-10"></div>
+  </div>
+
+  <div class="sec-result" id="result-s4">
+    <div class="result-score" id="score-s4"></div>
+    <div class="result-msg" id="msg-s4"></div>
+    <button class="retry-btn" onclick="retrySection('s4')">もう一度挑戦！</button>
+  </div>
+</div>
+
+<!-- ===== SECTION 5: 過去進行形 ===== -->
+<div class="section" id="s5" data-s="s5">
+  <div class="sec-banner">
+    <div class="banner-illo">⏳</div>
+    <div class="banner-text">
+      <div class="banner-tag">Section 5</div>
+      <div class="banner-title">過去進行形</div>
+      <div class="banner-tip">「（あの時）〜していた」ことを表す形！</div>
+    </div>
+  </div>
+
+  <div class="point-box">
+    <h3>📌 ポイント整理</h3>
+    <div class="formula">主語 + was/were + 動詞のing形</div>
+    <div class="example">✅ I was sleeping at 10 p.m. （夜10時に寝ていました）</div>
+    <div class="example">✅ She was cooking dinner. （彼女は夕食を作っていました）</div>
+    <div class="example">✅ They were watching TV. （彼らはテレビを見ていました）</div>
+    <table class="point-table" style="margin-top:10px">
+      <tr><th>主語</th><th>過去進行形のbe動詞</th></tr>
+      <tr><td>I / He / She / It</td><td>was</td></tr>
+      <tr><td>You / We / They</td><td>were</td></tr>
+    </table>
+  </div>
+
+  <div class="sec-stars" id="stars-s5">
+    <span class="sec-star">⭐</span><span class="sec-star">⭐</span><span class="sec-star">⭐</span>
+    <span class="sec-star">⭐</span><span class="sec-star">⭐</span><span class="sec-star">⭐</span>
+    <span class="sec-star">⭐</span><span class="sec-star">⭐</span><span class="sec-star">⭐</span><span class="sec-star">⭐</span>
+  </div>
+
+  <div class="q-card" data-sec="s5">
+    <div class="q-num">Q1</div>
+    <div class="q-jp">私は7時に朝食を食べていました。</div>
+    <div class="q-text">I <span class="blank">___</span> breakfast at 7 o'clock.</div>
+    <div class="choices">
+      <button class="choice-btn" onclick="answer(this,'s5',1,0)">A. am eating</button>
+      <button class="choice-btn" onclick="answer(this,'s5',1,0)">B. were eating</button>
+      <button class="choice-btn" onclick="answer(this,'s5',1,1)">C. was eating</button>
+      <button class="choice-btn" onclick="answer(this,'s5',1,0)">D. ate</button>
+    </div>
+    <div class="feedback" id="fb-s5-1"></div>
+  </div>
+
+  <div class="q-card" data-sec="s5">
+    <div class="q-num">Q2</div>
+    <div class="q-jp">彼らは昨夜、映画を見ていました。</div>
+    <div class="q-text">They <span class="blank">___</span> a movie last night.</div>
+    <div class="choices">
+      <button class="choice-btn" onclick="answer(this,'s5',2,0)">A. is watching</button>
+      <button class="choice-btn" onclick="answer(this,'s5',2,0)">B. was watching</button>
+      <button class="choice-btn" onclick="answer(this,'s5',2,1)">C. were watching</button>
+      <button class="choice-btn" onclick="answer(this,'s5',2,0)">D. watched</button>
+    </div>
+    <div class="feedback" id="fb-s5-2"></div>
+  </div>
+
+  <div class="q-card" data-sec="s5">
+    <div class="q-num">Q3</div>
+    <div class="q-jp">彼女は3時間、ピアノを弾いていました。</div>
+    <div class="q-text">She <span class="blank">___</span> the piano for three hours.</div>
+    <div class="choices">
+      <button class="choice-btn" onclick="answer(this,'s5',3,0)">A. were playing</button>
+      <button class="choice-btn" onclick="answer(this,'s5',3,1)">B. was playing</button>
+      <button class="choice-btn" onclick="answer(this,'s5',3,0)">C. played</button>
+      <button class="choice-btn" onclick="answer(this,'s5',3,0)">D. is playing</button>
+    </div>
+    <div class="feedback" id="fb-s5-3"></div>
+  </div>
+
+  <div class="q-card" data-sec="s5">
+    <div class="q-num">Q4</div>
+    <div class="q-jp">あなたは何をしていましたか？（昨日の午後）</div>
+    <div class="q-text">What <span class="blank">___</span> you doing yesterday afternoon?</div>
+    <div class="choices">
+      <button class="choice-btn" onclick="answer(this,'s5',4,0)">A. are</button>
+      <button class="choice-btn" onclick="answer(this,'s5',4,1)">B. were</button>
+      <button class="choice-btn" onclick="answer(this,'s5',4,0)">C. was</button>
+      <button class="choice-btn" onclick="answer(this,'s5',4,0)">D. did</button>
+    </div>
+    <div class="feedback" id="fb-s5-4"></div>
+  </div>
+
+  <div class="q-card" data-sec="s5">
+    <div class="q-num">Q5</div>
+    <div class="q-jp">彼は電話中だったので、出られませんでした。</div>
+    <div class="q-text">He couldn't answer because he <span class="blank">___</span> on the phone.</div>
+    <div class="choices">
+      <button class="choice-btn" onclick="answer(this,'s5',5,1)">A. was talking</button>
+      <button class="choice-btn" onclick="answer(this,'s5',5,0)">B. were talking</button>
+      <button class="choice-btn" onclick="answer(this,'s5',5,0)">C. is talking</button>
+      <button class="choice-btn" onclick="answer(this,'s5',5,0)">D. talked</button>
+    </div>
+    <div class="feedback" id="fb-s5-5"></div>
+  </div>
+
+  <div class="q-card" data-sec="s5">
+    <div class="q-num">Q6</div>
+    <div class="q-jp">私たちは夜中に歌っていました。</div>
+    <div class="q-text">We <span class="blank">___</span> in the middle of the night.</div>
+    <div class="choices">
+      <button class="choice-btn" onclick="answer(this,'s5',6,0)">A. was singing</button>
+      <button class="choice-btn" onclick="answer(this,'s5',6,1)">B. were singing</button>
+      <button class="choice-btn" onclick="answer(this,'s5',6,0)">C. sing</button>
+      <button class="choice-btn" onclick="answer(this,'s5',6,0)">D. sang</button>
+    </div>
+    <div class="feedback" id="fb-s5-6"></div>
+  </div>
+
+  <div class="q-card" data-sec="s5">
+    <div class="q-num">Q7</div>
+    <div class="q-jp">私が帰宅したとき、彼は寝ていました。</div>
+    <div class="q-text">He <span class="blank">___</span> when I came home.</div>
+    <div class="choices">
+      <button class="choice-btn" onclick="answer(this,'s5',7,0)">A. were sleeping</button>
+      <button class="choice-btn" onclick="answer(this,'s5',7,1)">B. was sleeping</button>
+      <button class="choice-btn" onclick="answer(this,'s5',7,0)">C. slept</button>
+      <button class="choice-btn" onclick="answer(this,'s5',7,0)">D. sleeps</button>
+    </div>
+    <div class="feedback" id="fb-s5-7"></div>
+  </div>
+
+  <div class="q-card" data-sec="s5">
+    <div class="q-num">Q8</div>
+    <div class="q-jp">子供たちは砂浜で遊んでいました。</div>
+    <div class="q-text">The children <span class="blank">___</span> on the beach.</div>
+    <div class="choices">
+      <button class="choice-btn" onclick="answer(this,'s5',8,0)">A. was playing</button>
+      <button class="choice-btn" onclick="answer(this,'s5',8,1)">B. were playing</button>
+      <button class="choice-btn" onclick="answer(this,'s5',8,0)">C. play</button>
+      <button class="choice-btn" onclick="answer(this,'s5',8,0)">D. played</button>
+    </div>
+    <div class="feedback" id="fb-s5-8"></div>
+  </div>
+
+  <div class="q-card" data-sec="s5">
+    <div class="q-num">Q9</div>
+    <div class="q-jp">私が駅に着いたとき、電車は動いていませんでした。</div>
+    <div class="q-text">The train <span class="blank">___</span> when I arrived at the station.</div>
+    <div class="choices">
+      <button class="choice-btn" onclick="answer(this,'s5',9,0)">A. weren't moving</button>
+      <button class="choice-btn" onclick="answer(this,'s5',9,1)">B. wasn't moving</button>
+      <button class="choice-btn" onclick="answer(this,'s5',9,0)">C. didn't move</button>
+      <button class="choice-btn" onclick="answer(this,'s5',9,0)">D. doesn't move</button>
+    </div>
+    <div class="feedback" id="fb-s5-9"></div>
+  </div>
+
+  <div class="q-card" data-sec="s5">
+    <div class="q-num">Q10</div>
+    <div class="q-jp">彼女は昨夜9時から10時まで勉強していました。</div>
+    <div class="q-text">She <span class="blank">___</span> from 9 to 10 last night.</div>
+    <div class="choices">
+      <button class="choice-btn" onclick="answer(this,'s5',10,0)">A. were studying</button>
+      <button class="choice-btn" onclick="answer(this,'s5',10,1)">B. was studying</button>
+      <button class="choice-btn" onclick="answer(this,'s5',10,0)">C. studied</button>
+      <button class="choice-btn" onclick="answer(this,'s5',10,0)">D. studies</button>
+    </div>
+    <div class="feedback" id="fb-s5-10"></div>
+  </div>
+
+  <div class="sec-result" id="result-s5">
+    <div class="result-score" id="score-s5"></div>
+    <div class="result-msg" id="msg-s5"></div>
+    <button class="retry-btn" onclick="retrySection('s5')">もう一度挑戦！</button>
+  </div>
+</div>
+
+<!-- ===== SECTION 6: 過去完了形 ===== -->
+<div class="section" id="s6" data-s="s6">
+  <div class="sec-banner">
+    <div class="banner-illo">✅</div>
+    <div class="banner-text">
+      <div class="banner-tag">Section 6</div>
+      <div class="banner-title">過去完了形</div>
+      <div class="banner-tip">「（過去のある時点より前に）〜していた・〜し終えていた」！</div>
+    </div>
+  </div>
+
+  <div class="point-box">
+    <h3>📌 ポイント整理</h3>
+    <div class="formula">主語 + had + 動詞の過去分詞形（p.p.）</div>
+    <div class="example">✅ I had eaten dinner before he came. （彼が来る前に夕食を食べ終えていました）</div>
+    <div class="example">✅ She had never seen snow before. （彼女はそれまで雪を見たことがなかった）</div>
+    <div class="example">✅ By the time I arrived, the movie had started. （私が着いた時にはもう映画が始まっていた）</div>
+    <table class="point-table" style="margin-top:10px">
+      <tr><th>形</th><th>例</th></tr>
+      <tr><td>肯定</td><td>had + p.p.</td></tr>
+      <tr><td>否定</td><td>had not (hadn't) + p.p.</td></tr>
+      <tr><td>疑問</td><td>Had + 主語 + p.p. ?</td></tr>
+    </table>
+  </div>
+
+  <div class="sec-stars" id="stars-s6">
+    <span class="sec-star">⭐</span><span class="sec-star">⭐</span><span class="sec-star">⭐</span>
+    <span class="sec-star">⭐</span><span class="sec-star">⭐</span><span class="sec-star">⭐</span>
+    <span class="sec-star">⭐</span><span class="sec-star">⭐</span><span class="sec-star">⭐</span><span class="sec-star">⭐</span>
+  </div>
+
+  <div class="q-card" data-sec="s6">
+    <div class="q-num">Q1</div>
+    <div class="q-jp">彼女が到着した時、私はすでに昼食を食べていました。</div>
+    <div class="q-text">I <span class="blank">___</span> lunch when she arrived.</div>
+    <div class="choices">
+      <button class="choice-btn" onclick="answer(this,'s6',1,0)">A. have eaten</button>
+      <button class="choice-btn" onclick="answer(this,'s6',1,1)">B. had eaten</button>
+      <button class="choice-btn" onclick="answer(this,'s6',1,0)">C. ate</button>
+      <button class="choice-btn" onclick="answer(this,'s6',1,0)">D. was eating</button>
+    </div>
+    <div class="feedback" id="fb-s6-1"></div>
+  </div>
+
+  <div class="q-card" data-sec="s6">
+    <div class="q-num">Q2</div>
+    <div class="q-jp">私が駅に着いた時には、電車はもう出発していました。</div>
+    <div class="q-text">The train <span class="blank">___</span> before I arrived at the station.</div>
+    <div class="choices">
+      <button class="choice-btn" onclick="answer(this,'s6',2,0)">A. has left</button>
+      <button class="choice-btn" onclick="answer(this,'s6',2,1)">B. had left</button>
+      <button class="choice-btn" onclick="answer(this,'s6',2,0)">C. left</button>
+      <button class="choice-btn" onclick="answer(this,'s6',2,0)">D. was leaving</button>
+    </div>
+    <div class="feedback" id="fb-s6-2"></div>
+  </div>
+
+  <div class="q-card" data-sec="s6">
+    <div class="q-num">Q3</div>
+    <div class="q-jp">彼は以前、日本に住んだことがありました。</div>
+    <div class="q-text">He <span class="blank">___</span> in Japan before.</div>
+    <div class="choices">
+      <button class="choice-btn" onclick="answer(this,'s6',3,0)">A. has lived</button>
+      <button class="choice-btn" onclick="answer(this,'s6',3,1)">B. had lived</button>
+      <button class="choice-btn" onclick="answer(this,'s6',3,0)">C. lived</button>
+      <button class="choice-btn" onclick="answer(this,'s6',3,0)">D. was living</button>
+    </div>
+    <div class="feedback" id="fb-s6-3"></div>
+  </div>
+
+  <div class="q-card" data-sec="s6">
+    <div class="q-num">Q4</div>
+    <div class="q-jp">私が電話した時、彼女はもう寝ていました。</div>
+    <div class="q-text">She <span class="blank">___</span> to bed when I called.</div>
+    <div class="choices">
+      <button class="choice-btn" onclick="answer(this,'s6',4,0)">A. has gone</button>
+      <button class="choice-btn" onclick="answer(this,'s6',4,1)">B. had gone</button>
+      <button class="choice-btn" onclick="answer(this,'s6',4,0)">C. went</button>
+      <button class="choice-btn" onclick="answer(this,'s6',4,0)">D. goes</button>
+    </div>
+    <div class="feedback" id="fb-s6-4"></div>
+  </div>
+
+  <div class="q-card" data-sec="s6">
+    <div class="q-num">Q5</div>
+    <div class="q-jp">彼らは以前、会ったことがありませんでした。</div>
+    <div class="q-text">They <span class="blank">___</span> each other before.</div>
+    <div class="choices">
+      <button class="choice-btn" onclick="answer(this,'s6',5,0)">A. have never met</button>
+      <button class="choice-btn" onclick="answer(this,'s6',5,1)">B. had never met</button>
+      <button class="choice-btn" onclick="answer(this,'s6',5,0)">C. never met</button>
+      <button class="choice-btn" onclick="answer(this,'s6',5,0)">D. didn't meet</button>
+    </div>
+    <div class="feedback" id="fb-s6-5"></div>
+  </div>
+
+  <div class="q-card" data-sec="s6">
+    <div class="q-num">Q6</div>
+    <div class="q-jp">映画が始まった時、私はもうポップコーンを食べ終えていました。</div>
+    <div class="q-text">I <span class="blank">___</span> the popcorn before the movie started.</div>
+    <div class="choices">
+      <button class="choice-btn" onclick="answer(this,'s6',6,0)">A. finished</button>
+      <button class="choice-btn" onclick="answer(this,'s6',6,1)">B. had finished</button>
+      <button class="choice-btn" onclick="answer(this,'s6',6,0)">C. have finished</button>
+      <button class="choice-btn" onclick="answer(this,'s6',6,0)">D. finish</button>
+    </div>
+    <div class="feedback" id="fb-s6-6"></div>
+  </div>
+
+  <div class="q-card" data-sec="s6">
+    <div class="q-num">Q7</div>
+    <div class="q-jp">私が起きた時、彼女はもう出発していました。</div>
+    <div class="q-text">She <span class="blank">___</span> when I woke up.</div>
+    <div class="choices">
+      <button class="choice-btn" onclick="answer(this,'s6',7,0)">A. has already left</button>
+      <button class="choice-btn" onclick="answer(this,'s6',7,1)">B. had already left</button>
+      <button class="choice-btn" onclick="answer(this,'s6',7,0)">C. already left</button>
+      <button class="choice-btn" onclick="answer(this,'s6',7,0)">D. was leaving</button>
+    </div>
+    <div class="feedback" id="fb-s6-7"></div>
+  </div>
+
+  <div class="q-card" data-sec="s6">
+    <div class="q-num">Q8</div>
+    <div class="q-jp">彼は以前にその本を読んだことがありましたか？</div>
+    <div class="q-text"><span class="blank">___</span> he read the book before?</div>
+    <div class="choices">
+      <button class="choice-btn" onclick="answer(this,'s6',8,0)">A. Has</button>
+      <button class="choice-btn" onclick="answer(this,'s6',8,1)">B. Had</button>
+      <button class="choice-btn" onclick="answer(this,'s6',8,0)">C. Did</button>
+      <button class="choice-btn" onclick="answer(this,'s6',8,0)">D. Does</button>
+    </div>
+    <div class="feedback" id="fb-s6-8"></div>
+  </div>
+
+  <div class="q-card" data-sec="s6">
+    <div class="q-num">Q9</div>
+    <div class="q-jp">彼女はそのパーティーに一度も行ったことがなかった。</div>
+    <div class="q-text">She <span class="blank">___</span> to the party before.</div>
+    <div class="choices">
+      <button class="choice-btn" onclick="answer(this,'s6',9,0)">A. has never been</button>
+      <button class="choice-btn" onclick="answer(this,'s6',9,1)">B. had never been</button>
+      <button class="choice-btn" onclick="answer(this,'s6',9,0)">C. never went</button>
+      <button class="choice-btn" onclick="answer(this,'s6',9,0)">D. never goes</button>
+    </div>
+    <div class="feedback" id="fb-s6-9"></div>
+  </div>
+
+  <div class="q-card" data-sec="s6">
+    <div class="q-num">Q10</div>
+    <div class="q-jp">彼らは試合が終わった後に気づきました。（試合前にミスをしていたことに）</div>
+    <div class="q-text">They realized they <span class="blank">___</span> a mistake after the game ended.</div>
+    <div class="choices">
+      <button class="choice-btn" onclick="answer(this,'s6',10,0)">A. have made</button>
+      <button class="choice-btn" onclick="answer(this,'s6',10,1)">B. had made</button>
+      <button class="choice-btn" onclick="answer(this,'s6',10,0)">C. made</button>
+      <button class="choice-btn" onclick="answer(this,'s6',10,0)">D. were making</button>
+    </div>
+    <div class="feedback" id="fb-s6-10"></div>
+  </div>
+
+  <div class="sec-result" id="result-s6">
+    <div class="result-score" id="score-s6"></div>
+    <div class="result-msg" id="msg-s6"></div>
+    <button class="retry-btn" onclick="retrySection('s6')">もう一度挑戦！</button>
+  </div>
+</div>
+
+<script>
+const SECTIONS = ['s1','s2','s3','s4','s5','s6'];
+const state = {};
+SECTIONS.forEach(s => {
+  state[s] = { answered: 0, correct: 0, done: new Array(11).fill(false) };
+});
+
+const feedbacks = {
+  s1: {
+    1: { ok:'✅ 正解！「I am not」でI（私）の否定形です。', ng:'❌ 不正解。主語がIの場合は「am not」を使います。I am not a doctor.'},
+    2: { ok:'✅ 正解！They（彼ら）の否定はare notです。', ng:'❌ 不正解。主語がThey/We/Youの場合は「are not」です。'},
+    3: { ok:'✅ 正解！主語がI（私）の一般動詞否定は「don\'t」です。', ng:'❌ 不正解。主語がIの一般動詞否定は「don\'t（do not）」を使います。'},
+    4: { ok:'✅ 正解！三単現（He/She/It）の否定は「doesn\'t」です。', ng:'❌ 不正解。主語がSheの場合は「doesn\'t（does not）」を使います。'},
+    5: { ok:'✅ 正解！過去形の否定は「didn\'t + 動詞の原形」です。', ng:'❌ 不正解。過去の否定は「didn\'t（did not）+ 動詞の原形」です。'},
+    6: { ok:'✅ 正解！過去のbe動詞否定：主語がItなので「wasn\'t」です。', ng:'❌ 不正解。過去のbe動詞否定：The movie（単数）なので「wasn\'t」です。'},
+    7: { ok:'✅ 正解！三単現の否定は「doesn\'t + 動詞の原形」です。', ng:'❌ 不正解。主語がTomなので「doesn\'t」を使います。'},
+    8: { ok:'✅ 正解！We（私たち）のbe動詞は「are」→否定は「are not」です。', ng:'❌ 不正解。主語がWeの場合は「are not」を使います。'},
+    9: { ok:'✅ 正解！過去の否定「didn\'t + 動詞の原形」です。seeはそのままseeです。', ng:'❌ 不正解。過去の否定は「didn\'t」＋動詞の原形です。'},
+    10:{ ok:'✅ 正解！be動詞の否定：主語がHe → is → isn\'t です。', ng:'❌ 不正解。主語がHeの場合、be動詞はisなので否定は「isn\'t」です。'}
+  },
+  s2: {
+    1: { ok:'✅ 正解！「Are you〜?」youを主語にしたbe動詞の疑問文です。', ng:'❌ 不正解。主語がyouのbe動詞疑問文は「Are you〜?」です。'},
+    2: { ok:'✅ 正解！三単現（She）の一般動詞疑問文は「Does」を使います。', ng:'❌ 不正解。主語がSheの場合、「Does she + 動詞の原形〜?」です。'},
+    3: { ok:'✅ 正解！過去の疑問文は「Did + 主語 + 動詞の原形〜?」です。', ng:'❌ 不正解。過去の疑問文は「Did + 主語 + 動詞の原形〜?」です。'},
+    4: { ok:'✅ 正解！「Are you〜?」youの場合はareです。', ng:'❌ 不正解。be動詞の疑問文で主語がyouの場合は「Are」です。'},
+    5: { ok:'✅ 正解！主語がyouの一般動詞疑問文は「Do you〜?」です。', ng:'❌ 不正解。主語がyouの一般動詞疑問文は「Do you〜?」です。'},
+    6: { ok:'✅ 正解！主語がyour motherなので三単現「does」です。', ng:'❌ 不正解。Where does + 三単現の主語 + 動詞の原形〜? です。'},
+    7: { ok:'✅ 正解！過去の疑問文はDid + 主語 + 動詞の原形〜? です。', ng:'❌ 不正解。昨日の出来事なので過去形「did」を使います。'},
+    8: { ok:'✅ 正解！the storeという状態をたずねるのでbe動詞「Is」を使います。', ng:'❌ 不正解。店が「開いているか」という状態なのでbe動詞「Is」を使います。'},
+    9: { ok:'✅ 正解！主語がyouの一般動詞疑問文は「do you〜?」です。', ng:'❌ 不正解。主語がyouの場合は「do」を使います。'},
+    10:{ ok:'✅ 正解！過去の疑問文は「Did + 主語 + 動詞の原形〜?」です。', ng:'❌ 不正解。過去の疑問文は「Did」を使い、動詞は原形（watch）にします。'}
+  },
+  s3: {
+    1: { ok:'✅ 正解！主語がIの場合、動詞はそのまま（drink）です。', ng:'❌ 不正解。主語がIの場合、動詞にsをつけません。drink が正解です。'},
+    2: { ok:'✅ 正解！主語がShe（三単現）なのでruns（-sをつける）です。', ng:'❌ 不正解。主語がSheの場合、動詞に-sをつけます。runs が正解です。'},
+    3: { ok:'✅ 正解！主語がThe sun（三単現）なのでrises（-sをつける）です。', ng:'❌ 不正解。主語がThe sunなので三単現。rises が正解です。'},
+    4: { ok:'✅ 正解！主語がThey（複数）の場合、動詞はそのまま（like）です。', ng:'❌ 不正解。主語がTheyなので動詞はそのまま。like が正解です。'},
+    5: { ok:'✅ 正解！主語がKen（三単現）なのでgoes（go + es）です。', ng:'❌ 不正解。主語がKenなので三単現。goはgoesになります。'},
+    6: { ok:'✅ 正解！主語がMy father（三単現）なのでworks（-sをつける）です。', ng:'❌ 不正解。主語がMy fatherなので三単現。works が正解です。'},
+    7: { ok:'✅ 正解！科学的事実も現在形で表します。Waterは三単現なのでboils。', ng:'❌ 不正解。科学的事実は現在形。主語がWaterなのでboils が正解です。'},
+    8: { ok:'✅ 正解！主語がMy sister（三単現）なのでspeaks（-sをつける）です。', ng:'❌ 不正解。主語がMy sisterなので三単現。speaks が正解です。'},
+    9: { ok:'✅ 正解！主語がYouの場合、動詞はそのまま（watch）です。', ng:'❌ 不正解。主語がYouの場合、動詞はそのまま。watch が正解です。'},
+    10:{ ok:'✅ 正解！主語がThe dog（単数）なのでbe動詞はis です。', ng:'❌ 不正解。主語がThe dogなのでbe動詞は「is」です。'}
+  },
+  s4: {
+    1: { ok:'✅ 正解！現在進行形はam/is/are + 動詞ing形。readingが正解です。', ng:'❌ 不正解。am の後は動詞のing形（reading）を使います。'},
+    2: { ok:'✅ 正解！主語がShe → is singing です。', ng:'❌ 不正解。主語がSheなのでis singing が正解です。'},
+    3: { ok:'✅ 正解！主語がThe children（複数）→ are playing です。', ng:'❌ 不正解。The childrenは複数なのでare playing が正解です。'},
+    4: { ok:'✅ 正解！are you の後はdoing（ing形）です。', ng:'❌ 不正解。What are you doing? の形。doingが正解です。'},
+    5: { ok:'✅ 正解！make（eを取って+ing）→ makingです。', ng:'❌ 不正解。make のing形はeを取ってmakingです。'},
+    6: { ok:'✅ 正解！主語がWe（複数）→ are studying です。', ng:'❌ 不正解。主語がWeなのでare studying が正解です。'},
+    7: { ok:'✅ 正解！主語がThe dog（単数）→ is running です。', ng:'❌ 不正解。The dog（単数）なのでis running が正解です。'},
+    8: { ok:'✅ 正解！talk のing形はそのまま talking です。', ng:'❌ 不正解。talk のing形はtalkingです。'},
+    9: { ok:'✅ 正解！主語がIt（単数）→ is raining です。', ng:'❌ 不正解。主語がItなのでis raining が正解です。'},
+    10:{ ok:'✅ 正解！主語がThey（複数）→ are listening です。', ng:'❌ 不正解。主語がTheyなのでare listening が正解です。'}
+  },
+  s5: {
+    1: { ok:'✅ 正解！主語がI → was eating です。過去進行形はwas/were + ing形です。', ng:'❌ 不正解。主語がIなのでwas eating が正解です。'},
+    2: { ok:'✅ 正解！主語がThey（複数）→ were watching です。', ng:'❌ 不正解。主語がTheyなのでwere watching が正解です。'},
+    3: { ok:'✅ 正解！主語がShe（単数）→ was playing です。', ng:'❌ 不正解。主語がSheなのでwas playing が正解です。'},
+    4: { ok:'✅ 正解！主語がyou → What were you doing〜? です。', ng:'❌ 不正解。過去進行形の疑問文でyouの場合はwere を使います。'},
+    5: { ok:'✅ 正解！主語がHe（単数）→ was talking です。', ng:'❌ 不正解。主語がHeなのでwas talking が正解です。'},
+    6: { ok:'✅ 正解！主語がWe（複数）→ were singing です。', ng:'❌ 不正解。主語がWeなのでwere singing が正解です。'},
+    7: { ok:'✅ 正解！主語がHe（単数）→ was sleeping です。', ng:'❌ 不正解。主語がHeなのでwas sleeping が正解です。'},
+    8: { ok:'✅ 正解！主語がThe children（複数）→ were playing です。', ng:'❌ 不正解。The childrenは複数なのでwere playing が正解です。'},
+    9: { ok:'✅ 正解！主語がThe train（単数）→ wasn\'t moving です。', ng:'❌ 不正解。過去進行形の否定で主語が単数なのでwasn\'t movingです。'},
+    10:{ ok:'✅ 正解！主語がShe（単数）→ was studying です。', ng:'❌ 不正解。主語がSheなのでwas studying が正解です。'}
+  },
+  s6: {
+    1: { ok:'✅ 正解！過去完了形はhad + 過去分詞。「彼女が来る前に食べ終えていた」→ had eaten。', ng:'❌ 不正解。過去完了形は「had + 過去分詞（eaten）」です。'},
+    2: { ok:'✅ 正解！過去完了形 had left。「着いた時点より前に出発していた」の意味です。', ng:'❌ 不正解。過去完了形は「had + 過去分詞（left）」です。'},
+    3: { ok:'✅ 正解！過去完了形 had lived。過去のある時点での経験を表します。', ng:'❌ 不正解。過去のある時点での経験は過去完了形「had lived」です。'},
+    4: { ok:'✅ 正解！had gone。「電話した時点より前に寝ていた」→ had gone to bed。', ng:'❌ 不正解。「電話した時点」より前の出来事なので過去完了形「had gone」です。'},
+    5: { ok:'✅ 正解！had never met。それ以前に会ったことがない経験を表します。', ng:'❌ 不正解。「それまでに〜したことがない」は過去完了形「had never met」です。'},
+    6: { ok:'✅ 正解！had finished。「映画が始まる前に食べ終えた」→ 過去完了形です。', ng:'❌ 不正解。「映画が始まる前に食べ終えた」は過去完了形「had finished」です。'},
+    7: { ok:'✅ 正解！had already left。「起きた時にはもう出発していた」→ 過去完了形です。', ng:'❌ 不正解。「起きた時点」より前の出来事なので「had already left」です。'},
+    8: { ok:'✅ 正解！過去完了形の疑問文は「Had + 主語 + 過去分詞〜?」です。', ng:'❌ 不正解。過去完了形の疑問文は「Had + 主語 + 過去分詞〜?」です。'},
+    9: { ok:'✅ 正解！had never been。「それまでに一度も行ったことがなかった」→ 過去完了形です。', ng:'❌ 不正解。過去の経験がない場合「had never been」を使います。'},
+    10:{ ok:'✅ 正解！had made。試合が終わる（過去）より前のミスなので過去完了形です。', ng:'❌ 不正解。「試合終了より前のミス」は過去完了形「had made」です。'}
+  }
+};
+
+function answer(btn, sec, qNum, isCorrect) {
+  const s = state[sec];
+  if (s.done[qNum]) return;
+  s.done[qNum] = true;
+  s.answered++;
+
+  const card = btn.closest('.q-card');
+  const btns = card.querySelectorAll('.choice-btn');
+  btns.forEach(b => b.disabled = true);
+
+  const fb = document.getElementById(`fb-${sec}-${qNum}`);
+  fb.classList.add('show');
+
+  if (isCorrect) {
+    s.correct++;
+    btn.classList.add('correct');
+    fb.classList.add('ok');
+    fb.textContent = feedbacks[sec][qNum].ok;
+  } else {
+    btn.classList.add('wrong');
+    fb.classList.add('ng');
+    fb.textContent = feedbacks[sec][qNum].ng;
+  }
+
+  updateStars(sec);
+  updateProgress();
+
+  if (s.answered === 10) showResult(sec);
+}
+
+function updateStars(sec) {
+  const s = state[sec];
+  const starEls = document.querySelectorAll(`#stars-${sec} .sec-star`);
+  starEls.forEach((el, i) => {
+    if (i < s.correct) el.classList.add('lit');
+  });
+}
+
+function updateProgress() {
+  let total = 0, correct = 0;
+  SECTIONS.forEach(s => {
+    total += state[s].answered;
+    correct += state[s].correct;
+  });
+  const pct = total === 0 ? 0 : Math.round(correct / 60 * 100);
+  document.getElementById('totalFill').style.width = pct + '%';
+  document.getElementById('totalLabel').textContent = `${correct} / 60問`;
+}
+
+function showResult(sec) {
+  const s = state[sec];
+  const resultEl = document.getElementById(`result-${sec}`);
+  const scoreEl = document.getElementById(`score-${sec}`);
+  const msgEl = document.getElementById(`msg-${sec}`);
+  resultEl.classList.add('show');
+
+  const pct = Math.round(s.correct / 10 * 100);
+  scoreEl.textContent = `${s.correct} / 10問 正解！`;
+
+  const msgs = [
+    [10, '🏆 パーフェクト！素晴らしい！完全マスターです！'],
+    [8,  '🌟 とても良い！あと少しで完璧です！'],
+    [6,  '😊 まずまずです。もう一度チャレンジしてみましょう！'],
+    [4,  '💪 ポイントを見直してもう一度！できるよ！'],
+    [0,  '📖 まずはポイントをしっかり読んでからもう一度！']
+  ];
+  for (const [min, msg] of msgs) {
+    if (s.correct >= min) { msgEl.textContent = msg; break; }
+  }
+}
+
+function retrySection(sec) {
+  state[sec] = { answered: 0, correct: 0, done: new Array(11).fill(false) };
+
+  const section = document.getElementById(sec);
+  section.querySelectorAll('.choice-btn').forEach(btn => {
+    btn.disabled = false;
+    btn.classList.remove('correct','wrong');
+  });
+  section.querySelectorAll('.feedback').forEach(fb => {
+    fb.classList.remove('show','ok','ng');
+    fb.textContent = '';
+  });
+  section.querySelectorAll('.sec-star').forEach(s => s.classList.remove('lit'));
+  document.getElementById(`result-${sec}`).classList.remove('show');
+
+  updateProgress();
+}
+
+function showSection(secId, tabEl) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+  document.getElementById(secId).classList.add('active');
+  tabEl.classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+</script>
+</body>
+</html>
