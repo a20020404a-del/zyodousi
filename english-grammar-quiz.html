@@ -14,6 +14,7 @@
   --s4:#f59e0b;--s4l:#fef3c7;--s4m:#fcd34d;--s4d:#b45309;
   --s5:#f43f5e;--s5l:#ffe4e6;--s5m:#fda4af;--s5d:#be123c;
   --s6:#06b6d4;--s6l:#cffafe;--s6m:#67e8f9;--s6d:#0e7490;
+  --s7:#f97316;--s7l:#fff7ed;--s7m:#fed7aa;--s7d:#c2410c;
 }
 
 body{
@@ -164,6 +165,7 @@ header p{
 .nav-tab[data-s="s4"].active{background:linear-gradient(135deg,var(--s4),#fbbf24)}
 .nav-tab[data-s="s5"].active{background:linear-gradient(135deg,var(--s5),#fb7185)}
 .nav-tab[data-s="s6"].active{background:linear-gradient(135deg,var(--s6),#22d3ee)}
+.nav-tab[data-s="s7"].active{background:linear-gradient(135deg,var(--s7),#fb923c)}
 
 /* ========= セクション ========= */
 .section{display:none;padding:24px 16px 64px;max-width:860px;margin:0 auto}
@@ -229,6 +231,7 @@ header p{
 [data-s="s4"] .sec-banner{background:linear-gradient(135deg,#fef3c7,#fde68a);color:#78350f}
 [data-s="s5"] .sec-banner{background:linear-gradient(135deg,#ffe4e6,#fecdd3);color:#9f1239}
 [data-s="s6"] .sec-banner{background:linear-gradient(135deg,#cffafe,#a5f3fc);color:#083344}
+[data-s="s7"] .sec-banner{background:linear-gradient(135deg,#fff7ed,#fed7aa);color:#7c2d12}
 
 /* ========= ポイントボックス ========= */
 .point-box{
@@ -305,6 +308,7 @@ header p{
 [data-s="s4"] .q-card::before{background:linear-gradient(180deg,#f59e0b,#fcd34d)}
 [data-s="s5"] .q-card::before{background:linear-gradient(180deg,#f43f5e,#fda4af)}
 [data-s="s6"] .q-card::before{background:linear-gradient(180deg,#06b6d4,#67e8f9)}
+[data-s="s7"] .q-card::before{background:linear-gradient(180deg,#f97316,#fed7aa)}
 .q-card:hover{transform:translateY(-4px) scale(1.005);box-shadow:0 12px 32px rgba(0,0,0,.1)}
 
 .q-num{
@@ -323,6 +327,7 @@ header p{
 [data-s="s4"] .q-num{background:linear-gradient(135deg,#f59e0b,#fbbf24)}
 [data-s="s5"] .q-num{background:linear-gradient(135deg,#f43f5e,#fb7185)}
 [data-s="s6"] .q-num{background:linear-gradient(135deg,#06b6d4,#22d3ee)}
+[data-s="s7"] .q-num{background:linear-gradient(135deg,#f97316,#fb923c)}
 
 .q-text{font-size:1.08rem;font-weight:900;line-height:1.75;margin-bottom:14px;color:#1e293b}
 .q-text .blank{
@@ -453,6 +458,7 @@ header p{
 [data-s="s4"] .badge{background:var(--s4m);color:var(--s4d)}
 [data-s="s5"] .badge{background:var(--s5m);color:var(--s5d)}
 [data-s="s6"] .badge{background:var(--s6m);color:var(--s6d)}
+[data-s="s7"] .badge{background:var(--s7m);color:var(--s7d)}
 
 @media(max-width:540px){
   .choices{grid-template-columns:1fr}
@@ -627,7 +633,7 @@ header p{
   <div class="header-inner">
     <span class="header-emoji">🦉</span>
     <h1>えいご文法マスター！</h1>
-    <p>✨ 6つのルールを楽しく覚えよう！ ✨</p>
+    <p>✨ 7つのルールを楽しく覚えよう！ ✨</p>
     <div class="stars-row">🌟🌟🌟🌟🌟</div>
   </div>
 </header>
@@ -635,7 +641,7 @@ header p{
 <div class="total-prog">
   <span style="font-size:1.4rem">🎮</span>
   <div class="prog-bar"><div class="prog-fill" id="totalFill" style="width:0%"></div></div>
-  <div class="prog-label" id="totalLabel">0 / 60問</div>
+  <div class="prog-label" id="totalLabel">0 / 70問</div>
 </div>
 
 <div class="nav-wrap">
@@ -657,6 +663,9 @@ header p{
     </button>
     <button class="nav-tab" data-s="s6" onclick="showSection('s6',this)">
       <span class="tab-icon">✅</span>過去完了形
+    </button>
+    <button class="nav-tab" data-s="s7" onclick="showSection('s7',this)">
+      <span class="tab-icon">⏰</span>過去形
     </button>
   </div>
 </div>
@@ -2095,8 +2104,236 @@ header p{
   </div>
 </div>
 
+<!-- ===== SECTION 7: 過去形 ===== -->
+<div class="section" id="s7" data-s="s7">
+  <div class="sec-banner">
+    <div class="banner-illo">⏰</div>
+    <div>
+      <div class="banner-tag">Section 7</div>
+      <div class="banner-title">過去形 (Simple Past)</div>
+      <div class="banner-tip">🔑 動詞を過去形に変えて、昨日・過去のことを話そう！</div>
+    </div>
+  </div>
+
+  <div class="point-box">
+    <h3>📌 過去形のポイント</h3>
+    <div class="formula">主語 ＋ 動詞の過去形</div>
+    <table class="point-table">
+      <tr><th>種類</th><th>ルール</th><th>例</th></tr>
+      <tr><td>規則動詞</td><td>動詞 ＋ -ed</td><td>play → played / watch → watched</td></tr>
+      <tr><td>e で終わる</td><td>動詞 ＋ -d のみ</td><td>live → lived / use → used</td></tr>
+      <tr><td>子音＋y</td><td>y → ied</td><td>study → studied / try → tried</td></tr>
+      <tr><td>不規則動詞</td><td>形が変わる</td><td>go→went / eat→ate / see→saw</td></tr>
+    </table>
+  </div>
+
+  <div class="detail-box" style="background:#fff;border-radius:24px;padding:20px 24px;margin-bottom:20px;box-shadow:0 4px 20px rgba(0,0,0,.06);border:3px solid #fed7aa;">
+    <h3 style="font-size:.97rem;font-weight:900;margin-bottom:12px;color:#c2410c;">📖 よく使う不規則動詞一覧</h3>
+    <table class="point-table">
+      <tr><th>原形</th><th>過去形</th><th>意味</th></tr>
+      <tr><td>go</td><td>went</td><td>行く</td></tr>
+      <tr><td>eat</td><td>ate</td><td>食べる</td></tr>
+      <tr><td>see</td><td>saw</td><td>見る・会う</td></tr>
+      <tr><td>write</td><td>wrote</td><td>書く</td></tr>
+      <tr><td>make</td><td>made</td><td>作る</td></tr>
+      <tr><td>have</td><td>had</td><td>持つ・食べる</td></tr>
+      <tr><td>buy</td><td>bought</td><td>買う</td></tr>
+      <tr><td>come</td><td>came</td><td>来る</td></tr>
+      <tr><td>read</td><td>read（発音変化）</td><td>読む</td></tr>
+      <tr><td>win</td><td>won</td><td>勝つ</td></tr>
+    </table>
+  </div>
+
+  <div class="ex-box" style="background:#fff;border-radius:24px;padding:20px 24px;margin-bottom:20px;box-shadow:0 4px 20px rgba(0,0,0,.06);border:3px solid #fed7aa;">
+    <h3 style="font-size:.97rem;font-weight:900;margin-bottom:12px;color:#c2410c;">✍️ 例文</h3>
+    <table class="point-table">
+      <tr><th>英文</th><th>日本語</th></tr>
+      <tr><td>I went to school yesterday.</td><td>私は昨日学校に行きました。</td></tr>
+      <tr><td>She played tennis last week.</td><td>彼女は先週テニスをしました。</td></tr>
+      <tr><td>They ate pizza for dinner.</td><td>彼らは夕食にピザを食べました。</td></tr>
+      <tr><td>He wrote a letter to his friend.</td><td>彼は友達に手紙を書きました。</td></tr>
+      <tr><td>We had a great time at the party.</td><td>私たちはパーティーで楽しいひと時を過ごしました。</td></tr>
+    </table>
+  </div>
+
+  <div class="basic-wrap" style="background:#fff;border-radius:24px;padding:20px 24px;margin-bottom:20px;box-shadow:0 4px 20px rgba(0,0,0,.06);border:3px solid #fed7aa;">
+    <h3 style="font-size:.97rem;font-weight:900;margin-bottom:16px;color:#c2410c;">🌱 基礎問題ウォームアップ</h3>
+    <div class="basic-q" data-done="0" style="margin-bottom:18px">
+      <p style="font-weight:800;font-size:.92rem;margin-bottom:10px;color:#374151">① I ___ a book last night.（私は昨晩本を読みました）</p>
+      <div style="display:flex;gap:10px;flex-wrap:wrap">
+        <button class="basic-btn choice-btn" onclick="basicAnswer(this,'bf7-1',1,'✅ 正解！read の過去形は read（発音：レッド）です。','❌ 不正解。read の過去形は read（発音が変わります）です。')">read（過去形）</button>
+        <button class="basic-btn choice-btn" onclick="basicAnswer(this,'bf7-1',0,'✅ 正解！','❌ reads は三単現の現在形です。')">reads</button>
+        <button class="basic-btn choice-btn" onclick="basicAnswer(this,'bf7-1',0,'✅ 正解！','❌ readed は存在しません。read は不規則動詞です。')">readed</button>
+      </div>
+      <div class="feedback" id="bf7-1"></div>
+    </div>
+    <div class="basic-q" data-done="0" style="margin-bottom:18px">
+      <p style="font-weight:800;font-size:.92rem;margin-bottom:10px;color:#374151">② She ___ to bed early.（彼女は早めにベッドに行きました）</p>
+      <div style="display:flex;gap:10px;flex-wrap:wrap">
+        <button class="basic-btn choice-btn" onclick="basicAnswer(this,'bf7-2',0,'✅ 正解！','❌ goed は存在しません。go は不規則動詞です。')">goed</button>
+        <button class="basic-btn choice-btn" onclick="basicAnswer(this,'bf7-2',1,'✅ 正解！go の過去形は went です。','❌ 不正解。go → went が正しい過去形です。')">went</button>
+        <button class="basic-btn choice-btn" onclick="basicAnswer(this,'bf7-2',0,'✅ 正解！','❌ goes は三単現の現在形です。')">goes</button>
+      </div>
+      <div class="feedback" id="bf7-2"></div>
+    </div>
+    <div class="basic-q" data-done="0">
+      <p style="font-weight:800;font-size:.92rem;margin-bottom:10px;color:#374151">③ They ___ the game!（彼らは試合に勝ちました！）</p>
+      <div style="display:flex;gap:10px;flex-wrap:wrap">
+        <button class="basic-btn choice-btn" onclick="basicAnswer(this,'bf7-3',0,'✅ 正解！','❌ winned は存在しません。win は不規則動詞です。')">winned</button>
+        <button class="basic-btn choice-btn" onclick="basicAnswer(this,'bf7-3',0,'✅ 正解！','❌ wins は三単現の現在形です。')">wins</button>
+        <button class="basic-btn choice-btn" onclick="basicAnswer(this,'bf7-3',1,'✅ 正解！win の過去形は won です。','❌ 不正解。win → won が正しい過去形です。')">won</button>
+      </div>
+      <div class="feedback" id="bf7-3"></div>
+    </div>
+  </div>
+
+  <div class="sec-stars" id="stars-s7">
+    <span class="sec-star" id="star-s7-1">⭐</span>
+    <span class="sec-star" id="star-s7-2">⭐</span>
+    <span class="sec-star" id="star-s7-3">⭐</span>
+    <span class="sec-star" id="star-s7-4">⭐</span>
+    <span class="sec-star" id="star-s7-5">⭐</span>
+  </div>
+
+  <div class="q-card" data-sec="s7">
+    <div class="q-num">Q1</div>
+    <div class="q-jp">私は昨日学校に行きました。</div>
+    <div class="q-text">I <span class="blank">___</span> to school yesterday.</div>
+    <div class="choices">
+      <button class="choice-btn" onclick="answer(this,'s7',1,0)">A. go</button>
+      <button class="choice-btn" onclick="answer(this,'s7',1,1)">B. went</button>
+      <button class="choice-btn" onclick="answer(this,'s7',1,0)">C. gone</button>
+      <button class="choice-btn" onclick="answer(this,'s7',1,0)">D. goes</button>
+    </div>
+    <div class="feedback" id="fb-s7-1"></div>
+  </div>
+
+  <div class="q-card" data-sec="s7">
+    <div class="q-num">Q2</div>
+    <div class="q-jp">彼らは昨日サッカーをしました。</div>
+    <div class="q-text">They <span class="blank">___</span> soccer yesterday.</div>
+    <div class="choices">
+      <button class="choice-btn" onclick="answer(this,'s7',2,0)">A. play</button>
+      <button class="choice-btn" onclick="answer(this,'s7',2,0)">B. plays</button>
+      <button class="choice-btn" onclick="answer(this,'s7',2,1)">C. played</button>
+      <button class="choice-btn" onclick="answer(this,'s7',2,0)">D. playing</button>
+    </div>
+    <div class="feedback" id="fb-s7-2"></div>
+  </div>
+
+  <div class="q-card" data-sec="s7">
+    <div class="q-num">Q3</div>
+    <div class="q-jp">私たちは昨夜ピザを食べました。</div>
+    <div class="q-text">We <span class="blank">___</span> pizza last night.</div>
+    <div class="choices">
+      <button class="choice-btn" onclick="answer(this,'s7',3,0)">A. eat</button>
+      <button class="choice-btn" onclick="answer(this,'s7',3,1)">B. ate</button>
+      <button class="choice-btn" onclick="answer(this,'s7',3,0)">C. eated</button>
+      <button class="choice-btn" onclick="answer(this,'s7',3,0)">D. eaten</button>
+    </div>
+    <div class="feedback" id="fb-s7-3"></div>
+  </div>
+
+  <div class="q-card" data-sec="s7">
+    <div class="q-num">Q4</div>
+    <div class="q-jp">彼女は先週沖縄に旅行しました。</div>
+    <div class="q-text">She <span class="blank">___</span> to Okinawa last week.</div>
+    <div class="choices">
+      <button class="choice-btn" onclick="answer(this,'s7',4,1)">A. traveled</button>
+      <button class="choice-btn" onclick="answer(this,'s7',4,0)">B. travel</button>
+      <button class="choice-btn" onclick="answer(this,'s7',4,0)">C. travels</button>
+      <button class="choice-btn" onclick="answer(this,'s7',4,0)">D. traveling</button>
+    </div>
+    <div class="feedback" id="fb-s7-4"></div>
+  </div>
+
+  <div class="q-card" data-sec="s7">
+    <div class="q-num">Q5</div>
+    <div class="q-jp">彼は昨日ギターを弾きました。</div>
+    <div class="q-text">He <span class="blank">___</span> the guitar yesterday.</div>
+    <div class="choices">
+      <button class="choice-btn" onclick="answer(this,'s7',5,0)">A. plays</button>
+      <button class="choice-btn" onclick="answer(this,'s7',5,0)">B. play</button>
+      <button class="choice-btn" onclick="answer(this,'s7',5,1)">C. played</button>
+      <button class="choice-btn" onclick="answer(this,'s7',5,0)">D. playing</button>
+    </div>
+    <div class="feedback" id="fb-s7-5"></div>
+  </div>
+
+  <div class="q-card" data-sec="s7">
+    <div class="q-num">Q6</div>
+    <div class="q-jp">私は昨日友達に会いました。</div>
+    <div class="q-text">I <span class="blank">___</span> my friend yesterday.</div>
+    <div class="choices">
+      <button class="choice-btn" onclick="answer(this,'s7',6,0)">A. see</button>
+      <button class="choice-btn" onclick="answer(this,'s7',6,1)">B. saw</button>
+      <button class="choice-btn" onclick="answer(this,'s7',6,0)">C. seen</button>
+      <button class="choice-btn" onclick="answer(this,'s7',6,0)">D. sees</button>
+    </div>
+    <div class="feedback" id="fb-s7-6"></div>
+  </div>
+
+  <div class="q-card" data-sec="s7">
+    <div class="q-num">Q7</div>
+    <div class="q-jp">彼女は昨日手紙を書きました。</div>
+    <div class="q-text">She <span class="blank">___</span> a letter yesterday.</div>
+    <div class="choices">
+      <button class="choice-btn" onclick="answer(this,'s7',7,0)">A. write</button>
+      <button class="choice-btn" onclick="answer(this,'s7',7,0)">B. writes</button>
+      <button class="choice-btn" onclick="answer(this,'s7',7,1)">C. wrote</button>
+      <button class="choice-btn" onclick="answer(this,'s7',7,0)">D. written</button>
+    </div>
+    <div class="feedback" id="fb-s7-7"></div>
+  </div>
+
+  <div class="q-card" data-sec="s7">
+    <div class="q-num">Q8</div>
+    <div class="q-jp">私たちは昨日ケーキを作りました。</div>
+    <div class="q-text">We <span class="blank">___</span> a cake yesterday.</div>
+    <div class="choices">
+      <button class="choice-btn" onclick="answer(this,'s7',8,0)">A. make</button>
+      <button class="choice-btn" onclick="answer(this,'s7',8,0)">B. maked</button>
+      <button class="choice-btn" onclick="answer(this,'s7',8,1)">C. made</button>
+      <button class="choice-btn" onclick="answer(this,'s7',8,0)">D. making</button>
+    </div>
+    <div class="feedback" id="fb-s7-8"></div>
+  </div>
+
+  <div class="q-card" data-sec="s7">
+    <div class="q-num">Q9</div>
+    <div class="q-jp">私は昨日朝食を食べました。</div>
+    <div class="q-text">I <span class="blank">___</span> breakfast yesterday.</div>
+    <div class="choices">
+      <button class="choice-btn" onclick="answer(this,'s7',9,0)">A. have</button>
+      <button class="choice-btn" onclick="answer(this,'s7',9,1)">B. had</button>
+      <button class="choice-btn" onclick="answer(this,'s7',9,0)">C. has</button>
+      <button class="choice-btn" onclick="answer(this,'s7',9,0)">D. having</button>
+    </div>
+    <div class="feedback" id="fb-s7-9"></div>
+  </div>
+
+  <div class="q-card" data-sec="s7">
+    <div class="q-num">Q10</div>
+    <div class="q-jp">彼は昨日新しいゲームを買いました。</div>
+    <div class="q-text">He <span class="blank">___</span> a new game yesterday.</div>
+    <div class="choices">
+      <button class="choice-btn" onclick="answer(this,'s7',10,0)">A. buyed</button>
+      <button class="choice-btn" onclick="answer(this,'s7',10,0)">B. buy</button>
+      <button class="choice-btn" onclick="answer(this,'s7',10,1)">C. bought</button>
+      <button class="choice-btn" onclick="answer(this,'s7',10,0)">D. buys</button>
+    </div>
+    <div class="feedback" id="fb-s7-10"></div>
+  </div>
+
+  <div class="sec-result" id="result-s7">
+    <div class="result-score" id="score-s7"></div>
+    <div class="result-msg" id="msg-s7"></div>
+    <button class="retry-btn" onclick="retrySection('s7')">もう一度挑戦！</button>
+  </div>
+</div>
+
 <script>
-const SECTIONS = ['s1','s2','s3','s4','s5','s6'];
+const SECTIONS = ['s1','s2','s3','s4','s5','s6','s7'];
 const state = {};
 SECTIONS.forEach(s => {
   state[s] = { answered: 0, correct: 0, done: new Array(11).fill(false) };
@@ -2174,6 +2411,18 @@ const feedbacks = {
     8: { ok:'✅ 正解！過去完了形の疑問文は「Had + 主語 + 過去分詞〜?」です。', ng:'❌ 不正解。過去完了形の疑問文は「Had + 主語 + 過去分詞〜?」です。'},
     9: { ok:'✅ 正解！had never been。「それまでに一度も行ったことがなかった」→ 過去完了形です。', ng:'❌ 不正解。過去の経験がない場合「had never been」を使います。'},
     10:{ ok:'✅ 正解！had made。試合が終わる（過去）より前のミスなので過去完了形です。', ng:'❌ 不正解。「試合終了より前のミス」は過去完了形「had made」です。'}
+  },
+  s7: {
+    1: { ok:'✅ 正解！go（行く）の過去形は went です。不規則変化です！', ng:'❌ 不正解。go → went が正しい過去形です。「goed」は存在しません。'},
+    2: { ok:'✅ 正解！play の過去形は played（-ed をつける）です。', ng:'❌ 不正解。play は規則動詞なので過去形は played です。'},
+    3: { ok:'✅ 正解！eat（食べる）の過去形は ate です。不規則変化です！', ng:'❌ 不正解。eat → ate が正しい過去形です。「eated」は存在しません。'},
+    4: { ok:'✅ 正解！travel の過去形は traveled（-ed をつける）です。', ng:'❌ 不正解。travel は規則動詞なので過去形は traveled です。'},
+    5: { ok:'✅ 正解！play の過去形は played（-ed をつける）です。', ng:'❌ 不正解。play は規則動詞なので過去形は played です。'},
+    6: { ok:'✅ 正解！see（見る・会う）の過去形は saw です。不規則変化です！', ng:'❌ 不正解。see → saw が正しい過去形です。「seen」は過去分詞です。'},
+    7: { ok:'✅ 正解！write（書く）の過去形は wrote です。不規則変化です！', ng:'❌ 不正解。write → wrote が正しい過去形です。「written」は過去分詞です。'},
+    8: { ok:'✅ 正解！make（作る）の過去形は made です。不規則変化です！', ng:'❌ 不正解。make → made が正しい過去形です。「maked」は存在しません。'},
+    9: { ok:'✅ 正解！have（食べる・持つ）の過去形は had です。不規則変化です！', ng:'❌ 不正解。have → had が正しい過去形です。'},
+    10:{ ok:'✅ 正解！buy（買う）の過去形は bought です。不規則変化です！', ng:'❌ 不正解。buy → bought が正しい過去形です。「buyed」は存在しません。'}
   }
 };
 
@@ -2221,9 +2470,9 @@ function updateProgress() {
     total += state[s].answered;
     correct += state[s].correct;
   });
-  const pct = total === 0 ? 0 : Math.round(correct / 60 * 100);
+  const pct = total === 0 ? 0 : Math.round(correct / 70 * 100);
   document.getElementById('totalFill').style.width = pct + '%';
-  document.getElementById('totalLabel').textContent = `${correct} / 60問`;
+  document.getElementById('totalLabel').textContent = `${correct} / 70問`;
 }
 
 function showResult(sec) {
@@ -2281,7 +2530,8 @@ const sentences = {
   s3:{1:"I drink coffee every morning.",2:"She often runs in the park.",3:"The sun rises in the east.",4:"They like baseball.",5:"Ken goes to church every Sunday.",6:"My father works at a bank.",7:"Water boils at 100 degrees.",8:"My sister speaks English and Japanese.",9:"You watch TV every night.",10:"The dog is very big."},
   s4:{1:"I am reading a book now.",2:"She is singing a song now.",3:"The children are playing in the park.",4:"What are you doing now?",5:"He is making dinner now.",6:"We are studying English.",7:"The dog is running in the yard.",8:"She is talking on the phone.",9:"It is raining outside now.",10:"They are listening to music now."},
   s5:{1:"I was eating breakfast at 7 o'clock.",2:"They were watching a movie last night.",3:"She was playing the piano for three hours.",4:"What were you doing yesterday afternoon?",5:"He couldn't answer because he was talking on the phone.",6:"We were singing in the middle of the night.",7:"He was sleeping when I came home.",8:"The children were playing on the beach.",9:"The train wasn't moving when I arrived at the station.",10:"She was studying from 9 to 10 last night."},
-  s6:{1:"I had eaten lunch when she arrived.",2:"The train had left before I arrived at the station.",3:"He had lived in Japan before.",4:"She had gone to bed when I called.",5:"They had never met each other before.",6:"I had finished the popcorn before the movie started.",7:"She had already left when I woke up.",8:"Had he read the book before?",9:"She had never been to the party before.",10:"They realized they had made a mistake after the game ended."}
+  s6:{1:"I had eaten lunch when she arrived.",2:"The train had left before I arrived at the station.",3:"He had lived in Japan before.",4:"She had gone to bed when I called.",5:"They had never met each other before.",6:"I had finished the popcorn before the movie started.",7:"She had already left when I woke up.",8:"Had he read the book before?",9:"She had never been to the party before.",10:"They realized they had made a mistake after the game ended."},
+  s7:{1:"I went to school yesterday.",2:"They played soccer yesterday.",3:"We ate pizza last night.",4:"She traveled to Okinawa last week.",5:"He played the guitar yesterday.",6:"I saw my friend yesterday.",7:"She wrote a letter yesterday.",8:"We made a cake yesterday.",9:"I had breakfast yesterday.",10:"He bought a new game yesterday."}
 };
 
 // ===== 文法構造データ (parts: w=語句 l=ラベル k=キーワード強調) =====
@@ -2357,6 +2607,18 @@ const grammarDetails = {
     8:{parts:[{w:"Had",l:"助動詞(疑問)",k:1},{w:"he",l:"主語"},{w:"read",l:"過去分詞"},{w:"the book",l:"目的語"},{w:"before",l:"副詞"}],rule:"💡 過去完了の疑問文：Had + 主語 + 過去分詞 〜?（read の過去分詞も read）"},
     9:{parts:[{w:"She",l:"主語"},{w:"had never",l:"過去完了の否定",k:1},{w:"been",l:"過去分詞"},{w:"to the party",l:"場所"},{w:"before",l:"副詞"}],rule:"💡 経験がない：had never + been（be → was/were → been）。have been to 〜 = 〜に行ったことがある"},
     10:{parts:[{w:"they",l:"主語(従属節)"},{w:"had",l:"助動詞(過去完了)",k:1},{w:"made",l:"過去分詞"},{w:"a mistake",l:"目的語"},{w:"after the game ended",l:"時"}],rule:"💡 従属節内の過去完了：had + made（make → made → made）。「試合終了より前のミス」"}
+  },
+  s7:{
+    1:{parts:[{w:"I",l:"主語"},{w:"went",l:"過去形(不規則)",k:1},{w:"to school",l:"目的"},{w:"yesterday",l:"時"}],rule:"💡 go → went（不規則動詞）。過去形は動詞1語で「〜した」を表します"},
+    2:{parts:[{w:"They",l:"主語"},{w:"played",l:"過去形(-ed)",k:1},{w:"soccer",l:"目的語"},{w:"yesterday",l:"時"}],rule:"💡 play → played（規則動詞：-ed をつける）。Theyの過去形は主語に関係なく同じ形"},
+    3:{parts:[{w:"We",l:"主語"},{w:"ate",l:"過去形(不規則)",k:1},{w:"pizza",l:"目的語"},{w:"last night",l:"時"}],rule:"💡 eat → ate（不規則動詞）。「eated」は誤りです"},
+    4:{parts:[{w:"She",l:"主語"},{w:"traveled",l:"過去形(-ed)",k:1},{w:"to Okinawa",l:"目的"},{w:"last week",l:"時"}],rule:"💡 travel → traveled（規則動詞：-ed をつける）"},
+    5:{parts:[{w:"He",l:"主語"},{w:"played",l:"過去形(-ed)",k:1},{w:"the guitar",l:"目的語"},{w:"yesterday",l:"時"}],rule:"💡 play → played（規則動詞）。主語がHe/She/Itでも過去形の形は変わりません"},
+    6:{parts:[{w:"I",l:"主語"},{w:"saw",l:"過去形(不規則)",k:1},{w:"my friend",l:"目的語"},{w:"yesterday",l:"時"}],rule:"💡 see → saw（不規則動詞）。seen は過去分詞です（現在完了形で使う）"},
+    7:{parts:[{w:"She",l:"主語"},{w:"wrote",l:"過去形(不規則)",k:1},{w:"a letter",l:"目的語"},{w:"yesterday",l:"時"}],rule:"💡 write → wrote（不規則動詞）。written は過去分詞です"},
+    8:{parts:[{w:"We",l:"主語"},{w:"made",l:"過去形(不規則)",k:1},{w:"a cake",l:"目的語"},{w:"yesterday",l:"時"}],rule:"💡 make → made（不規則動詞）。「maked」は誤りです"},
+    9:{parts:[{w:"I",l:"主語"},{w:"had",l:"過去形(不規則)",k:1},{w:"breakfast",l:"目的語"},{w:"yesterday",l:"時"}],rule:"💡 have → had（不規則動詞）。have は「食べる・持つ」の意味でよく使います"},
+    10:{parts:[{w:"He",l:"主語"},{w:"bought",l:"過去形(不規則)",k:1},{w:"a new game",l:"目的語"},{w:"yesterday",l:"時"}],rule:"💡 buy → bought（不規則動詞）。「buyed」は誤りです"}
   }
 };
 
