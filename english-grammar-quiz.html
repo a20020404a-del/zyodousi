@@ -691,6 +691,37 @@ header p{
   background:linear-gradient(180deg,#ec4899,#f9a8d4);
 }
 .trans-card:hover{transform:translateY(-4px) scale(1.005);box-shadow:0 10px 28px rgba(236,72,153,.14)}
+.trans-input-wrap{display:flex;gap:10px;margin-bottom:0;align-items:stretch;flex-wrap:wrap}
+.trans-input{
+  flex:1;min-width:180px;
+  padding:13px 16px;
+  border:3px solid #f9a8d4;
+  border-radius:16px;
+  font-size:.97rem;
+  font-family:'Noto Sans JP',sans-serif;
+  font-weight:700;
+  color:#1e293b;
+  outline:none;
+  transition:border-color .2s,box-shadow .2s;
+  background:#fff;
+}
+.trans-input::placeholder{color:#cbd5e1;font-weight:400}
+.trans-input:focus{border-color:#ec4899;box-shadow:0 0 0 3px rgba(236,72,153,.15)}
+.trans-input:disabled{background:#f8fafc;color:#475569;cursor:default}
+.trans-input.correct-input{border-color:#10b981!important;background:linear-gradient(135deg,#d1fae5,#f0fdf4)!important}
+.trans-input.wrong-input{border-color:#f43f5e!important;background:linear-gradient(135deg,#ffe4e6,#fff1f2)!important}
+.trans-check-btn{
+  padding:13px 22px;
+  border:none;border-radius:16px;
+  background:linear-gradient(135deg,#ec4899,#f43f5e);
+  color:#fff;font-size:.9rem;font-weight:900;
+  cursor:pointer;font-family:'Noto Sans JP',sans-serif;
+  transition:all .2s;white-space:nowrap;
+  box-shadow:0 4px 14px rgba(236,72,153,.35);
+}
+.trans-check-btn:hover:not(:disabled){transform:translateY(-2px) scale(1.04);box-shadow:0 8px 20px rgba(236,72,153,.45)}
+.trans-check-btn:disabled{background:#e2e8f0;color:#94a3b8;cursor:default;box-shadow:none}
+.correct-ans{display:block;margin-top:6px;font-family:monospace;font-size:.93rem;font-weight:900;color:#9f1239}
 </style>
 </head>
 <body>
@@ -3090,6 +3121,68 @@ function retrySection(sec) {
 }
 
 // ===== 翻訳問題フィードバック =====
+// ===== 翻訳問題の正解 =====
+const transAnswers = {
+  s1:{1:"I am not a doctor.",2:"She doesn't eat meat.",3:"I don't play the piano.",4:"He isn't good at English.",5:"It didn't rain yesterday."},
+  s2:{1:"Are you a student?",2:"Does she like music?",3:"Did he come to the party?",4:"What are you doing now?",5:"Where does she live?"},
+  s3:{1:"I drink coffee every morning.",2:"She often runs in the park.",3:"The sun rises in the east.",4:"Water boils at 100 degrees.",5:"My father works at a bank."},
+  s4:{1:"I am reading a book now.",2:"She is singing a song now.",3:"The children are playing in the park.",4:"He is making dinner now.",5:"They are studying English."},
+  s5:{1:"I was eating breakfast at 7 o'clock.",2:"They were watching a movie last night.",3:"He was sleeping when I came home.",4:"She was studying from 9 to 10 last night.",5:"What were you doing yesterday afternoon?"},
+  s6:{1:"I had eaten lunch when she arrived.",2:"The train had left before I arrived.",3:"She had gone to bed when I called.",4:"I had finished the popcorn before the movie started.",5:"She had already left when I woke up."},
+  s7:{1:"I went to school yesterday.",2:"They played soccer yesterday.",3:"We ate pizza last night.",4:"I saw my friend yesterday.",5:"He bought a new game yesterday."}
+};
+
+// 比較用の正規化（大文字小文字・末尾記号・短縮形を吸収）
+function normTrans(str) {
+  return str.trim().toLowerCase()
+    .replace(/[.?!]+$/,'')
+    .replace(/\s+/g,' ')
+    .replace(/don't|do not/g,'dont')
+    .replace(/doesn't|does not/g,'doesnt')
+    .replace(/didn't|did not/g,'didnt')
+    .replace(/isn't|is not/g,'isnt')
+    .replace(/aren't|are not/g,'arent')
+    .replace(/wasn't|was not/g,'wasnt')
+    .replace(/weren't|were not/g,'werent')
+    .replace(/i'm|i am/g,'im')
+    .replace(/he's|he is/g,'hes')
+    .replace(/she's|she is/g,'shes');
+}
+
+function checkTrans(sec, qNum) {
+  const s = transState[sec];
+  if (s.done[qNum]) return;
+  const input = document.getElementById(`tinput-${sec}-${qNum}`);
+  if (!input) return;
+  const userVal = input.value.trim();
+  if (!userVal) { input.focus(); return; }
+
+  const correct = transAnswers[sec][qNum];
+  const isCorrect = normTrans(userVal) === normTrans(correct);
+
+  s.done[qNum] = true;
+  s.answered++;
+  input.disabled = true;
+  const checkBtn = input.parentElement.querySelector('.trans-check-btn');
+  if (checkBtn) checkBtn.disabled = true;
+
+  const fb = document.getElementById(`tfb-${sec}-${qNum}`);
+  fb.classList.add('show');
+  if (isCorrect) {
+    s.correct++;
+    input.classList.add('correct-input');
+    fb.classList.add('ok');
+    fb.textContent = transFeedbacks[sec][qNum].ok;
+  } else {
+    input.classList.add('wrong-input');
+    fb.classList.add('ng');
+    fb.innerHTML = transFeedbacks[sec][qNum].ng + `<span class="correct-ans">✏️ 正解: ${correct}</span>`;
+  }
+  updateTransStars(sec);
+  updateProgress();
+  if (s.answered === 5) showTransResult(sec);
+}
+
 const transFeedbacks = {
   s1: {
     1:{ ok:'✅ 正解！「I am not」がI（私）のbe動詞否定形！', ng:'❌ 不正解。正解は「I am not a doctor.」am not が否定の基本形！'},
@@ -3193,13 +3286,15 @@ function showTransResult(sec) {
 function retryTrans(sec) {
   transState[sec] = { answered: 0, correct: 0, done: new Array(6).fill(false) };
   const section = document.getElementById(sec);
-  section.querySelectorAll('.trans-card .choice-btn').forEach(btn => {
-    btn.disabled = false;
-    btn.classList.remove('correct','wrong');
+  section.querySelectorAll('.trans-input').forEach(input => {
+    input.value = '';
+    input.disabled = false;
+    input.classList.remove('correct-input','wrong-input');
   });
+  section.querySelectorAll('.trans-check-btn').forEach(btn => btn.disabled = false);
   section.querySelectorAll('.trans-card .feedback').forEach(fb => {
     fb.classList.remove('show','ok','ng');
-    fb.textContent = '';
+    fb.innerHTML = '';
   });
   document.querySelectorAll(`#tstars-${sec} .sec-star`).forEach(s => s.classList.remove('lit'));
   document.getElementById(`tresult-${sec}`).classList.remove('show');
@@ -3366,6 +3461,7 @@ function basicAnswer(btn, fbId, isCorrect, okMsg, ngMsg) {
 
 // ===== ページ読み込み後：音声ボタンを各問題カードに追加 =====
 document.addEventListener('DOMContentLoaded', function() {
+  // 音声ボタンを各問題カードに追加
   document.querySelectorAll('.q-card').forEach(card => {
     const sec = card.dataset.sec;
     const qNum = parseInt((card.querySelector('.q-num')||{}).textContent.replace('Q',''));
@@ -3376,6 +3472,26 @@ document.addEventListener('DOMContentLoaded', function() {
     btn.onclick = function(){ speakText(this); };
     const qText = card.querySelector('.q-text');
     if (qText) qText.after(btn);
+  });
+
+  // 翻訳カードの選択肢→テキスト入力に変換
+  document.querySelectorAll('.trans-card').forEach(card => {
+    const choices = card.querySelector('.choices');
+    if (!choices) return;
+    const fb = card.querySelector('.feedback');
+    if (!fb) return;
+    const match = fb.id.match(/tfb-(\w+)-(\d+)/);
+    if (!match) return;
+    const sec = match[1], qNum = match[2];
+    choices.remove();
+    const wrap = document.createElement('div');
+    wrap.className = 'trans-input-wrap';
+    wrap.innerHTML =
+      `<input type="text" class="trans-input" id="tinput-${sec}-${qNum}" ` +
+      `placeholder="英語で入力してください..." ` +
+      `onkeydown="if(event.key==='Enter')checkTrans('${sec}',${qNum})">` +
+      `<button class="trans-check-btn" onclick="checkTrans('${sec}',${qNum})">確認する ✓</button>`;
+    fb.before(wrap);
   });
 });
 </script>
