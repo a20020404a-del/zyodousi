@@ -625,6 +625,72 @@ header p{
 .basic-fb.show{display:block;animation:feedIn .3s ease}
 .basic-fb.ok{background:linear-gradient(135deg,#d1fae5,#a7f3d0);color:#065f46;border-left:5px solid #10b981}
 .basic-fb.ng{background:linear-gradient(135deg,#ffe4e6,#fecdd3);color:#9f1239;border-left:5px solid #f43f5e}
+
+/* ===== 翻訳問題ブロック ===== */
+.trans-wrap{
+  margin-top:36px;
+  border-radius:28px;
+  overflow:hidden;
+  border:3px solid #f9a8d4;
+  box-shadow:0 6px 28px rgba(236,72,153,.12);
+}
+.trans-header{
+  background:linear-gradient(135deg,#ec4899,#f43f5e);
+  padding:20px 28px;
+  color:#fff;
+  display:flex;
+  align-items:center;
+  gap:16px;
+}
+.trans-header-icon{font-size:2.6rem;animation:illoBounce 2s ease-in-out infinite}
+.trans-header h3{font-family:'Fredoka One',sans-serif;font-size:1.5rem;margin-bottom:4px;letter-spacing:.04em}
+.trans-header p{font-size:.86rem;opacity:.9;font-weight:700}
+.trans-inner{background:#fff;padding:20px 24px}
+.t-num{
+  font-size:.78rem;font-weight:900;color:#fff;letter-spacing:.06em;
+  margin-bottom:10px;display:inline-block;padding:4px 12px;border-radius:20px;
+  background:linear-gradient(135deg,#ec4899,#f43f5e);
+}
+.trans-q{
+  font-size:1.06rem;font-weight:900;color:#1e293b;
+  background:linear-gradient(135deg,#fdf4ff,#fce7f3);
+  border-left:5px solid #ec4899;
+  border-radius:0 16px 16px 0;
+  padding:12px 16px;margin-bottom:16px;
+}
+.trans-stars{display:flex;gap:8px;margin:18px 0 4px;justify-content:center}
+.trans-result{
+  background:linear-gradient(135deg,#fdf4ff,#fce7f3);
+  border-radius:24px;padding:32px 24px;
+  margin-top:20px;text-align:center;
+  border:3px solid #f9a8d4;display:none;
+}
+.trans-result.show{display:block;animation:resultAppear .55s cubic-bezier(.2,.8,.4,1.2)}
+.trans-score{
+  font-family:'Fredoka One',sans-serif;font-size:3.2rem;margin:10px 0;
+  background:linear-gradient(135deg,#ec4899,#f43f5e,#f97316);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
+.trans-retry-btn{
+  padding:14px 38px;border:none;border-radius:50px;
+  font-family:'Noto Sans JP',sans-serif;font-size:.95rem;font-weight:900;
+  cursor:pointer;background:linear-gradient(135deg,#ec4899,#f43f5e);
+  color:#fff;transition:transform .22s,box-shadow .22s;
+  box-shadow:0 6px 20px rgba(236,72,153,.4);letter-spacing:.06em;
+}
+.trans-retry-btn:hover{transform:translateY(-4px) scale(1.04);box-shadow:0 12px 28px rgba(236,72,153,.5)}
+.trans-card{
+  background:#fff;border-radius:26px;padding:22px 24px;
+  margin-bottom:16px;box-shadow:0 4px 20px rgba(0,0,0,.07);
+  position:relative;overflow:hidden;
+  transition:transform .22s,box-shadow .22s;border:3px solid #fce7f3;
+}
+.trans-card::before{
+  content:'';position:absolute;left:0;top:0;bottom:0;width:8px;
+  border-radius:8px 0 0 8px;
+  background:linear-gradient(180deg,#ec4899,#f9a8d4);
+}
+.trans-card:hover{transform:translateY(-4px) scale(1.005);box-shadow:0 10px 28px rgba(236,72,153,.14)}
 </style>
 </head>
 <body>
@@ -641,7 +707,7 @@ header p{
 <div class="total-prog">
   <span style="font-size:1.4rem">🎮</span>
   <div class="prog-bar"><div class="prog-fill" id="totalFill" style="width:0%"></div></div>
-  <div class="prog-label" id="totalLabel">0 / 70問</div>
+  <div class="prog-label" id="totalLabel">0 / 105問</div>
 </div>
 
 <div class="nav-wrap">
@@ -905,6 +971,78 @@ header p{
     <div class="result-msg" id="msg-s1"></div>
     <button class="retry-btn" onclick="retrySection('s1')">もう一度挑戦！</button>
   </div>
+
+  <div class="trans-wrap">
+    <div class="trans-header">
+      <div class="trans-header-icon">🌸</div>
+      <div><h3>日→英 翻訳チャレンジ</h3><p>日本語を英語に直しましょう！否定形のルールを使って！</p></div>
+    </div>
+    <div class="trans-inner">
+      <div class="trans-stars" id="tstars-s1">
+        <span class="sec-star" id="tstar-s1-1">⭐</span><span class="sec-star" id="tstar-s1-2">⭐</span><span class="sec-star" id="tstar-s1-3">⭐</span><span class="sec-star" id="tstar-s1-4">⭐</span><span class="sec-star" id="tstar-s1-5">⭐</span>
+      </div>
+      <div class="trans-card">
+        <div class="t-num">T1</div>
+        <div class="trans-q">私は医者ではありません。</div>
+        <div class="choices">
+          <button class="choice-btn" onclick="transAnswer(this,'s1',1,0)">A. I not am a doctor.</button>
+          <button class="choice-btn" onclick="transAnswer(this,'s1',1,1)">B. I am not a doctor.</button>
+          <button class="choice-btn" onclick="transAnswer(this,'s1',1,0)">C. I don't am a doctor.</button>
+          <button class="choice-btn" onclick="transAnswer(this,'s1',1,0)">D. I am no doctor.</button>
+        </div>
+        <div class="feedback" id="tfb-s1-1"></div>
+      </div>
+      <div class="trans-card">
+        <div class="t-num">T2</div>
+        <div class="trans-q">彼女は肉を食べません。</div>
+        <div class="choices">
+          <button class="choice-btn" onclick="transAnswer(this,'s1',2,0)">A. She not eat meat.</button>
+          <button class="choice-btn" onclick="transAnswer(this,'s1',2,0)">B. She doesn't eats meat.</button>
+          <button class="choice-btn" onclick="transAnswer(this,'s1',2,1)">C. She doesn't eat meat.</button>
+          <button class="choice-btn" onclick="transAnswer(this,'s1',2,0)">D. She isn't eating meat.</button>
+        </div>
+        <div class="feedback" id="tfb-s1-2"></div>
+      </div>
+      <div class="trans-card">
+        <div class="t-num">T3</div>
+        <div class="trans-q">私はピアノを弾きません。</div>
+        <div class="choices">
+          <button class="choice-btn" onclick="transAnswer(this,'s1',3,0)">A. I am not playing the piano.</button>
+          <button class="choice-btn" onclick="transAnswer(this,'s1',3,0)">B. I doesn't play the piano.</button>
+          <button class="choice-btn" onclick="transAnswer(this,'s1',3,1)">C. I don't play the piano.</button>
+          <button class="choice-btn" onclick="transAnswer(this,'s1',3,0)">D. I not play the piano.</button>
+        </div>
+        <div class="feedback" id="tfb-s1-3"></div>
+      </div>
+      <div class="trans-card">
+        <div class="t-num">T4</div>
+        <div class="trans-q">彼は英語が得意ではありません。</div>
+        <div class="choices">
+          <button class="choice-btn" onclick="transAnswer(this,'s1',4,0)">A. He doesn't good at English.</button>
+          <button class="choice-btn" onclick="transAnswer(this,'s1',4,1)">B. He isn't good at English.</button>
+          <button class="choice-btn" onclick="transAnswer(this,'s1',4,0)">C. He not good at English.</button>
+          <button class="choice-btn" onclick="transAnswer(this,'s1',4,0)">D. He aren't good at English.</button>
+        </div>
+        <div class="feedback" id="tfb-s1-4"></div>
+      </div>
+      <div class="trans-card">
+        <div class="t-num">T5</div>
+        <div class="trans-q">昨日は雨が降りませんでした。</div>
+        <div class="choices">
+          <button class="choice-btn" onclick="transAnswer(this,'s1',5,0)">A. It wasn't rain yesterday.</button>
+          <button class="choice-btn" onclick="transAnswer(this,'s1',5,0)">B. It didn't rained yesterday.</button>
+          <button class="choice-btn" onclick="transAnswer(this,'s1',5,1)">C. It didn't rain yesterday.</button>
+          <button class="choice-btn" onclick="transAnswer(this,'s1',5,0)">D. It not rained yesterday.</button>
+        </div>
+        <div class="feedback" id="tfb-s1-5"></div>
+      </div>
+      <div class="trans-result" id="tresult-s1">
+        <div class="trans-score" id="tscore-s1"></div>
+        <div class="result-msg" id="tmsg-s1"></div>
+        <button class="trans-retry-btn" onclick="retryTrans('s1')">もう一度！</button>
+      </div>
+    </div>
+  </div>
 </div>
 
 <!-- ===== SECTION 2: 疑問形 ===== -->
@@ -1141,6 +1279,78 @@ header p{
     <div class="result-score" id="score-s2"></div>
     <div class="result-msg" id="msg-s2"></div>
     <button class="retry-btn" onclick="retrySection('s2')">もう一度挑戦！</button>
+  </div>
+
+  <div class="trans-wrap">
+    <div class="trans-header">
+      <div class="trans-header-icon">🌸</div>
+      <div><h3>日→英 翻訳チャレンジ</h3><p>日本語を英語に直しましょう！疑問形のルールを使って！</p></div>
+    </div>
+    <div class="trans-inner">
+      <div class="trans-stars" id="tstars-s2">
+        <span class="sec-star" id="tstar-s2-1">⭐</span><span class="sec-star" id="tstar-s2-2">⭐</span><span class="sec-star" id="tstar-s2-3">⭐</span><span class="sec-star" id="tstar-s2-4">⭐</span><span class="sec-star" id="tstar-s2-5">⭐</span>
+      </div>
+      <div class="trans-card">
+        <div class="t-num">T1</div>
+        <div class="trans-q">あなたは学生ですか？</div>
+        <div class="choices">
+          <button class="choice-btn" onclick="transAnswer(this,'s2',1,0)">A. You are a student?</button>
+          <button class="choice-btn" onclick="transAnswer(this,'s2',1,1)">B. Are you a student?</button>
+          <button class="choice-btn" onclick="transAnswer(this,'s2',1,0)">C. Do you a student?</button>
+          <button class="choice-btn" onclick="transAnswer(this,'s2',1,0)">D. Is you a student?</button>
+        </div>
+        <div class="feedback" id="tfb-s2-1"></div>
+      </div>
+      <div class="trans-card">
+        <div class="t-num">T2</div>
+        <div class="trans-q">彼女は音楽が好きですか？</div>
+        <div class="choices">
+          <button class="choice-btn" onclick="transAnswer(this,'s2',2,0)">A. Does she likes music?</button>
+          <button class="choice-btn" onclick="transAnswer(this,'s2',2,0)">B. Is she like music?</button>
+          <button class="choice-btn" onclick="transAnswer(this,'s2',2,1)">C. Does she like music?</button>
+          <button class="choice-btn" onclick="transAnswer(this,'s2',2,0)">D. Do she like music?</button>
+        </div>
+        <div class="feedback" id="tfb-s2-2"></div>
+      </div>
+      <div class="trans-card">
+        <div class="t-num">T3</div>
+        <div class="trans-q">彼はパーティーに来ましたか？</div>
+        <div class="choices">
+          <button class="choice-btn" onclick="transAnswer(this,'s2',3,0)">A. Has he come to the party?</button>
+          <button class="choice-btn" onclick="transAnswer(this,'s2',3,0)">B. Did he came to the party?</button>
+          <button class="choice-btn" onclick="transAnswer(this,'s2',3,0)">C. Was he come to the party?</button>
+          <button class="choice-btn" onclick="transAnswer(this,'s2',3,1)">D. Did he come to the party?</button>
+        </div>
+        <div class="feedback" id="tfb-s2-3"></div>
+      </div>
+      <div class="trans-card">
+        <div class="t-num">T4</div>
+        <div class="trans-q">あなたは今何をしていますか？</div>
+        <div class="choices">
+          <button class="choice-btn" onclick="transAnswer(this,'s2',4,0)">A. What do you doing now?</button>
+          <button class="choice-btn" onclick="transAnswer(this,'s2',4,1)">B. What are you doing now?</button>
+          <button class="choice-btn" onclick="transAnswer(this,'s2',4,0)">C. What you are doing now?</button>
+          <button class="choice-btn" onclick="transAnswer(this,'s2',4,0)">D. What is you doing now?</button>
+        </div>
+        <div class="feedback" id="tfb-s2-4"></div>
+      </div>
+      <div class="trans-card">
+        <div class="t-num">T5</div>
+        <div class="trans-q">彼女はどこに住んでいますか？</div>
+        <div class="choices">
+          <button class="choice-btn" onclick="transAnswer(this,'s2',5,0)">A. Where she lives?</button>
+          <button class="choice-btn" onclick="transAnswer(this,'s2',5,0)">B. Where does she lives?</button>
+          <button class="choice-btn" onclick="transAnswer(this,'s2',5,0)">C. Where is she live?</button>
+          <button class="choice-btn" onclick="transAnswer(this,'s2',5,1)">D. Where does she live?</button>
+        </div>
+        <div class="feedback" id="tfb-s2-5"></div>
+      </div>
+      <div class="trans-result" id="tresult-s2">
+        <div class="trans-score" id="tscore-s2"></div>
+        <div class="result-msg" id="tmsg-s2"></div>
+        <button class="trans-retry-btn" onclick="retryTrans('s2')">もう一度！</button>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -1379,6 +1589,78 @@ header p{
     <div class="result-msg" id="msg-s3"></div>
     <button class="retry-btn" onclick="retrySection('s3')">もう一度挑戦！</button>
   </div>
+
+  <div class="trans-wrap">
+    <div class="trans-header">
+      <div class="trans-header-icon">🌸</div>
+      <div><h3>日→英 翻訳チャレンジ</h3><p>日本語を英語に直しましょう！現在形のルールを使って！</p></div>
+    </div>
+    <div class="trans-inner">
+      <div class="trans-stars" id="tstars-s3">
+        <span class="sec-star" id="tstar-s3-1">⭐</span><span class="sec-star" id="tstar-s3-2">⭐</span><span class="sec-star" id="tstar-s3-3">⭐</span><span class="sec-star" id="tstar-s3-4">⭐</span><span class="sec-star" id="tstar-s3-5">⭐</span>
+      </div>
+      <div class="trans-card">
+        <div class="t-num">T1</div>
+        <div class="trans-q">私は毎朝コーヒーを飲みます。</div>
+        <div class="choices">
+          <button class="choice-btn" onclick="transAnswer(this,'s3',1,0)">A. I am drinking coffee every morning.</button>
+          <button class="choice-btn" onclick="transAnswer(this,'s3',1,1)">B. I drink coffee every morning.</button>
+          <button class="choice-btn" onclick="transAnswer(this,'s3',1,0)">C. I drinks coffee every morning.</button>
+          <button class="choice-btn" onclick="transAnswer(this,'s3',1,0)">D. I drank coffee every morning.</button>
+        </div>
+        <div class="feedback" id="tfb-s3-1"></div>
+      </div>
+      <div class="trans-card">
+        <div class="t-num">T2</div>
+        <div class="trans-q">彼女はよく公園で走ります。</div>
+        <div class="choices">
+          <button class="choice-btn" onclick="transAnswer(this,'s3',2,0)">A. She often run in the park.</button>
+          <button class="choice-btn" onclick="transAnswer(this,'s3',2,0)">B. She often is running in the park.</button>
+          <button class="choice-btn" onclick="transAnswer(this,'s3',2,1)">C. She often runs in the park.</button>
+          <button class="choice-btn" onclick="transAnswer(this,'s3',2,0)">D. She often runned in the park.</button>
+        </div>
+        <div class="feedback" id="tfb-s3-2"></div>
+      </div>
+      <div class="trans-card">
+        <div class="t-num">T3</div>
+        <div class="trans-q">太陽は東から昇ります。</div>
+        <div class="choices">
+          <button class="choice-btn" onclick="transAnswer(this,'s3',3,0)">A. The sun rise in the east.</button>
+          <button class="choice-btn" onclick="transAnswer(this,'s3',3,0)">B. The sun is risen in the east.</button>
+          <button class="choice-btn" onclick="transAnswer(this,'s3',3,1)">C. The sun rises in the east.</button>
+          <button class="choice-btn" onclick="transAnswer(this,'s3',3,0)">D. The sun rised in the east.</button>
+        </div>
+        <div class="feedback" id="tfb-s3-3"></div>
+      </div>
+      <div class="trans-card">
+        <div class="t-num">T4</div>
+        <div class="trans-q">水は100度で沸騰します。</div>
+        <div class="choices">
+          <button class="choice-btn" onclick="transAnswer(this,'s3',4,0)">A. Water is boiling at 100 degrees.</button>
+          <button class="choice-btn" onclick="transAnswer(this,'s3',4,0)">B. Water boil at 100 degrees.</button>
+          <button class="choice-btn" onclick="transAnswer(this,'s3',4,1)">C. Water boils at 100 degrees.</button>
+          <button class="choice-btn" onclick="transAnswer(this,'s3',4,0)">D. Water boiled at 100 degrees.</button>
+        </div>
+        <div class="feedback" id="tfb-s3-4"></div>
+      </div>
+      <div class="trans-card">
+        <div class="t-num">T5</div>
+        <div class="trans-q">私の父は銀行で働いています。</div>
+        <div class="choices">
+          <button class="choice-btn" onclick="transAnswer(this,'s3',5,0)">A. My father is working at a bank.</button>
+          <button class="choice-btn" onclick="transAnswer(this,'s3',5,0)">B. My father work at a bank.</button>
+          <button class="choice-btn" onclick="transAnswer(this,'s3',5,1)">C. My father works at a bank.</button>
+          <button class="choice-btn" onclick="transAnswer(this,'s3',5,0)">D. My father worked at a bank.</button>
+        </div>
+        <div class="feedback" id="tfb-s3-5"></div>
+      </div>
+      <div class="trans-result" id="tresult-s3">
+        <div class="trans-score" id="tscore-s3"></div>
+        <div class="result-msg" id="tmsg-s3"></div>
+        <button class="trans-retry-btn" onclick="retryTrans('s3')">もう一度！</button>
+      </div>
+    </div>
+  </div>
 </div>
 
 <!-- ===== SECTION 4: 現在進行形 ===== -->
@@ -1616,6 +1898,78 @@ header p{
     <div class="result-score" id="score-s4"></div>
     <div class="result-msg" id="msg-s4"></div>
     <button class="retry-btn" onclick="retrySection('s4')">もう一度挑戦！</button>
+  </div>
+
+  <div class="trans-wrap">
+    <div class="trans-header">
+      <div class="trans-header-icon">🌸</div>
+      <div><h3>日→英 翻訳チャレンジ</h3><p>日本語を英語に直しましょう！現在進行形のルールを使って！</p></div>
+    </div>
+    <div class="trans-inner">
+      <div class="trans-stars" id="tstars-s4">
+        <span class="sec-star" id="tstar-s4-1">⭐</span><span class="sec-star" id="tstar-s4-2">⭐</span><span class="sec-star" id="tstar-s4-3">⭐</span><span class="sec-star" id="tstar-s4-4">⭐</span><span class="sec-star" id="tstar-s4-5">⭐</span>
+      </div>
+      <div class="trans-card">
+        <div class="t-num">T1</div>
+        <div class="trans-q">私は今本を読んでいます。</div>
+        <div class="choices">
+          <button class="choice-btn" onclick="transAnswer(this,'s4',1,0)">A. I read a book now.</button>
+          <button class="choice-btn" onclick="transAnswer(this,'s4',1,0)">B. I reading a book now.</button>
+          <button class="choice-btn" onclick="transAnswer(this,'s4',1,1)">C. I am reading a book now.</button>
+          <button class="choice-btn" onclick="transAnswer(this,'s4',1,0)">D. I was reading a book now.</button>
+        </div>
+        <div class="feedback" id="tfb-s4-1"></div>
+      </div>
+      <div class="trans-card">
+        <div class="t-num">T2</div>
+        <div class="trans-q">彼女は今歌を歌っています。</div>
+        <div class="choices">
+          <button class="choice-btn" onclick="transAnswer(this,'s4',2,0)">A. She sings a song now.</button>
+          <button class="choice-btn" onclick="transAnswer(this,'s4',2,1)">B. She is singing a song now.</button>
+          <button class="choice-btn" onclick="transAnswer(this,'s4',2,0)">C. She sing a song now.</button>
+          <button class="choice-btn" onclick="transAnswer(this,'s4',2,0)">D. She was singing a song now.</button>
+        </div>
+        <div class="feedback" id="tfb-s4-2"></div>
+      </div>
+      <div class="trans-card">
+        <div class="t-num">T3</div>
+        <div class="trans-q">子供たちは公園で遊んでいます。</div>
+        <div class="choices">
+          <button class="choice-btn" onclick="transAnswer(this,'s4',3,0)">A. The children play in the park.</button>
+          <button class="choice-btn" onclick="transAnswer(this,'s4',3,0)">B. The children played in the park.</button>
+          <button class="choice-btn" onclick="transAnswer(this,'s4',3,1)">C. The children are playing in the park.</button>
+          <button class="choice-btn" onclick="transAnswer(this,'s4',3,0)">D. The children is playing in the park.</button>
+        </div>
+        <div class="feedback" id="tfb-s4-3"></div>
+      </div>
+      <div class="trans-card">
+        <div class="t-num">T4</div>
+        <div class="trans-q">彼は今夕食を作っています。</div>
+        <div class="choices">
+          <button class="choice-btn" onclick="transAnswer(this,'s4',4,0)">A. He makes dinner now.</button>
+          <button class="choice-btn" onclick="transAnswer(this,'s4',4,1)">B. He is making dinner now.</button>
+          <button class="choice-btn" onclick="transAnswer(this,'s4',4,0)">C. He making dinner now.</button>
+          <button class="choice-btn" onclick="transAnswer(this,'s4',4,0)">D. He are making dinner now.</button>
+        </div>
+        <div class="feedback" id="tfb-s4-4"></div>
+      </div>
+      <div class="trans-card">
+        <div class="t-num">T5</div>
+        <div class="trans-q">彼らは今英語を勉強しています。</div>
+        <div class="choices">
+          <button class="choice-btn" onclick="transAnswer(this,'s4',5,0)">A. They study English now.</button>
+          <button class="choice-btn" onclick="transAnswer(this,'s4',5,0)">B. They is studying English.</button>
+          <button class="choice-btn" onclick="transAnswer(this,'s4',5,0)">C. They studying English now.</button>
+          <button class="choice-btn" onclick="transAnswer(this,'s4',5,1)">D. They are studying English.</button>
+        </div>
+        <div class="feedback" id="tfb-s4-5"></div>
+      </div>
+      <div class="trans-result" id="tresult-s4">
+        <div class="trans-score" id="tscore-s4"></div>
+        <div class="result-msg" id="tmsg-s4"></div>
+        <button class="trans-retry-btn" onclick="retryTrans('s4')">もう一度！</button>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -1857,6 +2211,78 @@ header p{
     <div class="result-score" id="score-s5"></div>
     <div class="result-msg" id="msg-s5"></div>
     <button class="retry-btn" onclick="retrySection('s5')">もう一度挑戦！</button>
+  </div>
+
+  <div class="trans-wrap">
+    <div class="trans-header">
+      <div class="trans-header-icon">🌸</div>
+      <div><h3>日→英 翻訳チャレンジ</h3><p>日本語を英語に直しましょう！過去進行形のルールを使って！</p></div>
+    </div>
+    <div class="trans-inner">
+      <div class="trans-stars" id="tstars-s5">
+        <span class="sec-star" id="tstar-s5-1">⭐</span><span class="sec-star" id="tstar-s5-2">⭐</span><span class="sec-star" id="tstar-s5-3">⭐</span><span class="sec-star" id="tstar-s5-4">⭐</span><span class="sec-star" id="tstar-s5-5">⭐</span>
+      </div>
+      <div class="trans-card">
+        <div class="t-num">T1</div>
+        <div class="trans-q">私は7時に朝食を食べていました。</div>
+        <div class="choices">
+          <button class="choice-btn" onclick="transAnswer(this,'s5',1,0)">A. I ate breakfast at 7 o'clock.</button>
+          <button class="choice-btn" onclick="transAnswer(this,'s5',1,1)">B. I was eating breakfast at 7 o'clock.</button>
+          <button class="choice-btn" onclick="transAnswer(this,'s5',1,0)">C. I am eating breakfast at 7 o'clock.</button>
+          <button class="choice-btn" onclick="transAnswer(this,'s5',1,0)">D. I were eating breakfast at 7 o'clock.</button>
+        </div>
+        <div class="feedback" id="tfb-s5-1"></div>
+      </div>
+      <div class="trans-card">
+        <div class="t-num">T2</div>
+        <div class="trans-q">彼らは昨夜映画を見ていました。</div>
+        <div class="choices">
+          <button class="choice-btn" onclick="transAnswer(this,'s5',2,0)">A. They watched a movie last night.</button>
+          <button class="choice-btn" onclick="transAnswer(this,'s5',2,0)">B. They was watching a movie last night.</button>
+          <button class="choice-btn" onclick="transAnswer(this,'s5',2,1)">C. They were watching a movie last night.</button>
+          <button class="choice-btn" onclick="transAnswer(this,'s5',2,0)">D. They are watching a movie last night.</button>
+        </div>
+        <div class="feedback" id="tfb-s5-2"></div>
+      </div>
+      <div class="trans-card">
+        <div class="t-num">T3</div>
+        <div class="trans-q">私が帰宅したとき彼は寝ていました。</div>
+        <div class="choices">
+          <button class="choice-btn" onclick="transAnswer(this,'s5',3,0)">A. He slept when I came home.</button>
+          <button class="choice-btn" onclick="transAnswer(this,'s5',3,0)">B. He is sleeping when I came home.</button>
+          <button class="choice-btn" onclick="transAnswer(this,'s5',3,1)">C. He was sleeping when I came home.</button>
+          <button class="choice-btn" onclick="transAnswer(this,'s5',3,0)">D. He were sleeping when I came home.</button>
+        </div>
+        <div class="feedback" id="tfb-s5-3"></div>
+      </div>
+      <div class="trans-card">
+        <div class="t-num">T4</div>
+        <div class="trans-q">彼女は昨夜9時から10時まで勉強していました。</div>
+        <div class="choices">
+          <button class="choice-btn" onclick="transAnswer(this,'s5',4,0)">A. She studied from 9 to 10 last night.</button>
+          <button class="choice-btn" onclick="transAnswer(this,'s5',4,0)">B. She is studying from 9 to 10 last night.</button>
+          <button class="choice-btn" onclick="transAnswer(this,'s5',4,1)">C. She was studying from 9 to 10 last night.</button>
+          <button class="choice-btn" onclick="transAnswer(this,'s5',4,0)">D. She were studying from 9 to 10 last night.</button>
+        </div>
+        <div class="feedback" id="tfb-s5-4"></div>
+      </div>
+      <div class="trans-card">
+        <div class="t-num">T5</div>
+        <div class="trans-q">昨日の午後あなたは何をしていましたか？</div>
+        <div class="choices">
+          <button class="choice-btn" onclick="transAnswer(this,'s5',5,0)">A. What did you do yesterday afternoon?</button>
+          <button class="choice-btn" onclick="transAnswer(this,'s5',5,0)">B. What you were doing yesterday afternoon?</button>
+          <button class="choice-btn" onclick="transAnswer(this,'s5',5,1)">C. What were you doing yesterday afternoon?</button>
+          <button class="choice-btn" onclick="transAnswer(this,'s5',5,0)">D. What was you doing yesterday afternoon?</button>
+        </div>
+        <div class="feedback" id="tfb-s5-5"></div>
+      </div>
+      <div class="trans-result" id="tresult-s5">
+        <div class="trans-score" id="tscore-s5"></div>
+        <div class="result-msg" id="tmsg-s5"></div>
+        <button class="trans-retry-btn" onclick="retryTrans('s5')">もう一度！</button>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -2102,6 +2528,78 @@ header p{
     <div class="result-msg" id="msg-s6"></div>
     <button class="retry-btn" onclick="retrySection('s6')">もう一度挑戦！</button>
   </div>
+
+  <div class="trans-wrap">
+    <div class="trans-header">
+      <div class="trans-header-icon">🌸</div>
+      <div><h3>日→英 翻訳チャレンジ</h3><p>日本語を英語に直しましょう！過去完了形のルールを使って！</p></div>
+    </div>
+    <div class="trans-inner">
+      <div class="trans-stars" id="tstars-s6">
+        <span class="sec-star" id="tstar-s6-1">⭐</span><span class="sec-star" id="tstar-s6-2">⭐</span><span class="sec-star" id="tstar-s6-3">⭐</span><span class="sec-star" id="tstar-s6-4">⭐</span><span class="sec-star" id="tstar-s6-5">⭐</span>
+      </div>
+      <div class="trans-card">
+        <div class="t-num">T1</div>
+        <div class="trans-q">彼女が到着したとき、私はランチを食べ終えていました。</div>
+        <div class="choices">
+          <button class="choice-btn" onclick="transAnswer(this,'s6',1,0)">A. I ate lunch when she arrived.</button>
+          <button class="choice-btn" onclick="transAnswer(this,'s6',1,1)">B. I had eaten lunch when she arrived.</button>
+          <button class="choice-btn" onclick="transAnswer(this,'s6',1,0)">C. I have eaten lunch when she arrived.</button>
+          <button class="choice-btn" onclick="transAnswer(this,'s6',1,0)">D. I was eating lunch when she arrived.</button>
+        </div>
+        <div class="feedback" id="tfb-s6-1"></div>
+      </div>
+      <div class="trans-card">
+        <div class="t-num">T2</div>
+        <div class="trans-q">私が着く前に電車は出発していました。</div>
+        <div class="choices">
+          <button class="choice-btn" onclick="transAnswer(this,'s6',2,0)">A. The train left before I arrived.</button>
+          <button class="choice-btn" onclick="transAnswer(this,'s6',2,0)">B. The train has left before I arrived.</button>
+          <button class="choice-btn" onclick="transAnswer(this,'s6',2,1)">C. The train had left before I arrived.</button>
+          <button class="choice-btn" onclick="transAnswer(this,'s6',2,0)">D. The train was leaving before I arrived.</button>
+        </div>
+        <div class="feedback" id="tfb-s6-2"></div>
+      </div>
+      <div class="trans-card">
+        <div class="t-num">T3</div>
+        <div class="trans-q">電話したとき、彼女はもう寝ていました。</div>
+        <div class="choices">
+          <button class="choice-btn" onclick="transAnswer(this,'s6',3,0)">A. She went to bed when I called.</button>
+          <button class="choice-btn" onclick="transAnswer(this,'s6',3,1)">B. She had gone to bed when I called.</button>
+          <button class="choice-btn" onclick="transAnswer(this,'s6',3,0)">C. She has gone to bed when I called.</button>
+          <button class="choice-btn" onclick="transAnswer(this,'s6',3,0)">D. She was going to bed when I called.</button>
+        </div>
+        <div class="feedback" id="tfb-s6-3"></div>
+      </div>
+      <div class="trans-card">
+        <div class="t-num">T4</div>
+        <div class="trans-q">映画が始まる前にポップコーンを食べ終えていました。</div>
+        <div class="choices">
+          <button class="choice-btn" onclick="transAnswer(this,'s6',4,0)">A. I finished the popcorn before the movie started.</button>
+          <button class="choice-btn" onclick="transAnswer(this,'s6',4,0)">B. I have finished the popcorn before the movie started.</button>
+          <button class="choice-btn" onclick="transAnswer(this,'s6',4,1)">C. I had finished the popcorn before the movie started.</button>
+          <button class="choice-btn" onclick="transAnswer(this,'s6',4,0)">D. I was finishing the popcorn before the movie started.</button>
+        </div>
+        <div class="feedback" id="tfb-s6-4"></div>
+      </div>
+      <div class="trans-card">
+        <div class="t-num">T5</div>
+        <div class="trans-q">起きたとき、彼女はもう出発していました。</div>
+        <div class="choices">
+          <button class="choice-btn" onclick="transAnswer(this,'s6',5,0)">A. She left when I woke up.</button>
+          <button class="choice-btn" onclick="transAnswer(this,'s6',5,0)">B. She was leaving when I woke up.</button>
+          <button class="choice-btn" onclick="transAnswer(this,'s6',5,0)">C. She has left when I woke up.</button>
+          <button class="choice-btn" onclick="transAnswer(this,'s6',5,1)">D. She had already left when I woke up.</button>
+        </div>
+        <div class="feedback" id="tfb-s6-5"></div>
+      </div>
+      <div class="trans-result" id="tresult-s6">
+        <div class="trans-score" id="tscore-s6"></div>
+        <div class="result-msg" id="tmsg-s6"></div>
+        <button class="trans-retry-btn" onclick="retryTrans('s6')">もう一度！</button>
+      </div>
+    </div>
+  </div>
 </div>
 
 <!-- ===== SECTION 7: 過去形 ===== -->
@@ -2330,13 +2828,87 @@ header p{
     <div class="result-msg" id="msg-s7"></div>
     <button class="retry-btn" onclick="retrySection('s7')">もう一度挑戦！</button>
   </div>
+
+  <div class="trans-wrap">
+    <div class="trans-header">
+      <div class="trans-header-icon">🌸</div>
+      <div><h3>日→英 翻訳チャレンジ</h3><p>日本語を英語に直しましょう！過去形のルールを使って！</p></div>
+    </div>
+    <div class="trans-inner">
+      <div class="trans-stars" id="tstars-s7">
+        <span class="sec-star" id="tstar-s7-1">⭐</span><span class="sec-star" id="tstar-s7-2">⭐</span><span class="sec-star" id="tstar-s7-3">⭐</span><span class="sec-star" id="tstar-s7-4">⭐</span><span class="sec-star" id="tstar-s7-5">⭐</span>
+      </div>
+      <div class="trans-card">
+        <div class="t-num">T1</div>
+        <div class="trans-q">私は昨日学校に行きました。</div>
+        <div class="choices">
+          <button class="choice-btn" onclick="transAnswer(this,'s7',1,0)">A. I go to school yesterday.</button>
+          <button class="choice-btn" onclick="transAnswer(this,'s7',1,0)">B. I gone to school yesterday.</button>
+          <button class="choice-btn" onclick="transAnswer(this,'s7',1,0)">C. I goes to school yesterday.</button>
+          <button class="choice-btn" onclick="transAnswer(this,'s7',1,1)">D. I went to school yesterday.</button>
+        </div>
+        <div class="feedback" id="tfb-s7-1"></div>
+      </div>
+      <div class="trans-card">
+        <div class="t-num">T2</div>
+        <div class="trans-q">彼らは昨日サッカーをしました。</div>
+        <div class="choices">
+          <button class="choice-btn" onclick="transAnswer(this,'s7',2,0)">A. They play soccer yesterday.</button>
+          <button class="choice-btn" onclick="transAnswer(this,'s7',2,1)">B. They played soccer yesterday.</button>
+          <button class="choice-btn" onclick="transAnswer(this,'s7',2,0)">C. They playing soccer yesterday.</button>
+          <button class="choice-btn" onclick="transAnswer(this,'s7',2,0)">D. They plays soccer yesterday.</button>
+        </div>
+        <div class="feedback" id="tfb-s7-2"></div>
+      </div>
+      <div class="trans-card">
+        <div class="t-num">T3</div>
+        <div class="trans-q">私たちは昨夜ピザを食べました。</div>
+        <div class="choices">
+          <button class="choice-btn" onclick="transAnswer(this,'s7',3,0)">A. We eat pizza last night.</button>
+          <button class="choice-btn" onclick="transAnswer(this,'s7',3,0)">B. We eated pizza last night.</button>
+          <button class="choice-btn" onclick="transAnswer(this,'s7',3,1)">C. We ate pizza last night.</button>
+          <button class="choice-btn" onclick="transAnswer(this,'s7',3,0)">D. We eaten pizza last night.</button>
+        </div>
+        <div class="feedback" id="tfb-s7-3"></div>
+      </div>
+      <div class="trans-card">
+        <div class="t-num">T4</div>
+        <div class="trans-q">私は昨日友達に会いました。</div>
+        <div class="choices">
+          <button class="choice-btn" onclick="transAnswer(this,'s7',4,0)">A. I seed my friend yesterday.</button>
+          <button class="choice-btn" onclick="transAnswer(this,'s7',4,0)">B. I see my friend yesterday.</button>
+          <button class="choice-btn" onclick="transAnswer(this,'s7',4,0)">C. I seen my friend yesterday.</button>
+          <button class="choice-btn" onclick="transAnswer(this,'s7',4,1)">D. I saw my friend yesterday.</button>
+        </div>
+        <div class="feedback" id="tfb-s7-4"></div>
+      </div>
+      <div class="trans-card">
+        <div class="t-num">T5</div>
+        <div class="trans-q">彼は昨日新しいゲームを買いました。</div>
+        <div class="choices">
+          <button class="choice-btn" onclick="transAnswer(this,'s7',5,0)">A. He buyed a new game yesterday.</button>
+          <button class="choice-btn" onclick="transAnswer(this,'s7',5,0)">B. He buy a new game yesterday.</button>
+          <button class="choice-btn" onclick="transAnswer(this,'s7',5,0)">C. He buys a new game yesterday.</button>
+          <button class="choice-btn" onclick="transAnswer(this,'s7',5,1)">D. He bought a new game yesterday.</button>
+        </div>
+        <div class="feedback" id="tfb-s7-5"></div>
+      </div>
+      <div class="trans-result" id="tresult-s7">
+        <div class="trans-score" id="tscore-s7"></div>
+        <div class="result-msg" id="tmsg-s7"></div>
+        <button class="trans-retry-btn" onclick="retryTrans('s7')">もう一度！</button>
+      </div>
+    </div>
+  </div>
 </div>
 
 <script>
 const SECTIONS = ['s1','s2','s3','s4','s5','s6','s7'];
 const state = {};
+const transState = {};
 SECTIONS.forEach(s => {
   state[s] = { answered: 0, correct: 0, done: new Array(11).fill(false) };
+  transState[s] = { answered: 0, correct: 0, done: new Array(6).fill(false) };
 });
 
 const feedbacks = {
@@ -2469,10 +3041,12 @@ function updateProgress() {
   SECTIONS.forEach(s => {
     total += state[s].answered;
     correct += state[s].correct;
+    total += transState[s].answered;
+    correct += transState[s].correct;
   });
-  const pct = total === 0 ? 0 : Math.round(correct / 70 * 100);
+  const pct = total === 0 ? 0 : Math.round(correct / 105 * 100);
   document.getElementById('totalFill').style.width = pct + '%';
-  document.getElementById('totalLabel').textContent = `${correct} / 70問`;
+  document.getElementById('totalLabel').textContent = `${correct} / 105問`;
 }
 
 function showResult(sec) {
@@ -2501,17 +3075,134 @@ function retrySection(sec) {
   state[sec] = { answered: 0, correct: 0, done: new Array(11).fill(false) };
 
   const section = document.getElementById(sec);
-  section.querySelectorAll('.choice-btn').forEach(btn => {
+  section.querySelectorAll('.q-card .choice-btn').forEach(btn => {
     btn.disabled = false;
     btn.classList.remove('correct','wrong');
   });
-  section.querySelectorAll('.feedback').forEach(fb => {
+  section.querySelectorAll('.q-card .feedback').forEach(fb => {
     fb.classList.remove('show','ok','ng');
     fb.innerHTML = '';
   });
-  section.querySelectorAll('.sec-star').forEach(s => s.classList.remove('lit'));
+  document.querySelectorAll(`#stars-${sec} .sec-star`).forEach(s => s.classList.remove('lit'));
   document.getElementById(`result-${sec}`).classList.remove('show');
 
+  updateProgress();
+}
+
+// ===== 翻訳問題フィードバック =====
+const transFeedbacks = {
+  s1: {
+    1:{ ok:'✅ 正解！「I am not」がI（私）のbe動詞否定形！', ng:'❌ 不正解。正解は「I am not a doctor.」am not が否定の基本形！'},
+    2:{ ok:'✅ 正解！三単現の否定は doesn\'t＋動詞の原形！', ng:'❌ 不正解。正解は「She doesn\'t eat meat.」doesn\'tのあとは原形！'},
+    3:{ ok:'✅ 正解！I の一般動詞否定は don\'t＋動詞の原形！', ng:'❌ 不正解。正解は「I don\'t play the piano.」I→don\'t！'},
+    4:{ ok:'✅ 正解！He→is の否定は isn\'t！', ng:'❌ 不正解。正解は「He isn\'t good at English.」isの否定はisn\'t！'},
+    5:{ ok:'✅ 正解！過去の一般動詞否定は didn\'t＋原形！', ng:'❌ 不正解。正解は「It didn\'t rain yesterday.」過去否定はdidn\'t＋原形！'}
+  },
+  s2: {
+    1:{ ok:'✅ 正解！be動詞疑問文はbe動詞を文頭に！「Are you〜?」', ng:'❌ 不正解。正解は「Are you a student?」Areを文頭に出す！'},
+    2:{ ok:'✅ 正解！三単現疑問文は Does＋主語＋動詞の原形！', ng:'❌ 不正解。正解は「Does she like music?」Doesのあとは原形！'},
+    3:{ ok:'✅ 正解！過去の疑問文は Did＋主語＋動詞の原形！', ng:'❌ 不正解。正解は「Did he come to the party?」Didのあとは原形！'},
+    4:{ ok:'✅ 正解！進行形疑問文は「What are you doing〜?」', ng:'❌ 不正解。正解は「What are you doing now?」are youの語順！'},
+    5:{ ok:'✅ 正解！疑問詞＋does＋主語＋動詞の原形！', ng:'❌ 不正解。正解は「Where does she live?」三単現なのでdoes＋原形！'}
+  },
+  s3: {
+    1:{ ok:'✅ 正解！I の習慣は動詞の原形そのまま！', ng:'❌ 不正解。正解は「I drink coffee every morning.」Iには-sをつけない！'},
+    2:{ ok:'✅ 正解！She（三単現）の動詞は runs！', ng:'❌ 不正解。正解は「She often runs in the park.」She→-s！'},
+    3:{ ok:'✅ 正解！科学的事実も現在形、The sun→rises！', ng:'❌ 不正解。正解は「The sun rises in the east.」rises（三単現）！'},
+    4:{ ok:'✅ 正解！自然法則も現在形、Water→boils！', ng:'❌ 不正解。正解は「Water boils at 100 degrees.」boils（三単現）！'},
+    5:{ ok:'✅ 正解！My father（三単現）→ works！', ng:'❌ 不正解。正解は「My father works at a bank.」三単現は-s！'}
+  },
+  s4: {
+    1:{ ok:'✅ 正解！「今〜しています」は am/is/are＋動詞ing！', ng:'❌ 不正解。正解は「I am reading a book now.」am＋reading！'},
+    2:{ ok:'✅ 正解！She→is＋動詞ing「is singing」！', ng:'❌ 不正解。正解は「She is singing a song now.」is＋ing！'},
+    3:{ ok:'✅ 正解！複数→are＋動詞ing「are playing」！', ng:'❌ 不正解。正解は「The children are playing in the park.」複数→are！'},
+    4:{ ok:'✅ 正解！He→is＋動詞ing「is making」！', ng:'❌ 不正解。正解は「He is making dinner now.」He→is＋ing！'},
+    5:{ ok:'✅ 正解！They（複数）→are＋動詞ing！', ng:'❌ 不正解。正解は「They are studying English.」They→are＋ing！'}
+  },
+  s5: {
+    1:{ ok:'✅ 正解！過去進行形はwas/were＋動詞ing、I→was！', ng:'❌ 不正解。正解は「I was eating breakfast at 7 o\'clock.」I→was＋ing！'},
+    2:{ ok:'✅ 正解！They（複数）→were＋動詞ing！', ng:'❌ 不正解。正解は「They were watching a movie last night.」They→were！'},
+    3:{ ok:'✅ 正解！He（単数）→was＋動詞ing！', ng:'❌ 不正解。正解は「He was sleeping when I came home.」He→was＋ing！'},
+    4:{ ok:'✅ 正解！She（単数）→was＋動詞ing！', ng:'❌ 不正解。正解は「She was studying from 9 to 10 last night.」She→was！'},
+    5:{ ok:'✅ 正解！過去進行の疑問文：What were you doing〜?', ng:'❌ 不正解。正解は「What were you doing yesterday afternoon?」you→were！'}
+  },
+  s6: {
+    1:{ ok:'✅ 正解！過去完了形はhad＋過去分詞！「had eaten」！', ng:'❌ 不正解。正解は「I had eaten lunch when she arrived.」had＋eaten！'},
+    2:{ ok:'✅ 正解！「着く前に出発していた」→ had＋left！', ng:'❌ 不正解。正解は「The train had left before I arrived.」had＋left！'},
+    3:{ ok:'✅ 正解！「電話時点より前に就寝」→ had＋gone！', ng:'❌ 不正解。正解は「She had gone to bed when I called.」had＋gone！'},
+    4:{ ok:'✅ 正解！「映画前に食べ終えた」→ had＋finished！', ng:'❌ 不正解。正解は「I had finished the popcorn before the movie started.」had＋finished！'},
+    5:{ ok:'✅ 正解！already＋過去完了形「had already left」！', ng:'❌ 不正解。正解は「She had already left when I woke up.」had already＋left！'}
+  },
+  s7: {
+    1:{ ok:'✅ 正解！go→went（不規則動詞）！', ng:'❌ 不正解。正解は「I went to school yesterday.」go→went！'},
+    2:{ ok:'✅ 正解！play→played（規則動詞：-edをつける）！', ng:'❌ 不正解。正解は「They played soccer yesterday.」play→played！'},
+    3:{ ok:'✅ 正解！eat→ate（不規則動詞）！', ng:'❌ 不正解。正解は「We ate pizza last night.」eat→ate！'},
+    4:{ ok:'✅ 正解！see→saw（不規則動詞）！', ng:'❌ 不正解。正解は「I saw my friend yesterday.」see→saw！'},
+    5:{ ok:'✅ 正解！buy→bought（不規則動詞）！', ng:'❌ 不正解。正解は「He bought a new game yesterday.」buy→bought！'}
+  }
+};
+
+// ===== 翻訳問題 回答処理 =====
+function transAnswer(btn, sec, qNum, isCorrect) {
+  const s = transState[sec];
+  if (s.done[qNum]) return;
+  s.done[qNum] = true;
+  s.answered++;
+  const card = btn.closest('.trans-card');
+  card.querySelectorAll('.choice-btn').forEach(b => b.disabled = true);
+  const fb = document.getElementById(`tfb-${sec}-${qNum}`);
+  fb.classList.add('show');
+  if (isCorrect) {
+    s.correct++;
+    btn.classList.add('correct');
+    fb.classList.add('ok');
+    fb.textContent = transFeedbacks[sec][qNum].ok;
+  } else {
+    btn.classList.add('wrong');
+    fb.classList.add('ng');
+    fb.textContent = transFeedbacks[sec][qNum].ng;
+  }
+  updateTransStars(sec);
+  updateProgress();
+  if (s.answered === 5) showTransResult(sec);
+}
+
+function updateTransStars(sec) {
+  const s = transState[sec];
+  document.querySelectorAll(`#tstars-${sec} .sec-star`).forEach((el, i) => {
+    if (i < s.correct) el.classList.add('lit');
+  });
+}
+
+function showTransResult(sec) {
+  const s = transState[sec];
+  const resultEl = document.getElementById(`tresult-${sec}`);
+  resultEl.classList.add('show');
+  document.getElementById(`tscore-${sec}`).textContent = `${s.correct} / 5問 正解！`;
+  const msgs = [
+    [5,'🏆🎉 かんぺき！翻訳マスター！'],
+    [4,'🌟✨ すばらしい！あと1問！'],
+    [3,'😊👍 よくできました！もう一度！'],
+    [0,'💪🔥 英文のルールをもう一度確認しよう！']
+  ];
+  for (const [min, msg] of msgs) {
+    if (s.correct >= min) { document.getElementById(`tmsg-${sec}`).textContent = msg; break; }
+  }
+}
+
+function retryTrans(sec) {
+  transState[sec] = { answered: 0, correct: 0, done: new Array(6).fill(false) };
+  const section = document.getElementById(sec);
+  section.querySelectorAll('.trans-card .choice-btn').forEach(btn => {
+    btn.disabled = false;
+    btn.classList.remove('correct','wrong');
+  });
+  section.querySelectorAll('.trans-card .feedback').forEach(fb => {
+    fb.classList.remove('show','ok','ng');
+    fb.textContent = '';
+  });
+  document.querySelectorAll(`#tstars-${sec} .sec-star`).forEach(s => s.classList.remove('lit'));
+  document.getElementById(`tresult-${sec}`).classList.remove('show');
   updateProgress();
 }
 
