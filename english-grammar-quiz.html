@@ -503,6 +503,10 @@ header p{
 .struct-lbl{font-size:.66rem;color:#64748b;white-space:nowrap;font-weight:700}
 .struct-plus{font-size:1.1rem;color:#cbd5e1;padding:0 2px;margin-top:5px;align-self:flex-start}
 .gd-rule{background:linear-gradient(135deg,#f0fdf4,#dcfce7);padding:10px 16px;font-size:.85rem;color:#065f46;font-weight:700;line-height:1.65;border-left:5px solid #10b981}
+.trans-detail{margin-top:12px;border-radius:16px;overflow:hidden;border:2px solid #fde68a}
+.td-header{background:linear-gradient(135deg,#fffbeb,#fef3c7);padding:9px 16px;font-weight:900;font-size:.78rem;color:#92400e;letter-spacing:.04em}
+.td-structure{background:#fff7ed;padding:10px 16px;font-family:monospace;font-size:.95rem;font-weight:700;color:#7c2d12;border-bottom:2px solid #fcd34d;line-height:1.6}
+.td-rule{background:linear-gradient(135deg,#f0fdf4,#dcfce7);padding:10px 16px;font-size:.85rem;color:#065f46;font-weight:700;line-height:1.65;border-left:5px solid #10b981}
 
 /* ===== 詳細解説ボックス ===== */
 .detail-box{
@@ -3180,6 +3184,104 @@ const transAnswers = {
       6:"She traveled to Okinawa last week.",7:"He played the guitar yesterday.",8:"We made a cake yesterday.",9:"She wrote a letter yesterday.",10:"I had breakfast yesterday."}
 };
 
+// ===== 翻訳問題 文法解説データ =====
+const transDetails = {
+  s1:{
+    1:{s:"I ＋ <b>am not</b> ＋ a doctor",r:"💡 I のbe動詞は am → 否定は <b>am not</b>（短縮形なし）。「I'm not」はOK。"},
+    2:{s:"She ＋ <b>doesn't</b> ＋ eat ＋ meat",r:"💡 He/She/It（三単現）の一般動詞否定は <b>does not（doesn't）＋ 動詞の原形</b>。eatsのsは消える！"},
+    3:{s:"I ＋ <b>don't</b> ＋ play ＋ the piano",r:"💡 I/You/We/They の一般動詞否定は <b>do not（don't）＋ 動詞の原形</b>。"},
+    4:{s:"He ＋ <b>isn't</b> ＋ good at ＋ English",r:"💡 He/She/It の現在be動詞は is → 否定は <b>is not（isn't）</b>。"},
+    5:{s:"It ＋ <b>didn't</b> ＋ rain ＋ yesterday",r:"💡 過去の一般動詞否定は主語に関わらず <b>did not（didn't）＋ 動詞の原形</b>。rainsのsは消える！"},
+    6:{s:"They ＋ <b>are not</b> ＋ friends",r:"💡 They/We/You のbe動詞は are → 否定は <b>are not（aren't）</b>。"},
+    7:{s:"We ＋ <b>are not</b> ＋ tired",r:"💡 We のbe動詞は are → 否定は <b>are not（aren't）</b>。"},
+    8:{s:"He ＋ <b>doesn't</b> ＋ have ＋ a car",r:"💡 He（三単現）の一般動詞否定 → <b>doesn't ＋ 原形</b>。have はそのまま。"},
+    9:{s:"I ＋ <b>didn't</b> ＋ see ＋ him ＋ yesterday",r:"💡 過去否定は <b>didn't ＋ 動詞の原形</b>。saw → see に戻る！"},
+    10:{s:"The movie ＋ <b>wasn't</b> ＋ interesting",r:"💡 単数主語の過去be動詞は was → 否定は <b>was not（wasn't）</b>。"}
+  },
+  s2:{
+    1:{s:"<b>Are</b> ＋ you ＋ a student ＋ ?",r:"💡 be動詞の疑問文は <b>be動詞を文頭に出す</b>。You → Are you〜?"},
+    2:{s:"<b>Does</b> ＋ she ＋ like ＋ music ＋ ?",r:"💡 三単現の疑問文は <b>Does ＋ 主語 ＋ 動詞の原形</b>。likesのsは消える！"},
+    3:{s:"<b>Did</b> ＋ he ＋ come ＋ to the party ＋ ?",r:"💡 過去の疑問文は <b>Did ＋ 主語 ＋ 動詞の原形</b>。came → come に戻る！"},
+    4:{s:"<b>What</b> ＋ are ＋ you ＋ doing ＋ now ＋ ?",r:"💡 疑問詞＋現在進行形疑問文：<b>What ＋ are ＋ 主語 ＋ 動詞ing</b>？"},
+    5:{s:"<b>Where</b> ＋ does ＋ she ＋ live ＋ ?",r:"💡 疑問詞＋三単現疑問文：<b>疑問詞 ＋ does ＋ 主語 ＋ 動詞の原形</b>。"},
+    6:{s:"<b>Are</b> ＋ you ＋ busy ＋ ?",r:"💡 状態を尋ねるbe動詞疑問文。You → <b>Are you〜?</b>"},
+    7:{s:"<b>What sports</b> ＋ do ＋ you ＋ play ＋ ?",r:"💡 疑問詞が目的語：<b>What ＋ 名詞 ＋ do ＋ 主語 ＋ 動詞の原形</b>？"},
+    8:{s:"<b>Did</b> ＋ you ＋ watch ＋ this movie ＋ ?",r:"💡 過去の疑問文：<b>Did ＋ 主語 ＋ 動詞の原形</b>。watched → watch に戻る！"},
+    9:{s:"<b>Is</b> ＋ the store ＋ open ＋ today ＋ ?",r:"💡 単数名詞の状態を尋ねる：<b>Is ＋ 主語 ＋ 形容詞〜?</b>"},
+    10:{s:"<b>What time</b> ＋ did ＋ you ＋ wake up ＋ yesterday ＋ ?",r:"💡 時刻を尋ねる過去疑問文：<b>What time ＋ did ＋ 主語 ＋ 動詞の原形</b>？"}
+  },
+  s3:{
+    1:{s:"I ＋ <b>drink</b> ＋ coffee ＋ every morning",r:"💡 I の現在形は動詞をそのまま使う（-s不要）。習慣・事実は<b>現在形</b>で表す。"},
+    2:{s:"She ＋ <b>runs</b> ＋ in the park ＋ often",r:"💡 She（三単現）の一般動詞は <b>-s をつける</b>。run → runs。"},
+    3:{s:"The sun ＋ <b>rises</b> ＋ in the east",r:"💡 科学的事実・自然現象も現在形。The sun（三単現）→ rise → <b>rises</b>。"},
+    4:{s:"Water ＋ <b>boils</b> ＋ at 100 degrees",r:"💡 普遍的な真実も現在形。Water（三単現扱い）→ boil → <b>boils</b>。"},
+    5:{s:"My father ＋ <b>works</b> ＋ at a bank",r:"💡 My father（三単現）→ work → <b>works</b>。職業・習慣は現在形！"},
+    6:{s:"They ＋ <b>like</b> ＋ baseball",r:"💡 They（複数）の動詞は原形のまま（-s不要）。like はそのまま。"},
+    7:{s:"Ken ＋ <b>goes</b> ＋ to church ＋ every Sunday",r:"💡 Ken（三単現）→ go → <b>goes</b>（語尾-oには-esをつける）。"},
+    8:{s:"My sister ＋ <b>speaks</b> ＋ English and Japanese",r:"💡 My sister（三単現）→ speak → <b>speaks</b>（-s追加）。"},
+    9:{s:"You ＋ <b>watch</b> ＋ TV ＋ every night",r:"💡 You の動詞は原形のまま（-s不要）。watch はそのまま。"},
+    10:{s:"The dog ＋ <b>is</b> ＋ very big",r:"💡 単数名詞の状態を表すbe動詞。The dog（単数）→ <b>is</b>。"}
+  },
+  s4:{
+    1:{s:"I ＋ <b>am reading</b> ＋ a book ＋ now",r:"💡 今まさにしている動作は <b>be動詞 ＋ 動詞ing</b>。I → am reading。"},
+    2:{s:"She ＋ <b>is singing</b> ＋ a song ＋ now",r:"💡 She → is。現在進行形：<b>is ＋ sing → singing</b>（-e消してing）。"},
+    3:{s:"The children ＋ <b>are playing</b> ＋ in the park",r:"💡 複数（children）→ are。現在進行形：<b>are ＋ playing</b>。"},
+    4:{s:"He ＋ <b>is making</b> ＋ dinner ＋ now",r:"💡 He → is。<b>make → making</b>（-e を消して -ing）。"},
+    5:{s:"They ＋ <b>are studying</b> ＋ English",r:"💡 They（複数）→ are。<b>study → studying</b>（-y はそのまま -ing）。"},
+    6:{s:"They ＋ <b>are listening</b> ＋ to music ＋ now",r:"💡 They → are。listen → <b>listening</b>（-ing をそのままつける）。"},
+    7:{s:"The dog ＋ <b>is running</b> ＋ in the yard",r:"💡 単数 → is。<b>run → running</b>（語尾の子音を重ねて -ing）。"},
+    8:{s:"She ＋ <b>is talking</b> ＋ on the phone",r:"💡 She → is。talk → <b>talking</b>（そのまま -ing をつける）。"},
+    9:{s:"It ＋ <b>is raining</b> ＋ outside ＋ now",r:"💡 It → is。rain → <b>raining</b>。天気・自然現象も進行形OK！"},
+    10:{s:"We ＋ <b>are studying</b> ＋ English",r:"💡 We（複数）→ are。study → <b>studying</b>（-y はそのまま ing）。"}
+  },
+  s5:{
+    1:{s:"I ＋ <b>was eating</b> ＋ breakfast ＋ at 7 o'clock",r:"💡 過去のある時点に進行中だった動作は <b>was/were ＋ 動詞ing</b>。I → was eating。"},
+    2:{s:"They ＋ <b>were watching</b> ＋ a movie ＋ last night",r:"💡 They（複数）→ were。過去進行形：<b>were ＋ watching</b>。"},
+    3:{s:"He ＋ <b>was sleeping</b> ＋ when I came home",r:"💡 He（単数）→ was。when節の過去形と組み合わせた過去進行形！"},
+    4:{s:"She ＋ <b>was studying</b> ＋ from 9 to 10 ＋ last night",r:"💡 She（単数）→ was。「〜から〜まで」継続していた → <b>was studying</b>。"},
+    5:{s:"<b>What</b> ＋ were ＋ you ＋ doing ＋ yesterday afternoon ＋ ?",r:"💡 過去進行の疑問文：<b>What ＋ were ＋ 主語 ＋ 動詞ing</b>？"},
+    6:{s:"She ＋ <b>was playing</b> ＋ the piano ＋ for three hours",r:"💡 She → was。「〜の間ずっと」継続は過去進行形 <b>was playing</b>。"},
+    7:{s:"We ＋ <b>were singing</b> ＋ in the middle of the night",r:"💡 We（複数）→ were。sing → <b>singing</b>（そのまま -ing）。"},
+    8:{s:"The children ＋ <b>were playing</b> ＋ on the beach",r:"💡 複数（children）→ were。play → <b>playing</b>。"},
+    9:{s:"He ＋ <b>was talking</b> ＋ on the phone",r:"💡 He（単数）→ was。talk → <b>talking</b>（そのまま -ing）。"},
+    10:{s:"The train ＋ <b>wasn't moving</b> ＋ when I arrived",r:"💡 単数 → was の否定 → <b>wasn't</b>。move → <b>moving</b>（-e 消して ing）。"}
+  },
+  s6:{
+    1:{s:"I ＋ <b>had eaten</b> ＋ lunch ＋ when she arrived",r:"💡 過去のある時点より前に完了した動作は <b>had ＋ 過去分詞</b>。eat → <b>eaten</b>。"},
+    2:{s:"The train ＋ <b>had left</b> ＋ before I arrived",r:"💡 arrive（着く）より前に left（出た）→ 過去完了 <b>had left</b>。leave → left（不規則）。"},
+    3:{s:"She ＋ <b>had gone</b> ＋ to bed ＋ when I called",r:"💡 called（電話した）より前に寝ていた → <b>had gone</b>。go → gone（不規則分詞）。"},
+    4:{s:"I ＋ <b>had finished</b> ＋ the popcorn ＋ before the movie started",r:"💡 映画開始より前に食べ終えた → <b>had finished</b>（規則変化: -ed）。"},
+    5:{s:"She ＋ <b>had already left</b> ＋ when I woke up",r:"💡 already（もう）と過去完了の相性が◎。<b>had already ＋ 過去分詞</b>。"},
+    6:{s:"He ＋ <b>had lived</b> ＋ in Japan ＋ before",r:"💡 過去の経験・継続（今はもう終わっている）→ <b>had lived</b>（規則変化）。"},
+    7:{s:"They ＋ <b>had never met</b> ＋ each other ＋ before",r:"💡 never（一度も〜ない）＋過去完了：<b>had never ＋ 過去分詞</b>。meet → <b>met</b>（不規則）。"},
+    8:{s:"<b>Had</b> ＋ he ＋ read ＋ the book ＋ before ＋ ?",r:"💡 過去完了の疑問文：<b>Had ＋ 主語 ＋ 過去分詞</b>？read の過去分詞も <b>read</b>（発音は「レッド」）。"},
+    9:{s:"She ＋ <b>had never been</b> ＋ to the party ＋ before",r:"💡 「行ったことがない」→ <b>had never been to〜</b>。be の過去分詞は <b>been</b>。"},
+    10:{s:"They realized ＋ they ＋ <b>had made</b> ＋ a mistake",r:"💡 realizedより前の出来事 → 従属節内で <b>had made</b>（時制の一致）。make → made（不規則）。"}
+  },
+  s7:{
+    1:{s:"I ＋ <b>went</b> ＋ to school ＋ yesterday",r:"💡 go の過去形は <b>went</b>（不規則変化）。過去の出来事には過去形を使う！"},
+    2:{s:"They ＋ <b>played</b> ＋ soccer ＋ yesterday",r:"💡 play → <b>played</b>（規則変化：-ed をつけるだけ）。"},
+    3:{s:"We ＋ <b>ate</b> ＋ pizza ＋ last night",r:"💡 eat の過去形は <b>ate</b>（不規則変化）。"},
+    4:{s:"I ＋ <b>saw</b> ＋ my friend ＋ yesterday",r:"💡 see の過去形は <b>saw</b>（不規則変化）。"},
+    5:{s:"He ＋ <b>bought</b> ＋ a new game ＋ yesterday",r:"💡 buy の過去形は <b>bought</b>（不規則変化）。"},
+    6:{s:"She ＋ <b>traveled</b> ＋ to Okinawa ＋ last week",r:"💡 travel → <b>traveled</b>（規則変化：-ed をつける）。"},
+    7:{s:"He ＋ <b>played</b> ＋ the guitar ＋ yesterday",r:"💡 play → <b>played</b>（規則変化：-ed）。"},
+    8:{s:"We ＋ <b>made</b> ＋ a cake ＋ yesterday",r:"💡 make の過去形は <b>made</b>（不規則変化）。"},
+    9:{s:"She ＋ <b>wrote</b> ＋ a letter ＋ yesterday",r:"💡 write の過去形は <b>wrote</b>（不規則変化）。"},
+    10:{s:"I ＋ <b>had</b> ＋ breakfast ＋ yesterday",r:"💡 have の過去形は <b>had</b>（不規則変化）。"}
+  }
+};
+
+function buildTransDetail(sec, qNum) {
+  const d = transDetails[sec] && transDetails[sec][qNum];
+  if (!d) return '';
+  return `<div class="trans-detail">
+    <div class="td-header">📝 文法解説</div>
+    <div class="td-structure">✏️ ${d.s}</div>
+    <div class="td-rule">${d.r}</div>
+  </div>`;
+}
+
 // 比較用の正規化（大文字小文字・末尾記号・短縮形を吸収）
 function normTrans(str) {
   return str.trim().toLowerCase()
@@ -3217,16 +3319,16 @@ function checkTrans(sec, qNum) {
   if (!userVal) {
     // 空欄のまま確認 → 答えを表示（採点しない）
     fb.classList.add('reveal');
-    fb.innerHTML = `📖 答えを確認しよう！<span class="reveal-ans">✏️ ${correct}</span>`;
+    fb.innerHTML = `📖 答えを確認しよう！<span class="reveal-ans">✏️ ${correct}</span>` + buildTransDetail(sec, qNum);
   } else if (normTrans(userVal) === normTrans(correct)) {
     s.correct++;
     input.classList.add('correct-input');
     fb.classList.add('ok');
-    fb.textContent = transFeedbacks[sec][qNum].ok;
+    fb.innerHTML = transFeedbacks[sec][qNum].ok + buildTransDetail(sec, qNum);
   } else {
     input.classList.add('wrong-input');
     fb.classList.add('ng');
-    fb.innerHTML = transFeedbacks[sec][qNum].ng + `<span class="correct-ans">✏️ 正解: ${correct}</span>`;
+    fb.innerHTML = transFeedbacks[sec][qNum].ng + `<span class="correct-ans">✏️ 正解: ${correct}</span>` + buildTransDetail(sec, qNum);
   }
   updateTransStars(sec);
   updateProgress();
