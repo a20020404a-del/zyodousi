@@ -121,6 +121,64 @@ header p{color:rgba(255,255,255,.88);font-size:.9rem;font-weight:500}
   .sec-banner{flex-direction:column;text-align:center}
   header h1{font-size:1.5rem}
 }
+
+/* ===== 音声ボタン ===== */
+.audio-btn{display:inline-flex;align-items:center;gap:5px;padding:7px 16px;border:2px solid #818cf8;border-radius:20px;background:#eef2ff;color:#4f46e5;font-size:.82rem;font-weight:700;cursor:pointer;margin:0 0 12px;transition:all .2s;font-family:'Noto Sans JP',sans-serif}
+.audio-btn:hover{background:#818cf8;color:#fff;transform:scale(1.04)}
+.audio-btn.speaking{background:#818cf8;color:#fff;animation:audioPulse .8s infinite}
+@keyframes audioPulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.72;transform:scale(.97)}}
+
+/* ===== 文法詳細パネル ===== */
+.grammar-detail{margin-top:12px;border-radius:12px;overflow:hidden;border:1px solid #e2e8f0}
+.gd-header{background:#f1f5f9;padding:8px 14px;font-weight:700;font-size:.76rem;color:#64748b;letter-spacing:.04em}
+.gd-sentence{background:#eff6ff;padding:10px 14px;font-family:monospace;font-size:.98rem;font-weight:700;color:#1e3a8a;border-bottom:1px solid #dbeafe}
+.gd-structure{background:#fff;padding:10px 14px;border-bottom:1px solid #f1f5f9}
+.struct-title{font-size:.7rem;font-weight:700;color:#94a3b8;text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px}
+.struct-parts{display:flex;flex-wrap:wrap;align-items:flex-start;gap:4px}
+.struct-part{display:inline-flex;flex-direction:column;align-items:center;gap:2px}
+.struct-word{background:#ede9fe;color:#4c1d95;border-radius:6px;padding:4px 9px;font-weight:700;font-size:.84rem;font-family:monospace;white-space:nowrap}
+.struct-word.kw{background:#fef3c7;color:#92400e;border:2px solid #f59e0b}
+.struct-lbl{font-size:.64rem;color:#64748b;white-space:nowrap}
+.struct-plus{font-size:1rem;color:#cbd5e1;padding:0 2px;margin-top:4px;align-self:flex-start}
+.gd-rule{background:#f0fdf4;padding:9px 14px;font-size:.82rem;color:#065f46;font-weight:600;line-height:1.6;border-left:3px solid #10b981}
+
+/* ===== 詳細解説ボックス ===== */
+.detail-box{background:#fff;border-radius:16px;padding:18px 22px;margin-bottom:16px;box-shadow:0 2px 10px rgba(0,0,0,.06);border-left:5px solid #6366f1}
+.detail-box h3{font-size:.9rem;font-weight:700;margin-bottom:12px;color:#4f46e5;display:flex;align-items:center;gap:6px}
+.detail-item{padding:8px 0;border-bottom:1px solid #f1f5f9;font-size:.86rem;line-height:1.65}
+.detail-item:last-child{border-bottom:none}
+.dk{font-weight:700;font-family:monospace;background:#ede9fe;color:#4c1d95;padding:2px 7px;border-radius:5px;font-size:.88rem}
+.djp{color:#64748b;font-size:.82rem;margin-top:3px}
+.detail-note{background:#fef3c7;border-radius:8px;padding:8px 12px;font-size:.82rem;color:#78350f;font-weight:600;margin-top:10px;border-left:3px solid #f59e0b;line-height:1.5}
+
+/* ===== 例文ボックス ===== */
+.ex-box{background:#fff;border-radius:16px;padding:18px 22px;margin-bottom:16px;box-shadow:0 2px 10px rgba(0,0,0,.06)}
+.ex-box h3{font-size:.9rem;font-weight:700;margin-bottom:10px;display:flex;align-items:center;gap:6px}
+.ex-table{width:100%;border-collapse:collapse;font-size:.85rem}
+.ex-table tr:nth-child(odd) td{background:#f8fafc}
+.ex-table td{padding:8px 12px;line-height:1.5;border-bottom:1px solid #f1f5f9;vertical-align:top}
+.ex-table tr:last-child td{border-bottom:none}
+.ex-eng{font-weight:700;color:#1e293b}
+.ex-eng .hl{color:#6366f1;text-decoration:underline;text-underline-offset:2px}
+.ex-jpn{color:#64748b;font-size:.81rem;margin-top:2px}
+
+/* ===== 基礎問題ボックス ===== */
+.basic-wrap{background:#fffbeb;border-radius:16px;padding:20px 22px;margin-bottom:22px;box-shadow:0 2px 10px rgba(0,0,0,.06);border:2px solid #fde68a}
+.basic-wrap h3{font-size:.9rem;font-weight:700;margin-bottom:14px;color:#92400e;display:flex;align-items:center;gap:6px}
+.basic-q{margin-bottom:14px;background:#fff;border-radius:12px;padding:14px 16px;box-shadow:0 1px 4px rgba(0,0,0,.05)}
+.basic-q:last-child{margin-bottom:0}
+.basic-q-num{font-size:.7rem;font-weight:700;color:#94a3b8;letter-spacing:.06em;margin-bottom:4px}
+.basic-q-jp{font-size:.82rem;color:#64748b;background:#f8fafc;border-radius:8px;padding:5px 10px;margin-bottom:8px;display:inline-block}
+.basic-q-text{font-size:.95rem;font-weight:700;margin-bottom:10px;line-height:1.6;color:#1e293b}
+.basic-choices{display:flex;gap:8px;flex-wrap:wrap}
+.basic-btn{padding:8px 18px;border:2px solid #e2e8f0;border-radius:10px;background:#fff;cursor:pointer;font-family:'Noto Sans JP',sans-serif;font-size:.88rem;font-weight:700;color:#374151;transition:all .2s}
+.basic-btn:hover:not(:disabled){border-color:#f59e0b;background:#fffbeb}
+.basic-btn.correct{border-color:#10b981!important;background:#d1fae5!important;color:#065f46!important}
+.basic-btn.wrong{border-color:#ef4444!important;background:#fee2e2!important;color:#991b1b!important}
+.basic-fb{margin-top:8px;padding:8px 12px;border-radius:8px;font-size:.82rem;font-weight:600;line-height:1.5;display:none}
+.basic-fb.show{display:block}
+.basic-fb.ok{background:#d1fae5;color:#065f46;border-left:3px solid #10b981}
+.basic-fb.ng{background:#fee2e2;color:#991b1b;border-left:3px solid #ef4444}
 </style>
 </head>
 <body>
@@ -183,6 +241,77 @@ header p{color:rgba(255,255,255,.88);font-size:.9rem;font-weight:500}
     <div class="example">✅ He doesn't play tennis. （彼はテニスをしません）</div>
     <div class="formula">過去形の否定：主語 + did not (didn't) + 動詞の原形</div>
     <div class="example">✅ She didn't go to school. （彼女は学校に行きませんでした）</div>
+  </div>
+
+  <div class="detail-box">
+    <h3>📖 詳しい解説</h3>
+    <div class="detail-item">
+      <div><span class="dk">be動詞の否定</span>　am / is / are の直後に <span class="dk">not</span> を置く</div>
+      <div class="djp">I am not ／ She is not（= isn't）／ They are not（= aren't）</div>
+      <div class="djp">※ am not に短縮形はない（口語では「I'm not」の形が使われる）</div>
+    </div>
+    <div class="detail-item">
+      <div><span class="dk">一般動詞の現在否定</span>　<span class="dk">don't</span> または <span class="dk">doesn't</span> ＋ 動詞の原形</div>
+      <div class="djp">I / You / We / They → don't ／ He / She / It（三単現）→ doesn't</div>
+    </div>
+    <div class="detail-item">
+      <div><span class="dk">過去形の否定</span>　<span class="dk">didn't</span> ＋ 動詞の原形　（主語に関わらず共通）</div>
+      <div class="djp">誰が主語でも didn't を使い、動詞は必ず原形にする</div>
+    </div>
+    <div class="detail-item">
+      <div><span class="dk">過去のbe動詞の否定</span>　<span class="dk">wasn't</span> / <span class="dk">weren't</span></div>
+      <div class="djp">I / He / She / It → wasn't ／ You / We / They → weren't</div>
+    </div>
+    <div class="detail-note">⚠️ 注意：一般動詞の後に直接 not は置けません。<br>✕ She plays not tennis. → ✅ She doesn't play tennis.</div>
+  </div>
+
+  <div class="ex-box">
+    <h3>💬 例文で確認しよう</h3>
+    <table class="ex-table">
+      <tr><td><div class="ex-eng">I <span class="hl">am not</span> hungry.</div><div class="ex-jpn">私はお腹が空いていません。</div></td></tr>
+      <tr><td><div class="ex-eng">She <span class="hl">isn't</span> a nurse.</div><div class="ex-jpn">彼女は看護師ではありません。</div></td></tr>
+      <tr><td><div class="ex-eng">We <span class="hl">aren't</span> busy today.</div><div class="ex-jpn">私たちは今日忙しくありません。</div></td></tr>
+      <tr><td><div class="ex-eng">He <span class="hl">doesn't</span> eat vegetables.</div><div class="ex-jpn">彼は野菜を食べません。</div></td></tr>
+      <tr><td><div class="ex-eng">They <span class="hl">didn't</span> come to class.</div><div class="ex-jpn">彼らは授業に来ませんでした。</div></td></tr>
+      <tr><td><div class="ex-eng">The bag <span class="hl">wasn't</span> expensive.</div><div class="ex-jpn">そのバッグは高くありませんでした。</div></td></tr>
+    </table>
+  </div>
+
+  <div class="basic-wrap">
+    <h3>✏️ 基礎問題 ウォームアップ</h3>
+    <div class="basic-q">
+      <div class="basic-q-num">基礎 Q1</div>
+      <div class="basic-q-jp">私は今、眠くありません。</div>
+      <div class="basic-q-text">I <span class="blank">___</span> sleepy right now.</div>
+      <div class="basic-choices">
+        <button class="basic-btn" onclick="basicAnswer(this,'b-s1-1',1,'✅ 正解！ I のbe動詞の否定は am not です（短縮形はありません）。','❌ 不正解。')">A. am not</button>
+        <button class="basic-btn" onclick="basicAnswer(this,'b-s1-1',0,'','❌ 不正解。don\'t は一般動詞の否定です。sleepy は形容詞なのでbe動詞を使います。I am not が正解。')">B. don't</button>
+        <button class="basic-btn" onclick="basicAnswer(this,'b-s1-1',0,'','❌ 不正解。isn\'t は He / She / It に使います。主語が I なので am not が正解。')">C. isn't</button>
+      </div>
+      <div class="basic-fb" id="b-s1-1"></div>
+    </div>
+    <div class="basic-q">
+      <div class="basic-q-num">基礎 Q2</div>
+      <div class="basic-q-jp">彼女は魚が好きではありません。</div>
+      <div class="basic-q-text">She <span class="blank">___</span> like fish.</div>
+      <div class="basic-choices">
+        <button class="basic-btn" onclick="basicAnswer(this,'b-s1-2',0,'','❌ 不正解。don\'t は I / You / We / They に使います。She（三単現）は doesn\'t が正解。')">A. don't</button>
+        <button class="basic-btn" onclick="basicAnswer(this,'b-s1-2',1,'✅ 正解！ She（三単現）の一般動詞否定は doesn\'t ＋ 動詞の原形。','❌ 不正解。')">B. doesn't</button>
+        <button class="basic-btn" onclick="basicAnswer(this,'b-s1-2',0,'','❌ 不正解。isn\'t はbe動詞の否定です。like は一般動詞なので doesn\'t を使います。')">C. isn't</button>
+      </div>
+      <div class="basic-fb" id="b-s1-2"></div>
+    </div>
+    <div class="basic-q">
+      <div class="basic-q-num">基礎 Q3</div>
+      <div class="basic-q-jp">昨日は寒くありませんでした。</div>
+      <div class="basic-q-text">It <span class="blank">___</span> cold yesterday.</div>
+      <div class="basic-choices">
+        <button class="basic-btn" onclick="basicAnswer(this,'b-s1-3',0,'','❌ 不正解。didn\'t は一般動詞の過去否定です。cold は形容詞なのでbe動詞の過去否定 wasn\'t が正解。')">A. didn't</button>
+        <button class="basic-btn" onclick="basicAnswer(this,'b-s1-3',1,'✅ 正解！ 過去のbe動詞否定：It（単数）→ wasn\'t ＋ 形容詞。','❌ 不正解。')">B. wasn't</button>
+        <button class="basic-btn" onclick="basicAnswer(this,'b-s1-3',0,'','❌ 不正解。isn\'t は現在形。yesterday があるので過去形 wasn\'t が正解です。')">C. isn't</button>
+      </div>
+      <div class="basic-fb" id="b-s1-3"></div>
+    </div>
   </div>
 
   <div class="sec-stars" id="stars-s1">
@@ -351,6 +480,77 @@ header p{color:rgba(255,255,255,.88);font-size:.9rem;font-weight:500}
     <div class="example">✅ Did you go to the party? （パーティーに行きましたか？）</div>
   </div>
 
+  <div class="detail-box">
+    <h3>📖 詳しい解説</h3>
+    <div class="detail-item">
+      <div><span class="dk">be動詞の疑問文</span>　be動詞を主語の前に移動させる</div>
+      <div class="djp">I am → Am I? ／ She is → Is she? ／ They are → Are they?</div>
+    </div>
+    <div class="detail-item">
+      <div><span class="dk">一般動詞の疑問文</span>　<span class="dk">Do</span> / <span class="dk">Does</span> を文頭に置き、動詞は原形</div>
+      <div class="djp">I / You / We / They → Do ＋ 主語 ＋ 動詞の原形?</div>
+      <div class="djp">He / She / It（三単現）→ Does ＋ 主語 ＋ 動詞の原形?</div>
+    </div>
+    <div class="detail-item">
+      <div><span class="dk">過去形の疑問文</span>　<span class="dk">Did</span> ＋ 主語 ＋ 動詞の原形?（主語に関わらず Did）</div>
+      <div class="djp">Did you go? ／ Did he come? ／ Did they win?</div>
+    </div>
+    <div class="detail-item">
+      <div><span class="dk">疑問詞付きの疑問文</span>　疑問詞 ＋ do / does / did ＋ 主語 ＋ 動詞の原形?</div>
+      <div class="djp">What do you eat? ／ Where does she live? ／ When did they arrive?</div>
+    </div>
+    <div class="detail-note">📌 答え方：Do you 〜? → Yes, I do. / No, I don't. ／ Did you 〜? → Yes, I did. / No, I didn't.</div>
+  </div>
+
+  <div class="ex-box">
+    <h3>💬 例文で確認しよう</h3>
+    <table class="ex-table">
+      <tr><td><div class="ex-eng"><span class="hl">Are</span> you ready?</div><div class="ex-jpn">準備はできていますか？</div></td></tr>
+      <tr><td><div class="ex-eng"><span class="hl">Is</span> she from Tokyo?</div><div class="ex-jpn">彼女は東京出身ですか？</div></td></tr>
+      <tr><td><div class="ex-eng"><span class="hl">Do</span> you like cooking?</div><div class="ex-jpn">料理は好きですか？</div></td></tr>
+      <tr><td><div class="ex-eng"><span class="hl">Does</span> he work here?</div><div class="ex-jpn">彼はここで働いていますか？</div></td></tr>
+      <tr><td><div class="ex-eng"><span class="hl">Did</span> you sleep well?</div><div class="ex-jpn">よく眠れましたか？</div></td></tr>
+      <tr><td><div class="ex-eng">Where <span class="hl">do</span> you study?</div><div class="ex-jpn">どこで勉強しますか？</div></td></tr>
+    </table>
+  </div>
+
+  <div class="basic-wrap">
+    <h3>✏️ 基礎問題 ウォームアップ</h3>
+    <div class="basic-q">
+      <div class="basic-q-num">基礎 Q1</div>
+      <div class="basic-q-jp">あなたは疲れていますか？</div>
+      <div class="basic-q-text"><span class="blank">___</span> you tired?</div>
+      <div class="basic-choices">
+        <button class="basic-btn" onclick="basicAnswer(this,'b-s2-1',0,'','❌ 不正解。Do は一般動詞の疑問文に使います。tired は形容詞なのでbe動詞 Are が正解。')">A. Do</button>
+        <button class="basic-btn" onclick="basicAnswer(this,'b-s2-1',1,'✅ 正解！ be動詞の疑問文：you → Are you 〜?','❌ 不正解。')">B. Are</button>
+        <button class="basic-btn" onclick="basicAnswer(this,'b-s2-1',0,'','❌ 不正解。Did は過去の疑問文に使います。現在の状態を聞くので Are が正解。')">C. Did</button>
+      </div>
+      <div class="basic-fb" id="b-s2-1"></div>
+    </div>
+    <div class="basic-q">
+      <div class="basic-q-num">基礎 Q2</div>
+      <div class="basic-q-jp">彼女は毎日ピアノを弾きますか？</div>
+      <div class="basic-q-text"><span class="blank">___</span> she play the piano every day?</div>
+      <div class="basic-choices">
+        <button class="basic-btn" onclick="basicAnswer(this,'b-s2-2',1,'✅ 正解！ 三単現（she）の一般動詞疑問文は Does ＋ 主語 ＋ 動詞の原形。','❌ 不正解。')">A. Does</button>
+        <button class="basic-btn" onclick="basicAnswer(this,'b-s2-2',0,'','❌ 不正解。Do は I / You / We / They に使います。she は三単現なので Does が正解。')">B. Do</button>
+        <button class="basic-btn" onclick="basicAnswer(this,'b-s2-2',0,'','❌ 不正解。Is はbe動詞の疑問文に使います。play は一般動詞なので Does が正解。')">C. Is</button>
+      </div>
+      <div class="basic-fb" id="b-s2-2"></div>
+    </div>
+    <div class="basic-q">
+      <div class="basic-q-num">基礎 Q3</div>
+      <div class="basic-q-jp">あなたは昨日、何を食べましたか？</div>
+      <div class="basic-q-text">What <span class="blank">___</span> you eat yesterday?</div>
+      <div class="basic-choices">
+        <button class="basic-btn" onclick="basicAnswer(this,'b-s2-3',0,'','❌ 不正解。do は現在形の疑問文に使います。yesterday があるので過去形 did が正解。')">A. do</button>
+        <button class="basic-btn" onclick="basicAnswer(this,'b-s2-3',0,'','❌ 不正解。are はbe動詞の疑問文に使います。eat は一般動詞の過去疑問なので did が正解。')">B. are</button>
+        <button class="basic-btn" onclick="basicAnswer(this,'b-s2-3',1,'✅ 正解！ 過去の疑問文：What did ＋ 主語 ＋ 動詞の原形?','❌ 不正解。')">C. did</button>
+      </div>
+      <div class="basic-fb" id="b-s2-3"></div>
+    </div>
+  </div>
+
   <div class="sec-stars" id="stars-s2">
     <span class="sec-star">⭐</span><span class="sec-star">⭐</span><span class="sec-star">⭐</span>
     <span class="sec-star">⭐</span><span class="sec-star">⭐</span><span class="sec-star">⭐</span>
@@ -516,6 +716,76 @@ header p{color:rgba(255,255,255,.88);font-size:.9rem;font-weight:500}
       <tr><td>You / We / They</td><td>are</td><td>そのまま（play）</td></tr>
       <tr><td>He / She / It</td><td>is</td><td>-s/-es/-ies（plays）</td></tr>
     </table>
+  </div>
+
+  <div class="detail-box">
+    <h3>📖 詳しい解説</h3>
+    <div class="detail-item">
+      <div><span class="dk">現在形の3つの用法</span></div>
+      <div class="djp">① 習慣・繰り返しの動作：I go jogging every morning.（毎朝ジョギングします）</div>
+      <div class="djp">② 不変の事実・科学的真実：The Earth orbits the Sun.（地球は太陽の周りを回る）</div>
+      <div class="djp">③ 現在の状態・気持ち：She likes jazz music.（彼女はジャズが好き）</div>
+    </div>
+    <div class="detail-item">
+      <div><span class="dk">三単現（He / She / It）のルール</span>　動詞に変化をつける</div>
+      <div class="djp">通常 → ＋s：play→plays ／ eat→eats ／ like→likes</div>
+      <div class="djp">-o / -s / -x / -ch / -sh で終わる → ＋es：go→goes ／ watch→watches ／ wash→washes</div>
+      <div class="djp">子音字＋y で終わる → y を i に変えて ＋es：study→studies ／ fly→flies</div>
+    </div>
+    <div class="detail-item">
+      <div><span class="dk">be動詞の現在形</span></div>
+      <div class="djp">I → am ／ He / She / It → is ／ You / We / They → are</div>
+    </div>
+    <div class="detail-note">📌 頻度副詞（always / usually / often / sometimes / never）は一般動詞の前に置く。<br>例：She always drinks coffee.（彼女はいつもコーヒーを飲む）</div>
+  </div>
+
+  <div class="ex-box">
+    <h3>💬 例文で確認しよう</h3>
+    <table class="ex-table">
+      <tr><td><div class="ex-eng">I <span class="hl">brush</span> my teeth every night.</div><div class="ex-jpn">毎晩歯を磨きます。</div></td></tr>
+      <tr><td><div class="ex-eng">He <span class="hl">reads</span> books on weekends.</div><div class="ex-jpn">彼は週末に本を読みます。</div></td></tr>
+      <tr><td><div class="ex-eng">She <span class="hl">teaches</span> math at school.</div><div class="ex-jpn">彼女は学校で数学を教えています。（-ch → ＋es）</div></td></tr>
+      <tr><td><div class="ex-eng">Ice <span class="hl">melts</span> at 0 degrees.</div><div class="ex-jpn">氷は0度で溶けます。（科学的事実）</div></td></tr>
+      <tr><td><div class="ex-eng">Ken <span class="hl">studies</span> English every day.</div><div class="ex-jpn">ケンは毎日英語を勉強します。（y → ies）</div></td></tr>
+      <tr><td><div class="ex-eng">We <span class="hl">live</span> in Tokyo.</div><div class="ex-jpn">私たちは東京に住んでいます。</div></td></tr>
+    </table>
+  </div>
+
+  <div class="basic-wrap">
+    <h3>✏️ 基礎問題 ウォームアップ</h3>
+    <div class="basic-q">
+      <div class="basic-q-num">基礎 Q1</div>
+      <div class="basic-q-jp">私の母は毎日料理をします。</div>
+      <div class="basic-q-text">My mother <span class="blank">___</span> every day.</div>
+      <div class="basic-choices">
+        <button class="basic-btn" onclick="basicAnswer(this,'b-s3-1',0,'','❌ 不正解。My mother は三単現なので動詞に -s が必要。cooks が正解。')">A. cook</button>
+        <button class="basic-btn" onclick="basicAnswer(this,'b-s3-1',1,'✅ 正解！ My mother（三単現）→ cook ＋ s = cooks。','❌ 不正解。')">B. cooks</button>
+        <button class="basic-btn" onclick="basicAnswer(this,'b-s3-1',0,'','❌ 不正解。cooked は過去形です。現在の習慣なので cooks が正解。')">C. cooked</button>
+      </div>
+      <div class="basic-fb" id="b-s3-1"></div>
+    </div>
+    <div class="basic-q">
+      <div class="basic-q-num">基礎 Q2</div>
+      <div class="basic-q-jp">子供たちは公園で遊びます。</div>
+      <div class="basic-q-text">The children <span class="blank">___</span> in the park.</div>
+      <div class="basic-choices">
+        <button class="basic-btn" onclick="basicAnswer(this,'b-s3-2',0,'','❌ 不正解。plays は三単現の形です。The children は複数なので動詞はそのまま play。')">A. plays</button>
+        <button class="basic-btn" onclick="basicAnswer(this,'b-s3-2',1,'✅ 正解！ The children（複数）→ 動詞はそのまま play（-s なし）。','❌ 不正解。')">B. play</button>
+        <button class="basic-btn" onclick="basicAnswer(this,'b-s3-2',0,'','❌ 不正解。playing は進行形。現在の習慣なので動詞の原形 play を使います。')">C. playing</button>
+      </div>
+      <div class="basic-fb" id="b-s3-2"></div>
+    </div>
+    <div class="basic-q">
+      <div class="basic-q-num">基礎 Q3</div>
+      <div class="basic-q-jp">猫は夜によく活動します。（事実）</div>
+      <div class="basic-q-text">Cats <span class="blank">___</span> active at night.</div>
+      <div class="basic-choices">
+        <button class="basic-btn" onclick="basicAnswer(this,'b-s3-3',0,'','❌ 不正解。is は He / She / It（単数）に使います。Cats は複数なので are が正解。')">A. is</button>
+        <button class="basic-btn" onclick="basicAnswer(this,'b-s3-3',0,'','❌ 不正解。am は I にしか使いません。Cats（複数）→ are が正解。')">B. am</button>
+        <button class="basic-btn" onclick="basicAnswer(this,'b-s3-3',1,'✅ 正解！ Cats（複数）→ be動詞は are。科学的事実も現在形で表します。','❌ 不正解。')">C. are</button>
+      </div>
+      <div class="basic-fb" id="b-s3-3"></div>
+    </div>
   </div>
 
   <div class="sec-stars" id="stars-s3">
@@ -686,6 +956,76 @@ header p{color:rgba(255,255,255,.88);font-size:.9rem;font-weight:500}
     </table>
   </div>
 
+  <div class="detail-box">
+    <h3>📖 詳しい解説</h3>
+    <div class="detail-item">
+      <div><span class="dk">現在進行形の意味</span>　am / is / are ＋ 動詞のing形</div>
+      <div class="djp">① 今まさにしている動作：I'm eating now.（今食べています）</div>
+      <div class="djp">② 今日・この頃していること：I'm studying for the exam.（試験勉強中）</div>
+      <div class="djp">③ 近い未来の確定した予定：I'm meeting him tomorrow.（明日会う予定）</div>
+    </div>
+    <div class="detail-item">
+      <div><span class="dk">ing形の作り方　3つのルール</span></div>
+      <div class="djp">① そのまま ＋ ing：play→playing ／ eat→eating ／ walk→walking</div>
+      <div class="djp">② e を取って ＋ ing（eで終わる動詞）：make→making ／ write→writing ／ come→coming</div>
+      <div class="djp">③ 子音字を重ねて ＋ ing（短母音＋子音字）：run→running ／ swim→swimming ／ sit→sitting</div>
+    </div>
+    <div class="detail-item">
+      <div><span class="dk">be動詞の選び方</span></div>
+      <div class="djp">I → am ＋ ing ／ He / She / It → is ＋ ing ／ You / We / They → are ＋ ing</div>
+    </div>
+    <div class="detail-note">⚠️ 「状態」を表す動詞（know / like / love / want / have など）は通常、進行形にしない。<br>✕ I am knowing him. → ✅ I know him.</div>
+  </div>
+
+  <div class="ex-box">
+    <h3>💬 例文で確認しよう</h3>
+    <table class="ex-table">
+      <tr><td><div class="ex-eng">I <span class="hl">am writing</span> a letter.</div><div class="ex-jpn">手紙を書いています。</div></td></tr>
+      <tr><td><div class="ex-eng">He <span class="hl">is swimming</span> in the pool.</div><div class="ex-jpn">彼はプールで泳いでいます。（swim→swimming）</div></td></tr>
+      <tr><td><div class="ex-eng">She <span class="hl">is coming</span> home now.</div><div class="ex-jpn">彼女は今、家に帰ってきています。（come→coming）</div></td></tr>
+      <tr><td><div class="ex-eng">They <span class="hl">are having</span> lunch.</div><div class="ex-jpn">彼らは昼食を取っています。（have→having）</div></td></tr>
+      <tr><td><div class="ex-eng">It <span class="hl">is getting</span> dark outside.</div><div class="ex-jpn">外が暗くなってきています。</div></td></tr>
+      <tr><td><div class="ex-eng"><span class="hl">Are</span> you <span class="hl">joking</span>?</div><div class="ex-jpn">冗談を言っているのですか？</div></td></tr>
+    </table>
+  </div>
+
+  <div class="basic-wrap">
+    <h3>✏️ 基礎問題 ウォームアップ</h3>
+    <div class="basic-q">
+      <div class="basic-q-num">基礎 Q1</div>
+      <div class="basic-q-jp">彼女は今、走っています。</div>
+      <div class="basic-q-text">She <span class="blank">___</span> now.</div>
+      <div class="basic-choices">
+        <button class="basic-btn" onclick="basicAnswer(this,'b-s4-1',1,'✅ 正解！ She（単数）→ is ＋ running（run→子音を重ねてrunning）。','❌ 不正解。')">A. is running</button>
+        <button class="basic-btn" onclick="basicAnswer(this,'b-s4-1',0,'','❌ 不正解。are は You / We / They に使います。She（単数）→ is running が正解。')">B. are running</button>
+        <button class="basic-btn" onclick="basicAnswer(this,'b-s4-1',0,'','❌ 不正解。runs は現在形（習慣）です。今まさに走っているので is running が正解。')">C. runs</button>
+      </div>
+      <div class="basic-fb" id="b-s4-1"></div>
+    </div>
+    <div class="basic-q">
+      <div class="basic-q-num">基礎 Q2</div>
+      <div class="basic-q-jp">彼らは今、夕食を食べています。</div>
+      <div class="basic-q-text">They <span class="blank">___</span> dinner now.</div>
+      <div class="basic-choices">
+        <button class="basic-btn" onclick="basicAnswer(this,'b-s4-2',0,'','❌ 不正解。is eating は単数（He/She/It）に使います。They（複数）→ are eating が正解。')">A. is eating</button>
+        <button class="basic-btn" onclick="basicAnswer(this,'b-s4-2',1,'✅ 正解！ They（複数）→ are ＋ eating（eat＋ing）。','❌ 不正解。')">B. are eating</button>
+        <button class="basic-btn" onclick="basicAnswer(this,'b-s4-2',0,'','❌ 不正解。eat は現在形（習慣）です。今まさに食べているので are eating が正解。')">C. eat</button>
+      </div>
+      <div class="basic-fb" id="b-s4-2"></div>
+    </div>
+    <div class="basic-q">
+      <div class="basic-q-num">基礎 Q3</div>
+      <div class="basic-q-jp">あなたは今、何を書いていますか？</div>
+      <div class="basic-q-text">What <span class="blank">___</span> you writing now?</div>
+      <div class="basic-choices">
+        <button class="basic-btn" onclick="basicAnswer(this,'b-s4-3',0,'','❌ 不正解。is は He / She / It に使います。you の現在進行形の疑問文は are が正解。')">A. is</button>
+        <button class="basic-btn" onclick="basicAnswer(this,'b-s4-3',0,'','❌ 不正解。do は一般動詞の疑問文に使います。現在進行形の疑問文なので are が正解。')">B. do</button>
+        <button class="basic-btn" onclick="basicAnswer(this,'b-s4-3',1,'✅ 正解！ 現在進行形の疑問文：What are you ＋ 動詞ing形?','❌ 不正解。')">C. are</button>
+      </div>
+      <div class="basic-fb" id="b-s4-3"></div>
+    </div>
+  </div>
+
   <div class="sec-stars" id="stars-s4">
     <span class="sec-star">⭐</span><span class="sec-star">⭐</span><span class="sec-star">⭐</span>
     <span class="sec-star">⭐</span><span class="sec-star">⭐</span><span class="sec-star">⭐</span>
@@ -851,6 +1191,80 @@ header p{color:rgba(255,255,255,.88);font-size:.9rem;font-weight:500}
       <tr><td>I / He / She / It</td><td>was</td></tr>
       <tr><td>You / We / They</td><td>were</td></tr>
     </table>
+  </div>
+
+  <div class="detail-box">
+    <h3>📖 詳しい解説</h3>
+    <div class="detail-item">
+      <div><span class="dk">過去進行形の意味</span>　was / were ＋ 動詞のing形</div>
+      <div class="djp">① 過去のある時点で進行していた動作：I was reading at 8 p.m.（夜8時に読んでいました）</div>
+      <div class="djp">② when節と組み合わせて「〜していたとき」の背景：She was cooking when I came home.</div>
+    </div>
+    <div class="detail-item">
+      <div><span class="dk">was と were の使い分け</span></div>
+      <div class="djp">I / He / She / It → was ＋ 動詞ing形</div>
+      <div class="djp">You / We / They → were ＋ 動詞ing形</div>
+    </div>
+    <div class="detail-item">
+      <div><span class="dk">否定形と疑問形</span></div>
+      <div class="djp">否定：was not（wasn't）/ were not（weren't）＋ ing形</div>
+      <div class="djp">疑問：Was / Were ＋ 主語 ＋ ing形?　→　Yes, I was. / No, I wasn't.</div>
+    </div>
+    <div class="detail-item">
+      <div><span class="dk">過去進行形 vs 過去形</span></div>
+      <div class="djp">過去進行形：動作が「継続中」だったことを強調　（I was watching TV.）</div>
+      <div class="djp">過去形：動作が「完結」したことを表す　（I watched TV.）</div>
+    </div>
+    <div class="detail-note">📌 when節との組み合わせ：過去進行形（背景）＋ when ＋ 過去形（割り込んだ出来事）<br>例：I was sleeping when the phone rang.（電話が鳴った時、寝ていました）</div>
+  </div>
+
+  <div class="ex-box">
+    <h3>💬 例文で確認しよう</h3>
+    <table class="ex-table">
+      <tr><td><div class="ex-eng">I <span class="hl">was watching</span> TV at 9 p.m.</div><div class="ex-jpn">夜9時にテレビを見ていました。</div></td></tr>
+      <tr><td><div class="ex-eng">He <span class="hl">was taking</span> a bath when I called.</div><div class="ex-jpn">私が電話した時、彼は入浴中でした。</div></td></tr>
+      <tr><td><div class="ex-eng">We <span class="hl">were talking</span> about you.</div><div class="ex-jpn">私たちはあなたのことを話していました。</div></td></tr>
+      <tr><td><div class="ex-eng">It <span class="hl">was snowing</span> when we woke up.</div><div class="ex-jpn">目が覚めた時、雪が降っていました。</div></td></tr>
+      <tr><td><div class="ex-eng">She <span class="hl">wasn't paying</span> attention.</div><div class="ex-jpn">彼女は注意を払っていませんでした。</div></td></tr>
+      <tr><td><div class="ex-eng"><span class="hl">Were</span> you <span class="hl">sleeping</span> at noon?</div><div class="ex-jpn">正午に寝ていたのですか？</div></td></tr>
+    </table>
+  </div>
+
+  <div class="basic-wrap">
+    <h3>✏️ 基礎問題 ウォームアップ</h3>
+    <div class="basic-q">
+      <div class="basic-q-num">基礎 Q1</div>
+      <div class="basic-q-jp">私が来た時、彼は音楽を聴いていました。</div>
+      <div class="basic-q-text">He <span class="blank">___</span> to music when I came.</div>
+      <div class="basic-choices">
+        <button class="basic-btn" onclick="basicAnswer(this,'b-s5-1',0,'','❌ 不正解。were は You / We / They に使います。He（単数）→ was listening が正解。')">A. were listening</button>
+        <button class="basic-btn" onclick="basicAnswer(this,'b-s5-1',1,'✅ 正解！ He（単数）→ was ＋ listening。when節で「そのとき進行中だった動作」を表します。','❌ 不正解。')">B. was listening</button>
+        <button class="basic-btn" onclick="basicAnswer(this,'b-s5-1',0,'','❌ 不正解。listened は過去形（完結した動作）です。「聴いていた」という継続中の動作なので was listening が正解。')">C. listened</button>
+      </div>
+      <div class="basic-fb" id="b-s5-1"></div>
+    </div>
+    <div class="basic-q">
+      <div class="basic-q-num">基礎 Q2</div>
+      <div class="basic-q-jp">彼らは昨夜、カードゲームをしていました。</div>
+      <div class="basic-q-text">They <span class="blank">___</span> cards last night.</div>
+      <div class="basic-choices">
+        <button class="basic-btn" onclick="basicAnswer(this,'b-s5-2',0,'','❌ 不正解。was は I / He / She / It に使います。They（複数）→ were playing が正解。')">A. was playing</button>
+        <button class="basic-btn" onclick="basicAnswer(this,'b-s5-2',0,'','❌ 不正解。played は過去形（完結）です。「〜していた」という継続中の動作なので were playing が正解。')">B. played</button>
+        <button class="basic-btn" onclick="basicAnswer(this,'b-s5-2',1,'✅ 正解！ They（複数）→ were ＋ playing。','❌ 不正解。')">C. were playing</button>
+      </div>
+      <div class="basic-fb" id="b-s5-2"></div>
+    </div>
+    <div class="basic-q">
+      <div class="basic-q-num">基礎 Q3</div>
+      <div class="basic-q-jp">あなたは昨日の午前10時に何をしていましたか？</div>
+      <div class="basic-q-text">What <span class="blank">___</span> you doing at 10 a.m. yesterday?</div>
+      <div class="basic-choices">
+        <button class="basic-btn" onclick="basicAnswer(this,'b-s5-3',0,'','❌ 不正解。did は一般動詞の過去疑問文に使います。doing がある（進行形）ので were が正解。')">A. did</button>
+        <button class="basic-btn" onclick="basicAnswer(this,'b-s5-3',1,'✅ 正解！ 過去進行形の疑問文：What were you ＋ doing?（you → were）。','❌ 不正解。')">B. were</button>
+        <button class="basic-btn" onclick="basicAnswer(this,'b-s5-3',0,'','❌ 不正解。was は I / He / She / It に使います。you → were が正解。')">C. was</button>
+      </div>
+      <div class="basic-fb" id="b-s5-3"></div>
+    </div>
   </div>
 
   <div class="sec-stars" id="stars-s5">
@@ -1019,6 +1433,82 @@ header p{color:rgba(255,255,255,.88);font-size:.9rem;font-weight:500}
       <tr><td>否定</td><td>had not (hadn't) + p.p.</td></tr>
       <tr><td>疑問</td><td>Had + 主語 + p.p. ?</td></tr>
     </table>
+  </div>
+
+  <div class="detail-box">
+    <h3>📖 詳しい解説</h3>
+    <div class="detail-item">
+      <div><span class="dk">過去完了形の意味</span>　had ＋ 過去分詞（p.p.）</div>
+      <div class="djp">① 大過去（過去の基準点より前に完了）：I had eaten before she came.</div>
+      <div class="djp">② 過去までの継続：He had lived there for 10 years when he moved.</div>
+      <div class="djp">③ 過去までの経験：She had never flown before.</div>
+    </div>
+    <div class="detail-item">
+      <div><span class="dk">形と特徴</span></div>
+      <div class="djp">肯定：主語 ＋ had ＋ p.p.（主語に関わらず had を使う）</div>
+      <div class="djp">否定：主語 ＋ had not（hadn't）＋ p.p.</div>
+      <div class="djp">疑問：Had ＋ 主語 ＋ p.p.?　→　Yes, I had. / No, I hadn't.</div>
+    </div>
+    <div class="detail-item">
+      <div><span class="dk">現在完了 vs 過去完了</span></div>
+      <div class="djp">現在完了（have / has ＋ p.p.）：現在との繋がり → I have eaten sushi.（食べたことがある）</div>
+      <div class="djp">過去完了（had ＋ p.p.）：過去の基準点との繋がり → I had eaten before she came.</div>
+    </div>
+    <div class="detail-item">
+      <div><span class="dk">よく使う主要な不規則動詞</span></div>
+      <div class="djp">go→gone ／ eat→eaten ／ see→seen ／ come→come ／ make→made ／ take→taken</div>
+      <div class="djp">write→written ／ know→known ／ give→given ／ leave→left ／ meet→met</div>
+    </div>
+    <div class="detail-note">📌 時を表す語句と一緒に使うことが多い：<br>by the time（〜するころには）／ before（〜する前に）／ after（〜した後で）／ already（すでに）／ never（一度も〜ない）／ just（ちょうど〜したところ）</div>
+  </div>
+
+  <div class="ex-box">
+    <h3>💬 例文で確認しよう</h3>
+    <table class="ex-table">
+      <tr><td><div class="ex-eng">I <span class="hl">had already finished</span> my homework when Mom came.</div><div class="ex-jpn">お母さんが来た時、もう宿題を終えていました。</div></td></tr>
+      <tr><td><div class="ex-eng">She <span class="hl">had never eaten</span> sushi before.</div><div class="ex-jpn">彼女はそれまで寿司を食べたことがありませんでした。</div></td></tr>
+      <tr><td><div class="ex-eng">He <span class="hl">had just left</span> when you called.</div><div class="ex-jpn">あなたが電話した時、彼はちょうど出発したところでした。</div></td></tr>
+      <tr><td><div class="ex-eng">By the time we arrived, the game <span class="hl">had ended</span>.</div><div class="ex-jpn">私たちが着いた時には、試合はもう終わっていました。</div></td></tr>
+      <tr><td><div class="ex-eng">They <span class="hl">had studied</span> English for 5 years before moving.</div><div class="ex-jpn">引越し前に5年間英語を勉強していました。</div></td></tr>
+      <tr><td><div class="ex-eng"><span class="hl">Had</span> you ever <span class="hl">been</span> to Paris before?</div><div class="ex-jpn">以前パリに行ったことがありましたか？</div></td></tr>
+    </table>
+  </div>
+
+  <div class="basic-wrap">
+    <h3>✏️ 基礎問題 ウォームアップ</h3>
+    <div class="basic-q">
+      <div class="basic-q-num">基礎 Q1</div>
+      <div class="basic-q-jp">彼女が着いた時、彼はもう帰っていました。</div>
+      <div class="basic-q-text">He <span class="blank">___</span> already gone home when she arrived.</div>
+      <div class="basic-choices">
+        <button class="basic-btn" onclick="basicAnswer(this,'b-s6-1',0,'','❌ 不正解。have は現在完了（今との繋がり）です。過去の時点より前のことなので had が正解。')">A. have</button>
+        <button class="basic-btn" onclick="basicAnswer(this,'b-s6-1',1,'✅ 正解！ 過去完了形：had ＋ gone（go の過去分詞）。「彼女が来た」という過去の基準点より前の出来事。','❌ 不正解。')">B. had</button>
+        <button class="basic-btn" onclick="basicAnswer(this,'b-s6-1',0,'','❌ 不正解。has は現在完了（三単現）です。過去の話なので had が正解。')">C. has</button>
+      </div>
+      <div class="basic-fb" id="b-s6-1"></div>
+    </div>
+    <div class="basic-q">
+      <div class="basic-q-num">基礎 Q2</div>
+      <div class="basic-q-jp">彼らはその映画を3回見たことがありました。</div>
+      <div class="basic-q-text">They <span class="blank">___</span> seen the movie three times.</div>
+      <div class="basic-choices">
+        <button class="basic-btn" onclick="basicAnswer(this,'b-s6-2',1,'✅ 正解！ 過去完了形：had ＋ seen（see の過去分詞）。過去の経験を表します。','❌ 不正解。')">A. had</button>
+        <button class="basic-btn" onclick="basicAnswer(this,'b-s6-2',0,'','❌ 不正解。have は現在完了です。過去の話なので had が正解。')">B. have</button>
+        <button class="basic-btn" onclick="basicAnswer(this,'b-s6-2',0,'','❌ 不正解。has は現在完了（三単現）です。過去の話 ＋ They（複数）→ had が正解。')">C. has</button>
+      </div>
+      <div class="basic-fb" id="b-s6-2"></div>
+    </div>
+    <div class="basic-q">
+      <div class="basic-q-num">基礎 Q3</div>
+      <div class="basic-q-jp">電話が鳴った時、私はすでに眠っていました。</div>
+      <div class="basic-q-text">I had already <span class="blank">___</span> asleep when the phone rang.</div>
+      <div class="basic-choices">
+        <button class="basic-btn" onclick="basicAnswer(this,'b-s6-3',1,'✅ 正解！ had ＋ fallen（fall の過去分詞：fell→fallen）。fall asleep = 眠りに落ちる。','❌ 不正解。')">A. fallen</button>
+        <button class="basic-btn" onclick="basicAnswer(this,'b-s6-3',0,'','❌ 不正解。falling は進行形のing形です。had の後は過去分詞（p.p.）→ fallen が正解。')">B. falling</button>
+        <button class="basic-btn" onclick="basicAnswer(this,'b-s6-3',0,'','❌ 不正解。fall は動詞の原形です。had の後は過去分詞 fallen が正解。')">C. fall</button>
+      </div>
+      <div class="basic-fb" id="b-s6-3"></div>
+    </div>
   </div>
 
   <div class="sec-stars" id="stars-s6">
@@ -1263,11 +1753,11 @@ function answer(btn, sec, qNum, isCorrect) {
     s.correct++;
     btn.classList.add('correct');
     fb.classList.add('ok');
-    fb.textContent = feedbacks[sec][qNum].ok;
+    fb.innerHTML = '<span>' + feedbacks[sec][qNum].ok + '</span>' + buildGrammarDetail(sec, qNum);
   } else {
     btn.classList.add('wrong');
     fb.classList.add('ng');
-    fb.textContent = feedbacks[sec][qNum].ng;
+    fb.innerHTML = '<span>' + feedbacks[sec][qNum].ng + '</span>' + buildGrammarDetail(sec, qNum);
   }
 
   updateStars(sec);
@@ -1327,7 +1817,7 @@ function retrySection(sec) {
   });
   section.querySelectorAll('.feedback').forEach(fb => {
     fb.classList.remove('show','ok','ng');
-    fb.textContent = '';
+    fb.innerHTML = '';
   });
   section.querySelectorAll('.sec-star').forEach(s => s.classList.remove('lit'));
   document.getElementById(`result-${sec}`).classList.remove('show');
@@ -1342,6 +1832,158 @@ function showSection(secId, tabEl) {
   tabEl.classList.add('active');
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
+
+// ===== 正しい英文 (音声・解説用) =====
+const sentences = {
+  s1:{1:"I am not a doctor.",2:"They are not friends.",3:"I don't play the piano.",4:"She doesn't eat meat.",5:"It didn't rain yesterday.",6:"The movie wasn't interesting.",7:"Tom doesn't have a car.",8:"We are not tired.",9:"I didn't see him yesterday.",10:"He isn't good at English."},
+  s2:{1:"Are you a student?",2:"Does she like music?",3:"Did he come to the party?",4:"Are you busy?",5:"Do you prefer dogs or cats?",6:"Where does your mother live?",7:"What time did you wake up yesterday?",8:"Is the store open today?",9:"What sports do you play?",10:"Did you watch this movie?"},
+  s3:{1:"I drink coffee every morning.",2:"She often runs in the park.",3:"The sun rises in the east.",4:"They like baseball.",5:"Ken goes to church every Sunday.",6:"My father works at a bank.",7:"Water boils at 100 degrees.",8:"My sister speaks English and Japanese.",9:"You watch TV every night.",10:"The dog is very big."},
+  s4:{1:"I am reading a book now.",2:"She is singing a song now.",3:"The children are playing in the park.",4:"What are you doing now?",5:"He is making dinner now.",6:"We are studying English.",7:"The dog is running in the yard.",8:"She is talking on the phone.",9:"It is raining outside now.",10:"They are listening to music now."},
+  s5:{1:"I was eating breakfast at 7 o'clock.",2:"They were watching a movie last night.",3:"She was playing the piano for three hours.",4:"What were you doing yesterday afternoon?",5:"He couldn't answer because he was talking on the phone.",6:"We were singing in the middle of the night.",7:"He was sleeping when I came home.",8:"The children were playing on the beach.",9:"The train wasn't moving when I arrived at the station.",10:"She was studying from 9 to 10 last night."},
+  s6:{1:"I had eaten lunch when she arrived.",2:"The train had left before I arrived at the station.",3:"He had lived in Japan before.",4:"She had gone to bed when I called.",5:"They had never met each other before.",6:"I had finished the popcorn before the movie started.",7:"She had already left when I woke up.",8:"Had he read the book before?",9:"She had never been to the party before.",10:"They realized they had made a mistake after the game ended."}
+};
+
+// ===== 文法構造データ (parts: w=語句 l=ラベル k=キーワード強調) =====
+const grammarDetails = {
+  s1:{
+    1:{parts:[{w:"I",l:"主語"},{w:"am not",l:"be動詞の否定",k:1},{w:"a doctor",l:"補語"}],rule:"💡 I → be動詞は am → 否定は am not（短縮形なし）"},
+    2:{parts:[{w:"They",l:"主語"},{w:"are not",l:"be動詞の否定",k:1},{w:"friends",l:"補語"}],rule:"💡 They / We / You → be動詞は are → 否定は are not（= aren't）"},
+    3:{parts:[{w:"I",l:"主語"},{w:"don't",l:"一般動詞の否定",k:1},{w:"play",l:"動詞の原形"},{w:"the piano",l:"目的語"}],rule:"💡 I / You / We / They → 一般動詞の否定は do not（don't）+ 動詞の原形"},
+    4:{parts:[{w:"She",l:"主語"},{w:"doesn't",l:"一般動詞の否定",k:1},{w:"eat",l:"動詞の原形"},{w:"meat",l:"目的語"}],rule:"💡 He / She / It（三単現）→ 一般動詞の否定は does not（doesn't）+ 動詞の原形"},
+    5:{parts:[{w:"It",l:"主語"},{w:"didn't",l:"過去の否定",k:1},{w:"rain",l:"動詞の原形"},{w:"yesterday",l:"時"}],rule:"💡 過去の否定 → did not（didn't）+ 動詞の原形（主語に関係なく共通）"},
+    6:{parts:[{w:"The movie",l:"主語"},{w:"wasn't",l:"過去be動詞の否定",k:1},{w:"interesting",l:"形容詞(補語)"}],rule:"💡 過去のbe動詞否定：単数主語（He/She/It/単数名詞）→ was not（wasn't）"},
+    7:{parts:[{w:"Tom",l:"主語"},{w:"doesn't",l:"一般動詞の否定",k:1},{w:"have",l:"動詞の原形"},{w:"a car",l:"目的語"}],rule:"💡 Tom = 三単現扱い → doesn't + 動詞の原形（have はそのまま）"},
+    8:{parts:[{w:"We",l:"主語"},{w:"are not",l:"be動詞の否定",k:1},{w:"tired",l:"形容詞(補語)"}],rule:"💡 We → be動詞は are → 否定は are not（= aren't）"},
+    9:{parts:[{w:"I",l:"主語"},{w:"didn't",l:"過去の否定",k:1},{w:"see",l:"動詞の原形"},{w:"him",l:"目的語"},{w:"yesterday",l:"時"}],rule:"💡 過去の否定 → didn't + 動詞の原形。see の原形はそのまま see"},
+    10:{parts:[{w:"He",l:"主語"},{w:"isn't",l:"be動詞の否定",k:1},{w:"good at English",l:"補語(形容詞句)"}],rule:"💡 He → be動詞は is → 否定は is not（isn't）"}
+  },
+  s2:{
+    1:{parts:[{w:"Are",l:"be動詞（疑問）",k:1},{w:"you",l:"主語"},{w:"a student",l:"補語"}],rule:"💡 be動詞の疑問文：be動詞を主語の前に置く。you → Are you 〜?"},
+    2:{parts:[{w:"Does",l:"一般動詞の疑問",k:1},{w:"she",l:"主語"},{w:"like",l:"動詞の原形"},{w:"music",l:"目的語"}],rule:"💡 三単現（she）の疑問文 → Does + 主語 + 動詞の原形 〜?"},
+    3:{parts:[{w:"Did",l:"過去の疑問",k:1},{w:"he",l:"主語"},{w:"come",l:"動詞の原形"},{w:"to the party",l:"場所"}],rule:"💡 過去の疑問文 → Did + 主語 + 動詞の原形 〜?（動詞は常に原形）"},
+    4:{parts:[{w:"Are",l:"be動詞（疑問）",k:1},{w:"you",l:"主語"},{w:"busy",l:"形容詞(補語)"}],rule:"💡 be動詞の疑問文：you → Are you 〜?"},
+    5:{parts:[{w:"Do",l:"一般動詞の疑問",k:1},{w:"you",l:"主語"},{w:"prefer",l:"動詞の原形"},{w:"dogs or cats",l:"目的語"}],rule:"💡 I / You / We / They の疑問文 → Do + 主語 + 動詞の原形 〜?"},
+    6:{parts:[{w:"Where",l:"疑問詞"},{w:"does",l:"一般動詞の疑問",k:1},{w:"your mother",l:"主語"},{w:"live",l:"動詞の原形"}],rule:"💡 Where + does/do + 主語 + 動詞の原形? your mother は三単現なので does"},
+    7:{parts:[{w:"What time",l:"疑問詞"},{w:"did",l:"過去の疑問",k:1},{w:"you",l:"主語"},{w:"wake up",l:"動詞の原形"},{w:"yesterday",l:"時"}],rule:"💡 過去の疑問文：疑問詞 + did + 主語 + 動詞の原形?"},
+    8:{parts:[{w:"Is",l:"be動詞（疑問）",k:1},{w:"the store",l:"主語"},{w:"open",l:"形容詞(補語)"},{w:"today",l:"時"}],rule:"💡 状態（形容詞）を聞く → be動詞の疑問文。the store（単数）→ Is"},
+    9:{parts:[{w:"What sports",l:"疑問詞"},{w:"do",l:"一般動詞の疑問",k:1},{w:"you",l:"主語"},{w:"play",l:"動詞の原形"}],rule:"💡 What + 名詞 + do / does + 主語 + 動詞の原形 〜?"},
+    10:{parts:[{w:"Did",l:"過去の疑問",k:1},{w:"you",l:"主語"},{w:"watch",l:"動詞の原形"},{w:"this movie",l:"目的語"}],rule:"💡 過去の疑問文 → Did + 主語 + 動詞の原形 〜?"}
+  },
+  s3:{
+    1:{parts:[{w:"I",l:"主語"},{w:"drink",l:"動詞（現在形）",k:1},{w:"coffee",l:"目的語"},{w:"every morning",l:"時"}],rule:"💡 I → 動詞はそのまま（-s なし）。習慣・繰り返しの動作を現在形で表す"},
+    2:{parts:[{w:"She",l:"主語"},{w:"often",l:"頻度副詞"},{w:"runs",l:"動詞（三単現）",k:1},{w:"in the park",l:"場所"}],rule:"💡 She（三単現）→ run + s = runs。頻度副詞（often）は一般動詞の前に置く"},
+    3:{parts:[{w:"The sun",l:"主語"},{w:"rises",l:"動詞（三単現）",k:1},{w:"in the east",l:"場所"}],rule:"💡 科学的事実は現在形で表す。The sun（三単現）→ rise + s = rises"},
+    4:{parts:[{w:"They",l:"主語"},{w:"like",l:"動詞（現在形）",k:1},{w:"baseball",l:"目的語"}],rule:"💡 They（複数）→ 動詞はそのまま（-s なし）"},
+    5:{parts:[{w:"Ken",l:"主語"},{w:"goes",l:"動詞（三単現）",k:1},{w:"to church",l:"場所"},{w:"every Sunday",l:"時"}],rule:"💡 Ken（三単現）→ go + es = goes（-o, -s, -x, -ch, -sh で終わる動詞は -es）"},
+    6:{parts:[{w:"My father",l:"主語"},{w:"works",l:"動詞（三単現）",k:1},{w:"at a bank",l:"場所"}],rule:"💡 My father（三単現）→ work + s = works。職業・習慣を現在形で表す"},
+    7:{parts:[{w:"Water",l:"主語"},{w:"boils",l:"動詞（三単現）",k:1},{w:"at 100 degrees",l:"条件"}],rule:"💡 科学的事実は現在形。Water（不可算名詞・単数扱い）→ boil + s = boils"},
+    8:{parts:[{w:"My sister",l:"主語"},{w:"speaks",l:"動詞（三単現）",k:1},{w:"English and Japanese",l:"目的語"}],rule:"💡 My sister（三単現）→ speak + s = speaks"},
+    9:{parts:[{w:"You",l:"主語"},{w:"watch",l:"動詞（現在形）",k:1},{w:"TV",l:"目的語"},{w:"every night",l:"時"}],rule:"💡 You → 動詞はそのまま（-s なし）"},
+    10:{parts:[{w:"The dog",l:"主語"},{w:"is",l:"be動詞（三単現）",k:1},{w:"very big",l:"形容詞(補語)"}],rule:"💡 The dog（単数）→ be動詞は is"}
+  },
+  s4:{
+    1:{parts:[{w:"I",l:"主語"},{w:"am",l:"be動詞"},{w:"reading",l:"動詞ing形",k:1},{w:"a book",l:"目的語"},{w:"now",l:"時"}],rule:"💡 現在進行形：am/is/are + 動詞ing形。I → am + reading（read + ing）"},
+    2:{parts:[{w:"She",l:"主語"},{w:"is",l:"be動詞"},{w:"singing",l:"動詞ing形",k:1},{w:"a song",l:"目的語"},{w:"now",l:"時"}],rule:"💡 She（単数）→ is + singing（sing + ing）"},
+    3:{parts:[{w:"The children",l:"主語"},{w:"are",l:"be動詞"},{w:"playing",l:"動詞ing形",k:1},{w:"in the park",l:"場所"}],rule:"💡 The children（複数）→ are + playing（play + ing）"},
+    4:{parts:[{w:"What",l:"疑問詞"},{w:"are",l:"be動詞"},{w:"you",l:"主語"},{w:"doing",l:"動詞ing形",k:1},{w:"now",l:"時"}],rule:"💡 現在進行形の疑問文：What + are/is + 主語 + 動詞ing形 〜?"},
+    5:{parts:[{w:"He",l:"主語"},{w:"is",l:"be動詞"},{w:"making",l:"動詞ing形",k:1},{w:"dinner",l:"目的語"},{w:"now",l:"時"}],rule:"💡 make → e を取って + ing = making（e で終わる動詞のルール）"},
+    6:{parts:[{w:"We",l:"主語"},{w:"are",l:"be動詞"},{w:"studying",l:"動詞ing形",k:1},{w:"English",l:"目的語"}],rule:"💡 We（複数）→ are + studying（study + ing）"},
+    7:{parts:[{w:"The dog",l:"主語"},{w:"is",l:"be動詞"},{w:"running",l:"動詞ing形",k:1},{w:"in the yard",l:"場所"}],rule:"💡 run → 子音字を重ねて + ing = running（短母音＋子音字で終わる動詞のルール）"},
+    8:{parts:[{w:"She",l:"主語"},{w:"is",l:"be動詞"},{w:"talking",l:"動詞ing形",k:1},{w:"on the phone",l:"状況"}],rule:"💡 talk → そのまま + ing = talking"},
+    9:{parts:[{w:"It",l:"主語"},{w:"is",l:"be動詞"},{w:"raining",l:"動詞ing形",k:1},{w:"outside",l:"場所"},{w:"now",l:"時"}],rule:"💡 It（単数）→ is + raining（rain + ing）"},
+    10:{parts:[{w:"They",l:"主語"},{w:"are",l:"be動詞"},{w:"listening",l:"動詞ing形",k:1},{w:"to music",l:"目的語"},{w:"now",l:"時"}],rule:"💡 They（複数）→ are + listening（listen + ing）"}
+  },
+  s5:{
+    1:{parts:[{w:"I",l:"主語"},{w:"was",l:"過去be動詞",k:1},{w:"eating",l:"動詞ing形"},{w:"breakfast",l:"目的語"},{w:"at 7 o'clock",l:"時"}],rule:"💡 過去進行形：was/were + 動詞ing形。I / He / She / It → was"},
+    2:{parts:[{w:"They",l:"主語"},{w:"were",l:"過去be動詞",k:1},{w:"watching",l:"動詞ing形"},{w:"a movie",l:"目的語"},{w:"last night",l:"時"}],rule:"💡 They（複数）→ were + watching。You / We / They → were"},
+    3:{parts:[{w:"She",l:"主語"},{w:"was",l:"過去be動詞",k:1},{w:"playing",l:"動詞ing形"},{w:"the piano",l:"目的語"},{w:"for three hours",l:"期間"}],rule:"💡 She（単数）→ was + playing。for 〜 は継続期間を表す"},
+    4:{parts:[{w:"What",l:"疑問詞"},{w:"were",l:"過去be動詞",k:1},{w:"you",l:"主語"},{w:"doing",l:"動詞ing形"},{w:"yesterday afternoon",l:"時"}],rule:"💡 過去進行形の疑問：What were you doing 〜?（you → were）"},
+    5:{parts:[{w:"he",l:"主語(because節)"},{w:"was",l:"過去be動詞",k:1},{w:"talking",l:"動詞ing形"},{w:"on the phone",l:"状況"}],rule:"💡 because節内：He（単数）→ was + talking。「〜していたから出られなかった」"},
+    6:{parts:[{w:"We",l:"主語"},{w:"were",l:"過去be動詞",k:1},{w:"singing",l:"動詞ing形"},{w:"in the middle of the night",l:"場所・時"}],rule:"💡 We（複数）→ were + singing"},
+    7:{parts:[{w:"He",l:"主語"},{w:"was",l:"過去be動詞",k:1},{w:"sleeping",l:"動詞ing形"},{w:"when I came home",l:"時"}],rule:"💡 He（単数）→ was + sleeping。when節で「その時に進行していた動作」を表す"},
+    8:{parts:[{w:"The children",l:"主語"},{w:"were",l:"過去be動詞",k:1},{w:"playing",l:"動詞ing形"},{w:"on the beach",l:"場所"}],rule:"💡 The children（複数）→ were + playing"},
+    9:{parts:[{w:"The train",l:"主語"},{w:"wasn't",l:"過去be動詞の否定",k:1},{w:"moving",l:"動詞ing形"},{w:"when I arrived",l:"時"}],rule:"💡 過去進行形の否定：The train（単数）→ was not（wasn't）+ moving"},
+    10:{parts:[{w:"She",l:"主語"},{w:"was",l:"過去be動詞",k:1},{w:"studying",l:"動詞ing形"},{w:"from 9 to 10",l:"時間"},{w:"last night",l:"時"}],rule:"💡 She（単数）→ was + studying。from 〜 to 〜 は「〜から〜まで」"}
+  },
+  s6:{
+    1:{parts:[{w:"I",l:"主語"},{w:"had",l:"助動詞(過去完了)",k:1},{w:"eaten",l:"過去分詞"},{w:"lunch",l:"目的語"},{w:"when she arrived",l:"時"}],rule:"💡 過去完了形：had + 過去分詞（p.p.）。eat → ate → eaten（不規則変化）"},
+    2:{parts:[{w:"The train",l:"主語"},{w:"had",l:"助動詞(過去完了)",k:1},{w:"left",l:"過去分詞"},{w:"before I arrived",l:"時"}],rule:"💡 過去完了形：had + left（leave → left → left）。「着く前に出発済み」"},
+    3:{parts:[{w:"He",l:"主語"},{w:"had",l:"助動詞(過去完了)",k:1},{w:"lived",l:"過去分詞"},{w:"in Japan",l:"場所"},{w:"before",l:"副詞"}],rule:"💡 過去の経験・継続：had + lived（live → lived → lived）"},
+    4:{parts:[{w:"She",l:"主語"},{w:"had",l:"助動詞(過去完了)",k:1},{w:"gone",l:"過去分詞"},{w:"to bed",l:"目的"},{w:"when I called",l:"時"}],rule:"💡 過去完了形：had + gone（go → went → gone）。「電話前に就寝済み」"},
+    5:{parts:[{w:"They",l:"主語"},{w:"had never",l:"過去完了の否定",k:1},{w:"met",l:"過去分詞"},{w:"each other",l:"目的語"},{w:"before",l:"副詞"}],rule:"💡 経験がない：had never + met（meet → met → met）。never は過去完了の否定に使う"},
+    6:{parts:[{w:"I",l:"主語"},{w:"had",l:"助動詞(過去完了)",k:1},{w:"finished",l:"過去分詞"},{w:"the popcorn",l:"目的語"},{w:"before the movie started",l:"時"}],rule:"💡 過去完了形：had + finished（finish → finished → finished）"},
+    7:{parts:[{w:"She",l:"主語"},{w:"had already",l:"過去完了+already",k:1},{w:"left",l:"過去分詞"},{w:"when I woke up",l:"時"}],rule:"💡 already（すでに）と過去完了形：had already + left。「起きた時点より前の出来事」"},
+    8:{parts:[{w:"Had",l:"助動詞(疑問)",k:1},{w:"he",l:"主語"},{w:"read",l:"過去分詞"},{w:"the book",l:"目的語"},{w:"before",l:"副詞"}],rule:"💡 過去完了の疑問文：Had + 主語 + 過去分詞 〜?（read の過去分詞も read）"},
+    9:{parts:[{w:"She",l:"主語"},{w:"had never",l:"過去完了の否定",k:1},{w:"been",l:"過去分詞"},{w:"to the party",l:"場所"},{w:"before",l:"副詞"}],rule:"💡 経験がない：had never + been（be → was/were → been）。have been to 〜 = 〜に行ったことがある"},
+    10:{parts:[{w:"they",l:"主語(従属節)"},{w:"had",l:"助動詞(過去完了)",k:1},{w:"made",l:"過去分詞"},{w:"a mistake",l:"目的語"},{w:"after the game ended",l:"時"}],rule:"💡 従属節内の過去完了：had + made（make → made → made）。「試合終了より前のミス」"}
+  }
+};
+
+// ===== 文法詳細パネルを組み立てる =====
+function buildGrammarDetail(sec, qNum) {
+  const d = grammarDetails[sec] && grammarDetails[sec][qNum];
+  const sent = sentences[sec] && sentences[sec][qNum];
+  if (!d || !sent) return '';
+  const partsHtml = d.parts.map((p, i) => {
+    const plus = i < d.parts.length - 1 ? '<span class="struct-plus">＋</span>' : '';
+    return `<div class="struct-part"><span class="struct-word${p.k?' kw':''}">${p.w}</span><span class="struct-lbl">${p.l}</span></div>${plus}`;
+  }).join('');
+  return `<div class="grammar-detail">
+    <div class="gd-header">📝 文の構造・解説</div>
+    <div class="gd-sentence">✏️ ${sent}</div>
+    <div class="gd-structure">
+      <div class="struct-title">構造（黄色 = 今回のポイント）</div>
+      <div class="struct-parts">${partsHtml}</div>
+    </div>
+    <div class="gd-rule">${d.rule}</div>
+  </div>`;
+}
+
+// ===== 音声読み上げ =====
+function speakText(btn) {
+  const card = btn.closest('.q-card');
+  const sec = card.dataset.sec;
+  const qNum = parseInt(card.querySelector('.q-num').textContent.replace('Q',''));
+  const text = sentences[sec] && sentences[sec][qNum];
+  if (!text) return;
+  window.speechSynthesis.cancel();
+  const utter = new SpeechSynthesisUtterance(text);
+  utter.lang = 'en-US';
+  utter.rate = 0.85;
+  utter.pitch = 1.0;
+  document.querySelectorAll('.audio-btn').forEach(b => b.classList.remove('speaking'));
+  btn.classList.add('speaking');
+  utter.onend = () => btn.classList.remove('speaking');
+  utter.onerror = () => btn.classList.remove('speaking');
+  window.speechSynthesis.speak(utter);
+}
+
+// ===== 基礎問題 回答処理 =====
+function basicAnswer(btn, fbId, isCorrect, okMsg, ngMsg) {
+  const wrap = btn.closest('.basic-q');
+  if (wrap.dataset.done === '1') return;
+  wrap.dataset.done = '1';
+  wrap.querySelectorAll('.basic-btn').forEach(b => b.disabled = true);
+  btn.classList.add(isCorrect ? 'correct' : 'wrong');
+  const fb = document.getElementById(fbId);
+  fb.classList.add('show', isCorrect ? 'ok' : 'ng');
+  fb.textContent = isCorrect ? okMsg : ngMsg;
+}
+
+// ===== ページ読み込み後：音声ボタンを各問題カードに追加 =====
+document.addEventListener('DOMContentLoaded', function() {
+  document.querySelectorAll('.q-card').forEach(card => {
+    const sec = card.dataset.sec;
+    const qNum = parseInt((card.querySelector('.q-num')||{}).textContent.replace('Q',''));
+    if (!sec || !qNum) return;
+    const btn = document.createElement('button');
+    btn.className = 'audio-btn';
+    btn.innerHTML = '🔊 英語を聞く';
+    btn.onclick = function(){ speakText(this); };
+    const qText = card.querySelector('.q-text');
+    if (qText) qText.after(btn);
+  });
+});
 </script>
 </body>
 </html>
